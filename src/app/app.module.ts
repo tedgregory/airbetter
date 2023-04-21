@@ -15,6 +15,9 @@ import { AppComponent } from './app.component';
 import { TuiInputModule } from '@taiga-ui/kit';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { TuiInputDateModule } from '@taiga-ui/kit';
+import { TuiRadioBlockModule } from '@taiga-ui/kit';
+import { TuiGroupModule } from '@taiga-ui/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +29,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     TuiDialogModule,
     TuiAlertModule,
     TuiInputModule,
+    TuiInputDateModule,
+    TuiRadioBlockModule,
     ReactiveFormsModule,
+    TuiGroupModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],
