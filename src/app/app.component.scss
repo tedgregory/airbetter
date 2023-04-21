@@ -11,3 +11,9 @@ tui-input,
 tui-input-date {
   width: 255px;
 }
+
+:host {
+  --tui-radius-m: 4px;
+  --tui-primary: #11397e;
+  --tui-primary-hover: #11397e;
+}

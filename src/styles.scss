@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+[tuiWrapper][data-appearance='textfield'] {
+  box-shadow: none;
+  background: #f4f6f9;
+}
+
+[tuiWrapper][data-appearance='whiteblock'],
+[tuiWrapper][data-appearance='whiteblock-active'] {
+  background: #f4f6f9;
+  font-size: 14px;
+
+  .t-label {
+    overflow: visible;
+  }
+}
+
+[tuiWrapper][data-appearance='whiteblock-active'] {
+  .t-label {
+    color: var(--tui-primary);
+    &::before {
+      content: '✔';
+      position: relative;
+      right: 2px;
+    }
+  }
+}
