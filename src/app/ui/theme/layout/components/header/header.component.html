@@ -1,0 +1,30 @@
+<header class="header">
+  <div class="header__inner">
+    <app-container height="max-height">
+      <div class="header__container-inner">
+        <a class="header__logo" [routerLink]="[NavigationPath.Flights]">
+          <img src="/assets/images/logo.svg" alt="Airways Logo" />
+        </a>
+
+        <div class="header__links">
+          <a
+            mat-icon-button
+            aria-label="Home"
+            [routerLink]="[NavigationPath.Flights]">
+            <mat-icon>home</mat-icon>
+          </a>
+          <!-- <a mat-icon-button aria-label="Booking" [routerLink]="NavigationPath.Booking | navPath"> -->
+          <a
+            mat-icon-button
+            aria-label="Booking"
+            [routerLink]="[NavigationPath.Booking]">
+            <mat-icon>settings</mat-icon>
+          </a>
+          <button mat-icon-button aria-label="Help" (click)="onOpenDialog()">
+            <mat-icon>help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </app-container>
+  </div>
+</header>

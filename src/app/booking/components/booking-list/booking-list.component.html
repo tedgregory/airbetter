@@ -1,0 +1,10 @@
+<div class="booking-list" *ngIf="bookingVariants$ | async as bookingVariants">
+  <ng-container *ngIf="bookingVariants.length">
+    <!-- <app-booking-card
+      [bookingVariant]="bookingVariant"
+      *ngFor="let bookingVariant of bookingVariants"
+    ></app-booking-card> -->
+  </ng-container>
+
+  <p *ngIf="!bookingVariants.length">No flights available for booking</p>
+</div>

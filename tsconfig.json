@@ -22,7 +22,35 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/ui/theme/layout": ["src/app/ui/theme/layout/index.ts"],
+      "@app/ui/theme/utils": ["src/app/ui/theme/utils/index.ts"],
+      "@app/ui/payment-icons": ["src/app/ui/payment-icons/index.ts"],
+      "@app/ui/spinner": ["src/app/ui/spinner/index.ts"],
+      "@app/ui/container": ["src/app/ui/container/index.ts"],
+      "@app/ui/grid": ["src/app/ui/grid/index.ts"],
+      "@app/core/models": ["src/app/core/models/index.ts"],
+      "@app/core/config": ["src/app/core/config/index.ts"],
+      "@app/core/environments": ["src/app/core/environments/index.ts"],
+      "@app/core/storage": ["src/app/core/storage/index.ts"],
+      "@app/core/store/root": ["src/app/core/store/root/index.ts"],
+      "@app/core/store/watcher": ["src/app/core/store/watcher/index.ts"],
+      "@app/core/store/utils": ["src/app/core/store/utils/index.ts"],
+      "@app/core/navigation/models": ["src/app/core/navigation/models/index.ts"],
+      "@app/core/pages/not-found": ["src/app/core/pages/not-found/index.ts"],
+      "@app/booking/models": ["src/app/booking/models/index.ts"],
+      "@app/booking/components": ["src/app/booking/components/index.ts"],
+      "@app/booking/pages": ["src/app/booking/pages/index.ts"],
+      "@app/booking/service": ["src/app/booking/service/index.ts"],
+      "@app/booking/state": ["src/app/booking/state/index.ts"],
+      "@app/booking/pipes": ["src/app/booking/pipes/index.ts"],
+      "@app/flights/models": ["src/app/flights/models/index.ts"],
+      "@app/flights/components": ["src/app/flights/components/index.ts"],
+      "@app/flights/pages": ["src/app/flights/pages/index.ts"],
+      "@app/flights/service": ["src/app/flights/service/index.ts"],
+      "@app/flights/state": ["src/app/flights/state/index.ts"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
