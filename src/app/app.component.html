@@ -1,29 +1,31 @@
 <tui-root>
-  <form [formGroup]="testForm">
-    <tui-input formControlName="firstName">
-      First name*
-      <input tuiTextfield />
-    </tui-input>
-    <tui-input formControlName="lastName">
-      Last name*
-      <input tuiTextfield />
-    </tui-input>
-    <div tuiGroup [collapsed]="true" class="group">
-      <tui-radio-block
-        *ngFor="let gender of genders"
-        formControlName="selectGender"
-        contentAlign="right"
-        size="l"
-        [item]="gender"
-        [hideRadio]="true">
-        {{ gender }}
-      </tui-radio-block>
-    </div>
+  <div class="card">
+    <form [formGroup]="testForm">
+      <tui-input formControlName="firstName">
+        First name*
+        <input tuiTextfield />
+      </tui-input>
+      <tui-input formControlName="lastName">
+        Last name*
+        <input tuiTextfield />
+      </tui-input>
+      <div tuiGroup [collapsed]="true" class="group">
+        <tui-radio-block
+          *ngFor="let gender of genders"
+          formControlName="selectGender"
+          contentAlign="right"
+          size="l"
+          [item]="gender"
+          [hideRadio]="true">
+          {{ gender }}
+        </tui-radio-block>
+      </div>
 
-    <tui-input-date class="b-form" formControlName="control">
-      Choose a date
-      <input tuiTextfield autocomplete="bday" />
-    </tui-input-date>
-  </form>
+      <tui-input-date class="b-form" formControlName="control">
+        Choose a date
+        <input tuiTextfield autocomplete="bday" />
+      </tui-input-date>
+    </form>
+  </div>
   <router-outlet></router-outlet>
 </tui-root>

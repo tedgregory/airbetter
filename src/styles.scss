@@ -1,14 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
 
+* {
+  box-sizing: border-box;
+}
+
+$neutral10: #49454f;
+$primary: #11397e;
+$secondary90: #f4f6f9;
+
+%font16 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+%font14 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+%font12 {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+
+:root {
+  --tui-radius-m: 4px;
+  --tui-text-02: #49454f;
+  --tui-base-01: #f4f6f9;
+  --tui-base-02: #f4f6f9;
+  --tui-primary: #11397e;
+  --tui-primary-hover: #11397e;
+  --tui-text-font: 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
 [tuiWrapper][data-appearance='textfield'] {
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: none;
-  background: #f4f6f9;
+
+  .t-placeholder {
+    @extend %font12;
+  }
+
+  .t-value-decoration.t-has-value {
+    @extend %font16;
+  }
+
+  &:hover:not(._no-hover) {
+    box-shadow: none;
+  }
 }
 
 [tuiWrapper][data-appearance='whiteblock'],
 [tuiWrapper][data-appearance='whiteblock-active'] {
-  background: #f4f6f9;
-  font-size: 14px;
+  @extend %font14;
+
+  &:hover {
+    background: $secondary90;
+  }
 
   .t-label {
     overflow: visible;
@@ -17,7 +71,7 @@
 
 [tuiWrapper][data-appearance='whiteblock-active'] {
   .t-label {
-    color: var(--tui-primary);
+    color: $primary;
     &::before {
       content: '✔';
       position: relative;
@@ -25,3 +79,12 @@
     }
   }
 }
+
+// что значит миксины и как работает @import '@taiga-ui/core/styles/taiga-ui-local.scss';
+// как работает инкапсуляция стилей и можно ли ее обойти (tui-root, ng-container)
+// можно ли встроить normalize / reset
+// как встроить иконку в input (вставляется внутрь placeholder)
+// можно ли в доке смотреть стили не на LESS
+// можно ли кастомизировать только часть компонентов, например создать tui-input в качестве карточки
+// как можно менять border, особенно при фокусе / выборе радио кнопки
+// как вставить значение MM/DD/YYYY чтобы оно отображалось (выдает ошибку)
