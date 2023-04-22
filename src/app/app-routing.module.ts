@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NavigationPath } from '@app/core/navigation/models';
-import { LayoutComponent, LayoutModule } from '@app/ui/theme/layout';
+import { NavigationPath } from './core/navigation/models/navigation.interface';
+import { LayoutComponent } from './ui/theme/layout/layout.component';
+import { LayoutModule } from './ui/theme/layout/layout.module';
 
 const routes: Routes = [
   {
@@ -10,26 +11,23 @@ const routes: Routes = [
     children: [
       {
         path: NavigationPath.Flights,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        loadChildren: (): Promise<any> =>
-          import('@app/flights/pages').then(
-            (modules) => modules.FlightsPageModule
+        loadChildren: () =>
+          import('src/app/modules/flights/pages/flights-page.module').then(
+            (m) => m.FlightsPageModule
           ),
       },
       {
         path: NavigationPath.Booking,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        loadChildren: (): Promise<any> =>
-          import('@app/booking/pages').then(
-            (modules) => modules.BookingPageModule
+        loadChildren: () =>
+          import('src/app/modules/booking/pages/booking-page.module').then(
+            (m) => m.BookingPageModule
           ),
       },
       {
         path: '**',
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        loadChildren: (): Promise<any> =>
-          import('@app/core/pages/not-found').then(
-            (modules) => modules.NotFoundPageModule
+        loadChildren: () =>
+          import('src/app/core/pages/not-found/not-found-page.module').then(
+            (m) => m.NotFoundPageModule
           ),
       },
     ],

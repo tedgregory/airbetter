@@ -1,18 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
-
-import { GridBreakpointName } from '@app/ui/theme/utils';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { GridBreakpointName } from '../../theme/utils/grid-breakpoints.util';
 
 @Component({
   selector: 'app-column',
   templateUrl: './column.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColumnComponent implements OnInit {
   private lastModes: Partial<Record<GridBreakpointName, number>> | null = null;

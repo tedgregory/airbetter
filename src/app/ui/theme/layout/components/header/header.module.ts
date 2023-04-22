@@ -4,9 +4,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-// import { NavigationSharedModule } from '@app/core/navigation/shared';
-import { ContainerModule } from '@app/ui/container';
-import { GridModule } from '@app/ui/grid';
+import { ContainerModule } from 'src/app/ui/container/container.module';
+import { GridModule } from 'src/app/ui/grid/grid.module';
 import { HelpDialogModule } from './components/help-dialog/help-dialog.module';
 import { HeaderComponent } from './header.component';
 

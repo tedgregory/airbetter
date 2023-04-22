@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Config } from './config.interface';
 
 export const CONFIG_DEFAULT: Config = {

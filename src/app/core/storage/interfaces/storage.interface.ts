@@ -24,8 +24,7 @@ export abstract class AbstractStorage implements AsyncStorage {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private get state(): Record<string, any> {
+  private get state() {
     return this.state$.getValue();
   }
 
@@ -37,8 +36,7 @@ export abstract class AbstractStorage implements AsyncStorage {
     this.setState({});
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getItem<T = any>(key: string): Observable<T> {
+  getItem<T>(key: string): Observable<T> {
     return this.state$.pipe(map((state) => state[key] ?? null));
   }
 
@@ -51,8 +49,7 @@ export abstract class AbstractStorage implements AsyncStorage {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setItem<T = any>(key: string, value: T) {
+  setItem<T>(key: string, value: T) {
     this.setState({ ...this.state$.getValue(), [key]: value });
   }
 

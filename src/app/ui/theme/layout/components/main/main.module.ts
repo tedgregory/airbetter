@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ContainerModule } from '@app/ui/container';
+import { ContainerModule } from 'src/app/ui/container/container.module';
 import { MainComponent } from './main.component';
 
 @NgModule({

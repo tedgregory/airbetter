@@ -1,4 +1,4 @@
-import { Environments } from '@app/core/environments';
+import { Environments } from 'src/app/core/environments/environment.interface';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.

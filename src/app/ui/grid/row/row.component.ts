@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostBinding,
@@ -7,12 +6,11 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
-import { GridBreakpointName } from '@app/ui/theme/utils';
+import { GridBreakpointName } from '../../theme/utils/grid-breakpoints.util';
 
 @Component({
   selector: 'app-row',
   templateUrl: './row.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RowComponent implements OnInit {
   @Input() noPadding = false;

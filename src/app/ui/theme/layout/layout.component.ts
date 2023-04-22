@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavigationPath } from '@app/core/navigation/models';
+import { NavigationPath } from 'src/app/core/navigation/models/navigation.interface';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
   @HostBinding('class')

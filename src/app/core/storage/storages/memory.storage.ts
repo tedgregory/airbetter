@@ -15,8 +15,7 @@ export class MemoryStorage implements Storage {
     this.data = {};
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getItem<T = any>(key: string): T | null {
+  getItem<T>(key: string): T | null {
     return key in this.data ? this.data[key] : null;
   }
 
@@ -30,8 +29,7 @@ export class MemoryStorage implements Storage {
     delete this.data[key];
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setItem<T = any>(key: string, value: T) {
+  setItem<T>(key: string, value: T) {
     this.data[key] = value;
   }
 }
