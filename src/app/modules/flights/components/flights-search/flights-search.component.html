@@ -1,0 +1,131 @@
+<p>Flights search component</p>
+
+<app-row mode="md">
+  <app-column class="admin-menu" [modes]="{ md: 6 }">
+    <mat-card>
+      <form class="flights-search-form">
+        <mat-radio-group name="flavors">
+          <mat-radio-button value="round-trip">Round Trip</mat-radio-button>
+          <mat-radio-button value="one-way">One Way</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>From</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+          <input matInput placeholder="From" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of fromOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Destination" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of destinationOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> -->
+
+        <!-- <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Number</mat-label>
+          <input type="text"
+                placeholder="Pick one"
+                aria-label="Number"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input
+              matStartDate
+              formControlName="start"
+              placeholder="Start date" />
+            <input matEndDate formControlName="end" placeholder="End date" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          <mat-error
+            *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+            >Invalid start date</mat-error
+          >
+          <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+            >Invalid end date</mat-error
+          >
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+          <input matInput [matDatepicker]="startDatepicker" placeholder="Start date">
+          <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatepicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="endDatepicker" placeholder="End date">
+          <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatepicker></mat-datepicker>
+        </mat-form-field> -->
+        <div class="form-group">
+          <label for="passengers">Passengers</label>
+          <!-- <div formGroupName="passengers" id="passengers"> -->
+          <!-- <mat-form-field appearance="outline">
+              <mat-select placeholder="Adults" formControlName="adults">
+                <mat-option *ngFor="let option of adultsCount" [value]="option">{{option}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-select placeholder="Children" formControlName="children">
+                <mat-option *ngFor="let option of childrenCount" [value]="option">{{option}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-select placeholder="Infants" formControlName="infants">
+                <mat-option *ngFor="let option of infantsCount" [value]="option">{{option}}</mat-option>
+              </mat-select>
+            </mat-form-field> -->
+          <!-- </div> -->
+        </div>
+
+        <!-- <button type="submit" class="submit-btn" [disabled]="!flightForm.valid">Search</button> -->
+        <button
+          type="submit"
+          class="submit-btn"
+          mat-raised-button
+          color="primary">
+          Search
+        </button>
+      </form>
+    </mat-card>
+  </app-column>
+
+  <app-column [modes]="{ md: 6 }"> </app-column>
+</app-row>

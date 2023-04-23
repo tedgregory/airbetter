@@ -3,11 +3,28 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "airbet-repo": {
+    "airbetter": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "inlineStyle": true,
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
         }
       },
       "root": "",
@@ -17,7 +34,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/airbet-repo",
+            "outputPath": "dist/airbetter",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -65,10 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "airbet-repo:build:production"
+              "browserTarget": "airbetter:build:production"
             },
             "development": {
-              "browserTarget": "airbet-repo:build:development"
+              "browserTarget": "airbetter:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "airbet-repo:build"
+            "browserTarget": "airbetter:build"
           }
         },
         "test": {
