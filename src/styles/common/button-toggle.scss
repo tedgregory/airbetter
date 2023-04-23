@@ -1,0 +1,24 @@
+.mat-button-toggle-checked {
+  background-color: $color-white;
+  button[aria-pressed='true'] {
+    color: $color-primary;
+    .mat-button-toggle-label-content::before {
+      content: '✓';
+      margin-right: 2px;
+    }
+  }
+}
+
+.mat-button-toggle .mat-button-toggle-focus-overlay {
+  background-color: #00000000;
+}
+
+.mat-button-toggle-group-appearance-standard {
+  border: 1px solid rgba($color-grey-neutral-30, 0.5);
+}
+
+.mat-button-toggle-group-appearance-standard
+  .mat-button-toggle
+  + .mat-button-toggle {
+  border-left: 1px solid rgba($color-grey-neutral-30, 0.5);
+}
