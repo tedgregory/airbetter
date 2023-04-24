@@ -1,0 +1,35 @@
+.passengers-wrapper {
+  margin: 0 auto;
+  max-width: 1128px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.title {
+  @extend %title-large;
+  color: $color-primary;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 12px;
+}
+
+.description {
+  @extend %body-large;
+  color: $color-grey-neutral-10;
+}
+
+.step-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+  height: 60px;
+  &__button {
+    padding: 12px 24px;
+  }
+}

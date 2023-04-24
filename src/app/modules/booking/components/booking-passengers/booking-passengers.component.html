@@ -1,1 +1,26 @@
 <p>Booking passengers component</p>
+<div class="passengers-wrapper">
+  <div class="passengers-list">
+    <div class="title"><mat-icon>person</mat-icon><span>Passengers</span></div>
+    <div class="description">
+      Enter the passenger's names as they appear on document (passport or ID).
+    </div>
+    <app-booking-passenders-card></app-booking-passenders-card>
+  </div>
+  <div class="contacts-list">
+    <div class="title">
+      <mat-icon> contacts</mat-icon><span>Contact details</span>
+    </div>
+    <div class="description">
+      We need contact details to be able to deliver the latest information
+      regarding your flight.
+    </div>
+    <app-booking-passenders-contacts></app-booking-passenders-contacts>
+  </div>
+  <div class="step-buttons">
+    <button mat-flat-button class="step-buttons__button">Back</button>
+    <button mat-flat-button color="primary" class="step-buttons__button">
+      Continue
+    </button>
+  </div>
+</div>
