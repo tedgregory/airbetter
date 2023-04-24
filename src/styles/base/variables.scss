@@ -76,3 +76,11 @@ $color-danger: mat.get-color-from-palette(mat.$red-palette, 500);
   line-height: 20px;
   letter-spacing: 0.1px;
 }
+
+%label-small {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}

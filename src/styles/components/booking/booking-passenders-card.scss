@@ -12,4 +12,20 @@
     gap: 20px;
     flex-wrap: wrap;
   }
+  &__options {
+    .mdc-form-field {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 3px 0px;
+      gap: 17px;
+      > label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px;
+        gap: 6px;
+      }
+    }
+  }
 }

@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [BookingPassendersCardComponent],
@@ -22,6 +23,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatNativeDateModule,
     ReactiveFormsModule,
     MatButtonToggleModule,
+    MatSlideToggleModule,
   ],
   exports: [BookingPassendersCardComponent],
 })
