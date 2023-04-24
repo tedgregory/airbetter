@@ -11,6 +11,20 @@
     padding: 0px;
     gap: 20px;
     flex-wrap: wrap;
+
+    @include media-breakpoint-down(xl) {
+      flex-direction: column;
+    }
+
+    .mat-button-toggle {
+      width: 108px;
+    }
+    .mat-button-toggle-group.mat-button-toggle-group-appearance-standard {
+      height: 58px;
+      .mat-button-toggle-button.mat-focus-indicator {
+        height: 58px;
+      }
+    }
   }
   &__options {
     .mdc-form-field {

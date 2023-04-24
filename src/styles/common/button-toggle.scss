@@ -1,13 +1,5 @@
-.mat-button-toggle-group.mat-button-toggle-group-appearance-standard {
-  height: 58px;
-  .mat-button-toggle-button.mat-focus-indicator {
-    height: 58px;
-  }
-}
-
 .mat-button-toggle {
   background-color: $color-secondary-90;
-  width: 108px;
 
   .mat-button-toggle-label-content {
     @extend %label-medium;
