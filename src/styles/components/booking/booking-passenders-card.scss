@@ -1,1 +1,15 @@
-//
+.passenger-data {
+  &__title {
+    @extend %title-large;
+    color: $color-primary-dark;
+  }
+  &__form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}

@@ -1,10 +1,30 @@
-.mat-button-toggle-checked {
-  background-color: $color-white;
-  button[aria-pressed='true'] {
-    color: $color-primary;
-    .mat-button-toggle-label-content::before {
-      content: '✓';
-      margin-right: 2px;
+.mat-button-toggle-group.mat-button-toggle-group-appearance-standard {
+  height: 58px;
+  .mat-button-toggle-button.mat-focus-indicator {
+    height: 58px;
+  }
+}
+
+.mat-button-toggle {
+  background-color: $color-secondary-90;
+  width: 108px;
+
+  .mat-button-toggle-label-content {
+    @extend %label-medium;
+    color: $color-grey-neutral;
+  }
+
+  &-checked {
+    background-color: $color-secondary-90;
+    .mat-button-toggle-label-content {
+      color: $color-primary;
+    }
+
+    button[aria-pressed='true'] {
+      .mat-button-toggle-label-content::before {
+        content: '✓';
+        margin-right: 11px;
+      }
     }
   }
 }

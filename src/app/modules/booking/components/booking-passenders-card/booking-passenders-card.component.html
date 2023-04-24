@@ -1,3 +1,30 @@
 <mat-card class="passenger-card">
-  <mat-card-content>Simple card</mat-card-content>
+  <mat-card-content class="passenger-data">
+    <div class="passenger-data__title">1. Adult</div>
+    <form class="passenger-data__form">
+      <mat-form-field>
+        <mat-label>First name*</mat-label>
+        <input matInput />
+        <mat-icon matSuffix>info</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last name*</mat-label>
+        <input matInput />
+        <mat-icon matSuffix>info</mat-icon>
+      </mat-form-field>
+      <mat-button-toggle-group name="chooseGender" aria-label="Choose Gender">
+        <mat-button-toggle value="male">Male</mat-button-toggle>
+        <mat-button-toggle value="female">Female</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field appearance="fill">
+        <mat-label>Date of birth*</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+    <div class="passenger-data__options"></div>
+  </mat-card-content>
 </mat-card>

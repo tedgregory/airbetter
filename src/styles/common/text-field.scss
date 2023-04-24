@@ -22,3 +22,7 @@
 .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
   color: $color-danger;
 }
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: $color-secondary-90;
+}

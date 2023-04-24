@@ -41,6 +41,8 @@ $color-bg: $color-grey-light;
 // $color-primary: mat.get-color-from-palette(mat.$indigo-palette, 500);
 $color-default: $color-grey-neutral;
 $color-primary: $color-indigo;
+$color-primary-dark: #10264c;
+$color-secondary-90: #f4f6f9;
 $color-active: mat.get-color-from-palette(mat.$indigo-palette, 700);
 $color-accent: mat.get-color-from-palette(mat.$pink-palette, A200);
 $color-danger: mat.get-color-from-palette(mat.$red-palette, 500);
@@ -64,5 +66,13 @@ $color-danger: mat.get-color-from-palette(mat.$red-palette, 500);
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
+  letter-spacing: 0.1px;
+}
+
+%label-medium {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
   letter-spacing: 0.1px;
 }
