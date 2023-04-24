@@ -5,24 +5,6 @@
   gap: 40px;
 }
 
-.passengers-list,
-.contacts-list {
-  &__title {
-    @extend %title-large;
-    color: $color-primary;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 0px;
-    gap: 12px;
-  }
-
-  &__description {
-    @extend %body-large;
-    color: $color-grey-neutral-10;
-  }
-}
-
 .step-buttons {
   display: flex;
   flex-direction: row;
