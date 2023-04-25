@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookingPassendersCardComponent } from './booking-passenders-card.component';
+import { BookingPassengersCardComponent } from './booking-passengers-card.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -13,7 +13,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
-  declarations: [BookingPassendersCardComponent],
+  declarations: [BookingPassengersCardComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -25,6 +25,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatButtonToggleModule,
     MatSlideToggleModule,
   ],
-  exports: [BookingPassendersCardComponent],
+  exports: [BookingPassengersCardComponent],
 })
-export class BookingPassendersCardModule {}
+export class BookingPassengersCardModule {}

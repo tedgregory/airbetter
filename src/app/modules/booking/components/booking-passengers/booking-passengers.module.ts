@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookingPassengersComponent } from './booking-passengers.component';
-import { BookingPassendersCardModule } from '../booking-passenders-card/booking-passenders-card.module';
+import { BookingPassengersCardModule } from '../booking-passengers-card/booking-passengers-card.module';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { BookingPassendersContactsModule } from '../booking-passenders-contacts/booking-passenders-contacts.module';
+import { BookingPassengersContactsModule } from '../booking-passengers-contacts/booking-passengers-contacts.module';
 
 @NgModule({
   declarations: [BookingPassengersComponent],
   imports: [
     CommonModule,
-    BookingPassendersCardModule,
-    BookingPassendersContactsModule,
+    BookingPassengersCardModule,
+    BookingPassengersContactsModule,
     MatIconModule,
     MatButtonModule,
   ],
