@@ -11,7 +11,16 @@
     }
   }
 
-  &__country-field {
+  &__phone-data {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__country-field,
+  &__phone-field {
     .mat-mdc-form-field-infix {
       width: 217px;
     }

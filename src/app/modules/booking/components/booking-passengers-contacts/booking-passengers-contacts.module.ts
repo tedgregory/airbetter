@@ -4,10 +4,17 @@ import { BookingPassengersContactsComponent } from './booking-passengers-contact
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [BookingPassengersContactsComponent],
-  imports: [CommonModule, MatCardModule, MatSelectModule, MatInputModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+  ],
   exports: [BookingPassengersContactsComponent],
 })
 export class BookingPassengersContactsModule {}

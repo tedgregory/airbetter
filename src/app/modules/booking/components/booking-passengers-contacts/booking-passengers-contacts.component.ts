@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class BookingPassengersContactsComponent {
+  selectedValue = '';
+
   countryCodes = ['Afghanistan (+93)', 'Anguilla (+1)', 'Argentina (+54)'];
 }
