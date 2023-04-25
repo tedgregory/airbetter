@@ -1,10 +1,53 @@
-<div class="booking-list" *ngIf="bookingVariants$ | async as bookingVariants">
-  <ng-container *ngIf="bookingVariants.length">
-    <!-- <app-booking-card
-      [bookingVariant]="bookingVariant"
-      *ngFor="let bookingVariant of bookingVariants"
-    ></app-booking-card> -->
-  </ng-container>
+<div class="booking-list">
+  <ng-container *ngIf="flightsFW$ | async as flightsFW">
+    <ng-container *ngIf="flightsFW.length && currentOptions[0]">
+      <h2 class="booking-list__title">
+        <img
+          class="icon"
+          src="../../../../../assets/images/plane.svg"
+          alt="🛬" />
+        {{ currentOptions[0].data[0].cityFrom }} to
+        {{ currentOptions[0].data[0].cityTo }}
+      </h2>
+      <div class="flight">
+        <div class="flight__options">
+          <app-booking-card
+            (chooseFlight)="setActiveCard($event)"
+            [bookingVariant]="bookingVariant"
+            *ngFor="let bookingVariant of flightsFW; let i = index"
+            [isActive]="i === 2"></app-booking-card>
+        </div>
+        <app-booking-details
+          [currentFlight]="currentOptions[0]"></app-booking-details>
+      </div>
+    </ng-container>
 
-  <p *ngIf="!bookingVariants.length">No flights available for booking</p>
+    <p *ngIf="!flightsFW.length">No flights available for booking</p>
+  </ng-container>
+  <ng-container *ngIf="flightsRW$ | async as flightsRW">
+    <ng-container *ngIf="flightsRW.length && currentOptions[1]">
+      <h2 class="booking-list__title">
+        <img
+          class="icon icon-back"
+          src="../../../../../assets/images/plane.svg"
+          alt="🛬" />
+        {{ currentOptions[1].data[0].cityFrom }} to
+        {{ currentOptions[1].data[0].cityTo }}
+      </h2>
+      <div class="flight">
+        <div class="flight__options">
+          <app-booking-card
+            (chooseFlight)="setActiveCard($event)"
+            [bookingVariant]="bookingVariant"
+            *ngFor="let bookingVariant of flightsRW; let i = index"
+            [isActive]="i === 2"></app-booking-card>
+        </div>
+        <app-booking-details
+          [currentFlight]="currentOptions[1]"
+          [flip]="true"></app-booking-details>
+      </div>
+    </ng-container>
+
+    <p *ngIf="!flightsRW.length">No return flights available for booking</p>
+  </ng-container>
 </div>

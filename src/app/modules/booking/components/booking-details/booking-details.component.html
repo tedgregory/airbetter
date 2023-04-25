@@ -1,0 +1,35 @@
+<div
+  class="flight-details"
+  *ngIf="currentFlight && currentFlight.data[0].route[0] as flightInfo">
+  <div class="timing timing_left">
+    <div class="timing__date">
+      {{ flightInfo.local_departure | date : 'EEE, d LLL yyyy' }}
+    </div>
+    <div class="timing__local-time">
+      <p class="time">{{ flightInfo.local_departure | date : 'H:mm' }}</p>
+      <p class="time__gmt">
+        {{ flightInfo.local_departure | date : 'z' }}
+      </p>
+    </div>
+    <div class="timing__airport">
+      {{ flightInfo.cityFrom }}
+    </div>
+  </div>
+  <div
+    [class]="{
+      'flight-details__decor': true,
+      'flight-details__decor_flip': flip
+    }"></div>
+  <div class="timing timing_right">
+    <div class="timing__date">
+      {{ flightInfo.local_arrival | date : 'EEE, d LLL yyyy' }}
+    </div>
+    <div class="timing__local-time">
+      <p class="time__gmt">{{ flightInfo.local_arrival | date : 'z' }}</p>
+      <p class="time">{{ flightInfo.local_arrival | date : 'H:mm' }}</p>
+    </div>
+    <div class="timing__airport">
+      {{ flightInfo.cityTo }}
+    </div>
+  </div>
+</div>

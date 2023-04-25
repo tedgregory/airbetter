@@ -1,0 +1,101 @@
+app-booking-details {
+  display: flex;
+  padding: 1rem;
+  margin-top: 9px;
+  background-color: $color-white;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px $color-grey-40;
+
+  .flight-details {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+
+    .timing {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+
+      &_left {
+        align-items: flex-start;
+      }
+
+      &_right {
+        align-items: flex-end;
+      }
+
+      &__date {
+        font-size: 1rem;
+        line-height: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        color: $color-grey-neutral-30;
+      }
+
+      &__local-time {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        p {
+          margin: 0;
+        }
+
+        .time {
+          margin: 0;
+          font-size: 1.9rem;
+          font-weight: 700;
+          //line-height: 2.2rem;
+          color: $color-black;
+
+          &__gmt {
+            font-size: 0.5rem;
+            line-height: 1.2rem;
+            font-weight: 400;
+            color: $color-grey-neutral-30;
+          }
+        }
+      }
+
+      &__airport {
+        font-size: 0.8rem;
+        font-weight: 400;
+        line-height: 1rem;
+        color: $color-grey-neutral-30;
+      }
+    }
+
+    &__decor {
+      flex: 1;
+      position: relative;
+      padding: 0 1rem;
+      height: 2px;
+      background-color: #d0d9df; // TODO -add variable
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: -15px;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        box-shadow: 0 0 3px $color-grey-neutral-30;
+        background-color: $color-white;
+        background-image: url('/assets/images/ero-plane.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      &_flip {
+        &::after {
+          transform: scaleX(-1);
+        }
+      }
+    }
+  }
+}

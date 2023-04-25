@@ -1,4 +1,17 @@
-<!-- <div *ngIf="bookingVariant$ | async as bookingVariant"> -->
-<!-- <p>{{ bookingVariant.flightNumber }}</p> -->
-<!-- </div> -->
-<p>Booking card component</p>
+<div
+  *ngIf="bookingVariant; else empty"
+  [class]="{ 'booking-card': true, active: isActive }"
+  (click)="setActive()">
+  <div class="date-title">
+    <p class="date-title__day">
+      {{ bookingVariant.data[0]['local_departure'] | date : 'dd MMM' }}
+    </p>
+    <p class="date-title__weekday">
+      {{ bookingVariant.data[0]['local_departure'] | date : 'EEEE' }}
+    </p>
+  </div>
+  <div class="price">
+    {{ bookingVariant.data[0].price | currency : 'EUR' }}
+  </div>
+</div>
+<ng-template #empty>EMPTY CARD</ng-template>
