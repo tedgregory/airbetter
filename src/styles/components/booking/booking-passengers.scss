@@ -13,11 +13,10 @@
   padding: 0px;
   gap: 40px;
   height: 60px;
-  &__button {
-    &.mat-mdc-unelevated-button.mat-mdc-button-base {
-      height: 100%;
-      padding: 20px 30.5px;
-    }
+
+  .mat-mdc-unelevated-button.mat-mdc-button-base {
+    height: 100%;
+    padding: 20px 30.5px;
   }
 }
 
