@@ -1,4 +1,4 @@
-.contacts-data {
+.contacts-card {
   &__form {
     display: flex;
     flex-direction: row;
@@ -9,17 +9,17 @@
     @include media-breakpoint-down(xl) {
       flex-direction: column;
     }
+  }
 
-    .country-code-data {
-      .mat-mdc-form-field-infix {
-        width: 217px;
-      }
+  &__country-field {
+    .mat-mdc-form-field-infix {
+      width: 217px;
     }
+  }
 
-    .email-data {
-      .mat-mdc-form-field-infix {
-        width: 385px;
-      }
+  &__email-field {
+    .mat-mdc-form-field-infix {
+      width: 385px;
     }
   }
 }

@@ -1,4 +1,4 @@
-.passenger-data {
+.passenger-card {
   &__title {
     @extend %title-large;
     color: $color-primary-dark;
@@ -26,6 +26,7 @@
       }
     }
   }
+
   &__options {
     .mdc-form-field {
       display: flex;
