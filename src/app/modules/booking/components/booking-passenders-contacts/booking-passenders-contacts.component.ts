@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './booking-passenders-contacts.component.html',
   styles: [],
 })
-export class BookingPassendersContactsComponent {}
+export class BookingPassendersContactsComponent {
+  countryCodes = ['Afghanistan (+93)', 'Anguilla (+1)', 'Argentina (+54)'];
+}

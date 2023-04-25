@@ -1,3 +1,20 @@
 <mat-card class="contacts-card">
-  <mat-card-content>Simple card</mat-card-content>
+  <mat-card-content class="contacts-data">
+    <form class="contacts-data__form">
+      <mat-form-field class="country-code-data" appearance="fill">
+        <mat-label>Country code*</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let countryCode of countryCodes"
+            [value]="countryCode">
+            {{ countryCode }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field floatLabel="always" class="email-data">
+        <mat-label>Email* </mat-label>
+        <input type="email" matInput placeholder="e.g. example@email.com" />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
 </mat-card>

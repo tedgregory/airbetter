@@ -1,1 +1,25 @@
-//
+.contacts-data {
+  &__form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+
+    @include media-breakpoint-down(xl) {
+      flex-direction: column;
+    }
+
+    .country-code-data {
+      .mat-mdc-form-field-infix {
+        width: 217px;
+      }
+    }
+
+    .email-data {
+      .mat-mdc-form-field-infix {
+        width: 385px;
+      }
+    }
+  }
+}
