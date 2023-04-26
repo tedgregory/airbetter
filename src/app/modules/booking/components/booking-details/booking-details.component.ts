@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiResponse } from '../../models/booking.interface';
+
+type PropsType = { isReturn: boolean; isConfirmed: boolean };
 
 @Component({
   selector: 'app-booking-details',
@@ -9,5 +11,11 @@ export class BookingDetailsComponent {
   @Input()
   currentFlight: ApiResponse | null = null;
   @Input()
-  isReturn = false;
+  props: PropsType = { isConfirmed: false, isReturn: false };
+  @Output()
+  confirmation = new EventEmitter<boolean>();
+
+  confirmVariant(value: boolean) {
+    this.confirmation.emit(value);
+  }
 }

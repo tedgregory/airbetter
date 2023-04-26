@@ -194,7 +194,16 @@ const flightsRW: ApiResponse[] = [
 })
 export class BookingListComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
-  currentOptions: ApiResponse[] = [];
+
+  // this to be in the store
+  currentOptions: {
+    direct: { activeVariant: ApiResponse | null; confirmed: boolean };
+    return: { activeVariant: ApiResponse | null; confirmed: boolean };
+  } = {
+    direct: { activeVariant: null, confirmed: false },
+    return: { activeVariant: null, confirmed: false },
+  };
+
   directFlights$: Observable<ApiResponse[]> = of(
     (Array(5).fill(flightsFW[0]) as ApiResponse[]).map((f, i) => ({
       ...f,
@@ -210,21 +219,36 @@ export class BookingListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subs.push(
       this.directFlights$.subscribe((items) => {
-        this.currentOptions[0] = items[2];
+        this.currentOptions.direct = {
+          activeVariant: items[2],
+          confirmed: false,
+        };
       })
     );
     this.subs.push(
       this.returnFlights$.subscribe((items) => {
-        this.currentOptions[1] = items[2];
+        this.currentOptions.return = {
+          activeVariant: items[2],
+          confirmed: false,
+        };
       })
     );
   }
   ngOnDestroy(): void {
     this.subs.forEach((sub) => sub.unsubscribe());
   }
-  setActiveCard(id: string | null) {
+  onSwitchCurrentCard(id: string | null) {
     console.log('emitted card id ', id);
     //this.store.dispatch(SearchActions.setDate(clickedOne))
+  }
+  onConfirmToggle(
+    type: keyof typeof this.currentOptions | null = null,
+    value: boolean
+  ) {
+    if (!type) return;
+    if (this.currentOptions[type]) {
+      this.currentOptions[type].confirmed = value;
+    }
   }
 
   handleForward() {

@@ -1,6 +1,9 @@
 <div
   class="flight-details"
-  *ngIf="currentFlight && currentFlight.data[0].route[0] as flightInfo">
+  *ngIf="
+    currentFlight && currentFlight.data[0].route[0] as flightInfo;
+    else noFlight
+  ">
   <div class="timing timing--left">
     <div class="timing__date">
       {{ flightInfo.local_departure | date : 'EEE, d LLL yyyy' }}
@@ -18,7 +21,7 @@
   <div
     [class]="{
       'flight-details__decor': true,
-      'flight-details__decor--flip': isReturn
+      'flight-details__decor--flip': props.isReturn
     }"></div>
   <div class="timing timing--right">
     <div class="timing__date">
@@ -32,4 +35,36 @@
       {{ flightInfo.cityTo }}
     </div>
   </div>
+  <div class="flight-details__jet-info">
+    <div class="tag">Flight no.</div>
+    <div class="number">
+      {{ flightInfo.airline }} {{ flightInfo.flight_no }}
+    </div>
+  </div>
 </div>
+<div class="flight-selection">
+  <ng-container
+    *ngIf="
+      !props.isConfirmed &&
+      currentFlight &&
+      currentFlight.data[0].price as price
+    ">
+    <div class="flight-selection__seats">100 seats available</div>
+    <div class="flight-selection__price-tag">Price</div>
+    <div class="flight-selection__price">
+      {{ price | currency : 'EUR' }}
+    </div>
+  </ng-container>
+  <div class="flight-selection__select">
+    <button *ngIf="!props.isConfirmed" (click)="confirmVariant(true)">
+      Select
+    </button>
+    <button *ngIf="props.isConfirmed" (click)="confirmVariant(false)">
+      Edit
+    </button>
+  </div>
+</div>
+
+<ng-template #noFlight>
+  <div class="flight-details">No data</div>
+</ng-template>

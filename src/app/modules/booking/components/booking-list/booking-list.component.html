@@ -1,44 +1,55 @@
 <div class="booking-list">
   <ng-container *ngIf="directFlights$ | async as directFlights">
-    <ng-container *ngIf="directFlights.length && currentOptions[0]">
+    <ng-container
+      *ngIf="directFlights.length && currentOptions.direct.activeVariant">
       <h2 class="booking-list__title">
         <img class="icon" src="/assets/images/plane.svg" alt="" />
-        {{ currentOptions[0].data[0].cityFrom }} to
-        {{ currentOptions[0].data[0].cityTo }}
+        {{ currentOptions.direct.activeVariant.data[0].cityFrom }} to
+        {{ currentOptions.direct.activeVariant.data[0].cityTo }}
       </h2>
       <div class="flight">
-        <div class="flight__options">
+        <div class="flight__options" *ngIf="!currentOptions.direct.confirmed">
           <app-booking-card
-            (chooseFlight)="setActiveCard($event)"
+            (chooseFlight)="onSwitchCurrentCard($event)"
             *ngFor="let bookingVariant of directFlights; let i = index"
             [bookingVariant]="bookingVariant"
             [isActive]="i === 2"></app-booking-card>
         </div>
         <app-booking-details
-          [currentFlight]="currentOptions[0]"></app-booking-details>
+          [currentFlight]="currentOptions.direct.activeVariant"
+          (confirmation)="onConfirmToggle('direct', $event)"
+          [props]="{
+            isReturn: false,
+            isConfirmed: currentOptions.direct.confirmed
+          }"></app-booking-details>
       </div>
     </ng-container>
 
     <p *ngIf="!directFlights.length">No flights available for booking</p>
   </ng-container>
   <ng-container *ngIf="returnFlights$ | async as returnFlights">
-    <ng-container *ngIf="returnFlights.length && currentOptions[1]">
+    <ng-container
+      *ngIf="returnFlights.length && currentOptions.return.activeVariant">
       <h2 class="booking-list__title">
         <img class="icon icon-back" src="/assets/images/plane.svg" alt="" />
-        {{ currentOptions[1].data[0].cityFrom }} to
-        {{ currentOptions[1].data[0].cityTo }}
+        {{ currentOptions.return.activeVariant.data[0].cityFrom }} to
+        {{ currentOptions.return.activeVariant.data[0].cityTo }}
       </h2>
       <div class="flight">
-        <div class="flight__options">
+        <div class="flight__options" *ngIf="!currentOptions.return.confirmed">
           <app-booking-card
-            (chooseFlight)="setActiveCard($event)"
+            (chooseFlight)="onSwitchCurrentCard($event)"
             [bookingVariant]="bookingVariant"
             *ngFor="let bookingVariant of returnFlights; let i = index"
             [isActive]="i === 2"></app-booking-card>
         </div>
         <app-booking-details
-          [currentFlight]="currentOptions[1]"
-          [isReturn]="true"></app-booking-details>
+          [currentFlight]="currentOptions.return.activeVariant"
+          (confirmation)="onConfirmToggle('return', $event)"
+          [props]="{
+            isReturn: true,
+            isConfirmed: currentOptions.return.confirmed
+          }"></app-booking-details>
       </div>
     </ng-container>
 
