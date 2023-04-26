@@ -1,7 +1,7 @@
 <div
   class="flight-details"
   *ngIf="currentFlight && currentFlight.data[0].route[0] as flightInfo">
-  <div class="timing timing_left">
+  <div class="timing timing--left">
     <div class="timing__date">
       {{ flightInfo.local_departure | date : 'EEE, d LLL yyyy' }}
     </div>
@@ -18,9 +18,9 @@
   <div
     [class]="{
       'flight-details__decor': true,
-      'flight-details__decor_flip': flip
+      'flight-details__decor--flip': isReturn
     }"></div>
-  <div class="timing timing_right">
+  <div class="timing timing--right">
     <div class="timing__date">
       {{ flightInfo.local_arrival | date : 'EEE, d LLL yyyy' }}
     </div>

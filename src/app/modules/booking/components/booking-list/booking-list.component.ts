@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription, of } from 'rxjs';
-import { IKiwiResponse } from '../../models/booking.interface';
+import { ApiResponse } from '../../models/booking.interface';
 // import { BookingVariant } from '../../models/booking.interface';
 // import { BookingService } from '../../services/booking.service';
-const flightsFW: IKiwiResponse[] = [
+const flightsFW: ApiResponse[] = [
   {
     search_id: '66906068-44b7-b52b-d1f0-48e421497202',
     currency: 'EUR',
@@ -95,7 +95,7 @@ const flightsFW: IKiwiResponse[] = [
     },
   },
 ];
-const flightsRW: IKiwiResponse[] = [
+const flightsRW: ApiResponse[] = [
   {
     search_id: 'e81b96b9-1c95-921e-0037-3588104e15e4',
     currency: 'EUR',
@@ -194,27 +194,27 @@ const flightsRW: IKiwiResponse[] = [
 })
 export class BookingListComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
-  currentOptions: IKiwiResponse[] = [];
-  flightsFW$: Observable<IKiwiResponse[]> = of(
-    (Array(5).fill(flightsFW[0]) as IKiwiResponse[]).map((f, i) => ({
+  currentOptions: ApiResponse[] = [];
+  directFlights$: Observable<ApiResponse[]> = of(
+    (Array(5).fill(flightsFW[0]) as ApiResponse[]).map((f, i) => ({
       ...f,
       id: `F${i}`,
     }))
   );
-  flightsRW$ = of(
-    (Array(5).fill(flightsRW[0]) as IKiwiResponse[]).map((f, i) => ({
+  returnFlights$ = of(
+    (Array(5).fill(flightsRW[0]) as ApiResponse[]).map((f, i) => ({
       ...f,
       id: `R${i}`,
     }))
   );
   ngOnInit(): void {
     this.subs.push(
-      this.flightsFW$.subscribe((items) => {
+      this.directFlights$.subscribe((items) => {
         this.currentOptions[0] = items[2];
       })
     );
     this.subs.push(
-      this.flightsRW$.subscribe((items) => {
+      this.returnFlights$.subscribe((items) => {
         this.currentOptions[1] = items[2];
       })
     );

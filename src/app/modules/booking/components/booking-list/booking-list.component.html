@@ -1,11 +1,8 @@
 <div class="booking-list">
-  <ng-container *ngIf="flightsFW$ | async as flightsFW">
-    <ng-container *ngIf="flightsFW.length && currentOptions[0]">
+  <ng-container *ngIf="directFlights$ | async as directFlights">
+    <ng-container *ngIf="directFlights.length && currentOptions[0]">
       <h2 class="booking-list__title">
-        <img
-          class="icon"
-          src="../../../../../assets/images/plane.svg"
-          alt="🛬" />
+        <img class="icon" src="/assets/images/plane.svg" alt="" />
         {{ currentOptions[0].data[0].cityFrom }} to
         {{ currentOptions[0].data[0].cityTo }}
       </h2>
@@ -13,8 +10,8 @@
         <div class="flight__options">
           <app-booking-card
             (chooseFlight)="setActiveCard($event)"
+            *ngFor="let bookingVariant of directFlights; let i = index"
             [bookingVariant]="bookingVariant"
-            *ngFor="let bookingVariant of flightsFW; let i = index"
             [isActive]="i === 2"></app-booking-card>
         </div>
         <app-booking-details
@@ -22,15 +19,12 @@
       </div>
     </ng-container>
 
-    <p *ngIf="!flightsFW.length">No flights available for booking</p>
+    <p *ngIf="!directFlights.length">No flights available for booking</p>
   </ng-container>
-  <ng-container *ngIf="flightsRW$ | async as flightsRW">
-    <ng-container *ngIf="flightsRW.length && currentOptions[1]">
+  <ng-container *ngIf="returnFlights$ | async as returnFlights">
+    <ng-container *ngIf="returnFlights.length && currentOptions[1]">
       <h2 class="booking-list__title">
-        <img
-          class="icon icon-back"
-          src="../../../../../assets/images/plane.svg"
-          alt="🛬" />
+        <img class="icon icon-back" src="/assets/images/plane.svg" alt="" />
         {{ currentOptions[1].data[0].cityFrom }} to
         {{ currentOptions[1].data[0].cityTo }}
       </h2>
@@ -39,15 +33,15 @@
           <app-booking-card
             (chooseFlight)="setActiveCard($event)"
             [bookingVariant]="bookingVariant"
-            *ngFor="let bookingVariant of flightsRW; let i = index"
+            *ngFor="let bookingVariant of returnFlights; let i = index"
             [isActive]="i === 2"></app-booking-card>
         </div>
         <app-booking-details
           [currentFlight]="currentOptions[1]"
-          [flip]="true"></app-booking-details>
+          [isReturn]="true"></app-booking-details>
       </div>
     </ng-container>
 
-    <p *ngIf="!flightsRW.length">No return flights available for booking</p>
+    <p *ngIf="!returnFlights.length">No return flights available for booking</p>
   </ng-container>
 </div>

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 // import { BookingService } from '../../services/booking.service';
-import { IKiwiResponse } from '../../models/booking.interface';
+import { ApiResponse } from '../../models/booking.interface';
 // import { Observable } from 'rxjs';
 // import { BookingVariant } from 'src/app/booking/models';
 
@@ -10,7 +10,7 @@ import { IKiwiResponse } from '../../models/booking.interface';
 })
 export class BookingCardComponent {
   @Input()
-  bookingVariant: IKiwiResponse | null = null;
+  bookingVariant: ApiResponse | null = null;
   @Input()
   isActive = false;
   @Output()

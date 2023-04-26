@@ -127,7 +127,7 @@ interface SearchParams {
   };
 }
 
-export type IKiwiResponse = {
+export type ApiResponse = {
   search_id: string;
   currency: string;
   data: TravelData[];

@@ -1,6 +1,6 @@
 app-booking-details {
   display: flex;
-  padding: 1rem;
+  padding: 1rem 2.5rem;
   margin-top: 9px;
   background-color: $color-white;
   border-radius: 5px;
@@ -19,11 +19,11 @@ app-booking-details {
       justify-content: space-between;
       gap: 4px;
 
-      &_left {
+      &--left {
         align-items: flex-start;
       }
 
-      &_right {
+      &--right {
         align-items: flex-end;
       }
 
@@ -74,7 +74,7 @@ app-booking-details {
       position: relative;
       padding: 0 1rem;
       height: 2px;
-      background-color: #d0d9df; // TODO -add variable
+      background-color: $color-grey-40; // TODO -add variable
 
       &::after {
         content: '';
@@ -91,7 +91,7 @@ app-booking-details {
         background-position: center;
       }
 
-      &_flip {
+      &--flip {
         &::after {
           transform: scaleX(-1);
         }

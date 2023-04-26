@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IKiwiResponse } from '../../models/booking.interface';
+import { ApiResponse } from '../../models/booking.interface';
 
 @Component({
   selector: 'app-booking-details',
@@ -7,7 +7,7 @@ import { IKiwiResponse } from '../../models/booking.interface';
 })
 export class BookingDetailsComponent {
   @Input()
-  currentFlight: IKiwiResponse | null = null;
+  currentFlight: ApiResponse | null = null;
   @Input()
-  flip = false;
+  isReturn = false;
 }
