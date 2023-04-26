@@ -9,6 +9,24 @@
       </h2>
       <div class="flight">
         <div class="flight__options" *ngIf="!currentOptions.direct.confirmed">
+          <div class="flight__nav flight__nav--prev">
+            <button
+              mat-icon-button
+              class="small-button"
+              aria-label="Get previous flights"
+              (click)="handleBackward('direct')">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+          </div>
+          <div class="flight__nav flight__nav--next">
+            <button
+              mat-icon-button
+              class="small-button"
+              aria-label="Get next flights"
+              (click)="handleBackward('direct')">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
           <app-booking-card
             (chooseFlight)="onSwitchCurrentCard($event)"
             *ngFor="let bookingVariant of directFlights; let i = index"
@@ -37,6 +55,24 @@
       </h2>
       <div class="flight">
         <div class="flight__options" *ngIf="!currentOptions.return.confirmed">
+          <div class="flight__nav flight__nav--prev">
+            <button
+              mat-icon-button
+              class="small-button"
+              aria-label="Get previous flights"
+              (click)="handleBackward('return')">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+          </div>
+          <div class="flight__nav flight__nav--next">
+            <button
+              mat-icon-button
+              class="small-button"
+              aria-label="Get next flights"
+              (click)="handleBackward('return')">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
           <app-booking-card
             (chooseFlight)="onSwitchCurrentCard($event)"
             [bookingVariant]="bookingVariant"

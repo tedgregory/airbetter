@@ -25,11 +25,34 @@ app-booking-list {
       display: flex;
       flex-direction: column;
       margin-bottom: 1.5rem;
+      position: relative;
 
       &__options {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         align-items: end;
+      }
+
+      &__nav {
+        position: absolute;
+        top: 36px;
+
+        .small-button {
+          &.mat-mdc-icon-button,
+          .mat-mdc-button-touch-target {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+          }
+        }
+
+        &--prev {
+          left: 0;
+        }
+
+        &--next {
+          right: 0;
+        }
       }
     }
   }

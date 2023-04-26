@@ -251,10 +251,10 @@ export class BookingListComponent implements OnInit, OnDestroy {
     }
   }
 
-  handleForward() {
+  handleForward(type: keyof typeof this.currentOptions | null = null) {
     //this.store.dispatch(SearchActions.incrementDate())
   }
-  handleBackward() {
+  handleBackward(type: keyof typeof this.currentOptions | null = null) {
     //this.store.dispatch(SearchActions.decrementDate())
   }
 }
