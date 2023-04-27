@@ -34,7 +34,7 @@
   }
 }
 
-@include media-breakpoint-down(im) {
+@include media-breakpoint-down(xl) {
   .mat-mdc-text-field-wrapper.mdc-text-field
     .mat-mdc-form-field-flex
     .mat-mdc-form-field-infix {

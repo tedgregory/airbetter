@@ -7,7 +7,9 @@
     flex-wrap: wrap;
 
     @include media-breakpoint-down(xl) {
-      flex-direction: column;
+      .mat-mdc-form-field {
+        width: 100%;
+      }
     }
   }
 
@@ -19,6 +21,14 @@
     flex-wrap: wrap;
   }
 
+  &__form,
+  &__phone-data {
+    @include media-breakpoint-down(xl) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
   &__country-field,
   &__phone-field {
     .mat-mdc-form-field-infix {
@@ -26,23 +36,9 @@
     }
   }
 
-  &__country-field {
-    @include media-breakpoint-down(im) {
-      .mat-mdc-form-field-infix {
-        min-width: 166.67px;
-      }
-    }
-  }
-
   &__email-field {
     .mat-mdc-form-field-infix {
       width: 385px;
-    }
-
-    @include media-breakpoint-down(sm) {
-      .mat-mdc-form-field-infix {
-        width: 217px;
-      }
     }
   }
 }

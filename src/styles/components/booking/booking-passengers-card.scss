@@ -14,15 +14,27 @@
 
     @include media-breakpoint-down(xl) {
       flex-direction: column;
+      width: 100%;
+
+      .mat-mdc-form-field {
+        width: 100%;
+      }
     }
 
     .mat-button-toggle {
       width: 108px;
     }
-    .mat-button-toggle-group.mat-button-toggle-group-appearance-standard {
+
+    .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
+    .mat-button-toggle-button.mat-focus-indicator {
       height: 58px;
+    }
+
+    @include media-breakpoint-down(xl) {
+      .mat-button-toggle,
+      .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
       .mat-button-toggle-button.mat-focus-indicator {
-        height: 58px;
+        width: 100%;
       }
     }
   }
