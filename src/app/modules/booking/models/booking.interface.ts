@@ -101,6 +101,11 @@ export type TravelData = {
   cityCodeTo: string;
   countryFrom: CountryFrom;
   countryTo: CountryTo;
+  duration: {
+    departure?: number;
+    return?: number;
+    total: number;
+  };
   price: number; // !!!
   fare: Fare;
   bags_price: Bags_price;

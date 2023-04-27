@@ -19,7 +19,7 @@ export class BookingCardComponent {
   // constructor() {}
 
   setActive() {
-    this.chooseFlight.emit(this.bookingVariant?.data[0].id || null);
+    this.chooseFlight.emit(this.bookingVariant?.search_id || null);
   }
 
   // onSelected(bookingVariant: BookingVariant) {}

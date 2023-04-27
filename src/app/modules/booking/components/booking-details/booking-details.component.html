@@ -18,11 +18,17 @@
       {{ flightInfo.cityFrom }}
     </div>
   </div>
-  <div
-    [class]="{
-      'flight-details__decor': true,
-      'flight-details__decor--flip': props.isReturn
-    }"></div>
+  <div class="flight-details__decor">
+    <div class="details">
+      {{ currentFlight.data[0].duration.total | bookingVariantFlightDuration }}
+      <div
+        [class]="{
+          details__image: true,
+          'details__image--flip': props.isReturn
+        }"></div>
+      Direct
+    </div>
+  </div>
   <div class="timing timing--right">
     <div class="timing__date">
       {{ flightInfo.local_arrival | date : 'EEE, d LLL yyyy' }}

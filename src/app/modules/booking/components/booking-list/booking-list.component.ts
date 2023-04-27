@@ -24,6 +24,7 @@ const flightsFW: ApiResponse[] = [
           code: 'FR',
           name: 'France',
         },
+        duration: { total: 4800 },
         price: 364,
         fare: {
           adults: 169.3,
@@ -116,6 +117,7 @@ const flightsRW: ApiResponse[] = [
           code: 'DE',
           name: 'Germany',
         },
+        duration: { total: 4500 },
         price: 368,
         fare: {
           adults: 171.17,
@@ -207,13 +209,13 @@ export class BookingListComponent implements OnInit, OnDestroy {
   directFlights$: Observable<ApiResponse[]> = of(
     (Array(5).fill(flightsFW[0]) as ApiResponse[]).map((f, i) => ({
       ...f,
-      id: `F${i}`,
+      search_id: `F${i}`,
     }))
   );
   returnFlights$ = of(
     (Array(5).fill(flightsRW[0]) as ApiResponse[]).map((f, i) => ({
       ...f,
-      id: `R${i}`,
+      search_id: `R${i}`,
     }))
   );
   ngOnInit(): void {
