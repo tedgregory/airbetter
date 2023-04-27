@@ -14,4 +14,15 @@
     {{ flightData.price | currency : 'EUR' }}
   </div>
 </div>
-<ng-template #empty>Empty card</ng-template>
+
+<ng-template #empty>
+  <div class="booking-card booking-card--empty">
+    <div class="date-title">
+      <p class="date-title__day">27 Feb</p>
+      <p class="date-title__weekday">Monday</p>
+    </div>
+    <div class="placeholder">
+      <img src="/assets/images/no-plane.svg" alt="empty card" />
+    </div>
+  </div>
+</ng-template>

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription, of } from 'rxjs';
+import { Observable, Subscription, filter, of } from 'rxjs';
 import { ApiResponse } from '../../models/booking.interface';
 // import { BookingVariant } from '../../models/booking.interface';
 // import { BookingService } from '../../services/booking.service';
@@ -206,11 +206,14 @@ export class BookingListComponent implements OnInit, OnDestroy {
     return: { activeVariant: null, confirmed: false },
   };
 
-  directFlights$: Observable<ApiResponse[]> = of(
-    (Array(5).fill(flightsFW[0]) as ApiResponse[]).map((f, i) => ({
-      ...f,
-      search_id: `F${i}`,
-    }))
+  directFlights$: Observable<(ApiResponse | null)[]> = of(
+    (Array(5).fill(flightsFW[0]) as ApiResponse[]).map((f, i) => {
+      if (i === 0) return null;
+      return {
+        ...f,
+        search_id: `F${i}`,
+      };
+    })
   );
   returnFlights$ = of(
     (Array(5).fill(flightsRW[0]) as ApiResponse[]).map((f, i) => ({
