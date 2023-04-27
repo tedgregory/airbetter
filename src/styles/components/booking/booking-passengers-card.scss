@@ -44,3 +44,8 @@
     }
   }
 }
+
+.info-tooltip {
+  @extend %label-small;
+  color: red;
+}
