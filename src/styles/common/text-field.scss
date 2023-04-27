@@ -33,3 +33,11 @@
     position: relative;
   }
 }
+
+@include media-breakpoint-down(im) {
+  .mat-mdc-text-field-wrapper.mdc-text-field
+    .mat-mdc-form-field-flex
+    .mat-mdc-form-field-infix {
+    width: auto;
+  }
+}

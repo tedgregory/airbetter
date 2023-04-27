@@ -26,9 +26,23 @@
     }
   }
 
+  &__country-field {
+    @include media-breakpoint-down(im) {
+      .mat-mdc-form-field-infix {
+        min-width: 166.67px;
+      }
+    }
+  }
+
   &__email-field {
     .mat-mdc-form-field-infix {
       width: 385px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      .mat-mdc-form-field-infix {
+        width: 217px;
+      }
     }
   }
 }
