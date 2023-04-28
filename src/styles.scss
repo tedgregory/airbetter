@@ -4,6 +4,16 @@
 @import 'src/styles/base/mixins/breakpoints';
 @import 'src/styles/base/global';
 @import 'src/styles/base/material';
+@import 'src/styles/base/extends';
+
+@import 'src/styles/common/text-field';
+@import 'src/styles/common/button-toggle';
+@import 'src/styles/common/button';
+@import 'src/styles/common/icon';
+@import 'src/styles/common/card';
+@import 'src/styles/common/slider-toggle';
+@import 'src/styles/common/titles';
+@import 'src/styles/common/tooltip';
 
 @import 'src/styles/layout/layout';
 @import 'src/styles/layout/header';
@@ -18,5 +28,8 @@
 @import 'src/styles/components/booking/booking-card';
 @import 'src/styles/components/booking/booking-list';
 @import 'src/styles/components/booking/booking-page';
+@import 'src/styles/components/booking/booking-passengers';
+@import 'src/styles/components/booking/booking-passengers-card';
+@import 'src/styles/components/booking/booking-passengers-contacts';
 
 @import 'src/styles/components/not-found/not-found-page';

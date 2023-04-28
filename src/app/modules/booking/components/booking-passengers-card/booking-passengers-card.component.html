@@ -1,0 +1,45 @@
+<mat-card class="passenger-card">
+  <mat-card-content class="passenger-card__content">
+    <div class="passenger-card__title">1. Adult</div>
+    <form class="passenger-card__form">
+      <mat-form-field>
+        <mat-label>First name*</mat-label>
+        <input matInput />
+        <mat-icon
+          matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
+          matTooltipPosition="right"
+          matSuffix
+          >info</mat-icon
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last name*</mat-label>
+        <input matInput />
+        <mat-icon
+          matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
+          matTooltipPosition="right"
+          matSuffix
+          >info</mat-icon
+        >
+      </mat-form-field>
+      <mat-button-toggle-group name="chooseGender" aria-label="Choose Gender">
+        <mat-button-toggle value="male">Male</mat-button-toggle>
+        <mat-button-toggle value="female">Female</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field floatLabel="always" appearance="fill">
+        <mat-label>Date of birth*</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+    <div class="passenger-card__options">
+      <mat-slide-toggle
+        ><mat-icon>wheelchair_pickup</mat-icon>Need special
+        assistance?</mat-slide-toggle
+      >
+    </div>
+  </mat-card-content>
+</mat-card>
