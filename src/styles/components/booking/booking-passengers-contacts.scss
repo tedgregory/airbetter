@@ -1,4 +1,9 @@
-.contacts-card {
+.booking-contacts-card {
+  &.mat-mdc-card.mdc-card {
+    border: 0;
+    box-shadow: none;
+  }
+
   &__form {
     display: flex;
     flex-direction: row;
@@ -6,8 +11,8 @@
     gap: 40px;
     flex-wrap: wrap;
 
-    @include media-breakpoint-down(xl) {
-      .mat-mdc-form-field {
+    .mat-mdc-form-field {
+      @include media-breakpoint-down(xl) {
         width: 100%;
       }
     }

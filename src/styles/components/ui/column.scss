@@ -26,5 +26,5 @@
 }
 
 app-column {
-  @include make-columns();
+  @include make-columns;
 }

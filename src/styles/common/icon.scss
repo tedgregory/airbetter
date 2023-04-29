@@ -4,6 +4,7 @@
 
 .mat-datepicker-toggle[data-mat-calendar] {
   color: $color-black;
+
   .mat-mdc-icon-button svg {
     transform: scale(1.1);
   }
@@ -11,6 +12,7 @@
 
 .mat-mdc-form-field-icon-suffix {
   color: $color-grey-neutral-10;
+
   .mat-icon {
     transform: scale(1.1);
   }

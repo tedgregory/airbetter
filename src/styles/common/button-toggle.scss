@@ -2,21 +2,22 @@
   background-color: $color-secondary-90;
 
   .mat-button-toggle-label-content {
-    @extend %label-medium;
+    @include text-14-500;
     color: $color-grey-neutral;
   }
+}
 
-  &-checked {
-    background-color: $color-secondary-90;
-    .mat-button-toggle-label-content {
-      color: $color-primary;
-    }
+.mat-button-toggle-checked {
+  background-color: $color-secondary-90;
 
-    button[aria-pressed='true'] {
-      .mat-button-toggle-label-content::before {
-        content: '✓';
-        margin-right: 11px;
-      }
+  .mat-button-toggle-label-content {
+    color: $color-primary;
+  }
+
+  button[aria-pressed='true'] {
+    .mat-button-toggle-label-content::before {
+      content: '✓';
+      margin-right: 11px;
     }
   }
 }
@@ -26,11 +27,9 @@
 }
 
 .mat-button-toggle-group-appearance-standard {
-  border: 1px solid rgba($color-grey-neutral-30, 0.5);
+  border: 1px solid $color-grey-neutral-30-50;
 }
 
-.mat-button-toggle-group-appearance-standard
-  .mat-button-toggle
-  + .mat-button-toggle {
-  border-left: 1px solid rgba($color-grey-neutral-30, 0.5);
+.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+  border-left: 1px solid $color-grey-neutral-30-50;
 }

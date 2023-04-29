@@ -1,3 +1,5 @@
+// stylelint-disable block-closing-brace-newline-after
+
 // Breakpoint viewport sizes and media queries.
 //
 // Breakpoints are defined as a map of (name: minimum width), order from small to large:
@@ -21,7 +23,7 @@
 ) {
   $n: index($breakpoint-names, $name);
   @if not $n {
-    @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
+    @error 'breakpoint `#{$name}` not found in `#{$breakpoints}`';
   }
   @return if(
     $n < length($breakpoint-names),
@@ -137,3 +139,5 @@
     }
   }
 }
+
+// stylelint-enable block-closing-brace-newline-after

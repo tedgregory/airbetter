@@ -1,23 +1,35 @@
 <p>Booking passengers component</p>
-<div class="passengers-wrapper">
-  <div class="passengers-list">
-    <div class="title"><mat-icon>person</mat-icon><span>Passengers</span></div>
-    <div class="description">
+<div class="booking-passengers">
+  <div class="booking-passengers__block booking-passengers-block">
+    <h3
+      class="booking-passengers-block__title title title--medium title--iconic">
+      <mat-icon>person</mat-icon>
+      <span>Passengers</span>
+    </h3>
+
+    <p class="booking-passengers-block__description booking-description">
       Enter the passenger's names as they appear on document (passport or ID).
-    </div>
+    </p>
+
     <app-booking-passengers-card></app-booking-passengers-card>
   </div>
-  <div class="contacts-list">
-    <div class="title">
-      <mat-icon> contacts</mat-icon><span>Contact details</span>
-    </div>
-    <div class="description">
+
+  <div class="booking-passengers__block booking-passengers-block">
+    <h3
+      class="booking-passengers-block__title title title--medium title--iconic">
+      <mat-icon>contacts</mat-icon>
+      <span>Contact details</span>
+    </h3>
+
+    <p class="booking-passengers-block__description booking-description">
       We need contact details to be able to deliver the latest information
       regarding your flight.
-    </div>
+    </p>
+
     <app-booking-passengers-contacts></app-booking-passengers-contacts>
   </div>
-  <div class="step-buttons">
+
+  <div class="booking-step-buttons">
     <button mat-flat-button class="button button--mat-simple">Back</button>
     <button mat-flat-button color="primary" class="button button--mat-primary">
       Continue

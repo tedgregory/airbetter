@@ -1,0 +1,298 @@
+{
+  "extends": "stylelint-config-recommended",
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "annotation-no-unknown": true,
+
+    "color-no-invalid-hex" : true,
+
+    "font-family-no-missing-generic-family-keyword" : true,
+
+    "function-calc-no-unspaced-operator": true,
+    "function-no-unknown": null,
+
+    "custom-property-no-missing-var-function": true,
+
+    "keyframe-declaration-no-important" : true,
+
+    "keyframe-block-no-duplicate-selectors" : true,
+
+    "declaration-block-no-duplicate-properties": true,
+
+    "selector-type-no-unknown": null,
+
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": [
+        "mixin",
+        "define-mixin",
+        "include",
+        "content",
+        "rules",
+        "each"
+      ]
+    }],
+
+    "no-descending-specificity" : null,
+    "no-duplicate-at-import-rules" : true,
+    "no-invalid-position-at-import-rule": true,
+
+    "color-hex-alpha": "never",
+    "color-hex-length": "long",
+    "color-named" : "never",
+    "color-no-hex" : null,
+
+    "length-zero-no-unit": [true, {
+      "ignore": ["custom-properties"],
+      "ignoreFunctions": ["/^--/"]
+    }],
+
+    "font-family-name-quotes": "always-unless-keyword",
+    "font-weight-notation": [
+      "numeric",
+      {
+        "ignore": [
+          "relative"
+        ]
+      }
+    ],
+
+    "function-url-quotes": "always",
+
+    "import-notation": null,
+
+    "keyframe-selector-notation": "percentage-unless-within-keyword-only-block",
+
+    "number-max-precision" : 5,
+
+    "value-no-vendor-prefix": true,
+
+    "property-allowed-list": null,
+    "property-disallowed-list": null,
+    "property-no-vendor-prefix": null,
+
+    "declaration-no-important" : true,
+    "declaration-property-max-values": null,
+
+    "selector-attribute-quotes": "always",
+    "selector-max-id": 0,
+    "selector-max-universal": 2,
+    "selector-not-notation": "simple",
+    "selector-pseudo-element-colon-notation": "double",
+
+    "rule-selector-property-disallowed-list": null,
+
+    "media-feature-name-no-vendor-prefix": true,
+
+    "at-rule-no-vendor-prefix": true,
+
+    "max-nesting-depth" : [5, { "ignoreAtRules": ["media"] }],
+
+    "value-keyword-case": ["lower", { "camelCaseSvgKeywords" : true }],
+
+    "function-name-case": "lower",
+
+    "selector-type-case": "lower",
+
+    "rule-empty-line-before": ["always", {
+      "except": ["first-nested"],
+      "ignore": ["after-comment"]
+    }],
+
+    "color-hex-case": "lower",
+
+    "function-comma-newline-after": "always-multi-line",
+    "function-comma-newline-before": "never-multi-line",
+    "function-comma-space-after": "always-single-line",
+    "function-comma-space-before": "never",
+    "function-max-empty-lines": 0,
+    "function-parentheses-space-inside": "never-single-line",
+    "function-whitespace-after": "always",
+
+    "number-leading-zero": "always",
+    "number-no-trailing-zeros": true,
+
+    "string-quotes": "double",
+
+    "unit-case": "lower",
+
+    "value-list-comma-newline-after": "always-multi-line",
+    "value-list-comma-newline-before": "never-multi-line",
+    "value-list-comma-space-after": "always-single-line",
+    "value-list-comma-space-before": "never",
+    "value-list-max-empty-lines": 0,
+
+    "property-case": "lower",
+
+    "declaration-bang-space-after": "never",
+    "declaration-bang-space-before": "always",
+    "declaration-colon-space-after": "always-single-line",
+    "declaration-colon-space-before": "never",
+
+    "declaration-block-semicolon-newline-after": "always",
+    "declaration-block-semicolon-newline-before": "never-multi-line",
+    "declaration-block-semicolon-space-after": "always-single-line",
+    "declaration-block-semicolon-space-before": "never",
+    "declaration-block-trailing-semicolon": "always",
+
+    "block-closing-brace-empty-line-before": "never",
+    "block-closing-brace-newline-after": "always",
+    "block-closing-brace-newline-before": "always",
+    "block-closing-brace-space-after": "always-single-line",
+    "block-closing-brace-space-before": "always-single-line",
+    "block-opening-brace-newline-after": "always",
+    "block-opening-brace-space-after": "always-single-line",
+    "block-opening-brace-space-before": "always",
+
+    "selector-attribute-brackets-space-inside": "never",
+    "selector-attribute-operator-space-after": "never",
+    "selector-attribute-operator-space-before": "never",
+    "selector-combinator-space-after": "always",
+    "selector-combinator-space-before": "always",
+    "selector-descendant-combinator-no-non-space": true,
+    "selector-pseudo-class-case": "lower",
+    "selector-pseudo-class-parentheses-space-inside": "never",
+    "selector-pseudo-element-case": "lower",
+    "selector-max-empty-lines": 0,
+
+    "selector-list-comma-newline-after": "always",
+    "selector-list-comma-newline-before": "never-multi-line",
+    "selector-list-comma-space-after": "always-single-line",
+    "selector-list-comma-space-before": "never",
+
+    "media-feature-colon-space-after": "always",
+    "media-feature-colon-space-before": "never",
+    "media-feature-name-case": "lower",
+    "media-feature-parentheses-space-inside": "never",
+    "media-feature-range-operator-space-after": "always",
+    "media-feature-range-operator-space-before": "always",
+
+    "media-query-list-comma-newline-after": "always-multi-line",
+    "media-query-list-comma-newline-before": "never-multi-line",
+    "media-query-list-comma-space-after": "always-single-line",
+    "media-query-list-comma-space-before": "never-single-line",
+
+    "at-rule-name-case": "lower",
+    "at-rule-name-space-after": "always",
+    "at-rule-semicolon-newline-after": "always",
+
+    "indentation": [2, {"ignore": ["inside-parens"]}],
+    "max-empty-lines": 2,
+    "no-eol-whitespace": true,
+    "no-missing-end-of-source-newline": true
+  },
+  "overrides": [
+    {
+      "files": ["*.scss", "**/*.scss"],
+      "customSyntax": "postcss-scss",
+      "rules": {
+        "max-empty-lines": 2,
+        "at-rule-disallowed-list": ["debug"],
+        "at-rule-no-unknown": null,
+        "at-rule-no-vendor-prefix": true,
+        "block-no-empty": true,
+        "block-opening-brace-space-before": "always",
+        "color-hex-case": "lower",
+        "color-hex-length": "long",
+        "color-named": "never",
+        "color-no-invalid-hex": true,
+        "declaration-bang-space-after": "never",
+        "declaration-bang-space-before": "always",
+        "declaration-block-semicolon-newline-after": "always",
+        "declaration-block-semicolon-space-before": "never",
+        "declaration-block-single-line-max-declarations": 1,
+        "declaration-block-trailing-semicolon": "always",
+        "declaration-colon-space-after": "always-single-line",
+        "declaration-colon-space-before": "never",
+        "declaration-property-value-disallowed-list": {
+          "border": ["none"],
+          "border-top": ["none"],
+          "border-right": ["none"],
+          "border-bottom": ["none"],
+          "border-left": ["none"]
+        },
+        "function-comma-space-after": "always-single-line",
+        "function-parentheses-space-inside": "never",
+        "function-url-quotes": "always",
+        "indentation": 2,
+        "length-zero-no-unit": true,
+        "max-nesting-depth": [
+          5,
+          {
+            "ignoreAtRules": [
+              "each",
+              "media",
+              "supports",
+              "include"
+            ]
+          }
+        ],
+        "media-feature-name-no-vendor-prefix": true,
+        "media-feature-parentheses-space-inside": "never",
+        "no-missing-end-of-source-newline": true,
+        "number-leading-zero": "always",
+        "number-no-trailing-zeros": true,
+
+        "property-no-unknown": true,
+        "property-no-vendor-prefix": null,
+        "rule-empty-line-before": [
+          "always-multi-line",
+          {
+            "except": ["first-nested"],
+            "ignore": ["after-comment"]
+          }
+        ],
+        "scss/at-extend-no-missing-placeholder": true,
+        "scss/at-function-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+        "scss/at-import-no-partial-leading-underscore": true,
+        "scss/at-import-partial-extension-blacklist": ["scss"],
+        "scss/at-mixin-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+        "scss/at-rule-no-unknown": true,
+        "scss/dollar-variable-colon-space-after": "always",
+        "scss/dollar-variable-colon-space-before": "never",
+        "scss/dollar-variable-pattern": "^[_]?[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+        "scss/percent-placeholder-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+
+        "selector-class-pattern": [
+          "^[a-z]([a-z0-9-]+)?(__([a-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$",
+          {
+            "message":
+              "Selector should be written in BEM"
+          }
+        ],
+        "selector-list-comma-newline-after": "always",
+        "selector-max-compound-selectors": 3,
+        "selector-max-id": 0,
+
+        "selector-pseudo-element-colon-notation": "double",
+        "selector-pseudo-element-no-unknown": true,
+
+        "string-quotes": "single",
+        "value-no-vendor-prefix": true,
+
+        "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
+        "scss/at-else-closing-brace-space-after": "always-intermediate",
+        "scss/at-else-empty-line-before": "never",
+        "scss/at-else-if-parentheses-space-before": "always",
+        "scss/at-function-parentheses-space-before": "never",
+        "scss/at-function-named-arguments": "never",
+        "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
+        "scss/at-if-closing-brace-space-after": "always-intermediate",
+        "scss/at-mixin-argumentless-call-parentheses": "never",
+        "scss/at-mixin-named-arguments": "never",
+        "scss/at-mixin-parentheses-space-before": "never",
+
+        "scss/double-slash-comment-whitespace-inside": "always",
+        "scss/media-feature-value-dollar-variable": "always",
+        "scss/operator-no-newline-after": true,
+        "scss/operator-no-newline-before": null,
+        "scss/operator-no-unspaced": true,
+        "plugin/selector-bem-pattern": {
+            "preset": "bem"
+        }
+      }
+    }
+  ]
+}

@@ -15,12 +15,17 @@ app-row {
         margin: 0;
       }
 
-      &.row-#{$breakpoint}.no-padding
-        ::ng-deep
-        > [class^='column-#{$breakpoint}'] {
+      &.row-#{$breakpoint}.no-padding > [class^='column-#{$breakpoint}'] {
         padding-right: 0;
         padding-left: 0;
       }
+
+      // &.row-#{$breakpoint}.no-padding
+      // ::ng-deep
+      // > [class^='column-#{$breakpoint}'] {
+      //   padding-right: 0;
+      //   padding-left: 0;
+      // }
     }
   }
 }
