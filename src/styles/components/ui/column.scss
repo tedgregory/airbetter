@@ -26,5 +26,6 @@
 }
 
 app-column {
+  display: block;
   @include make-columns;
 }

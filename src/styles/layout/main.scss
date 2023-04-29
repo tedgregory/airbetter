@@ -1,7 +1,11 @@
 app-main {
+  position: relative;
+  display: block;
   flex-grow: 1;
+  z-index: 1;
 }
 
 .main {
   padding-top: 40px;
+  padding-bottom: 40px;
 }

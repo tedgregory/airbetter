@@ -1,8 +1,8 @@
 <footer class="footer">
   <div class="footer__inner">
     <app-container height="max-height">
-      <app-row mode="md">
-        <app-column class="admin-menu" [modes]="{ md: 6 }">
+      <app-row mode="lg">
+        <app-column [modes]="{ lg: 5 }">
           <div class="footer__copyright">
             <div class="footer__copyright-inner">
               <span class="footer__copyright-text"
@@ -12,38 +12,32 @@
           </div>
         </app-column>
 
-        <app-column [modes]="{ md: 6 }">
+        <app-column [modes]="{ lg: 7 }">
           <div class="footer__payment">
             <div class="footer__payment-inner">
               <div class="footer__payment-text">
                 We accept these payment methods
               </div>
-              <nav class="footer__payment-links">
-                <a class="footer-link" mat-icon-button href="#" target="_blank">
-                  <mat-icon
-                    class="footer-icon"
-                    aria-label="Link to Mastercard"
-                    svgIcon="appPaymentMastercard"></mat-icon>
-                </a>
-                <a class="footer-link" mat-icon-button href="#" target="_blank">
-                  <mat-icon
-                    class="footer-icon"
-                    aria-label="Link to Amazon Pay"
-                    svgIcon="appPaymentAmazonPay"></mat-icon>
-                </a>
-                <a class="footer-link" mat-icon-button href="#" target="_blank">
-                  <mat-icon
-                    class="footer-icon"
-                    aria-label="Link to American Express"
-                    svgIcon="appPaymentAmericanExpress"></mat-icon>
-                </a>
-                <a class="footer-link" mat-icon-button href="#" target="_blank">
-                  <mat-icon
-                    class="footer-icon"
-                    aria-label="Link to Visa"
-                    svgIcon="appPaymentVisa"></mat-icon>
-                </a>
-              </nav>
+              <ul class="footer__payment-list">
+                <li class="footer__payment-item">
+                  <img
+                    src="/assets/icons/icon-payment-mastercard.svg"
+                    alt="Mastercard" />
+                </li>
+                <li class="footer__payment-item">
+                  <img
+                    src="/assets/icons/icon-payment-amazon-pay.svg"
+                    alt="Amazon Pay" />
+                </li>
+                <li class="footer__payment-item">
+                  <img
+                    src="/assets/icons/icon-payment-american-express.svg"
+                    alt="American Express" />
+                </li>
+                <li class="footer__payment-item">
+                  <img src="/assets/icons/icon-payment-visa.svg" alt="Visa" />
+                </li>
+              </ul>
             </div>
           </div>
         </app-column>
