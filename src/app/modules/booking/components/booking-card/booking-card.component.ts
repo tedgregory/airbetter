@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { BookingService } from '../../services/booking.service';
-// import { Observable } from 'rxjs';
-// import { BookingVariant } from 'src/app/booking/models';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApiResponse } from '../../models/booking.interface';
 
 @Component({
   selector: 'app-booking-card',
   templateUrl: './booking-card.component.html',
 })
 export class BookingCardComponent {
-  // bookingVariant$!: Observable<BookingVariant>;
+  @Input()
+  bookingVariant: ApiResponse | null = null;
+  @Input()
+  isActive = false;
+  @Output()
+  chooseFlight = new EventEmitter<string | null>();
 
-  constructor(private readonly bookingService: BookingService) {}
-
-  // ngOnInit() {
-  // this.bookingVariant$ = this.bookingService.bookingVariant$;
-  // }
-
-  // onSelected(bookingVariant: BookingVariant) {}
+  setActive() {
+    this.chooseFlight.emit(this.bookingVariant?.search_id || null);
+  }
 }

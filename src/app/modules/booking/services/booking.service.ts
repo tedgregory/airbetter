@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { BookingVariant } from '../models/booking.interface';
 // import { filter } from 'rxjs/operators';
-// import { BookingDetails, BookingVariant } from 'src/app/booking/models';
 
 @Injectable()
 export class BookingService {
+  bookingVariants$ = new BehaviorSubject<BookingVariant[]>([]);
   // bookingVariant$: Observable<BookingVariant> =
   // this.bookingFacade.bookingVariant$.pipe(filter<any>(Boolean));
   // bookingVariants$: Observable<BookingVariant> = of(1, 2, 3);

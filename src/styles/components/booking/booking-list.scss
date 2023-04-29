@@ -1,21 +1,47 @@
 app-booking-list {
-  display: block;
-  position: relative;
-  height: 100%;
-  overflow-y: auto;
-}
+  .booking-list {
+    width: 100%;
 
-.booking-list {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem;
+    .icon {
+      &--back {
+        transform: rotate(180deg);
+      }
+    }
 
-  &::after {
-    content: '';
-    display: block;
-    height: 1rem;
+    .flight {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+      position: relative;
+
+      &__options {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: end;
+      }
+
+      &__nav {
+        position: absolute;
+        top: 36px;
+
+
+        &--prev {
+          left: 0;
+        }
+
+        &--next {
+          right: 0;
+        }
+      }
+    }
+  }
+
+  .small-button {
+    &.mat-mdc-icon-button,
+    .mat-mdc-button-touch-target {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
   }
 }
