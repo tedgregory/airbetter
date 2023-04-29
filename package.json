@@ -7,12 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint --fix",
-    "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\" --write",
+    "stylelint": "stylelint src/**/*.scss",
+    "stylelint-fix": "stylelint src/**/*.scss --fix",
+    "lint": "ng lint --fix && npm run stylelint",
+    "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html}\" --write",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts,html,scss}": [
+    "*.{js,ts,html}": [
       "npx prettier --write"
     ]
   },
@@ -61,7 +63,12 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "lint-staged": "^13.2.1",
+    "postcss-scss": "^4.0.6",
     "prettier": "^2.8.7",
+    "stylelint": "^14.16.0",
+    "stylelint-config-recommended": "^9.0.0",
+    "stylelint-scss": "^4.3.0",
+    "stylelint-selector-bem-pattern": "^2.1.1",
     "typescript": "~4.9.4"
   }
 }

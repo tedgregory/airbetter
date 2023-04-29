@@ -1,16 +1,18 @@
 .mdc-tooltip.mdc-tooltip--shown.mat-mdc-tooltip.mat-mdc-tooltip-show.mdc-tooltip--multiline {
-  @extend %label-small;
+  @include text-12-400;
+
   .mdc-tooltip__surface.mdc-tooltip__surface-animation {
-    border-radius: 8px;
-    box-shadow: 0px 1px 4px rgba($color-black, 0.2);
-    padding: 16px 24px;
-    max-width: 211px;
-    min-height: 128px;
     position: relative;
     bottom: 8px;
     right: 12px;
+    max-width: 211px;
+    min-height: 128px;
     color: $color-grey-neutral;
     background-color: $color-white;
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+    padding: 16px 24px;
+
     @include media-breakpoint-down(xl) {
       right: -8px;
     }

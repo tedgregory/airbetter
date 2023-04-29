@@ -1,19 +1,16 @@
-.mat-mdc-unelevated-button.mat-mdc-button-base {
-  &.button {
-    &--mat-primary,
-    &--mat-simple {
-      @extend %button;
+.button {
+  &--mat-primary,
+  &--mat-simple {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      @include button-basic;
       border-radius: 4px;
       padding: 12px 24px;
     }
+  }
 
-    &--mat-primary {
-      background-color: $color-primary;
-    }
-
-    &--mat-simple {
+  &--mat-simple {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
       background-color: $color-transparent;
-      color: $color-primary;
     }
   }
 }

@@ -1,8 +1,10 @@
-<mat-card class="contacts-card">
-  <mat-card-content class="contacts-card__content">
-    <form class="contacts-card__form">
-      <div class="contacts-card__phone-data">
-        <mat-form-field class="contacts-card__country-field" appearance="fill">
+<mat-card class="booking-contacts-card">
+  <mat-card-content class="booking-contacts-card__content">
+    <form class="booking-contacts-card__form">
+      <div class="booking-contacts-card__phone-data">
+        <mat-form-field
+          class="booking-contacts-card__country-field"
+          appearance="fill">
           <mat-label>Country code*</mat-label>
           <mat-select name="country-code" [(ngModel)]="selectedValue">
             <mat-option
@@ -12,15 +14,19 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field
           *ngIf="selectedValue.length"
           floatLabel="always"
-          class="contacts-card__phone-field">
+          class="booking-contacts-card__phone-field">
           <mat-label>Mobile phone number* </mat-label>
           <input type="tel" matInput placeholder="e.g. 1111111111" />
         </mat-form-field>
       </div>
-      <mat-form-field floatLabel="always" class="contacts-card__email-field">
+
+      <mat-form-field
+        floatLabel="always"
+        class="booking-contacts-card__email-field">
         <mat-label>Email* </mat-label>
         <input type="email" matInput placeholder="e.g. example@email.com" />
       </mat-form-field>

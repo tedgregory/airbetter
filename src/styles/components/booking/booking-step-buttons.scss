@@ -1,0 +1,14 @@
+.booking-step-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 40px;
+  height: 60px;
+  padding: 0;
+
+  .mat-mdc-unelevated-button.mat-mdc-button-base {
+    height: 100%;
+    padding: 20px 30.5px;
+  }
+}
