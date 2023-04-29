@@ -12,6 +12,10 @@ app-booking-details {
     gap: 1.5rem;
     margin: 1rem 1.75rem 1rem 2.5rem;
 
+    p {
+      margin: 0;
+    }
+
     .timing {
       display: flex;
       flex-direction: column;
@@ -39,31 +43,26 @@ app-booking-details {
         align-items: center;
         justify-content: space-between;
         width: 100%;
-
-        p {
-          margin: 0;
-        }
-
-        .time {
-          margin: 0;
-          font-size: 1.9rem;
-          font-weight: 700;
-          //line-height: 2.2rem;
-          color: $color-black;
-
-          &__gmt {
-            font-size: 0.5rem;
-            line-height: 1.2rem;
-            font-weight: 400;
-            color: $color-grey-neutral-30;
-          }
-        }
       }
 
       &__airport {
         font-size: 0.8rem;
         font-weight: 400;
         line-height: 1rem;
+        color: $color-grey-neutral-30;
+      }
+    }
+
+    .time {
+      margin: 0;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: $color-black;
+
+      &__gmt {
+        font-size: 0.5rem;
+        line-height: 1.2rem;
+        font-weight: 400;
         color: $color-grey-neutral-30;
       }
     }

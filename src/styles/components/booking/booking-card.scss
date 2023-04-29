@@ -2,6 +2,10 @@ app-booking-card {
   display: block;
   max-width: 20rem;
 
+  p {
+    margin: 0;
+  }
+
   .booking-card {
     display: flex;
     flex-direction: column;
@@ -17,9 +21,6 @@ app-booking-card {
       align-items: center;
       margin-top: 4px;
 
-      p {
-        margin: 0;
-      }
 
       &__day {
         font-size: 0.9rem;

@@ -37,14 +37,6 @@ app-booking-list {
         position: absolute;
         top: 36px;
 
-        .small-button {
-          &.mat-mdc-icon-button,
-          .mat-mdc-button-touch-target {
-            width: 24px;
-            height: 24px;
-            padding: 0;
-          }
-        }
 
         &--prev {
           left: 0;
@@ -54,6 +46,15 @@ app-booking-list {
           right: 0;
         }
       }
+    }
+  }
+
+  .small-button {
+    &.mat-mdc-icon-button,
+    .mat-mdc-button-touch-target {
+      width: 24px;
+      height: 24px;
+      padding: 0;
     }
   }
 }
