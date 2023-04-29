@@ -1,94 +1,106 @@
 <div class="booking-list">
-  <ng-container *ngIf="directFlights$ | async as directFlights">
-    <ng-container
-      *ngIf="directFlights.length && currentOptions.direct.activeVariant">
-      <h2 class="booking-list__title">
-        <img class="icon" src="/assets/images/plane.svg" alt="" />
-        {{ currentOptions.direct.activeVariant.data[0].cityFrom }} to
-        {{ currentOptions.direct.activeVariant.data[0].cityTo }}
-      </h2>
-      <div class="flight">
-        <div class="flight__options" *ngIf="!currentOptions.direct.confirmed">
-          <div class="flight__nav flight__nav--prev">
-            <button
-              mat-icon-button
-              class="small-button"
-              aria-label="Get previous flights"
-              (click)="handleBackward('direct')">
-              <mat-icon>chevron_left</mat-icon>
-            </button>
+  <div class="booking-content-block">
+    <ng-container *ngIf="directFlights$ | async as directFlights">
+      <ng-container
+        *ngIf="directFlights.length && currentOptions.direct.activeVariant">
+        <h3
+          class="booking-content-block__title booking-content-block__title--m title title--medium title--iconic">
+          <img class="icon" src="/assets/images/plane.svg" alt="Icon" />
+          {{ currentOptions.direct.activeVariant.data[0].cityFrom }} to
+          {{ currentOptions.direct.activeVariant.data[0].cityTo }}
+        </h3>
+        <div class="flight">
+          <div class="flight__options" *ngIf="!currentOptions.direct.confirmed">
+            <div class="flight__nav flight__nav--prev">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get previous flights"
+                (click)="handleBackward('direct')">
+                <mat-icon>chevron_left</mat-icon>
+              </button>
+            </div>
+            <div class="flight__nav flight__nav--next">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get next flights"
+                (click)="handleBackward('direct')">
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+            <app-booking-card
+              (chooseFlight)="onSwitchCurrentCard($event)"
+              *ngFor="let bookingVariant of directFlights; let i = index"
+              [bookingVariant]="bookingVariant"
+              [isActive]="i === 2"></app-booking-card>
           </div>
-          <div class="flight__nav flight__nav--next">
-            <button
-              mat-icon-button
-              class="small-button"
-              aria-label="Get next flights"
-              (click)="handleBackward('direct')">
-              <mat-icon>chevron_right</mat-icon>
-            </button>
-          </div>
-          <app-booking-card
-            (chooseFlight)="onSwitchCurrentCard($event)"
-            *ngFor="let bookingVariant of directFlights; let i = index"
-            [bookingVariant]="bookingVariant"
-            [isActive]="i === 2"></app-booking-card>
+          <app-booking-details
+            [currentFlight]="currentOptions.direct.activeVariant"
+            (confirmation)="onConfirmToggle('direct', $event)"
+            [props]="{
+              isReturn: false,
+              isConfirmed: currentOptions.direct.confirmed
+            }"></app-booking-details>
         </div>
-        <app-booking-details
-          [currentFlight]="currentOptions.direct.activeVariant"
-          (confirmation)="onConfirmToggle('direct', $event)"
-          [props]="{
-            isReturn: false,
-            isConfirmed: currentOptions.direct.confirmed
-          }"></app-booking-details>
-      </div>
-    </ng-container>
+      </ng-container>
 
-    <p *ngIf="!directFlights.length">No flights available for booking</p>
-  </ng-container>
-  <ng-container *ngIf="returnFlights$ | async as returnFlights">
-    <ng-container
-      *ngIf="returnFlights.length && currentOptions.return.activeVariant">
-      <h2 class="booking-list__title">
-        <img class="icon icon-back" src="/assets/images/plane.svg" alt="" />
-        {{ currentOptions.return.activeVariant.data[0].cityFrom }} to
-        {{ currentOptions.return.activeVariant.data[0].cityTo }}
-      </h2>
-      <div class="flight">
-        <div class="flight__options" *ngIf="!currentOptions.return.confirmed">
-          <div class="flight__nav flight__nav--prev">
-            <button
-              mat-icon-button
-              class="small-button"
-              aria-label="Get previous flights"
-              (click)="handleBackward('return')">
-              <mat-icon>chevron_left</mat-icon>
-            </button>
+      <p *ngIf="!directFlights.length">No flights available for booking</p>
+    </ng-container>
+  </div>
+
+  <div class="booking-content-block">
+    <ng-container *ngIf="returnFlights$ | async as returnFlights">
+      <ng-container
+        *ngIf="returnFlights.length && currentOptions.return.activeVariant">
+        <h3
+          class="booking-content-block__title booking-content-block__title--m title title--medium title--iconic">
+          <img
+            class="icon icon--back"
+            src="/assets/images/plane.svg"
+            alt="Icon" />
+          {{ currentOptions.return.activeVariant.data[0].cityFrom }} to
+          {{ currentOptions.return.activeVariant.data[0].cityTo }}
+        </h3>
+        <div class="flight">
+          <div class="flight__options" *ngIf="!currentOptions.return.confirmed">
+            <div class="flight__nav flight__nav--prev">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get previous flights"
+                (click)="handleBackward('return')">
+                <mat-icon>chevron_left</mat-icon>
+              </button>
+            </div>
+            <div class="flight__nav flight__nav--next">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get next flights"
+                (click)="handleBackward('return')">
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+            <app-booking-card
+              (chooseFlight)="onSwitchCurrentCard($event)"
+              [bookingVariant]="bookingVariant"
+              *ngFor="let bookingVariant of returnFlights; let i = index"
+              [isActive]="i === 2"></app-booking-card>
           </div>
-          <div class="flight__nav flight__nav--next">
-            <button
-              mat-icon-button
-              class="small-button"
-              aria-label="Get next flights"
-              (click)="handleBackward('return')">
-              <mat-icon>chevron_right</mat-icon>
-            </button>
-          </div>
-          <app-booking-card
-            (chooseFlight)="onSwitchCurrentCard($event)"
-            [bookingVariant]="bookingVariant"
-            *ngFor="let bookingVariant of returnFlights; let i = index"
-            [isActive]="i === 2"></app-booking-card>
+          <app-booking-details
+            [currentFlight]="currentOptions.return.activeVariant"
+            (confirmation)="onConfirmToggle('return', $event)"
+            [props]="{
+              isReturn: true,
+              isConfirmed: currentOptions.return.confirmed
+            }"></app-booking-details>
         </div>
-        <app-booking-details
-          [currentFlight]="currentOptions.return.activeVariant"
-          (confirmation)="onConfirmToggle('return', $event)"
-          [props]="{
-            isReturn: true,
-            isConfirmed: currentOptions.return.confirmed
-          }"></app-booking-details>
-      </div>
-    </ng-container>
+      </ng-container>
 
-    <p *ngIf="!returnFlights.length">No return flights available for booking</p>
-  </ng-container>
+      <p *ngIf="!returnFlights.length">
+        No return flights available for booking
+      </p>
+    </ng-container>
+  </div>
 </div>

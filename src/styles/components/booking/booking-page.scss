@@ -2,18 +2,4 @@ app-booking-page {
   position: relative;
   height: 100%;
   display: block;
-
-  .booking-actions {
-    position: absolute;
-    bottom: 1rem;
-    margin: auto;
-    left: 0;
-    right: 0;
-    width: 20px;
-    z-index: 2;
-  }
-
-  .booking-action {
-    background-color: $color-white;
-  }
 }

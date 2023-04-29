@@ -1,4 +1,10 @@
-.booking-passengers-block {
+.booking-content-block {
+  &__title {
+    &--m {
+      margin-bottom: 8px;
+    }
+  }
+
   &__description {
     margin: 0 0 20px 0;
   }

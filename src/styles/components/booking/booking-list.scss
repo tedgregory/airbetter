@@ -2,22 +2,9 @@ app-booking-list {
   .booking-list {
     width: 100%;
 
-    &__title {
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0.5rem 0;
-      line-height: 1.7rem;
-      color: $color-indigo;
-
-      .icon {
-        width: 24px;
-        height: 24px;
-        padding: 2px;
-
-        &-back {
-          transform: rotate(180deg);
-        }
+    .icon {
+      &--back {
+        transform: rotate(180deg);
       }
     }
 

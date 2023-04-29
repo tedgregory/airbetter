@@ -8,7 +8,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "stylelint": "stylelint src/**/*.scss",
-    "stylelint-fix": "stylelint src/**/*.scss --fix",
     "lint": "ng lint --fix && npm run stylelint",
     "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html}\" --write",
     "prepare": "husky install"

@@ -62,10 +62,20 @@
     </div>
   </ng-container>
   <div class="flight-selection__select">
-    <button *ngIf="!props.isConfirmed" (click)="confirmVariant(true)">
+    <button
+      mat-flat-button
+      color="primary"
+      class="button button--mat-gradient"
+      *ngIf="!props.isConfirmed"
+      (click)="confirmVariant(true)">
       Select
     </button>
-    <button *ngIf="props.isConfirmed" (click)="confirmVariant(false)">
+    <button
+      mat-flat-button
+      color="primary"
+      class="button button--mat-minimal"
+      *ngIf="props.isConfirmed"
+      (click)="confirmVariant(false)">
       Edit
     </button>
   </div>
