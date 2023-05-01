@@ -1,0 +1,7 @@
+.booking-summary-price {
+  &.mat-mdc-card {
+    border: 1px solid $color-secondary-50;
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+  }
+}

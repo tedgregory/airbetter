@@ -1,0 +1,32 @@
+.booking-summary {
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__flights-block,
+  &__price-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 24px;
+  }
+
+  &__flights-block {
+    align-items: flex-start;
+    margin-bottom: 30px;
+
+    app-booking-summary-flight {
+      flex-basis: calc(50% - 12px);
+    }
+  }
+
+  &__price-block {
+    justify-content: flex-end;
+    margin-bottom: 40px;
+
+    app-booking-summary-price {
+      flex-basis: calc(50% - 12px);
+    }
+  }
+}

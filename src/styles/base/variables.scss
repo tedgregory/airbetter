@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 $grid-breakpoints: (
   xs: 0,
@@ -74,7 +74,8 @@ $airways-indigo-palette: (
   200: #889cbf,
   300: #5874a5,
   400: #355791,
-  500: #11397e, // main
+  500: #11397e,
+  // main
   600: #0f3376,
   700: #0c2c6b,
   800: #0a2461,
@@ -98,7 +99,7 @@ $airways-indigo-palette: (
     A200: $light-primary-text,
     A400: $light-primary-text,
     A700: $light-primary-text,
-  )
+  ),
 );
 
 $airways-red-palette: (
@@ -107,7 +108,8 @@ $airways-red-palette: (
   200: #d9938f,
   300: #ca6762,
   400: #be4740,
-  500: #b3261e, // main
+  500: #b3261e,
+  // main
   600: #ac221a,
   700: #a31c16,
   800: #9a1712,
@@ -131,11 +133,10 @@ $airways-red-palette: (
     A200: $light-primary-text,
     A400: $light-primary-text,
     A700: $light-primary-text,
-  )
+  ),
 );
 
-$font: 'Roboto', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial',
-  'Lucida Grande', sans-serif;
+$font: "Roboto", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 
 $color-white: #ffffff;
 $color-black: #000000;
@@ -161,5 +162,6 @@ $color-bg: $color-grey-light;
 $color-default: $color-grey-neutral;
 $color-primary: $color-indigo;
 $color-primary-dark: $color-indigo-dark;
+$color-secondary-50: #e1e5eb;
 $color-secondary-90: $color-grey-lighter;
 $color-danger: mat.get-color-from-palette($airways-red-palette, 500);
