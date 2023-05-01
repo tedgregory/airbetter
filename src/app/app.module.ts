@@ -8,6 +8,10 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppLocaleModule } from './app-locale.module';
 import { AppRoutingModule } from './app-routing.module';
+import { bookingReducer } from './redux/reducers/booking.reducer';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { BookingEffects } from './redux/effects/booking.effects';
 
 @NgModule({
   imports: [
@@ -17,9 +21,12 @@ import { AppRoutingModule } from './app-routing.module';
     AppLocaleModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    !environment.production
-      ? StoreDevtoolsModule.instrument({ logOnly: environment.production })
-      : [],
+    // !environment.production
+    //   ? StoreDevtoolsModule.instrument({ logOnly: environment.production })
+    //   : [],
+    StoreModule.forRoot({ bookingState: bookingReducer }),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    EffectsModule.forRoot([BookingEffects]),
   ],
   declarations: [AppComponent],
   providers: [

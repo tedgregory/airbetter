@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Config } from './config.interface';
 
 export const CONFIG_DEFAULT: Config = {
-  ApiKey: '',
+  ApiKey: '1fALT1a48faOP1_mJNETCkpbclAtiJoe',
+  ApiDateFormat: 'DD/MM/YYYY',
 };
 
 @Injectable({
@@ -15,6 +16,7 @@ export class ConfigService {
     this.config = {
       // ApiKey: process.env.API_KEY ?? CONFIG_DEFAULT.ApiKey,
       ApiKey: CONFIG_DEFAULT.ApiKey,
+      ApiDateFormat: CONFIG_DEFAULT.ApiDateFormat,
     };
   }
 

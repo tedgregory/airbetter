@@ -1,12 +1,22 @@
 import { ApiResponse } from '../modules/booking/models/booking.interface';
-import { BookingFlightVariant } from './models/booking.state';
+import {
+  BookingFlightBase,
+  BookingFlightVariant,
+} from './models/booking.state';
 
-export function convertApiToState<
+export function convertApiResponseToVariant<
   A extends ApiResponse,
   T extends BookingFlightVariant
->(response: A) {
+>(response: A, date: string) {
+  if (!response.data.length) {
+    return {
+      flightDate: date,
+      token: null,
+    } as BookingFlightBase;
+  }
   const variant = response.data[0];
   return {
+    flightDate: date,
     token: variant.booking_token,
     flyFrom: {
       country: {

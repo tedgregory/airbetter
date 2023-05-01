@@ -1,14 +1,18 @@
-export type BookingStateType = {
+export interface IBookingBase {
   flyFrom: string;
   flyTo: string;
   dateLeave: string;
-  dateReturn: string;
-
+  dateReturn?: string;
   currency: string;
+  passengersCount: number[];
+  dateFormat: DateFormats;
+}
 
+export interface IBookingState extends IBookingBase {
+  loading: boolean;
   // may diverse for each order, hence here
   contactDetails: {
-    country: string;
+    countryCode: string;
     phone: string;
     email: string;
   };
@@ -27,10 +31,14 @@ export type BookingStateType = {
     confirmed: boolean;
     variants: BookingFlightVariant[];
   };
-};
+}
 
-export type BookingFlightVariant = {
-  token: string;
+export interface BookingFlightBase {
+  flightDate: string;
+  token: string | null;
+}
+
+export interface BookingFlightVariant extends BookingFlightBase {
   flyFrom: {
     country: IATADescription;
     city: IATADescription;
@@ -74,11 +82,18 @@ export type BookingFlightVariant = {
     child: number;
     infant: number;
   };
-};
+}
 
 export enum Gender {
   Male = 'Male',
   Female = 'Female',
+}
+
+export enum DateFormats {
+  DMY = 'DD/MM/YYYY',
+  MDY = 'MM/DD/YYYY',
+  YDM = 'YYYY/DD/MM',
+  YMD = 'YYYY/MM/DD',
 }
 
 export type IATADescription = {

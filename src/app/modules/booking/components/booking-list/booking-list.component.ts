@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription, of } from 'rxjs';
 import { ApiResponse } from '../../models/booking.interface';
+import { Store } from '@ngrx/store';
+import { IBookingState } from 'src/app/redux/models/booking.state';
+import { BookingActions } from 'src/app/redux/actions/booking.actions';
 // import { BookingVariant } from '../../models/booking.interface';
 // import { BookingService } from '../../services/booking.service';
 const flightsFW: ApiResponse[] = [
@@ -231,7 +234,11 @@ export class BookingListComponent implements OnInit, OnDestroy {
       search_id: `R${i}`,
     }))
   );
+
+  constructor(public store: Store<IBookingState>) {}
+
   ngOnInit(): void {
+    this.store.dispatch(BookingActions.getVariants());
     this.subs.push(
       this.directFlights$.subscribe((items) => {
         this.currentOptions.direct = {
