@@ -1,4 +1,4 @@
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 
 $grid-breakpoints: (
   xs: 0,
@@ -136,7 +136,8 @@ $airways-red-palette: (
   ),
 );
 
-$font: "Roboto", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+$font: 'Roboto', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial',
+  'Lucida Grande', sans-serif;
 
 $color-white: #ffffff;
 $color-black: #000000;
@@ -163,5 +164,6 @@ $color-default: $color-grey-neutral;
 $color-primary: $color-indigo;
 $color-primary-dark: $color-indigo-dark;
 $color-secondary-50: #e1e5eb;
+$color-secondary-80: #f1f3f6;
 $color-secondary-90: $color-grey-lighter;
 $color-danger: mat.get-color-from-palette($airways-red-palette, 500);

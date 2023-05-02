@@ -2,5 +2,62 @@
   &.mat-mdc-card {
     box-shadow: 0 1px 4px rgba($color-black, 0.2);
     border-radius: 8px;
+    border-top: 3px solid $color-primary;
+
+    .mat-mdc-card-content {
+      padding: 0;
+      border-radius: 8px;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+  }
+
+  .summary-header-block {
+    background: $color-secondary-80;
+    color: $color-black;
+    border-radius: 8px 8px 0 0;
+    gap: 8px;
+
+    &__title {
+      margin: 0;
+      display: flex;
+      gap: 20px;
+      @include font-h4;
+
+      :first-child {
+        color: $color-primary;
+      }
+    }
+
+    &__time-data {
+      display: flex;
+      gap: 36px;
+      @include text-16-400;
+    }
+  }
+
+  .summary-content-block {
+    gap: 12px;
+    @include text-16-400;
+
+    &__passengers-name {
+      text-transform: uppercase;
+    }
+
+    &__included {
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 0 28px;
+      gap: 4px;
+
+      p {
+        margin: 0;
+        color: $color-black;
+      }
+    }
   }
 }
