@@ -1,4 +1,5 @@
 @import 'src/styles/libs/normalize';
+@import 'src/styles/libs/hamburgers/hamburgers';
 
 @import 'src/styles/base/variables';
 @import 'src/styles/base/mixins/breakpoints';
@@ -13,6 +14,7 @@
 @import 'src/styles/common/slide-toggle';
 @import 'src/styles/common/title';
 @import 'src/styles/common/tooltip';
+@import 'src/styles/common/menu';
 
 @import 'src/styles/layout/layout';
 @import 'src/styles/layout/header';
