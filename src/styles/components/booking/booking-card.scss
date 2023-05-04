@@ -2,6 +2,16 @@ app-booking-card {
   display: block;
   max-width: 20rem;
 
+  // @include media-breakpoint-down(lg) {
+  //   display: none;
+
+  //   &:nth-child(2),
+  //   &:nth-child(3),
+  //   &:nth-child(4) {
+  //     display: block;
+  //   }
+  // }
+
   p {
     margin: 0;
   }
@@ -13,6 +23,7 @@ app-booking-card {
     background-color: $color-white;
     padding: 4px 0;
     min-height: 75px;
+    min-width: 180px;
     cursor: pointer;
 
     .date-title {
