@@ -6,5 +6,6 @@ export const BookingActions = createActionGroup({
   events: {
     'Get Variants': emptyProps(),
     'Get Variants Success': props<{ variants: BookingFlightVariant[] }>(),
+    'Get Variants Error': props<{ error: Error }>(),
   },
 });

@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription, of } from 'rxjs';
 import { ApiResponse } from '../../models/booking.interface';
 import { Store } from '@ngrx/store';
-import { IBookingState } from 'src/app/redux/models/booking.state';
 import { BookingActions } from 'src/app/redux/actions/booking.actions';
 // import { BookingVariant } from '../../models/booking.interface';
 // import { BookingService } from '../../services/booking.service';
@@ -235,7 +234,7 @@ export class BookingListComponent implements OnInit, OnDestroy {
     }))
   );
 
-  constructor(public store: Store<IBookingState>) {}
+  constructor(public store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(BookingActions.getVariants());

@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
 import { selectBookingBasic } from '../selectors/booking.selectors';
 
-@Injectable({ providedIn: 'root' }) // how else to scope it?
+@Injectable() // how else to scope it?
 export class BookingEffects {
   constructor(
     private readonly actions$: Actions,
@@ -19,7 +19,7 @@ export class BookingEffects {
     return this.actions$.pipe(
       ofType(BookingActions.getVariants),
       concatLatestFrom(() => this.store.select(selectBookingBasic)),
-      switchMap(([_, params]) => {
+      switchMap(([, params]) => {
         return this.apiService.getBookingData(params).pipe(
           map((variants) => {
             return BookingActions.getVariantsSuccess({

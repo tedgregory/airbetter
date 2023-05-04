@@ -1,35 +1,31 @@
 export interface IBookingBase {
   flyFrom: string;
   flyTo: string;
-  dateLeave: string;
-  dateReturn?: string;
+  dateLeave: string | null;
+  dateReturn: string | null;
   currency: string;
-  passengersCount: number[];
-  dateFormat: DateFormats;
+  passengersCount: [number, number, number]; // adults/children/infants
+  dateFormat: DateFormats; // TODO: move to user state
 }
 
 export interface IBookingState extends IBookingBase {
   loading: boolean;
+  error: Error | null;
   // may diverse for each order, hence here
-  contactDetails: {
-    countryCode: string;
-    phone: string;
-    email: string;
-  };
-  passengers: {
-    adults: BookingPassenger[] | null;
-    children: BookingPassenger[] | null;
-    infants: BookingPassenger[] | null;
-  };
+  // passengers: {
+  //   adults: BookingPassenger[] | null;
+  //   children: BookingPassenger[] | null;
+  //   infants: BookingPassenger[] | null;
+  // };
   flyToData: {
     chosenVariant: BookingFlightVariant | null; // what if it's a stepover flight?
     confirmed: boolean;
-    variants: BookingFlightVariant[];
+    variants: BookingFlightVariant[] | null;
   };
   flyBackData: {
     chosenVariant: BookingFlightVariant | null;
     confirmed: boolean;
-    variants: BookingFlightVariant[];
+    variants: BookingFlightVariant[] | null; // null
   };
 }
 

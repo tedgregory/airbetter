@@ -218,24 +218,32 @@ export class BookingService {
     );
     const result: BookingFlightVariant | BookingFlightBase[] = [];
     for (let i = 0; i < 5; i++) {
-      result.push(
-        this.getVariant({
-          ...params,
-          dateLeave: this.formatDateForApi(
-            flyDate.format(params.dateFormat),
-            params.dateFormat
-          ),
-        })
-      );
+      const variant = this.getVariant({
+        ...params,
+        dateLeave: this.formatDateForApi(
+          flyDate.format(params.dateFormat),
+          params.dateFormat
+        ),
+      });
+      if (variant) result.push(variant);
       flyDate.add(1, 'd');
     }
     console.log(result.length);
     return of(result);
     // const [adults, children, infants] = params.passengersCount;
     // return this.http.get({})
+    // https://api.tequila.kiwi.com/v2/search?
+    // fly_from = PRG &
+    //   fly_to=DUS &
+    //   date_from=01 / 05 / 2023 &
+    //   date_to=01 / 05 / 2023 &
+    //   curr=EUR &
+    //   adults=1 & children=1 & infants=1 &
+    //   one_for_city=1 &
+    //   max_stopovers=0
   }
   getVariant(params: IBookingBase) {
-    return convertApiResponseToVariant(flightsFW[0], params.dateLeave);
+    return convertApiResponseToVariant(flightsFW[0], params.dateLeave || '');
   }
 
   private formatDateForApi(date: string, format: DateFormats): string {
