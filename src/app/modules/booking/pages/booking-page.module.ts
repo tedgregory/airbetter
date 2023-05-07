@@ -11,6 +11,7 @@ import { BookingServiceModule } from '../services/booking-service.module';
 import { BookingListModule } from '../components/booking-list/booking-list.module';
 import { BookingCardModule } from '../components/booking-card/booking-card.module';
 import { BookingPassengersModule } from '../components/booking-passengers/booking-passengers.module';
+import { BookingSummaryModule } from '../components/booking-summary/booking-summary.module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { BookingPassengersModule } from '../components/booking-passengers/bookin
     BookingListModule,
     BookingCardModule,
     BookingPassengersModule,
+    BookingSummaryModule,
     MatIconModule,
     MatButtonModule,
     GridModule,
