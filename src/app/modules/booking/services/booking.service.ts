@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
 import moment from 'moment';
-import {
-  IBookingBase,
-  BookingFlightBase,
-  BookingFlightVariant,
-  DateFormats,
-} from 'src/app/redux/models/booking.state';
 import { ConfigService } from 'src/app/core/config/config.service';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { ApiResponse } from '../models/booking.interface';
 import { convertApiResponseToVariant } from 'src/app/redux/api-converter';
 import { of } from 'rxjs';
+import { DateFormats, SearchState } from 'src/app/redux/search/search.state';
+import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
 
 const flightsFW: ApiResponse[] = [
   {
@@ -211,12 +207,32 @@ const flightsRW: ApiResponse[] = [
 
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  getBookingData(params: IBookingBase) {
+  getBookingData(params: SearchState) {
+    const result: {
+      leave: BookingFlightVariant[] | null;
+      return: BookingFlightVariant[] | null;
+    } = {
+      leave: null,
+      return: null,
+    };
+    result.leave = this.getDateVariants(params);
+    if (params.dateReturn) {
+      const tempFrom = params.flyFrom;
+      result.return = this.getDateVariants({
+        ...params,
+        dateLeave: params.dateReturn,
+        flyFrom: tempFrom,
+        flyTo: params.flyFrom,
+      });
+    }
+    return of(result);
+  }
+  getDateVariants(params: SearchState) {
     const flyDate = moment(params.dateLeave, params.dateFormat).subtract(
       2,
       'd'
     );
-    const result: BookingFlightVariant | BookingFlightBase[] = [];
+    const result: BookingFlightVariant[] = [];
     for (let i = 0; i < 5; i++) {
       const variant = this.getVariant({
         ...params,
@@ -225,25 +241,16 @@ export class BookingService {
           params.dateFormat
         ),
       });
-      if (variant) result.push(variant);
+      if (variant) result.push(variant as BookingFlightVariant);
       flyDate.add(1, 'd');
     }
-    console.log(result.length);
-    return of(result);
-    // const [adults, children, infants] = params.passengersCount;
-    // return this.http.get({})
-    // https://api.tequila.kiwi.com/v2/search?
-    // fly_from = PRG &
-    //   fly_to=DUS &
-    //   date_from=01 / 05 / 2023 &
-    //   date_to=01 / 05 / 2023 &
-    //   curr=EUR &
-    //   adults=1 & children=1 & infants=1 &
-    //   one_for_city=1 &
-    //   max_stopovers=0
+    return result;
   }
-  getVariant(params: IBookingBase) {
-    return convertApiResponseToVariant(flightsFW[0], params.dateLeave || '');
+  getVariant(params: SearchState, isReturn = false) {
+    return convertApiResponseToVariant(
+      isReturn ? flightsFW[0] : flightsRW[0],
+      params.dateLeave || ''
+    );
   }
 
   private formatDateForApi(date: string, format: DateFormats): string {
@@ -252,5 +259,5 @@ export class BookingService {
     );
   }
 
-  constructor(private config: ConfigService, private http: HttpClient) {}
+  constructor(private config: ConfigService) {}
 }

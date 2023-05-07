@@ -1,13 +1,13 @@
 <div
-  *ngIf="bookingVariant && bookingVariant.data[0] as flightData; else empty"
+  *ngIf="bookingVariant as flightData; else empty"
   [class]="{ 'booking-card': true, active: isActive }"
   (click)="setActive()">
   <div class="date-title">
     <p class="date-title__day">
-      {{ flightData['local_departure'] | date : 'dd MMM' }}
+      {{ flightData.time.departure_local | date : 'dd MMM' }}
     </p>
     <p class="date-title__weekday">
-      {{ flightData['local_departure'] | date : 'EEEE' }}
+      {{ flightData.time.departure_local | date : 'EEEE' }}
     </p>
   </div>
   <div class="price">

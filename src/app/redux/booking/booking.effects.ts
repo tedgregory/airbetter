@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
 import { BookingService } from 'src/app/modules/booking/services/booking.service';
-import { BookingActions } from '../actions/booking.actions';
-import { BookingFlightVariant } from '../models/booking.state';
+import { BookingActions } from './booking.actions';
 import { Store } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
-import { selectBookingBasic } from '../selectors/booking.selectors';
+import CustomSearchSelectors from '../search/search.selectors';
 
 @Injectable() // how else to scope it?
 export class BookingEffects {
@@ -18,12 +17,14 @@ export class BookingEffects {
   private getVariants$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(BookingActions.getVariants),
-      concatLatestFrom(() => this.store.select(selectBookingBasic)),
+      concatLatestFrom(() =>
+        this.store.select(CustomSearchSelectors.selectSearchBasic)
+      ),
       switchMap(([, params]) => {
         return this.apiService.getBookingData(params).pipe(
-          map((variants) => {
+          map((result) => {
             return BookingActions.getVariantsSuccess({
-              variants: variants as BookingFlightVariant[],
+              bookingData: result,
             });
           })
         );

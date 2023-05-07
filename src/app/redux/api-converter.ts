@@ -2,7 +2,7 @@ import { ApiResponse } from '../modules/booking/models/booking.interface';
 import {
   BookingFlightBase,
   BookingFlightVariant,
-} from './models/booking.state';
+} from './booking/booking.state';
 
 export function convertApiResponseToVariant<
   A extends ApiResponse,

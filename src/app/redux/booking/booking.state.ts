@@ -1,22 +1,6 @@
-export interface IBookingBase {
-  flyFrom: string;
-  flyTo: string;
-  dateLeave: string | null;
-  dateReturn: string | null;
-  currency: string;
-  passengersCount: [number, number, number]; // adults/children/infants
-  dateFormat: DateFormats; // TODO: move to user state
-}
-
-export interface IBookingState extends IBookingBase {
-  loading: boolean;
+export interface BookingState {
+  isLoading: boolean;
   error: Error | null;
-  // may diverse for each order, hence here
-  // passengers: {
-  //   adults: BookingPassenger[] | null;
-  //   children: BookingPassenger[] | null;
-  //   infants: BookingPassenger[] | null;
-  // };
   flyToData: {
     chosenVariant: BookingFlightVariant | null; // what if it's a stepover flight?
     confirmed: boolean;
@@ -28,6 +12,8 @@ export interface IBookingState extends IBookingBase {
     variants: BookingFlightVariant[] | null; // null
   };
 }
+
+// some extra interfaces, to deal with
 
 export interface BookingFlightBase {
   flightDate: string;
@@ -80,29 +66,7 @@ export interface BookingFlightVariant extends BookingFlightBase {
   };
 }
 
-export enum Gender {
-  Male = 'Male',
-  Female = 'Female',
-}
-
-export enum DateFormats {
-  DMY = 'DD/MM/YYYY',
-  MDY = 'MM/DD/YYYY',
-  YDM = 'YYYY/DD/MM',
-  YMD = 'YYYY/MM/DD',
-}
-
 export type IATADescription = {
   name: string;
   code: string;
-};
-
-export type BookingPassenger = {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: Gender;
-  birthDate: string;
-  specialCare: boolean;
 };
