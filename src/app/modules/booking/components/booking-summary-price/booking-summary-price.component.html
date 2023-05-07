@@ -4,15 +4,15 @@
       <div *ngFor="let price of prices" class="price-list__item">
         <p class="price-list__row price-list__row--bold">
           <span>{{ price.amount }} x {{ price.type }} Fare</span>
-          <span>{{ price.totalPrice | currency : 'EUR' }}</span>
+          <span>{{ price.totalPrice | currency : currencyType }}</span>
         </p>
         <p class="price-list__row price-list__row--normal">
           <span>Fare</span>
-          <span>{{ price.farePrice | currency : 'EUR' }}</span>
+          <span>{{ price.farePrice | currency : currencyType }}</span>
         </p>
         <p class="price-list__row price-list__row--normal">
           <span>Tax & Service Charge</span>
-          <span>{{ price.otherPrice | currency : 'EUR' }}</span>
+          <span>{{ price.otherPrice | currency : currencyType }}</span>
         </p>
       </div>
     </div>
@@ -20,7 +20,7 @@
     <div class="booking-summary-price__total price-total">
       <span class="price-total__title">TOTAL:</span>
       <span class="price-total__sum">{{
-        countGeneral() | currency : 'EUR'
+        countGeneral() | currency : currencyType
       }}</span>
     </div>
   </mat-card-content>

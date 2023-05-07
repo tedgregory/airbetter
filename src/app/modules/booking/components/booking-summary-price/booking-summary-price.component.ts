@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class BookingSummaryPriceComponent {
+  currencyType = 'EUR';
+
   prices = [
     {
       type: 'Adult',
