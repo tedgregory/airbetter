@@ -3,41 +3,38 @@
     margin-bottom: 20px;
   }
 
-  &__flights-block,
-  &__price-block {
+  &__flights-block {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 30px;
     padding: 0;
     gap: 24px;
 
     @include media-breakpoint-down(lg) {
       flex-direction: column;
     }
-  }
-
-  &__flights-block {
-    align-items: flex-start;
-    margin-bottom: 30px;
 
     app-booking-summary-flight {
-      flex-basis: calc(50% - 12px);
+      flex: 1 1 0;
 
       @include media-breakpoint-down(lg) {
-        width: 100%;
+        flex-basis: 100%;
       }
     }
   }
 
   &__price-block {
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 24px;
     margin-bottom: 40px;
 
     app-booking-summary-price {
-      flex-basis: calc(50% - 12px);
+      grid-column: 2;
 
       @include media-breakpoint-down(lg) {
-        width: 100%;
+        grid-column: 1 / span 2;
       }
     }
   }

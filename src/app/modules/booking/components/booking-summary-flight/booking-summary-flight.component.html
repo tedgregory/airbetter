@@ -1,37 +1,24 @@
 <mat-card class="booking-summary-flight">
   <mat-card-content>
-    <div class="booking-summary-flight__block summary-header-block">
-      <h4 class="summary-header-block__title">
-        <span>FR 1925</span> <span>{{ flightItem.name }}</span>
+    <div class="booking-summary-flight__header summary-header">
+      <h4 class="summary-header__title">
+        <span class="summary-header__flight-number">FR 1925</span>
+        <span>{{ flightItem.name }}</span>
       </h4>
-      <div class="summary-header-block__time-data">
+      <div class="summary-header__time-data">
         <span>{{ flightItem.date }}</span> <span>{{ flightItem.time }}</span>
       </div>
     </div>
-    <div class="booking-summary-flight__block summary-content-block">
-      <div class="summary-content-block__passengers-name">Harry Potter</div>
-      <div class="summary-content-block__included">
-        <p>1checked bag (total 23 kg) included</p>
-        <p>1 cabin bag + 1 personal item (max. 8 kg) included</p>
-        <p>Seat 19E</p>
+    <div
+      *ngFor="let summaryPassenger of summaryPassengers; let last = last"
+      class="booking-summary-flight__row summary-passenger">
+      <div class="summary-passenger__name">{{ summaryPassenger.name }}</div>
+      <div class="summary-passenger__included">
+        <p *ngFor="let passengerIncluded of summaryPassenger.included">
+          {{ passengerIncluded }}
+        </p>
       </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="booking-summary-flight__block summary-content-block">
-      <div class="summary-content-block__passengers-name">LiLi Potter</div>
-      <div class="summary-content-block__included">
-        <p>1checked bag (total 23 kg) included</p>
-        <p>1 cabin bag + 1 personal item (max. 8 kg) included</p>
-        <p>Seat 20E</p>
-      </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="booking-summary-flight__block summary-content-block">
-      <div class="summary-content-block__passengers-name">James Potter</div>
-      <div class="summary-content-block__included">
-        <p>1checked bag (total 23 kg) included</p>
-        <p>1 cabin bag + 1 personal item (max. 8 kg) included</p>
-      </div>
+      <mat-divider *ngIf="!last"></mat-divider>
     </div>
   </mat-card-content>
 </mat-card>

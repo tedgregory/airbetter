@@ -10,16 +10,13 @@
     }
   }
 
-  &__block {
+  .summary-header {
     display: flex;
     flex-direction: column;
-    padding: 20px 24px;
-  }
-
-  .summary-header-block {
     background: $color-secondary-80;
     color: $color-black;
     border-radius: 8px 8px 0 0;
+    padding: 20px 24px;
     gap: 8px;
 
     &__title {
@@ -27,10 +24,10 @@
       display: flex;
       gap: 20px;
       @include font-h4;
+    }
 
-      :first-child {
-        color: $color-primary;
-      }
+    &__flight-number {
+      color: $color-primary;
     }
 
     &__time-data {
@@ -40,18 +37,19 @@
     }
   }
 
-  .summary-content-block {
-    gap: 12px;
+  .summary-passenger {
+    padding: 20px 0;
     @include text-16-400;
 
-    &__passengers-name {
+    &__name {
       text-transform: uppercase;
+      padding: 0 24px 12px;
     }
 
     &__included {
       display: flex;
       flex-direction: column;
-      padding: 0 0 0 28px;
+      padding: 0 0 24px 52px;
       gap: 4px;
 
       p {

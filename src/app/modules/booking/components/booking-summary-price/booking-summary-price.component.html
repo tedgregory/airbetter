@@ -1,44 +1,24 @@
 <mat-card class="booking-summary-price">
   <mat-card-content>
     <div class="booking-summary-price__list price-list">
-      <div class="price-list__item">
+      <div *ngFor="let price of prices" class="price-list__item">
         <p class="price-list__row price-list__row--bold">
-          <span>1 x Adult Fare</span> <span>€257.31</span>
+          <span>{{ price.amount }} x {{ price.type }} Fare</span>
+          <span>€{{ price.totalPrice.toFixed(2) }}</span>
         </p>
         <p class="price-list__row price-list__row--normal">
-          <span>Fare</span> <span>€166.00</span>
+          <span>Fare</span> <span>€{{ price.farePrice.toFixed(2) }}</span>
         </p>
         <p class="price-list__row price-list__row--normal">
-          <span>Tax & Service Charge</span> <span>€91.31</span>
-        </p>
-      </div>
-      <div class="price-list__item">
-        <p class="price-list__row price-list__row--bold">
-          <span>1 x Child Fare</span> <span>€196.08</span>
-        </p>
-        <p class="price-list__row price-list__row--normal">
-          <span>Fare</span> <span>€106.00</span>
-        </p>
-        <p class="price-list__row price-list__row--normal">
-          <span>Tax & Service Charge</span> <span>€90.08</span>
-        </p>
-      </div>
-      <div class="price-list__item">
-        <p class="price-list__row price-list__row--bold">
-          <span>1 x Infant Fare</span> <span>€98.00</span>
-        </p>
-        <p class="price-list__row price-list__row--normal">
-          <span>Fare</span> <span>€88.00</span>
-        </p>
-        <p class="price-list__row price-list__row--normal">
-          <span>Tax & Service Charge</span> <span>€10.00</span>
+          <span>Tax & Service Charge</span>
+          <span>€{{ price.otherPrice.toFixed(2) }}</span>
         </p>
       </div>
     </div>
     <mat-divider></mat-divider>
     <div class="booking-summary-price__total price-total">
       <span class="price-total__title">TOTAL:</span>
-      <span class="price-total__sum">€551.38</span>
+      <span class="price-total__sum">€{{ generalPrice.toFixed(2) }}</span>
     </div>
   </mat-card-content>
 </mat-card>
