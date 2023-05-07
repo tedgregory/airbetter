@@ -30,12 +30,12 @@
     grid-column-gap: 24px;
     margin-bottom: 40px;
 
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+
     app-booking-summary-price {
       grid-column: 2;
-
-      @include media-breakpoint-down(lg) {
-        grid-column: 1 / span 2;
-      }
     }
   }
 }

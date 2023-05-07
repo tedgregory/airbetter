@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class BookingSummaryPriceComponent {
-  generalPrice: number;
-
   prices = [
     {
       type: 'Adult',
@@ -31,10 +29,6 @@ export class BookingSummaryPriceComponent {
       otherPrice: 10.0,
     },
   ];
-
-  constructor() {
-    this.generalPrice = this.countGeneral();
-  }
 
   countGeneral(): number {
     return this.prices.reduce((total, price) => total + price.totalPrice, 0);
