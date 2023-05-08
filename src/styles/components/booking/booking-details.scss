@@ -39,8 +39,6 @@ app-booking-details {
       }
 
       &__date {
-        font-size: 1rem;
-        line-height: 1rem;
         font-weight: 400;
         letter-spacing: 0.5px;
         color: $color-grey-neutral-30;
@@ -172,10 +170,6 @@ app-booking-details {
       gap: 0.5rem;
     }
 
-    @include media-breakpoint-down(md) {
-      justify-content: space-around;
-    }
-
     &__seats {
       grid-area: seats;
       background-color: $color-active-base;
@@ -192,6 +186,11 @@ app-booking-details {
         padding: 0.3rem;
         display: flex;
         align-items: center;
+        justify-content: center;
+      }
+
+      @include media-breakpoint-down(md) {
+        margin-left: 0;
       }
     }
 

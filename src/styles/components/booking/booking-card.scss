@@ -23,8 +23,15 @@ app-booking-card {
     background-color: $color-white;
     padding: 4px 0;
     min-height: 75px;
-    min-width: 180px;
     cursor: pointer;
+
+    @include media-breakpoint-down(lg) {
+      min-width: 210px;
+    }
+
+    @include media-breakpoint-down(md) {
+      min-width: 180px;
+    }
 
     .date-title {
       display: flex;
