@@ -4,10 +4,10 @@
   (click)="setActive()">
   <div class="date-title">
     <p class="date-title__day">
-      {{ flightData.time.departure_local | date : 'dd MMM' }}
+      {{ flightData.flightDate | date : 'dd MMM' }}
     </p>
     <p class="date-title__weekday">
-      {{ flightData.time.departure_local | date : 'EEEE' }}
+      {{ flightData.flightDate | date : 'EEEE' }}
     </p>
   </div>
   <div class="price">

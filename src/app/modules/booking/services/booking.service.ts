@@ -218,29 +218,35 @@ export class BookingService {
     result.leave = this.getDateVariants(params);
     if (params.dateReturn) {
       const tempFrom = params.flyFrom;
-      result.return = this.getDateVariants({
-        ...params,
-        dateLeave: params.dateReturn,
-        flyFrom: tempFrom,
-        flyTo: params.flyFrom,
-      });
+      result.return = this.getDateVariants(
+        {
+          ...params,
+          dateLeave: params.dateReturn,
+          flyFrom: tempFrom,
+          flyTo: params.flyFrom,
+        },
+        true
+      );
     }
     return of(result);
   }
-  getDateVariants(params: SearchState) {
+  getDateVariants(params: SearchState, isReturn = false) {
     const flyDate = moment(params.dateLeave, params.dateFormat).subtract(
       2,
       'd'
     );
     const result: BookingFlightVariant[] = [];
     for (let i = 0; i < 5; i++) {
-      const variant = this.getVariant({
-        ...params,
-        dateLeave: this.formatDateForApi(
-          flyDate.format(params.dateFormat),
-          params.dateFormat
-        ),
-      });
+      const variant = this.getVariant(
+        {
+          ...params,
+          dateLeave: this.formatDateForApi(
+            flyDate.format(params.dateFormat),
+            params.dateFormat
+          ),
+        },
+        isReturn
+      );
       if (variant) result.push(variant as BookingFlightVariant);
       flyDate.add(1, 'd');
     }

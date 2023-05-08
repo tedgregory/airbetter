@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { ApiResponse } from '../modules/booking/models/booking.interface';
 import {
   BookingFlightBase,
@@ -16,7 +17,7 @@ export function convertApiResponseToVariant<
   }
   const variant = response.data[0];
   return {
-    flightDate: date,
+    flightDate: date ? moment(date, 'DD/MM/YYYY').format() : Date.now(),
     token: variant.booking_token,
     flyFrom: {
       country: {
