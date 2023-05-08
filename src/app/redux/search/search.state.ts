@@ -1,3 +1,5 @@
+import { DateFormats } from '../common/common.models';
+
 export interface SearchState {
   flyFrom: string;
   flyTo: string;
@@ -6,10 +8,4 @@ export interface SearchState {
   //passengersCount: [number, number, number]; // adults/children/infants
   currency: string;
   dateFormat: DateFormats;
-}
-export enum DateFormats {
-  DMY = 'DD/MM/YYYY',
-  MDY = 'MM/DD/YYYY',
-  YDM = 'YYYY/DD/MM',
-  YMD = 'YYYY/MM/DD',
 }

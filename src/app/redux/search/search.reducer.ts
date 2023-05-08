@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { DateFormats, SearchState } from './search.state';
+import { SearchState } from './search.state';
 import { SearchActions } from './search.actions';
+import { DateFormats } from '../common/common.models';
 
 const defaultState: SearchState = {
   flyFrom: 'DUS',

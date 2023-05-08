@@ -8,3 +8,10 @@ export interface ContactDetails {
   phone: string;
   email: string;
 }
+
+export enum DateFormats {
+  DMY = 'DD/MM/YYYY',
+  MDY = 'MM/DD/YYYY',
+  YDM = 'YYYY/DD/MM',
+  YMD = 'YYYY/MM/DD',
+}

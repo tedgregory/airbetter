@@ -5,8 +5,9 @@ import { ConfigService } from 'src/app/core/config/config.service';
 import { ApiResponse } from '../models/booking.interface';
 import { convertApiResponseToVariant } from 'src/app/redux/api-converter';
 import { of } from 'rxjs';
-import { DateFormats, SearchState } from 'src/app/redux/search/search.state';
+import { SearchState } from 'src/app/redux/search/search.state';
 import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
+import { DateFormats } from 'src/app/redux/common/common.models';
 
 const flightsFW: ApiResponse[] = [
   {
