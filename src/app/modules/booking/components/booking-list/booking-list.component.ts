@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription, filter, of } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { ApiResponse } from '../../models/booking.interface';
 // import { BookingVariant } from '../../models/booking.interface';
 // import { BookingService } from '../../services/booking.service';
