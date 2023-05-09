@@ -1,6 +1,7 @@
 .button {
   &--mat-primary,
-  &--mat-simple {
+  &--mat-simple,
+  &--mat-outlined {
     &.mat-mdc-unelevated-button.mat-mdc-button-base {
       @include button-basic;
       border-radius: 4px;
@@ -11,6 +12,15 @@
   &--mat-simple {
     &.mat-mdc-unelevated-button.mat-mdc-button-base {
       background-color: $color-transparent;
+      color: $color-primary;
+    }
+  }
+
+  &--mat-outlined {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      background-color: $color-transparent;
+      color: $color-primary;
+      border: 1px solid $color-primary;
     }
   }
 
