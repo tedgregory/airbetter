@@ -1,0 +1,56 @@
+<mat-card class="cart-page">
+  <mat-card-content>
+    <h3 class="cart-page__title">Cart</h3>
+
+    <table class="cart-page__table" matSort (matSortChange)="sortData($event)">
+      <tr class="cart-page__table-header">
+        <th mat-sort-header="number">No.</th>
+        <th mat-sort-header="flight">Flight</th>
+        <th mat-sort-header="typeTrip">Type trip</th>
+        <th mat-sort-header="date">Data & Time</th>
+        <th mat-sort-header="passengers">Passengers</th>
+        <th mat-sort-header="price">Price</th>
+      </tr>
+
+      <tr class="cart-page__table-content" *ngFor="let sorted of sortedData">
+        <td>{{ sorted.number }}</td>
+        <td style="white-space: pre-line">{{ sorted.flight.join('\n') }}</td>
+        <td>{{ sorted.typeTrip }}</td>
+        <td style="white-space: pre-line">{{ sorted.date.join('\n') }}</td>
+        <td style="white-space: pre-line">
+          {{ sorted.passengers.join('\n') }}
+        </td>
+        <td>{{ sorted.price | currency : currencyType }}</td>
+      </tr>
+    </table>
+
+    <div class="cart-page__total cart-total">
+      <button
+        mat-flat-button
+        class="cart-total__button button button--mat-simple">
+        + Add new trip
+      </button>
+      <div class="cart-total__title">
+        <span>Total</span
+        ><span>{{ countGeneral() | currency : currencyType }}</span>
+      </div>
+    </div>
+
+    <div class="cart-page__payment cart-payment">
+      <mat-form-field class="cart-payment__promo-code" floatLabel="always">
+        <input matInput placeholder="Promo Code" />
+        <button mat-flat-button class="button button--mat-simple">APPLY</button>
+      </mat-form-field>
+
+      <div class="cart-payment__selected">
+        <span>{{ sortedData.length }} selected</span
+        ><button
+          mat-flat-button
+          color="primary"
+          class="button button--mat-primary">
+          Payment
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

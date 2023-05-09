@@ -1,0 +1,57 @@
+.cart-page {
+  &.mat-mdc-card {
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+
+    .mat-mdc-card-content {
+      padding: 0;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    padding: 33px 31px 27px;
+  }
+
+  &__table {
+    width: 100%;
+    padding: 0 31px;
+  }
+
+  &__total,
+  &__payment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cart-total {
+    padding: 40px 31px;
+
+    &__title {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  .cart-payment {
+    padding: 45px 31px;
+
+    &__selected {
+      button {
+        margin-left: 38px;
+      }
+    }
+
+    &__promo-code {
+      /* stylelint-disable */
+      .mdc-text-field--no-label:not(.mdc-text-field--outlined)
+        .mat-mdc-form-field-infix {
+        display: flex;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        align-items: center;
+      }
+    }
+  }
+}
