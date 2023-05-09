@@ -18,10 +18,25 @@
   font-style: normal;
 }
 
+@mixin font-h4 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  font-style: normal;
+}
+
 @mixin text-16-500 {
   font-size: 16px;
   line-height: 20px;
   font-weight: 500;
+}
+
+@mixin text-16-400 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-style: normal;
 }
 
 @mixin text-14-500 {
