@@ -36,9 +36,3 @@
     position: relative;
   }
 }
-
-.mat-mdc-text-field-wrapper.mdc-text-field .mat-mdc-form-field-flex .mat-mdc-form-field-infix {
-  @include media-breakpoint-down(xl) {
-    width: auto;
-  }
-}

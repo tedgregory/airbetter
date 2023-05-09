@@ -26,7 +26,7 @@ const routes: Routes = [
       {
         path: NavigationPath.Cart,
         loadChildren: () =>
-          import('src/app/modules/cart/pages/cart-page.module').then(
+          import('src/app/modules/user/pages/cart-page/cart-page.module').then(
             (m) => m.CartPageModule
           ),
       },
