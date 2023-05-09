@@ -1,0 +1,25 @@
+<div
+  class="auth-modal__inner"
+  [ngStyle]="{
+    'position': position.pos,
+    'top': position.rightTopY + 'px',
+    'right': position.rightTopX + 'px',
+  }"
+  appClickOutside
+  (clickOutside)="clickedOutsideAuthModal($event)">
+  <div class="auth-modal__content-container">
+    <button
+      mat-button
+      disableRipple
+      class="auth-modal__close"
+      type="button"
+      aria-label="Close"
+      (click)="onModalClose()">
+      <mat-icon matSuffix svgIcon="appClose"></mat-icon>
+    </button>
+
+    <div class="auth-modal__content">
+      <app-auth-form></app-auth-form>
+    </div>
+  </div>
+</div>

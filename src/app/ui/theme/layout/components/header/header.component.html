@@ -53,7 +53,8 @@
                 'button--mat-translucent-dark': !isFlightsPage()
               }"
               type="button"
-              (click)="onSingInBtnClick()">
+              (click)="onSingInBtnClick()"
+              #signInBtn>
               <svg>
                 <use xlink:href="./assets/sprites/sprite.svg#icon-user"></use>
               </svg>
@@ -72,12 +73,12 @@
         </div>
 
         <button
-          *ngIf="isLgScreen"
+          *ngIf="isLtLgScreen"
           class="header__hamburger hamburger hamburger--spin"
           [class.is-active]="!collapse"
           type="button"
           (click)="toggleCollapse()"
-          #hamburgerToggleRef>
+          #hamburgerToggle>
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
           </span>
@@ -86,3 +87,9 @@
     </app-container>
   </div>
 </header>
+
+<app-auth-modal
+  *ngIf="isAuthModalOpen"
+  [isOpen]="isAuthModalOpen"
+  [position]="authModalPos"
+  (closeModal)="closeAuthModal()"></app-auth-modal>

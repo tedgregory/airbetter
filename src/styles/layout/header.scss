@@ -63,7 +63,12 @@ app-header {
     justify-content: center;
     align-items: center;
     margin-left: auto;
+    margin-right: -12px;
     z-index: 120;
+
+    &.hamburger {
+      padding: 15px 12px;
+    }
 
     &.hamburger:hover,
     &.hamburger.is-active:hover {

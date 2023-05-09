@@ -78,4 +78,21 @@
       }
     }
   }
+
+  &--mat-social {
+    &.mat-mdc-button.mat-mdc-button-base,
+    &.mat-mdc-raised-button.mat-mdc-button-base,
+    &.mat-mdc-unelevated-button.mat-mdc-button-base,
+    &.mat-mdc-outlined-button.mat-mdc-button-base {
+      height: 56px;
+    }
+
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      @include text-16-500;
+      color: $color-grey-neutral-10;
+      background: $color-grey-lighter;
+      border: 1px solid $color-grey-cloud;
+      border-radius: 4px;
+    }
+  }
 }

@@ -4,11 +4,11 @@ import {
   OnDestroy,
   ElementRef,
   ViewChild,
+  ChangeDetectorRef,
+  AfterViewInit,
 } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MatDialog } from '@angular/material/dialog';
 import { NavigationPath } from 'src/app/core/navigation/models/navigation.interface';
-import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import {
   AUTO_STYLE,
@@ -22,7 +22,9 @@ import {
   GridBreakpointType,
   mediaBreakpointDown,
 } from '../../../utils/grid-breakpoints.util';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject, Subscription, takeUntil, tap } from 'rxjs';
+import { CoreService } from 'src/app/core/services/core.service';
+import { AuthModalPosition } from '../../interfaces/layout.interfaces';
 
 interface DateFormat {
   value: string;
@@ -58,15 +60,19 @@ interface Currency {
     ]),
   ],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  @ViewChild('hamburgerToggleRef') hamburgerToggleRef:
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('hamburgerToggle') hamburgerToggleRef:
+    | ElementRef<HTMLElement>
+    | undefined = undefined;
+
+  @ViewChild('signInBtn', { read: ElementRef }) signInBtnRef:
     | ElementRef<HTMLElement>
     | undefined = undefined;
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   NavigationPath = NavigationPath;
 
-  isLgScreen = false;
+  isLtLgScreen = false;
 
   collapse = true;
 
@@ -86,13 +92,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { value: 'pln', viewValue: 'PLN' },
   ];
 
+  isAuthModalOpen = false;
+
+  authModalPos: AuthModalPosition = {
+    pos: 'static',
+    rightTopX: 0,
+    rightTopY: 0,
+  };
+
   selectedDateFormat = this.dateFormats[0].value;
+
   selectedCurrency = this.currencies[0].value;
+
+  private resizeSubscription: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly matDialog: MatDialog
+    private coreService: CoreService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -100,17 +118,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .observe(mediaBreakpointDown(GridBreakpointType.Lg))
       .pipe(
         tap((breakpoints) => {
-          this.isLgScreen = breakpoints.matches;
-          this.collapse = this.isLgScreen;
+          this.isLtLgScreen = breakpoints.matches;
+          this.collapse = this.isLtLgScreen;
         }),
         takeUntil(this.destroy$)
       )
       .subscribe();
+
+    this.resizeSubscription = this.coreService.onWindowResize(() => {
+      this.calcSignInBtnCoords(this.isLtLgScreen);
+    });
+  }
+
+  ngAfterViewInit() {
+    this.calcSignInBtnCoords(this.isLtLgScreen);
+    this.cd.detectChanges();
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+    if (this.resizeSubscription) {
+      this.resizeSubscription.unsubscribe();
+    }
   }
 
   isFlightsPage() {
@@ -119,8 +149,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSingInBtnClick() {
-    // console.log(this.selectedDateFormat);
-    this.matDialog.open(HelpDialogComponent);
+    this.isAuthModalOpen = true;
+  }
+
+  closeAuthModal() {
+    this.isAuthModalOpen = false;
   }
 
   toggleCollapse() {
@@ -135,6 +168,32 @@ export class HeaderComponent implements OnInit, OnDestroy {
       !this.collapse
     ) {
       this.collapse = true;
+    }
+  }
+
+  calcSignInBtnCoords(isReset = false) {
+    const dialogCoords = this.signInBtnRef
+      ? this.signInBtnRef.nativeElement.getBoundingClientRect()
+      : null;
+    const signInBtnLeftBottomPosX = dialogCoords
+      ? Math.round(dialogCoords.x)
+      : 0;
+    const signInBtnLeftBottomPosY = dialogCoords
+      ? Math.round(dialogCoords.bottom)
+      : 0;
+
+    if (!isReset) {
+      this.authModalPos = {
+        pos: 'absolute',
+        rightTopX: window.innerWidth - signInBtnLeftBottomPosX - 20,
+        rightTopY: signInBtnLeftBottomPosY + 28,
+      };
+    } else {
+      this.authModalPos = {
+        pos: 'static',
+        rightTopX: 0,
+        rightTopY: 0,
+      };
     }
   }
 }

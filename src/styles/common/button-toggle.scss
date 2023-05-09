@@ -16,7 +16,7 @@
 
   button[aria-pressed='true'] {
     .mat-button-toggle-label-content::before {
-      content: '✓';
+      content: url('/assets/icons/icon-checkmark.svg');
       margin-right: 11px;
     }
   }

@@ -15,11 +15,15 @@
 @import 'src/styles/common/title';
 @import 'src/styles/common/tooltip';
 @import 'src/styles/common/menu';
+@import 'src/styles/common/tabs';
+@import 'src/styles/common/checkbox';
 
 @import 'src/styles/layout/layout';
 @import 'src/styles/layout/header';
 @import 'src/styles/layout/footer';
 @import 'src/styles/layout/main';
+@import 'src/styles/layout/auth-modal';
+@import 'src/styles/layout/auth-form';
 
 @import 'src/styles/components/ui/container';
 @import 'src/styles/components/ui/column';
