@@ -1,0 +1,145 @@
+<mat-tab-group>
+  <mat-tab label="Sign in">
+    <form class="auth-form">
+      <app-auth-social></app-auth-social>
+
+      <div class="auth-form__divider">
+        <span class="auth-form__divider-text">or log in with your email</span>
+      </div>
+
+      <mat-form-field>
+        <mat-label>E-mail*</mat-label>
+        <input matInput type="email" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password*</mat-label>
+        <input matInput [type]="isPasswordHidden ? 'password' : 'text'" />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="isPasswordHidden = !isPasswordHidden"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="isPasswordHidden">
+          <mat-icon>{{
+            isPasswordHidden ? 'visibility_off' : 'visibility'
+          }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="auth-form__note auth-form__note--password">
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="auth-form__button button button--mat-primary"
+        type="submit">
+        Sign in
+      </button>
+    </form>
+  </mat-tab>
+
+  <mat-tab label="Sign up">
+    <form class="auth-form">
+      <app-auth-social></app-auth-social>
+
+      <div class="auth-form__divider">
+        <span class="auth-form__divider-text">or sign up with your email</span>
+      </div>
+
+      <mat-form-field floatLabel="always" class="auth-form__email-field">
+        <mat-label>Email* </mat-label>
+        <input type="email" matInput placeholder="e.g. example@email.com" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password*</mat-label>
+        <input matInput [type]="isPasswordHidden ? 'password' : 'text'" />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="isPasswordHidden = !isPasswordHidden"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="isPasswordHidden">
+          <mat-icon>{{
+            isPasswordHidden ? 'visibility_off' : 'visibility'
+          }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>First name*</mat-label>
+        <input matInput />
+        <mat-icon matSuffix svgIcon="appInfo"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last name*</mat-label>
+        <input matInput />
+        <mat-icon matSuffix svgIcon="appInfo"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always" appearance="fill">
+        <mat-label>Date of birth*</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-button-toggle-group name="gender" aria-label="Choose Gender">
+        <mat-button-toggle value="male">Male</mat-button-toggle>
+        <mat-button-toggle value="female">Female</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <div class="auth-form__cols">
+        <mat-form-field class="auth-form__country-field" appearance="fill">
+          <mat-label>Country code*</mat-label>
+          <mat-select name="country-code" [(value)]="selectedCountryCodeValue">
+            <mat-option
+              *ngFor="let countryCode of countryCodes"
+              [value]="countryCode">
+              {{ countryCode }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always" class="auth-form__phone-field">
+          <mat-label>Mobile phone number* </mat-label>
+          <input type="tel" matInput placeholder="e.g. 1111111111" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="auth-form__citizenship-field" appearance="fill">
+        <mat-label>Citizenship</mat-label>
+        <mat-select name="citizenship" [(value)]="selectedCitizenshipValue">
+          <mat-option
+            *ngFor="let citizenshipValue of citizenshipValues"
+            [value]="citizenshipValue">
+            {{ citizenshipValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-checkbox
+        color="primary"
+        checked="true"
+        class="auth-form__checkbox-line">
+        I agree to Airway's <a href="#">Privacy Policy</a> and
+        <a href="#">Terms of Use</a>
+      </mat-checkbox>
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="auth-form__button button button--mat-primary"
+        type="submit">
+        Sign up
+      </button>
+    </form>
+  </mat-tab>
+</mat-tab-group>
