@@ -4,7 +4,7 @@ import { IconsModule } from 'src/app/core/icons/icons.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthModalComponent } from './auth-modal.component';
-import { LayoutDirectivesModule } from '../../../../directives/layout-directive.module';
+import { LayoutDirectivesModule } from '../../../../directives/layout-directives.module';
 import { AuthFormModule } from '../auth-form/auth-form.module';
 
 @NgModule({
