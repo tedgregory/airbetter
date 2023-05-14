@@ -1,9 +1,10 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { BookingState } from './booking.state';
 import { BookingActions } from './booking.actions';
+import { EStatus } from '../common/common.models';
 
 const defaultState: BookingState = {
-  isLoading: false,
+  status: EStatus.Default,
   error: null,
   flyToData: {
     chosenVariant: null, // what if it's a stepover flight?
@@ -22,7 +23,7 @@ export const bookingFeature = createFeature({
   reducer: createReducer<BookingState>(
     defaultState,
     on(BookingActions.getVariants, (state): BookingState => {
-      return { ...state, isLoading: true };
+      return { ...state, status: EStatus.Loading };
     }),
     on(BookingActions.toggleFlytoConfirmed, (state): BookingState => {
       return {
@@ -47,7 +48,7 @@ export const bookingFeature = createFeature({
       (state, { bookingData }): BookingState => {
         return {
           ...state,
-          isLoading: false,
+          status: EStatus.Loaded,
           flyToData: {
             ...state.flyToData,
             chosenVariant: bookingData.leave?.length
@@ -69,7 +70,7 @@ export const bookingFeature = createFeature({
     on(BookingActions.getVariantsError, (state, { error }): BookingState => {
       return {
         ...state,
-        isLoading: false,
+        status: EStatus.Error,
         error,
       };
     })

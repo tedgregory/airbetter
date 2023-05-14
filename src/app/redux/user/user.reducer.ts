@@ -5,6 +5,7 @@ import { EStatus } from '../common/common.models';
 
 const defaultState: UserState = {
   status: EStatus.Default,
+  isAuth: false,
   error: null,
   email: '',
   name: {

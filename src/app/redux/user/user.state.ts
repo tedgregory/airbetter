@@ -2,6 +2,7 @@ import { EStatus, Gender } from '../common/common.models';
 
 export interface UserState {
   status: EStatus;
+  isAuth: boolean;
   error: Error | null;
   email: string;
   name: {

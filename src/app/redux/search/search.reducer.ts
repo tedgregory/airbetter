@@ -10,6 +10,7 @@ const defaultState: SearchState = {
   dateReturn: '20/05/2023', // null
   currency: 'EUR',
   dateFormat: DateFormats.DMY,
+  step: 1,
 };
 
 export const searchFeature = createFeature({

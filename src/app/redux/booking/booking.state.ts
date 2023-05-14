@@ -1,5 +1,7 @@
+import { EStatus } from '../common/common.models';
+
 export interface BookingState {
-  isLoading: boolean;
+  status: EStatus;
   error: Error | null;
   flyToData: {
     chosenVariant: BookingFlightVariant | null; // what if it's a stepover flight?

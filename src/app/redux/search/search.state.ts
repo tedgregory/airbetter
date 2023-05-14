@@ -8,4 +8,5 @@ export interface SearchState {
   //passengersCount: [number, number, number]; // adults/children/infants
   currency: string;
   dateFormat: DateFormats;
+  step: 1 | 2 | 3;
 }
