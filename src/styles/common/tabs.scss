@@ -1,0 +1,30 @@
+.mat-mdc-tab-labels {
+  border: 1px solid $color-grey-cloud;
+  border-radius: 4px;
+}
+
+.mat-mdc-tab.mdc-tab--active,
+.mat-mdc-tab-link.mdc-tab--active {
+  background: $color-grey-lighter;
+  border: 1px solid $color-grey-cloud;
+  border-bottom-width: 0;
+  border-radius: 4px;
+
+  &:first-child {
+    margin: -1px 0 0 -1px;
+  }
+
+  &:last-child {
+    margin: -1px -1px 0 0;
+  }
+}
+
+.mdc-tab__text-label {
+  @include text-14-500;
+}
+
+.mdc-tab-indicator .mdc-tab-indicator__content--underline {
+  position: relative;
+  bottom: -2px;
+  border-radius: 4px;
+}

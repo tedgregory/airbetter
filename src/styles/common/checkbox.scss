@@ -1,0 +1,8 @@
+.mat-mdc-checkbox .mdc-form-field {
+  @include text-14-500;
+  color: $color-grey-neutral;
+
+  a {
+    color: $color-primary;
+  }
+}

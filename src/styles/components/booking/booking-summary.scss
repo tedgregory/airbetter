@@ -1,0 +1,41 @@
+.booking-summary {
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__flights-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    padding: 0;
+    gap: 24px;
+
+    @include media-breakpoint-down(lg) {
+      flex-direction: column;
+    }
+
+    app-booking-summary-flight {
+      flex: 1 1 0;
+
+      @include media-breakpoint-down(lg) {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  &__price-block {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 24px;
+    margin-bottom: 40px;
+
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+
+    app-booking-summary-price {
+      grid-column: 2;
+    }
+  }
+}

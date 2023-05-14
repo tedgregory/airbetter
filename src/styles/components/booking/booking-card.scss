@@ -2,6 +2,16 @@ app-booking-card {
   display: block;
   max-width: 20rem;
 
+  // @include media-breakpoint-down(lg) {
+  //   display: none;
+
+  //   &:nth-child(2),
+  //   &:nth-child(3),
+  //   &:nth-child(4) {
+  //     display: block;
+  //   }
+  // }
+
   p {
     margin: 0;
   }
@@ -14,6 +24,14 @@ app-booking-card {
     padding: 4px 0;
     min-height: 75px;
     cursor: pointer;
+
+    @include media-breakpoint-down(lg) {
+      min-width: 210px;
+    }
+
+    @include media-breakpoint-down(md) {
+      min-width: 180px;
+    }
 
     .date-title {
       display: flex;

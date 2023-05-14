@@ -1,4 +1,5 @@
 @import 'src/styles/libs/normalize';
+@import 'src/styles/libs/hamburgers/hamburgers';
 
 @import 'src/styles/base/variables';
 @import 'src/styles/base/mixins/breakpoints';
@@ -13,11 +14,16 @@
 @import 'src/styles/common/slide-toggle';
 @import 'src/styles/common/title';
 @import 'src/styles/common/tooltip';
+@import 'src/styles/common/menu';
+@import 'src/styles/common/tabs';
+@import 'src/styles/common/checkbox';
 
 @import 'src/styles/layout/layout';
 @import 'src/styles/layout/header';
 @import 'src/styles/layout/footer';
 @import 'src/styles/layout/main';
+@import 'src/styles/layout/auth-modal';
+@import 'src/styles/layout/auth-form';
 
 @import 'src/styles/components/ui/container';
 @import 'src/styles/components/ui/column';
@@ -36,3 +42,6 @@
 @import 'src/styles/components/booking/booking-passengers-contacts';
 @import 'src/styles/components/booking/booking-step-buttons';
 @import 'src/styles/components/booking/booking-details';
+@import 'src/styles/components/booking/booking-summary';
+@import 'src/styles/components/booking/booking-summary-flight';
+@import 'src/styles/components/booking/booking-summary-price';
