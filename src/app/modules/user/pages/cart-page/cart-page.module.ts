@@ -12,17 +12,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 
 import { TableModule } from 'primeng/table';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { ToastModule } from 'primeng/toast';
-import { ToolbarModule } from 'primeng/toolbar';
-import { ButtonModule } from 'primeng/button';
-import { RippleModule } from 'primeng/ripple';
-import { FileUploadModule } from 'primeng/fileupload';
-import { RatingModule } from 'primeng/rating';
-import { TagModule } from 'primeng/tag';
-import { ProductService } from './productservice';
-import { DialogModule } from 'primeng/dialog';
-import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
@@ -36,18 +25,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     MatInputModule,
     FormsModule,
     TableModule,
-    RadioButtonModule,
-    ToastModule,
-    ToolbarModule,
-    ButtonModule,
-    RippleModule,
-    FileUploadModule,
-    RatingModule,
-    TagModule,
-    DialogModule,
-    DropdownModule,
     ConfirmDialogModule,
   ],
-  providers: [ProductService],
 })
 export class CartPageModule {}

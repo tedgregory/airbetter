@@ -2,77 +2,77 @@
   <mat-card-content>
     <h3 class="cart-page__title">Cart</h3>
 
-    <div class="card">
-      <p-table
-        #dt
-        [value]="products"
-        [rows]="10"
-        [globalFilterFields]="[
-          'name',
-          'country.name',
-          'representative.name',
-          'status'
-        ]"
-        [tableStyle]="{ 'min-width': '75rem' }"
-        [(selection)]="selectedProducts"
-        [rowHover]="true"
-        dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [showCurrentPageReport]="true">
-        <ng-template pTemplate="header">
-          <tr>
-            <th style="width: 4rem">
-              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th>
-            <th pSortableColumn="name" style="min-width: 15rem">
-              Name <p-sortIcon field="name"></p-sortIcon>
-            </th>
-            <th>Image</th>
-            <th pSortableColumn="price">
-              Price <p-sortIcon field="price"></p-sortIcon>
-            </th>
-            <th pSortableColumn="category" style="min-width: 10rem">
-              Category <p-sortIcon field="category"></p-sortIcon>
-            </th>
-            <th></th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-          <tr>
-            <td>
-              <p-tableCheckbox [value]="product"></p-tableCheckbox>
-            </td>
-            <td>{{ product.name }}</td>
-            <td>
-              <img
-                [src]="
-                  'https://primefaces.org/cdn/primeng/images/demo/product/' +
-                  product.image
-                "
-                [alt]="product.name"
-                width="50"
-                class="shadow-4" />
-            </td>
-            <td>{{ product.price | currency : 'USD' }}</td>
-            <td>{{ product.category }}</td>
-            <td>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-pencil"
-                class="p-button-rounded p-button-success mr-2"
-                (click)="editProduct(product)"></button>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-trash"
-                class="p-button-rounded p-button-warning"
-                (click)="deleteProduct(product)"></button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
+    <p-table
+      class="cart-page__table"
+      #dt
+      [value]="flightsData"
+      [globalFilterFields]="[
+        'name',
+        'country.name',
+        'representative.name',
+        'status'
+      ]"
+      [tableStyle]="{ 'min-width': '75rem' }"
+      [(selection)]="selectedFlights"
+      [rowHover]="true">
+      <ng-template class="cart-page__table-header" pTemplate="header">
+        <tr>
+          <th style="width: 4rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="number" style="min-width: 7rem">
+            No. <p-sortIcon field="number"></p-sortIcon>
+          </th>
+          <th pSortableColumn="name" style="min-width: 11rem">
+            Flight <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th pSortableColumn="typeTrip" style="min-width: 8rem">
+            Type trip <p-sortIcon field="typeTrip"></p-sortIcon>
+          </th>
+          <th pSortableColumn="date" style="min-width: 13rem">
+            Date & Time <p-sortIcon field="date"></p-sortIcon>
+          </th>
+          <th style="min-width: 8rem">Passengers</th>
+          <th pSortableColumn="price" style="min-width: 6rem">
+            Price <p-sortIcon field="price"></p-sortIcon>
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template class="cart-page__table-body" pTemplate="body" let-flight>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="flight"></p-tableCheckbox>
+          </td>
+          <td>{{ flight.number }}</td>
+          <td style="white-space: pre-line">
+            {{ flight.name.join('\n') }}
+          </td>
+          <td>{{ flight.typeTrip }}</td>
+          <td style="white-space: pre-line">
+            {{ flight.date.join('\n') }}
+          </td>
+          <td style="white-space: pre-line">
+            {{ flight.passengers.join('\n') }}
+          </td>
+          <td>{{ flight.price | currency : currencyType }}</td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success mr-2"
+              (click)="editProduct(flight)"></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+              (click)="deleteProduct(flight)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
 
     <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
@@ -83,7 +83,8 @@
         + Add new trip
       </button>
       <div class="cart-total__title">
-        <span>Total</span><span>{{ selectedProducts?.length }}</span>
+        <span>Total</span
+        ><span>{{ countGeneral() | currency : currencyType }}</span>
       </div>
     </div>
 
@@ -94,7 +95,7 @@
       </mat-form-field>
 
       <div class="cart-payment__selected">
-        <span>{{ sortedData.length }} selected</span
+        <span>{{ selectedFlights?.length }} selected</span
         ><button
           mat-flat-button
           color="primary"
@@ -127,5 +128,3 @@
     <td>{{ sorted.price | currency : currencyType }}</td>
   </tr>
 </table> -->
-
-<!-- (input)="dt.filterGlobal($event.target.value, 'contains')" -->
