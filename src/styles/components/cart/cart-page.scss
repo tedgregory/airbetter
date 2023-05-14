@@ -1,4 +1,15 @@
 .cart-page {
+  /* stylelint-disable */
+  @import '../../libs/primeng/primeng-theme.scss';
+  @import '../../libs/primeng/primeng.scss';
+  /* stylelint-enable */
+
+  .p-dialog .product-image {
+    width: 150px;
+    margin: 0 auto 2rem auto;
+    display: block;
+  }
+
   &.mat-mdc-card {
     box-shadow: 0 1px 4px rgba($color-black, 0.2);
     border-radius: 8px;

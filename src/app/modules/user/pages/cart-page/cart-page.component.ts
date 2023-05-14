@@ -1,5 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
+
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ProductService } from './productservice';
+
+export interface Product {
+  id?: string;
+  code?: string;
+  name?: string;
+  description?: string;
+  price?: number;
+  quantity?: number;
+  inventoryStatus?: string;
+  category?: string;
+  image?: string;
+  rating?: number;
+}
 
 export interface IFlight {
   number: string;
@@ -14,8 +30,15 @@ export interface IFlight {
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
   styles: [],
+  providers: [MessageService, ConfirmationService],
 })
-export class CartPageComponent {
+export class CartPageComponent implements OnInit {
+  products!: Product[];
+
+  product!: Product;
+
+  selectedProducts!: Product[] | null;
+
   currencyType = 'EUR';
 
   flightsData: IFlight[] = [
@@ -39,8 +62,39 @@ export class CartPageComponent {
 
   sortedData: IFlight[];
 
-  constructor() {
+  constructor(
+    private productService: ProductService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {
     this.sortedData = this.flightsData.slice();
+  }
+
+  ngOnInit() {
+    this.productService.getProducts().then((data) => (this.products = data));
+  }
+
+  editProduct(product: Product) {
+    // this.product = { ...product };
+    // this.productDialog = true;
+  }
+
+  deleteProduct(product: Product) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + product.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.products = this.products.filter((val) => val.id !== product.id);
+        this.product = {};
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Product Deleted',
+          life: 3000,
+        });
+      },
+    });
   }
 
   sortData(sort: Sort) {
