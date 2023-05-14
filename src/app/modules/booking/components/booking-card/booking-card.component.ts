@@ -14,6 +14,6 @@ export class BookingCardComponent {
   chooseFlight = new EventEmitter<string | null>();
 
   setActive() {
-    this.chooseFlight.emit(this.bookingVariant?.token || null);
+    this.chooseFlight.emit(this.bookingVariant?.id || null);
   }
 }

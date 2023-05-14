@@ -1,6 +1,8 @@
-import { Gender } from '../common/common.models';
+import { EStatus, Gender } from '../common/common.models';
 
 export interface UserState {
+  status: EStatus;
+  error: Error | null;
   email: string;
   name: {
     first: string;

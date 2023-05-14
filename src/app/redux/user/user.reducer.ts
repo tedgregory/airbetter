@@ -1,8 +1,11 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { UserState } from './user.state';
 import { UserActions } from './user.actions';
+import { EStatus } from '../common/common.models';
 
 const defaultState: UserState = {
+  status: EStatus.Default,
+  error: null,
   email: '',
   name: {
     first: '',
@@ -34,6 +37,30 @@ export const userFeature = createFeature({
     }),
     on(UserActions.setCountry, (state, { country }): UserState => {
       return { ...state, country };
+    }),
+    on(UserActions.setStatus, (state, { status }): UserState => {
+      return { ...state, status };
+    }),
+    on(UserActions.setError, (state, { error }): UserState => {
+      return { ...state, error, status: EStatus.Error };
+    }),
+    on(UserActions.authRequest, (state): UserState => {
+      return { ...state, status: EStatus.Loading };
+    }),
+    on(UserActions.authSuccess, (state, { data }): UserState => {
+      const { name, email, country, gender, phone } = data;
+      return {
+        ...state,
+        status: EStatus.Loaded,
+        name,
+        email,
+        country,
+        gender,
+        phone,
+      };
+    }),
+    on(UserActions.authLogout, (): UserState => {
+      return defaultState;
     })
   ),
 });

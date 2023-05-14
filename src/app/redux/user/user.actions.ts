@@ -1,4 +1,4 @@
-import { createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { UserState } from './user.state';
 
 export const UserActions = createActionGroup({
@@ -18,6 +18,17 @@ export const UserActions = createActionGroup({
     }>(),
     'Set Country': props<{
       country: UserState['country'];
+    }>(),
+    'Set Status': props<{
+      status: UserState['status'];
+    }>(),
+    'Set Error': props<{
+      error: UserState['error'];
+    }>(),
+    'Auth Logout': emptyProps(),
+    'Auth request': emptyProps(),
+    'Auth success': props<{
+      data: Pick<UserState, 'email' | 'name' | 'gender' | 'phone' | 'country'>;
     }>(),
   },
 });

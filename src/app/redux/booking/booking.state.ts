@@ -17,7 +17,7 @@ export interface BookingState {
 
 export interface BookingFlightBase {
   flightDate: string;
-  token: string | null;
+  id: string | null;
 }
 
 export interface BookingFlightVariant extends BookingFlightBase {

@@ -15,3 +15,10 @@ export enum DateFormats {
   YDM = 'YYYY/DD/MM',
   YMD = 'YYYY/MM/DD',
 }
+
+export enum EStatus {
+  Default,
+  Loading,
+  Error,
+  Loaded,
+}

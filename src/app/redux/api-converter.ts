@@ -12,13 +12,13 @@ export function convertApiResponseToVariant<
   if (!response.data.length) {
     return {
       flightDate: date,
-      token: null,
+      id: null,
     } as BookingFlightBase;
   }
   const variant = response.data[0];
   return {
     flightDate: date ? moment(date, 'DD/MM/YYYY').format() : Date.now(),
-    token: variant.booking_token,
+    id: variant.id,
     flyFrom: {
       country: {
         name: variant.countryFrom.name,

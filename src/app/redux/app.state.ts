@@ -9,3 +9,10 @@ export interface AppState {
   passengers: PassengersState;
   user: UserState;
 }
+
+// export const appReducers = combineReducers({
+//   [bookingFeature.name]: bookingFeature.reducer,
+//   [userFeature.name]: userFeature.reducer,
+//   [searchFeature.name]: searchFeature.reducer,
+//   [passengersFeature.name]: passengersFeature.reducer,
+// });

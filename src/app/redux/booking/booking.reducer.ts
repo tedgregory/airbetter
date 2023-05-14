@@ -62,8 +62,16 @@ export const bookingFeature = createFeature({
               : null,
             variants: bookingData.return,
           },
+          error: null,
         };
       }
-    )
+    ),
+    on(BookingActions.getVariantsError, (state, { error }): BookingState => {
+      return {
+        ...state,
+        isLoading: false,
+        error,
+      };
+    })
   ),
 });

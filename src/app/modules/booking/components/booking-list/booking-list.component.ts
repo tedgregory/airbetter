@@ -18,7 +18,7 @@ export class BookingListComponent implements OnInit {
   }
 
   onSwitchCurrentCard(id: string | null) {
-    console.log('emitted card token ', id);
+    console.log('emitted flight ID:', id);
     //this.store.dispatch(SearchActions.setDate(clickedOne))
   }
   onConfirmToggle(type: 'flyTo' | 'flyBack') {
