@@ -43,6 +43,8 @@ export class CartPageComponent {
     },
   ];
 
+  tableMenu = [{ label: 'Delete' }, { label: 'Edit' }];
+
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService

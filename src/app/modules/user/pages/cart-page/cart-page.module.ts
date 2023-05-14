@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TieredMenuModule } from 'primeng/tieredmenu';
 
 @NgModule({
   declarations: [CartPageComponent],
@@ -26,6 +27,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormsModule,
     TableModule,
     ConfirmDialogModule,
+    TieredMenuModule,
   ],
 })
 export class CartPageModule {}

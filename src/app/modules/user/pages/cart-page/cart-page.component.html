@@ -39,7 +39,10 @@
           <th></th>
         </tr>
       </ng-template>
-      <ng-template class="cart-page__table-body" pTemplate="body" let-flight>
+      <ng-template
+        class="cart-page__table-body table-content"
+        pTemplate="body"
+        let-flight>
         <tr>
           <td>
             <p-tableCheckbox [value]="flight"></p-tableCheckbox>
@@ -56,8 +59,9 @@
             {{ flight.passengers.join('\n') }}
           </td>
           <td>{{ flight.price | currency : currencyType }}</td>
-          <td>
-            <button
+          <td class="table-content__cell card flex justify-content-center">
+            <!-- <span class="pi pi-ellipsis-v"></span> -->
+            <!-- <button
               pButton
               pRipple
               icon="pi pi-pencil"
@@ -68,7 +72,23 @@
               pRipple
               icon="pi pi-trash"
               class="p-button-rounded p-button-warning"
-              (click)="deleteProduct(flight)"></button>
+              (click)="deleteProduct(flight)"></button> -->
+            <!-- <span
+              #btn
+              class="pi pi-ellipsis-v"
+              (click)="menu.toggle($event)"></span> -->
+            <button
+              #btn
+              type="button"
+              pButton
+              icon="pi pi-bars"
+              label="Show"
+              (click)="menu.toggle($event)"></button>
+            <p-tieredMenu
+              class="table-content__options-menu"
+              #menu
+              [model]="tableMenu"
+              [popup]="true"></p-tieredMenu>
           </td>
         </tr>
       </ng-template>
