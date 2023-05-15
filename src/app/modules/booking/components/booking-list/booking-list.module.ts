@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BookingListComponent } from './booking-list.component';
 import { BookingCardModule } from '../booking-card/booking-card.module';
@@ -13,10 +13,12 @@ import { BookingEffects } from 'src/app/redux/booking/booking.effects';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 import { userFeature } from 'src/app/redux/user/user.reducer';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
     CommonModule,
+    SwiperModule,
     RouterModule,
     BookingCardModule,
     BookingDetailsModule,
@@ -30,5 +32,6 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
   ],
   declarations: [BookingListComponent],
   exports: [BookingListComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BookingListModule {}

@@ -68,7 +68,20 @@
           {{ returnFlights.chosenVariant.flyTo.city.name }}
         </h3>
         <div class="flight">
-          <div class="flight__options" *ngIf="!returnFlights.confirmed">
+          <div>
+            <swiper #swiper [config]="config" *ngIf="!returnFlights.confirmed">
+              <ng-template
+                swiperSlide
+                *ngFor="
+                  let bookingVariant of returnFlights.variants;
+                  let i = index
+                ">
+                <app-booking-card
+                  (chooseFlight)="onSwitchCurrentCard($event)"
+                  [bookingVariant]="bookingVariant"
+                  [isActive]="i === 2"></app-booking-card>
+              </ng-template>
+            </swiper>
             <div class="flight__nav flight__nav--prev">
               <button
                 mat-icon-button
@@ -87,14 +100,6 @@
                 <mat-icon>chevron_right</mat-icon>
               </button>
             </div>
-            <app-booking-card
-              (chooseFlight)="onSwitchCurrentCard($event)"
-              [bookingVariant]="bookingVariant"
-              *ngFor="
-                let bookingVariant of returnFlights.variants;
-                let i = index
-              "
-              [isActive]="i === 2"></app-booking-card>
           </div>
           <app-booking-details
             [currentFlight]="returnFlights.chosenVariant"
