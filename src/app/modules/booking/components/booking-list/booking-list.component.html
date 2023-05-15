@@ -69,7 +69,16 @@
         </h3>
         <div class="flight">
           <div>
-            <swiper #swiper [config]="config" *ngIf="!returnFlights.confirmed">
+            <swiper
+              #swiper
+              [config]="config"
+              *ngIf="!returnFlights.confirmed"
+              (activeIndexChange)="onSecondSliderActiveIndexChange($event)"
+              (slideChange)="onSecondSliderSlideChange($event)"
+            >
+              <!-- (slideChangeTransitionEnd)="" -->
+              <!-- (slideChangeTransitionStart)="" -->
+
               <ng-template
                 swiperSlide
                 *ngFor="
@@ -79,9 +88,22 @@
                 <app-booking-card
                   (chooseFlight)="onSwitchCurrentCard($event)"
                   [bookingVariant]="bookingVariant"
-                  [isActive]="i === 2"></app-booking-card>
+                ></app-booking-card>
+                  <!-- [isActive]="i === 2" -->
               </ng-template>
             </swiper>
+
+            <!-- <swiper
+              class="swiper-slider"
+            >
+              <ng-template swiperSlide *ngFor="let slide of slides$ | async; index as i">
+                <div class="swiper-slide-container">
+                  {{ slide }}
+                </div>
+              </ng-template>
+            </swiper> -->
+
+
             <div class="flight__nav flight__nav--prev">
               <button
                 mat-icon-button

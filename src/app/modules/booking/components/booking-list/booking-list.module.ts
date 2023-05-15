@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+// import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BookingListComponent } from './booking-list.component';
 import { BookingCardModule } from '../booking-card/booking-card.module';
@@ -32,6 +33,6 @@ import { SwiperModule } from 'swiper/angular';
   ],
   declarations: [BookingListComponent],
   exports: [BookingListComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BookingListModule {}

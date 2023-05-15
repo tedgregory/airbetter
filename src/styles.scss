@@ -1,5 +1,7 @@
 @import 'src/styles/libs/normalize';
 @import 'src/styles/libs/hamburgers/hamburgers';
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
 
 @import 'src/styles/base/variables';
 @import 'src/styles/base/mixins/breakpoints';
@@ -45,4 +47,3 @@
 @import 'src/styles/components/booking/booking-summary';
 @import 'src/styles/components/booking/booking-summary-flight';
 @import 'src/styles/components/booking/booking-summary-price';
-@import 'src/styles/components/booking/booking-swiper';
