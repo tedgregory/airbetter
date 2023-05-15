@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "generate:svg-sprite": "svg2sprite ./src/assets/icons ./src/assets/sprites/sprite.svg --stripAttrs fill --stripAttrs stroke --stripAttrs id",
     "stylelint": "stylelint src/**/*.scss",
     "lint": "ng lint --fix && npm run stylelint",
     "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html}\" --write",
@@ -70,6 +71,7 @@
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-scss": "^4.3.0",
     "stylelint-selector-bem-pattern": "^2.1.1",
+    "svg2sprite-cli": "^2.0.1",
     "typescript": "~4.9.4"
   }
 }

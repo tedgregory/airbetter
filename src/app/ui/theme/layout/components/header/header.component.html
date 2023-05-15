@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" [ngClass]="{ 'header--translucent': isFlightsPage() }">
   <div class="header__inner">
     <app-container height="max-height">
       <div class="header__container-inner">
@@ -6,25 +6,90 @@
           <img src="/assets/images/logo.svg" alt="Airways Logo" />
         </a>
 
-        <div class="header__links">
-          <a
-            mat-icon-button
-            aria-label="Home"
-            [routerLink]="[NavigationPath.Flights]">
-            <mat-icon>home</mat-icon>
-          </a>
-          <!-- <a mat-icon-button aria-label="Booking" [routerLink]="NavigationPath.Booking | navPath"> -->
-          <a
-            mat-icon-button
-            aria-label="Booking"
-            [routerLink]="[NavigationPath.Booking]">
-            <mat-icon>settings</mat-icon>
-          </a>
-          <button mat-icon-button aria-label="Help" (click)="onOpenDialog()">
-            <mat-icon>help_outline</mat-icon>
-          </button>
+        <div
+          class="header__menu"
+          [@collapse]="collapse"
+          appClickOutside
+          (clickOutside)="clickedOutsideMenu($event)">
+          <div class="header__menu-inner">
+            <a
+              *ngIf="isFlightsPage()"
+              class="header__booking-link"
+              [routerLink]="[NavigationPath.Booking]">
+              Book flights
+            </a>
+
+            <mat-form-field
+              class="header__select header__select--date"
+              appearance="outline">
+              <mat-select [(value)]="selectedDateFormat">
+                <mat-option
+                  name="date-format"
+                  *ngFor="let dateFormat of dateFormats"
+                  [value]="dateFormat.value">
+                  {{ dateFormat.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field
+              class="header__select header__select--currency"
+              appearance="outline">
+              <mat-select [(value)]="selectedCurrency">
+                <mat-option
+                  name="currency"
+                  *ngFor="let currency of currencies"
+                  [value]="currency.value">
+                  {{ currency.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button
+              mat-flat-button
+              class="header__button header__button--signin button button--mat-iconic"
+              [ngClass]="{
+                'button--mat-translucent-light': isFlightsPage(),
+                'button--mat-translucent-dark': !isFlightsPage()
+              }"
+              type="button"
+              (click)="onSingInBtnClick()"
+              #signInBtn>
+              <svg>
+                <use xlink:href="./assets/sprites/sprite.svg#icon-user"></use>
+              </svg>
+              <span class="button__text">Sign in</span>
+            </button>
+
+            <a
+              class="header__button header__button--cart"
+              [routerLink]="[NavigationPath.Cart]"
+              aria-label="Cart">
+              <svg>
+                <use xlink:href="./assets/sprites/sprite.svg#icon-cart"></use>
+              </svg>
+            </a>
+          </div>
         </div>
+
+        <button
+          *ngIf="isLtLgScreen"
+          class="header__hamburger hamburger hamburger--spin"
+          [class.is-active]="!collapse"
+          type="button"
+          (click)="toggleCollapse()"
+          #hamburgerToggle>
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
       </div>
     </app-container>
   </div>
 </header>
+
+<app-auth-modal
+  *ngIf="isAuthModalOpen"
+  [isOpen]="isAuthModalOpen"
+  [position]="authModalPos"
+  (closeModal)="closeAuthModal()"></app-auth-modal>
