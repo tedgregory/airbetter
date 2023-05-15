@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ApiResponse } from '../../models/booking.interface';
+import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
 
 type PropsType = { isReturn: boolean; isConfirmed: boolean };
 
@@ -9,7 +9,7 @@ type PropsType = { isReturn: boolean; isConfirmed: boolean };
 })
 export class BookingDetailsComponent {
   @Input()
-  currentFlight: ApiResponse | null = null;
+  currentFlight: BookingFlightVariant | null = null;
   @Input()
   props: PropsType = { isConfirmed: false, isReturn: false };
   @Output()

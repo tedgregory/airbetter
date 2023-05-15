@@ -92,6 +92,7 @@ export type BookingVariant = {
 };
 
 export type TravelData = {
+  booking_token: string;
   id: string;
   flyFrom: string;
   flyTo: string;
@@ -107,6 +108,7 @@ export type TravelData = {
     total: number;
   };
   price: number; // !!!
+  conversion: { [key: string]: number };
   fare: Fare;
   bags_price: Bags_price;
   baglimit: Baglimit;
