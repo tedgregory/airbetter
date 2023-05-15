@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 export interface IFlight {
-  number?: string;
-  name?: string[];
-  typeTrip?: string;
-  date?: string[];
-  passengers?: string[];
-  price?: number;
+  number: string;
+  name: string[];
+  typeTrip: string;
+  date: string[];
+  passengers: string[];
+  price: number;
 }
 
 @Component({
@@ -43,36 +42,23 @@ export class CartPageComponent {
     },
   ];
 
-  tableMenu = [{ label: 'Delete' }, { label: 'Edit' }];
+  // editProduct(flight: IFlight) {
+  // this.product = { ...product };
+  // this.productDialog = true;
+  // }
 
-  constructor(
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
-  ) {}
+  onContextMenuDeleteClick(flight: IFlight | null) {
+    if (!flight) return;
 
-  editProduct(flight: IFlight) {
-    // this.product = { ...product };
-    // this.productDialog = true;
+    this.flightsData = this.flightsData.filter(
+      (val) => val.number !== flight.number
+    );
+
+    // this.flight = {};
   }
 
-  deleteProduct(flight: IFlight) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + flight.number + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.flightsData = this.flightsData.filter(
-          (val) => val.number !== flight.number
-        );
-        this.flight = {};
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Deleted',
-          life: 3000,
-        });
-      },
-    });
+  onContextMenuEditClick(flight: IFlight | null) {
+    if (!flight) return;
   }
 
   countGeneral(): number {

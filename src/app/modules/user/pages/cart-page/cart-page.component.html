@@ -12,9 +12,9 @@
         'representative.name',
         'status'
       ]"
-      [tableStyle]="{ 'min-width': '75rem' }"
       [(selection)]="selectedFlights"
       [rowHover]="true">
+      <!-- [tableStyle]="{ 'min-width': '75rem' }" -->
       <ng-template class="cart-page__table-header" pTemplate="header">
         <tr>
           <th style="width: 4rem">
@@ -77,7 +77,30 @@
               #btn
               class="pi pi-ellipsis-v"
               (click)="menu.toggle($event)"></span> -->
+
             <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="onContextMenuDeleteClick(flight)">
+                Delete
+              </button>
+              <button mat-menu-item (click)="onContextMenuEditClick(flight)">
+                Edit
+              </button>
+            </mat-menu>
+
+            <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>more_vert</mat-icon>
+              </button> -->
+
+            <!-- <p-menu #menu [model]="tableMenu" [popup]="true"></p-menu>
+              <button pButton type="button" (click)="menu.toggle($event); onContextMenuClick(flight)" label="Show"></button> -->
+
+            <!-- <button
               #btn
               type="button"
               pButton
@@ -88,13 +111,13 @@
               class="table-content__options-menu"
               #menu
               [model]="tableMenu"
-              [popup]="true"></p-tieredMenu>
+              [popup]="true"></p-tieredMenu> -->
           </td>
         </tr>
       </ng-template>
     </p-table>
 
-    <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+    <!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->
 
     <div class="cart-page__total cart-total">
       <button

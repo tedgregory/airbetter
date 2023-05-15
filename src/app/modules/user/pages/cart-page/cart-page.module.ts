@@ -13,7 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { TieredMenuModule } from 'primeng/tieredmenu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [CartPageComponent],
@@ -22,12 +23,13 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
     CartPageRoutingModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
     MatSortModule,
     MatInputModule,
     FormsModule,
     TableModule,
     ConfirmDialogModule,
-    TieredMenuModule,
   ],
 })
 export class CartPageModule {}
