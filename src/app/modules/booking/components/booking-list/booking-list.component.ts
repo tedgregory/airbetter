@@ -1,21 +1,22 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
 import SwiperCore, { Navigation, Swiper, SwiperOptions } from 'swiper';
+import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
 
 @Component({
   selector: 'app-booking-list',
   templateUrl: './booking-list.component.html',
 })
 export class BookingListComponent implements OnInit {
-  @ViewChild('swiper')
-  swiperEl: ElementRef | undefined;
-
-  config: SwiperOptions = {
-    navigation: { prevEl: '.flight__nav--prev', nextEl: '.flight__nav--next' },
-    slidesPerView: 3,
-    // initialSlide: 2,
+  config1: SwiperOptions = {
+    navigation: {
+      prevEl: '.nav__forward--prev',
+      nextEl: '.nav__forward--next',
+    },
+    slidesPerView: 5,
+    initialSlide: 2,
     centeredSlides: true,
     loop: false,
     slideToClickedSlide: true,
@@ -27,17 +28,30 @@ export class BookingListComponent implements OnInit {
     //   enabled: true
     // },
 
-    // breakpoints: {
-    //   768: {
-    //     slidesPerView: 3,
-    //   }
-    //   // and so on...
-    // }
+    breakpoints: {
+      1200: {
+        slidesPerView: 5,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      480: {
+        slidesPerView: 1,
+      },
+    },
 
     // irrelevant properties below
-    // centerInsufficientSlides: true,
+    centerInsufficientSlides: true,
     // slidesPerGroup: 3,
     // loopFillGroupWithBlank: true,
+  };
+
+  config2: SwiperOptions = {
+    ...this.config1,
+    navigation: {
+      prevEl: '.nav__return--prev',
+      nextEl: '.nav__return--next',
+    },
   };
 
   flyBackData$ = this.store.select(bookingFeature.selectFlyBackData);
@@ -50,16 +64,47 @@ export class BookingListComponent implements OnInit {
     this.store.dispatch(BookingActions.getVariants());
   }
 
-  // onSwiper([swiper]: Event) {
-  //   console.log(swiper);
+  // onSwiper(event: [swiper: Swiper]) {
+  //   console.log(event);
   // }
 
-  onSecondSliderSlideChange(event: [swiper: Swiper]) {
-    console.log('onSecondSliderSlideChange', event);
+  onSliderSlideChange(type: 'forward' | 'backward', event: [swiper: Swiper]) {
+    let variant: BookingFlightVariant | null = null;
+    switch (type) {
+      case 'forward':
+        this.flyToData$
+          .subscribe((data) => {
+            variant = data.variants?.[event[0].activeIndex] || null;
+          })
+          .unsubscribe(); // is it ok?
+        break;
+      case 'backward':
+        this.flyBackData$
+          .subscribe((data) => {
+            variant = data.variants?.[event[0].activeIndex] || null;
+          })
+          .unsubscribe();
+    }
+    if (!variant) {
+      return;
+    }
+    this.setActiveCard(type, variant);
   }
 
-  onSecondSliderActiveIndexChange(event: [swiper: Swiper]) {
-    console.log('onSecondSliderActiveIndexChange', event);
+  setActiveCard(type: 'forward' | 'backward', variant: BookingFlightVariant) {
+    // this.store.dispatch(
+    //   BookingActions[
+    //     type === 'forward' ? 'setChosenForward' : 'setChosenBackward'
+    //   ]({ variant })
+    // );
+    console.log(type, ' ', variant);
+  }
+
+  onSliderActiveIndexChange(
+    type: 'forward' | 'backward',
+    event: [swiper: Swiper]
+  ) {
+    console.log('onSecondSliderActiveIndexChange', event[0].activeIndex);
     const [slider] = event;
     const activeSlideIndex = slider.activeIndex;
     console.log('activeSlideIndex', activeSlideIndex);
@@ -67,8 +112,8 @@ export class BookingListComponent implements OnInit {
 
   onSwitchCurrentCard(id: string | null) {
     console.log('emitted flight ID:', id);
-    //this.store.dispatch(SearchActions.setDate(clickedOne))
   }
+
   onConfirmToggle(type: 'flyTo' | 'flyBack') {
     if (!type) return;
     this.store.dispatch(

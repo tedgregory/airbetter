@@ -10,8 +10,28 @@
           {{ directFlights.chosenVariant.flyTo.city.name }}
         </h3>
         <div class="flight">
-          <div class="flight__options" *ngIf="!directFlights.confirmed">
-            <div class="flight__nav flight__nav--prev">
+          <div class="flight__options">
+            <swiper
+              #swiper1
+              class="swiper--direct"
+              [config]="config1"
+              *ngIf="!directFlights.confirmed && directFlights.variants"
+              (activeIndexChange)="
+                onSliderActiveIndexChange('backward', $event)
+              "
+              (slideChange)="onSliderSlideChange('backward', $event)">
+              <!-- (slideChangeTransitionEnd)="" -->
+              <!-- (slideChangeTransitionStart)="" -->
+
+              <ng-template
+                swiperSlide
+                *ngFor="let bookingVariant of directFlights.variants">
+                <app-booking-card
+                  [bookingVariant]="bookingVariant"></app-booking-card>
+              </ng-template>
+            </swiper>
+
+            <div class="flight__nav flight__nav--prev nav__forward--prev">
               <button
                 mat-icon-button
                 class="small-button"
@@ -20,7 +40,7 @@
                 <mat-icon>chevron_left</mat-icon>
               </button>
             </div>
-            <div class="flight__nav flight__nav--next">
+            <div class="flight__nav flight__nav--next nav__forward--next">
               <button
                 mat-icon-button
                 class="small-button"
@@ -29,14 +49,6 @@
                 <mat-icon>chevron_right</mat-icon>
               </button>
             </div>
-            <app-booking-card
-              (chooseFlight)="onSwitchCurrentCard($event)"
-              *ngFor="
-                let bookingVariant of directFlights.variants;
-                let i = index
-              "
-              [bookingVariant]="bookingVariant"
-              [isActive]="i === 2"></app-booking-card>
           </div>
           <app-booking-details
             [currentFlight]="directFlights.chosenVariant"
@@ -68,28 +80,24 @@
           {{ returnFlights.chosenVariant.flyTo.city.name }}
         </h3>
         <div class="flight">
-          <div>
+          <div class="flight__options">
             <swiper
-              #swiper
-              [config]="config"
-              *ngIf="!returnFlights.confirmed"
-              (activeIndexChange)="onSecondSliderActiveIndexChange($event)"
-              (slideChange)="onSecondSliderSlideChange($event)"
-            >
+              #swiper2
+              class="swiper--return"
+              [config]="config2"
+              *ngIf="!returnFlights.confirmed && returnFlights.variants"
+              (activeIndexChange)="
+                onSliderActiveIndexChange('backward', $event)
+              "
+              (slideChange)="onSliderSlideChange('backward', $event)">
               <!-- (slideChangeTransitionEnd)="" -->
               <!-- (slideChangeTransitionStart)="" -->
 
               <ng-template
                 swiperSlide
-                *ngFor="
-                  let bookingVariant of returnFlights.variants;
-                  let i = index
-                ">
+                *ngFor="let bookingVariant of returnFlights.variants">
                 <app-booking-card
-                  (chooseFlight)="onSwitchCurrentCard($event)"
-                  [bookingVariant]="bookingVariant"
-                ></app-booking-card>
-                  <!-- [isActive]="i === 2" -->
+                  [bookingVariant]="bookingVariant"></app-booking-card>
               </ng-template>
             </swiper>
 
@@ -103,8 +111,7 @@
               </ng-template>
             </swiper> -->
 
-
-            <div class="flight__nav flight__nav--prev">
+            <div class="flight__nav flight__nav--prev nav__return--prev">
               <button
                 mat-icon-button
                 class="small-button"
@@ -113,7 +120,7 @@
                 <mat-icon>chevron_left</mat-icon>
               </button>
             </div>
-            <div class="flight__nav flight__nav--next">
+            <div class="flight__nav flight__nav--next nav__return--next">
               <button
                 mat-icon-button
                 class="small-button"
