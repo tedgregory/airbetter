@@ -1,0 +1,117 @@
+app-booking-info-panel {
+  position: fixed;
+  display: block;
+  z-index: 100;
+  width: 100%;
+  left: 0;
+  top: 89px;
+
+  @include media-breakpoint-down(lg) {
+    top: 102px;
+  }
+}
+
+.booking-info-panel {
+  &__header-wrapper {
+    background: $color-secondary-100;
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    padding: 0 28px;
+    margin: 0 auto;
+
+    @include media-breakpoint-down(xl) {
+      justify-content: center;
+    }
+
+    @include media-breakpoint-down(md) {
+      justify-content: space-between;
+      padding: 15px 16px 5px;
+      gap: 5px;
+    }
+  }
+
+  .info-header {
+    &__title {
+      display: flex;
+      @include text-16-400;
+      color: $color-black;
+      font-weight: 500;
+      gap: 16px;
+      margin-right: 40px;
+    }
+
+    &__data {
+      display: flex;
+      margin-right: 45px;
+    }
+  }
+
+  .info-data {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    @include text-14-500;
+    color: $color-grey-neutral-30;
+
+    &__separator {
+      width: 4px;
+      height: 4px;
+      border-radius: 2px;
+      background: $color-blue-bright;
+    }
+
+    &__passengers-count {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .material-icons {
+        font-size: 16px;
+      }
+
+      .mat-icon {
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 2px 16px;
+    padding: 20px;
+    gap: 20px;
+    min-height: 96px;
+    background: $color-white;
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+
+    @include media-breakpoint-down(xl) {
+      padding: 20px 44px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      padding: 20px;
+    }
+  }
+
+  &__field {
+    &.mat-mdc-form-field {
+      @include media-breakpoint-down(xl) {
+        width: 100%;
+      }
+    }
+  }
+}

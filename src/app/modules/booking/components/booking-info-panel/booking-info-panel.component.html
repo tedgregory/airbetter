@@ -1,0 +1,46 @@
+<div class="booking-info-panel">
+  <div class="booking-info-panel__header-wrapper">
+    <div class="booking-info-panel__header info-header">
+      <div class="info-header__title">
+        <div>Dublin</div>
+        <img src="/assets/images/flight.svg" alt="flight" />
+        <div>Warsaw Modlin</div>
+      </div>
+      <div class="info-header__data info-data">
+        <span class="info-data__flight-type">Return</span>
+        <div class="info-data__separator"></div>
+        <span class="info-data__dates">1Mar - 18 Mar</span>
+        <div class="info-data__separator"></div>
+        <span class="info-data__passengers-count">
+          <span>3</span> <mat-icon>person</mat-icon>
+        </span>
+      </div>
+      <div class="info-header__edit">
+        <button
+          (click)="showEditPanel()"
+          mat-flat-button
+          class="button button--mat-simple">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editMode" class="booking-info-panel__fields">
+    <mat-form-field class="booking-info-panel__field">
+      <mat-label>From</mat-label>
+      <input matInput value="Dublin" />
+    </mat-form-field>
+    <mat-form-field class="booking-info-panel__field">
+      <mat-label>Destination</mat-label>
+      <input matInput value="Warsaw Modlin" />
+    </mat-form-field>
+    <mat-form-field class="booking-info-panel__field">
+      <mat-label>Dates</mat-label>
+      <input matInput value="08/17/2023 — 08/23/2023 " />
+    </mat-form-field>
+    <mat-form-field class="booking-info-panel__field">
+      <mat-label>Passengers</mat-label>
+      <input matInput value="1 Adult, 1 Child, 1... " />
+    </mat-form-field>
+  </div>
+</div>
