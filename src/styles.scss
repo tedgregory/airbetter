@@ -17,6 +17,7 @@
 @import 'src/styles/common/menu';
 @import 'src/styles/common/tabs';
 @import 'src/styles/common/checkbox';
+@import 'src/styles/common/datepicker';
 
 @import 'src/styles/layout/layout';
 @import 'src/styles/layout/header';
@@ -31,6 +32,11 @@
 @import 'src/styles/components/ui/spinner';
 
 @import 'src/styles/components/not-found/not-found-page';
+
+@import 'src/styles/components/flights/flights-page';
+@import 'src/styles/components/flights/flights-search';
+@import 'src/styles/components/flights/select-passengers';
+@import 'src/styles/components/flights/incrementer';
 
 @import 'src/styles/components/booking/booking-page';
 @import 'src/styles/components/booking/booking-content-block';

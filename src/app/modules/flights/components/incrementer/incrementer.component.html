@@ -1,0 +1,38 @@
+<mat-form-field>
+  <button
+    class="incrementer__button-decrement"
+    type="button"
+    mat-icon-button
+    matPrefix
+    aria-label="Remove"
+    [color]="getColor()"
+    (click)="incrementValue(-_step)"
+    [disabled]="shouldDisableDecrement(_value)"
+  >
+    <svg>
+      <use xlink:href="./assets/sprites/sprite.svg#icon-minus"></use>
+    </svg>
+  </button>
+  <input
+    matInput
+    type="number"
+    readonly
+    [(ngModel)]="_value"
+    (focus)="setColor('primary')"
+    (blur)="setColor('default')"
+  />
+  <button
+    class="incrementer__button-increment"
+    type="button"
+    mat-icon-button
+    matSuffix
+    aria-label="Add"
+    [color]="getColor()"
+    (click)="incrementValue(_step)"
+    [disabled]="shouldDisableIncrement(_value)"
+  >
+    <svg>
+      <use xlink:href="./assets/sprites/sprite.svg#icon-plus"></use>
+    </svg>
+  </button>
+</mat-form-field>

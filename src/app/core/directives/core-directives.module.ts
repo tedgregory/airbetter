@@ -7,4 +7,4 @@ const directives = [ClickOutsideDirective];
   declarations: [...directives],
   exports: [...directives],
 })
-export class LayoutDirectivesModule {}
+export class CoreDirectivesModule {}
