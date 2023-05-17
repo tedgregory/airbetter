@@ -172,7 +172,6 @@ app-booking-details {
 
     &__seats {
       grid-area: seats;
-      background-color: $color-active-base;
       width: 133px;
       height: 40px;
       padding: 0.25rem 0.5rem 0.25rem 2rem;
@@ -191,6 +190,22 @@ app-booking-details {
 
       @include media-breakpoint-down(md) {
         margin-left: 0;
+      }
+    }
+
+    .seats {
+      background-color: $color-active-base;
+
+      &--l {
+        background-color: $color-green;
+      }
+
+      &--m {
+        background-color: $color-yellow;
+      }
+
+      &--s {
+        background-color: $color-yellow;
       }
     }
 

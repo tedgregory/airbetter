@@ -74,7 +74,8 @@ $airways-indigo-palette: (
   200: #889cbf,
   300: #5874a5,
   400: #355791,
-  500: #11397e, // main
+  500: #11397e,
+  // main
   600: #0f3376,
   700: #0c2c6b,
   800: #0a2461,
@@ -83,8 +84,7 @@ $airways-indigo-palette: (
   A200: #4f6eff,
   A400: #1c45ff,
   A700: #0330ff,
-  contrast: (
-    50: $dark-primary-text,
+  contrast: (50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
     300: $light-primary-text,
@@ -107,7 +107,8 @@ $airways-red-palette: (
   200: #d9938f,
   300: #ca6762,
   400: #be4740,
-  500: #b3261e, // main
+  500: #b3261e,
+  // main
   600: #ac221a,
   700: #a31c16,
   800: #9a1712,
@@ -116,8 +117,7 @@ $airways-red-palette: (
   A200: #ff8886,
   A400: #ff5653,
   A700: #ff3d3a,
-  contrast: (
-    50: $dark-primary-text,
+  contrast: (50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
     300: $light-primary-text,
@@ -140,6 +140,7 @@ $font: 'Roboto', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial',
 $color-white: #ffffff;
 $color-black: #000000;
 $color-transparent: rgba(255, 255, 255, 0);
+$color-green: #2ba82b;
 $color-grey-neutral: #1c1b1f;
 $color-grey-neutral-10: #49454f;
 $color-grey-neutral-30: #74767a;
@@ -154,6 +155,7 @@ $color-grey-40: #d0d9df;
 $color-cobalt: #073590;
 $color-blue-bright: #0090bd;
 $color-yellow: #f1c933;
+$color-warning: mat.get-color-from-palette($airways-red-palette, 400);
 
 $color-indigo: mat.get-color-from-palette($airways-indigo-palette, 500);
 $color-indigo-dark: #10264c;

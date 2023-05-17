@@ -44,6 +44,11 @@ app-booking-list {
     }
   }
 
+  .swiper-button-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   .swiper-slide {
     margin-top: 8px;
   }
