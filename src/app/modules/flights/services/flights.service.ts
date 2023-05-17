@@ -11,12 +11,9 @@ export class FlightsService {
 
   getLocations(term?: string | null) {
     // if (!term) return of<LocationOption[]>([]);
-    let searchTerm = '';
-
-    if (term) searchTerm = term;
 
     const searchParams = {
-      q: searchTerm,
+      q: term || '',
     };
 
     return this.http
