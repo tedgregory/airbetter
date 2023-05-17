@@ -1,5 +1,6 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {
   Observable,
   Subject,
@@ -14,20 +15,17 @@ import {
 import {
   CountsOptions,
   PassengerType,
-} from '../select-passengers/select-passengers.component';
-import { FlightsService } from '../../services/flights.service';
-import { LocationOption } from '../../models/flights.interface';
-import { MatRadioChange } from '@angular/material/radio';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+} from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
+import { LocationOption } from 'src/app/modules/flights/models/flights.interface';
+import { FlightsService } from 'src/app/modules/flights/services/flights.service';
 
 @Component({
-  selector: 'app-flights-search',
-  templateUrl: './flights-search.component.html',
+  selector: 'app-booking-info-panel',
+  templateUrl: './booking-info-panel.component.html',
+  styles: [],
 })
-export class FlightsSearchComponent implements OnInit {
-  @HostBinding('class') class = 'flights-search';
-
-  selectedTripType: string | undefined;
+export class BookingInfoPanelComponent {
+  editMode = false;
 
   fromControl = new FormControl('');
 
@@ -67,6 +65,10 @@ export class FlightsSearchComponent implements OnInit {
 
   constructor(private flightsService: FlightsService) {}
 
+  toggleEditPanel() {
+    this.editMode = !this.editMode;
+  }
+
   ngOnInit() {
     this.filteredFromOptions$ = this.fromControl.valueChanges.pipe(
       startWith(''),
@@ -103,21 +105,6 @@ export class FlightsSearchComponent implements OnInit {
         // console.log('User has picked both dates', data.start.value, data.end.value);
       }
     });
-  }
-
-  onTripTypeChange(event: MatRadioChange) {
-    this.selectedTripType = event.value;
-  }
-
-  onLocationSwitchClick() {
-    [this.selectedFromOption, this.selectedToOption] = [
-      this.selectedToOption,
-      this.selectedFromOption,
-    ];
-
-    const [toValue, fromValue] = [this.fromControl.value, this.toControl.value];
-    this.fromControl.setValue(fromValue);
-    this.toControl.setValue(toValue);
   }
 
   // location: LocationOption, event: MatOptionSelectionChange

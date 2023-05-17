@@ -12,6 +12,7 @@ import { BookingListModule } from '../components/booking-list/booking-list.modul
 import { BookingCardModule } from '../components/booking-card/booking-card.module';
 import { BookingPassengersModule } from '../components/booking-passengers/booking-passengers.module';
 import { BookingSummaryModule } from '../components/booking-summary/booking-summary.module';
+import { BookingInfoPanelModule } from '../components/booking-info-panel/booking-info-panel.module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { BookingSummaryModule } from '../components/booking-summary/booking-summ
     MatButtonModule,
     GridModule,
     ContainerModule,
+    BookingInfoPanelModule,
   ],
   declarations: [BookingPageComponent],
 })
