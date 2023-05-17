@@ -1,10 +1,10 @@
 app-booking-page {
   position: relative;
-  top: 115px;
-  height: 100%;
   display: block;
+  height: 100%;
+  padding-top: 108px;
 
-  @include media-breakpoint-down(mkm) {
-    top: 140px;
+  @include media-breakpoint-down(md) {
+    padding-top: 125px;
   }
 }

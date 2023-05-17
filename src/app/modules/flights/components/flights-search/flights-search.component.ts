@@ -105,14 +105,6 @@ export class FlightsSearchComponent implements OnInit {
     });
   }
 
-  private _filterLocations(value: string, options: LocationOption[]) {
-    const filterValue = value.toLowerCase();
-
-    return options.filter((option) =>
-      option.city.toLowerCase().includes(filterValue)
-    );
-  }
-
   onTripTypeChange(event: MatRadioChange) {
     this.selectedTripType = event.value;
   }
