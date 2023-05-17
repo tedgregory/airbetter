@@ -1,32 +1,32 @@
 {
   "arports": [
     {
-      "country_name": "Germany",
-      "city_name": "Dusseldorf",
-      "city_iata": "DUS",
-      "airport_name": "Dusseldorf International",
-      "airport_iata": "DUS"
+      "countryName": "Germany",
+      "cityName": "Dusseldorf",
+      "cityIata": "DUS",
+      "airportName": "Dusseldorf International",
+      "airportIata": "DUS"
     },
     {
-      "country_name": "Czechia",
-      "city_name": "Prague",
-      "city_iata": "PRG",
-      "airport_name": "Prague",
-      "airport_iata": "PRG"
+      "countryName": "Czechia",
+      "cityName": "Prague",
+      "cityIata": "PRG",
+      "airportName": "Prague",
+      "airportIata": "PRG"
     },
     {
-      "country_name": "Sweden",
-      "city_name": "Stockholm",
-      "city_iata": "STO",
-      "airport_name": "Stockholm Vasteras",
-      "airport_iata": "VST"
+      "countryName": "Sweden",
+      "cityName": "Stockholm",
+      "cityIata": "STO",
+      "airportName": "Stockholm Vasteras",
+      "airportIata": "VST"
     },
     {
-      "country_name": "France",
-      "city_name": "Paris",
-      "city_iata": "PAR",
-      "airport_name": "Paris Charles de Gaulle",
-      "airport_iata": "CDG"
+      "countryName": "France",
+      "cityName": "Paris",
+      "cityIata": "PAR",
+      "airportName": "Paris Charles de Gaulle",
+      "airportIata": "CDG"
     }
   ]
 }

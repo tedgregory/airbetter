@@ -21,6 +21,18 @@ const icons: IconConfig[] = [
     path: '/assets/icons/icon-close.svg',
   },
   {
+    name: 'appPlus',
+    path: '/assets/icons/icon-plus.svg',
+  },
+  {
+    name: 'appMinus',
+    path: '/assets/icons/icon-minus.svg',
+  },
+  {
+    name: 'appSwitch',
+    path: '/assets/icons/icon-switch.svg',
+  },
+  {
     name: 'appFacebook',
     path: '/assets/icons/icon-facebook.svg',
   },
