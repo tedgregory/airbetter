@@ -16,10 +16,8 @@
               class="swiper--direct"
               [config]="config1"
               *ngIf="!directFlights.confirmed && directFlights.variants"
-              (activeIndexChange)="
-                onSliderActiveIndexChange('backward', $event)
-              "
-              (slideChange)="onSliderSlideChange('backward', $event)">
+              (activeIndexChange)="onSliderActiveIndexChange('forward', $event)"
+              (slideChange)="onSliderSlideChange('forward', $event)">
               <!-- (slideChangeTransitionEnd)="" -->
               <!-- (slideChangeTransitionStart)="" -->
 

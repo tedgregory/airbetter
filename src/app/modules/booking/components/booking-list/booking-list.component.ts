@@ -15,10 +15,12 @@ export class BookingListComponent implements OnInit {
       prevEl: '.nav__forward--prev',
       nextEl: '.nav__forward--next',
     },
+    uniqueNavElements: true,
     slidesPerView: 5,
     initialSlide: 2,
     centeredSlides: true,
     loop: false,
+    speed: 500,
     slideToClickedSlide: true,
 
     // centeredSlidesBounds removes gaps on the left and right when centeredSlides is true, but it probably won't be needed because there will be +2 out of range non-clickable dates on the left and +2 out of range non-clickable dates on the right, so there'll be no gaps

@@ -64,6 +64,8 @@ app-booking-list {
     }
 
     .date-title {
+
+      // transition: all 0.5s;
       &__day {
         font-size: 1.2rem;
         font-weight: 700;
@@ -78,6 +80,7 @@ app-booking-list {
     }
 
     .price {
+      // transition: all 0.5s;
       font-size: 1.8rem;
       line-height: 2.2rem;
       margin: 0;
