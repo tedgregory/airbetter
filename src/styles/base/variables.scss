@@ -79,10 +79,10 @@ $airways-indigo-palette: (
   700: #0c2c6b,
   800: #0a2461,
   900: #05174e,
-  A100: #8298ff,
-  A200: #4f6eff,
-  A400: #1c45ff,
-  A700: #0330ff,
+  A100: #11397e,
+  A200: #11397e,
+  A400: #11397e,
+  A700: #11397e,
   contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
@@ -166,7 +166,7 @@ $color-bg: $color-grey-light;
 $color-default: $color-grey-neutral;
 $color-primary: $color-indigo;
 $color-primary-dark: $color-indigo-dark;
-$color-secondary-50: #e1e5eb;
-$color-secondary-80: #f1f3f6;
+$color-secondary-50: $color-grey-thin;
+$color-secondary-80: $color-grey-puff;
 $color-secondary-90: $color-grey-lighter;
 $color-danger: mat.get-color-from-palette($airways-red-palette, 500);

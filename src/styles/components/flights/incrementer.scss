@@ -1,0 +1,83 @@
+.incrementer {
+  display: block;
+  width: auto;
+  @include text-14-400;
+  line-height: 16px;
+  margin: 0 auto;
+  user-select: none;
+
+  mat-form-field {
+    // width: 100%;
+    width: auto;
+    text-align: center;
+    user-select: none;
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    background-color: $color-transparent;
+  }
+
+  input {
+    width: 22px;
+    text-align: center;
+    cursor: default;
+    user-select: none;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .mat-mdc-form-field-flex {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .mat-mdc-form-field-infix {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    min-height: unset;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: $color-transparent;
+  }
+
+  .mat-mdc-text-field-wrapper.mdc-text-field {
+    border: 0;
+    border-radius: 0;
+  }
+
+  .mat-mdc-form-field:hover .mat-mdc-form-field-focus-overlay {
+    opacity: 0;
+  }
+
+  .mdc-icon-button {
+    display: block;
+  }
+
+  .mat-mdc-icon-button.mat-mdc-button-base {
+    width: 24px;
+    height: 24px;
+    padding: 7px;
+  }
+
+  .mat-mdc-icon-button {
+    svg {
+      display: block;
+      width: 10px;
+      height: 10px;
+      // vertical-align: baseline;
+    }
+  }
+}
