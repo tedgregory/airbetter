@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BookingDetailsComponent } from './booking-details.component';
 import { BookingPipesModule } from '../../pipes/booking-pipes.module';
 import { MatButtonModule } from '@angular/material/button';
-import { LayoutDirectivesModule } from 'src/app/ui/theme/layout/directives/layout-directives.module';
+import { CoreDirectivesModule } from 'src/app/core/directives/core-directives.module';
 
 @NgModule({
   declarations: [BookingDetailsComponent],
@@ -11,7 +11,7 @@ import { LayoutDirectivesModule } from 'src/app/ui/theme/layout/directives/layou
     CommonModule,
     BookingPipesModule,
     MatButtonModule,
-    LayoutDirectivesModule,
+    CoreDirectivesModule,
   ],
   exports: [BookingDetailsComponent],
 })

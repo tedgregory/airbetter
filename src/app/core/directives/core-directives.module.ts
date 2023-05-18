@@ -8,4 +8,4 @@ const directives = [ClickOutsideDirective, RangeBackgroundDirective];
   declarations: [...directives],
   exports: [...directives],
 })
-export class LayoutDirectivesModule {}
+export class CoreDirectivesModule {}

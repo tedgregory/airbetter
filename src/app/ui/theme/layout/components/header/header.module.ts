@@ -10,7 +10,7 @@ import { AuthModalModule } from './components/auth-modal/auth-modal.module';
 import { HeaderComponent } from './header.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LayoutDirectivesModule } from '../../directives/layout-directives.module';
+import { CoreDirectivesModule } from 'src/app/core/directives/core-directives.module';
 import { CoreServiceModule } from 'src/app/core/services/core-service.module';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { CoreServiceModule } from 'src/app/core/services/core-service.module';
     MatButtonModule,
     MatIconModule,
     AuthModalModule,
-    LayoutDirectivesModule,
+    CoreDirectivesModule,
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
