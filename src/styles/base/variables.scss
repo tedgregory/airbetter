@@ -154,10 +154,12 @@ $color-grey-40: #d0d9df;
 $color-cobalt: #073590;
 $color-blue-bright: #0090bd;
 $color-yellow: #f1c933;
+$color-green: #7F8906;
 
 $color-indigo: mat.get-color-from-palette($airways-indigo-palette, 500);
 $color-indigo-dark: #10264c;
 $color-indigo-night: #10387f;
+$color-indigo-light: #005ABC;
 
 $color-secondary-inactive: $color-blue-bright;
 $color-active-base: $color-yellow;
@@ -167,6 +169,7 @@ $color-default: $color-grey-neutral;
 $color-primary: $color-indigo;
 $color-primary-dark: $color-indigo-dark;
 $color-secondary-50: #e1e5eb;
+$color-secondary-60: #E9EDF1;
 $color-secondary-80: #f1f3f6;
 $color-secondary-90: $color-grey-lighter;
 $color-danger: mat.get-color-from-palette($airways-red-palette, 500);

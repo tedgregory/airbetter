@@ -1,6 +1,6 @@
 <mat-card class="cart-page">
   <mat-card-content>
-    <h3 class="cart-page__title">Cart</h3>
+    <h3 class="cart-page__title title title--medium">Cart</h3>
 
     <p-table
       class="cart-page__table"
@@ -14,26 +14,25 @@
       ]"
       [(selection)]="selectedFlights"
       [rowHover]="true">
-      <!-- [tableStyle]="{ 'min-width': '75rem' }" -->
       <ng-template class="cart-page__table-header" pTemplate="header">
         <tr>
-          <th style="width: 4rem">
+          <th>
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
-          <th pSortableColumn="number" style="min-width: 7rem">
+          <th pSortableColumn="number">
             No. <p-sortIcon field="number"></p-sortIcon>
           </th>
-          <th pSortableColumn="name" style="min-width: 11rem">
+          <th pSortableColumn="name">
             Flight <p-sortIcon field="name"></p-sortIcon>
           </th>
-          <th pSortableColumn="typeTrip" style="min-width: 8rem">
+          <th pSortableColumn="typeTrip">
             Type trip <p-sortIcon field="typeTrip"></p-sortIcon>
           </th>
-          <th pSortableColumn="date" style="min-width: 13rem">
+          <th pSortableColumn="date">
             Date & Time <p-sortIcon field="date"></p-sortIcon>
           </th>
-          <th style="min-width: 8rem">Passengers</th>
-          <th pSortableColumn="price" style="min-width: 6rem">
+          <th>Passengers</th>
+          <th pSortableColumn="price">
             Price <p-sortIcon field="price"></p-sortIcon>
           </th>
           <th></th>
@@ -47,7 +46,9 @@
           <td>
             <p-tableCheckbox [value]="flight"></p-tableCheckbox>
           </td>
-          <td>{{ flight.number }}</td>
+          <td class="table-content__cell table-content__cell--blue">
+            {{ flight.number }}
+          </td>
           <td style="white-space: pre-line">
             {{ flight.name.join('\n') }}
           </td>
@@ -58,26 +59,10 @@
           <td style="white-space: pre-line">
             {{ flight.passengers.join('\n') }}
           </td>
-          <td>{{ flight.price | currency : currencyType }}</td>
+          <td class="table-content__cell table-content__cell--green">
+            {{ flight.price | currency : currencyType }}
+          </td>
           <td class="table-content__cell card flex justify-content-center">
-            <!-- <span class="pi pi-ellipsis-v"></span> -->
-            <!-- <button
-              pButton
-              pRipple
-              icon="pi pi-pencil"
-              class="p-button-rounded p-button-success mr-2"
-              (click)="editProduct(flight)"></button>
-            <button
-              pButton
-              pRipple
-              icon="pi pi-trash"
-              class="p-button-rounded p-button-warning"
-              (click)="deleteProduct(flight)"></button> -->
-            <!-- <span
-              #btn
-              class="pi pi-ellipsis-v"
-              (click)="menu.toggle($event)"></span> -->
-
             <button
               style="border-radius: 50%"
               mat-icon-button
@@ -93,32 +78,10 @@
                 Edit
               </button>
             </mat-menu>
-
-            <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                <mat-icon>more_vert</mat-icon>
-              </button> -->
-
-            <!-- <p-menu #menu [model]="tableMenu" [popup]="true"></p-menu>
-              <button pButton type="button" (click)="menu.toggle($event); onContextMenuClick(flight)" label="Show"></button> -->
-
-            <!-- <button
-              #btn
-              type="button"
-              pButton
-              icon="pi pi-bars"
-              label="Show"
-              (click)="menu.toggle($event)"></button>
-            <p-tieredMenu
-              class="table-content__options-menu"
-              #menu
-              [model]="tableMenu"
-              [popup]="true"></p-tieredMenu> -->
           </td>
         </tr>
       </ng-template>
     </p-table>
-
-    <!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->
 
     <div class="cart-page__total cart-total">
       <button
@@ -128,7 +91,9 @@
       </button>
       <div class="cart-total__title">
         <span>Total</span
-        ><span>{{ countGeneral() | currency : currencyType }}</span>
+        ><span class="cart-total__price">{{
+          countGeneral() | currency : currencyType
+        }}</span>
       </div>
     </div>
 
@@ -138,8 +103,8 @@
         <button mat-flat-button class="button button--mat-simple">APPLY</button>
       </mat-form-field>
 
-      <div class="cart-payment__selected">
-        <span>{{ selectedFlights?.length }} selected</span
+      <div class="cart-payment__pay">
+        <span>{{ selectedFlights?.length ?? 0 }} selected</span
         ><button
           mat-flat-button
           color="primary"
@@ -150,25 +115,3 @@
     </div>
   </mat-card-content>
 </mat-card>
-
-<!-- <table class="cart-page__table" matSort (matSortChange)="sortData($event)">
-  <tr class="cart-page__table-header">
-    <th mat-sort-header="number">No.</th>
-    <th mat-sort-header="flight">Flight</th>
-    <th mat-sort-header="typeTrip">Type trip</th>
-    <th mat-sort-header="date">Data & Time</th>
-    <th mat-sort-header="passengers">Passengers</th>
-    <th mat-sort-header="price">Price</th>
-  </tr>
-
-  <tr class="cart-page__table-content" *ngFor="let sorted of sortedData">
-    <td>{{ sorted.number }}</td>
-    <td style="white-space: pre-line">{{ sorted.flight.join('\n') }}</td>
-    <td>{{ sorted.typeTrip }}</td>
-    <td style="white-space: pre-line">{{ sorted.date.join('\n') }}</td>
-    <td style="white-space: pre-line">
-      {{ sorted.passengers.join('\n') }}
-    </td>
-    <td>{{ sorted.price | currency : currencyType }}</td>
-  </tr>
-</table> -->
