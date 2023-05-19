@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppLocaleModule } from './app-locale.module';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
@@ -17,9 +19,12 @@ import { AppRoutingModule } from './app-routing.module';
     AppLocaleModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    !environment.production
-      ? StoreDevtoolsModule.instrument({ logOnly: environment.production })
-      : [],
+    // !environment.production
+    //   ? StoreDevtoolsModule.instrument({ logOnly: environment.production })
+    //   : [],
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    EffectsModule.forRoot(),
   ],
   declarations: [AppComponent],
   providers: [

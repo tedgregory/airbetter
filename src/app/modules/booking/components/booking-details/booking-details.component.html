@@ -1,26 +1,23 @@
 <div
   class="flight-details"
-  *ngIf="
-    currentFlight && currentFlight.data[0].route[0] as flightInfo;
-    else noFlight
-  ">
+  *ngIf="currentFlight && currentFlight as flightInfo; else noFlight">
   <div class="timing timing--left">
     <div class="timing__date">
-      {{ flightInfo.local_departure | date : 'EEE, d LLL yyyy' }}
+      {{ flightInfo.time.departure_local | date : 'EEE, d LLL yyyy' }}
     </div>
     <div class="timing__local-time">
-      <p class="time">{{ flightInfo.local_departure | date : 'H:mm' }}</p>
+      <p class="time">{{ flightInfo.time.departure_local | date : 'H:mm' }}</p>
       <p class="time__gmt">
-        {{ flightInfo.local_departure | date : 'z' }}
+        {{ flightInfo.time.departure_local | date : 'z' }}
       </p>
     </div>
     <div class="timing__airport">
-      {{ flightInfo.cityFrom }}
+      {{ flightInfo.flyFrom.city.name }}
     </div>
   </div>
   <div class="flight-details__decor">
     <div class="details">
-      {{ currentFlight.data[0].duration.total | bookingVariantFlightDuration }}
+      {{ flightInfo.duration | bookingVariantFlightDuration }}
       <div
         [class]="{
           details__image: true,
@@ -31,14 +28,14 @@
   </div>
   <div class="timing timing--right">
     <div class="timing__date">
-      {{ flightInfo.local_arrival | date : 'EEE, d LLL yyyy' }}
+      {{ flightInfo.time.arrival | date : 'EEE, d LLL yyyy' }}
     </div>
     <div class="timing__local-time">
-      <p class="time__gmt">{{ flightInfo.local_arrival | date : 'z' }}</p>
-      <p class="time">{{ flightInfo.local_arrival | date : 'H:mm' }}</p>
+      <p class="time__gmt">{{ flightInfo.time.arrival | date : 'z' }}</p>
+      <p class="time">{{ flightInfo.time.arrival | date : 'H:mm' }}</p>
     </div>
     <div class="timing__airport">
-      {{ flightInfo.cityTo }}
+      {{ flightInfo.flyTo.city.name }}
     </div>
   </div>
   <div class="flight-details__jet-info">
@@ -50,11 +47,7 @@
 </div>
 <div class="flight-selection">
   <ng-container
-    *ngIf="
-      !props.isConfirmed &&
-      currentFlight &&
-      currentFlight.data[0].price as price
-    ">
+    *ngIf="!props.isConfirmed && currentFlight && currentFlight.price as price">
     <div class="flight-selection__seats">100 seats available</div>
     <div class="flight-selection__price-tag">Price</div>
     <div class="flight-selection__price">
