@@ -42,11 +42,6 @@ export class CartPageComponent {
     },
   ];
 
-  // editProduct(flight: IFlight) {
-  // this.product = { ...product };
-  // this.productDialog = true;
-  // }
-
   onContextMenuDeleteClick(flight: IFlight | null) {
     if (!flight) return;
 
@@ -55,6 +50,12 @@ export class CartPageComponent {
     );
 
     // this.flight = {};
+
+    if (!this.selectedFlights) return;
+
+    this.selectedFlights = this.selectedFlights.filter(
+      (item) => item !== flight
+    );
   }
 
   onContextMenuEditClick(flight: IFlight | null) {

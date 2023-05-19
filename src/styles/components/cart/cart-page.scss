@@ -1,8 +1,19 @@
+// app-cart-page {
+//   @include media-breakpoint-down(xl) {
+//     display: block;
+//     padding-top: 13px;
+//   }
+// }
+
 .cart-page {
   /* stylelint-disable */
   @import '../../libs/primeng/primeng.scss';
   @import '../../libs/primeng/theme-material-light-indigo/theme.scss';
   /* stylelint-enable */
+
+  @include media-breakpoint-down(lg) {
+    margin-top: 13px;
+  }
 
   &.mat-mdc-card {
     box-shadow: 0 1px 4px rgba($color-black, 0.2);
@@ -172,6 +183,11 @@
               line-height: 20px;
               padding: 14px;
 
+              p-tableheadercheckbox {
+                display: flex;
+                align-items: center;
+              }
+
               .p-sortable-column-icon {
                 color: $color-black;
               }
@@ -191,6 +207,11 @@
               padding: 20px 14px;
               border: 1px solid $color-secondary-50;
               border-width: 0 0 1px 0;
+
+              p-tablecheckbox {
+                display: flex;
+                align-items: center;
+              }
             }
           }
         }
