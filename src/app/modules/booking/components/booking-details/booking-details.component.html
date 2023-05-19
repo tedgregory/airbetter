@@ -3,21 +3,21 @@
   *ngIf="currentFlight && currentFlight as flightInfo; else noFlight">
   <div class="timing timing--left">
     <div class="timing__date">
-      {{ flightInfo.time.departure_local | date : 'EEE, d LLL yyyy' }}
+      {{ flightInfo.time.departure_utc | date : 'EEE, d LLL yyyy' }}
     </div>
     <div class="timing__local-time">
-      <p class="time">{{ flightInfo.time.departure_local | date : 'H:mm' }}</p>
+      <p class="time">{{ flightInfo.time.departure_utc | date : 'H:mm' }}</p>
       <p class="time__gmt">
-        {{ flightInfo.time.departure_local | date : 'z' }}
+        {{ flightInfo.time.departure_utc | date : 'z' }}
       </p>
     </div>
     <div class="timing__airport">
-      {{ flightInfo.flyFrom.city.name }}
+      {{ flightInfo.flyFrom.city }}
     </div>
   </div>
   <div class="flight-details__decor">
     <div class="details">
-      {{ flightInfo.duration | bookingVariantFlightDuration }}
+      {{ flightInfo.time.durMinutes | bookingVariantFlightDuration }}
       <div
         [class]="{
           details__image: true,
@@ -28,30 +28,34 @@
   </div>
   <div class="timing timing--right">
     <div class="timing__date">
-      {{ flightInfo.time.arrival | date : 'EEE, d LLL yyyy' }}
+      {{ flightInfo.time.arrival_utc | date : 'EEE, d LLL yyyy' }}
     </div>
     <div class="timing__local-time">
-      <p class="time__gmt">{{ flightInfo.time.arrival | date : 'z' }}</p>
-      <p class="time">{{ flightInfo.time.arrival | date : 'H:mm' }}</p>
+      <p class="time__gmt">{{ flightInfo.time.arrival_utc | date : 'z' }}</p>
+      <p class="time">{{ flightInfo.time.arrival_utc | date : 'H:mm' }}</p>
     </div>
     <div class="timing__airport">
-      {{ flightInfo.flyTo.city.name }}
+      {{ flightInfo.flyTo.city }}
     </div>
   </div>
   <div class="flight-details__jet-info">
     <div class="tag">Flight no.</div>
     <div class="number">
-      {{ flightInfo.airline }} {{ flightInfo.flight_no }}
+      {{ flightInfo.flight_no }}
     </div>
   </div>
 </div>
 <div class="flight-selection">
   <ng-container
     *ngIf="!props.isConfirmed && currentFlight && currentFlight.price as price">
-    <div class="flight-selection__seats">100 seats available</div>
+    <div
+      class="flight-selection__seats seats"
+      [appRangeBackground]="currentFlight.seats.available">
+      {{ currentFlight.seats.available }} seats available
+    </div>
     <div class="flight-selection__price-tag">Price</div>
     <div class="flight-selection__price">
-      {{ price | currency : 'EUR' }}
+      {{ price.EUR | currency : 'EUR' }}
     </div>
   </ng-container>
   <div class="flight-selection__select">

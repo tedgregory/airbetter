@@ -10,8 +10,8 @@ import { FlightsSearchModule } from '../components/flights-search/flights-search
 @NgModule({
   imports: [
     CommonModule,
-    FlightsPageRoutingModule,
     AppCommonModule,
+    FlightsPageRoutingModule,
     FlightsSearchModule,
     GridModule,
     ContainerModule,

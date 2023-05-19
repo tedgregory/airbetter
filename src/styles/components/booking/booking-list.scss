@@ -13,16 +13,12 @@ app-booking-list {
       position: relative;
 
       &__options {
-        display: grid;
-        overflow: hidden;
-        grid-template-columns: repeat(5, 1fr);
-        align-items: end;
-        justify-content: center;
         margin-bottom: 9px;
       }
 
       &__nav {
         position: absolute;
+        z-index: 1;
         top: 36px;
 
 
@@ -45,6 +41,54 @@ app-booking-list {
       width: 24px;
       height: 24px;
       padding: 0;
+    }
+  }
+
+  .swiper-button-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .swiper-slide {
+    margin-top: 8px;
+  }
+
+  .swiper-slide-active {
+    position: relative;
+    margin: 0;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      height: 4px;
+      background-color: $color-active-base;
+    }
+
+    .date-title {
+
+      // transition: all 0.5s;
+      &__day {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: $color-indigo;
+      }
+
+      &__weekday {
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+        color: $color-grey-neutral-30;
+      }
+    }
+
+    .price {
+      // transition: all 0.5s;
+      font-size: 1.8rem;
+      line-height: 2.2rem;
+      margin: 0;
     }
   }
 }

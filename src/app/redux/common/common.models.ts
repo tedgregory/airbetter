@@ -22,3 +22,9 @@ export enum EStatus {
   Error,
   Loaded,
 }
+
+export enum ESeatsBreakpoints {
+  L = 30,
+  M = 20,
+  S = 10,
+}

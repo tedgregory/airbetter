@@ -24,51 +24,47 @@ export interface BookingFlightBase {
 
 export interface BookingFlightVariant extends BookingFlightBase {
   flyFrom: {
-    country: IATADescription;
-    city: IATADescription;
-    airport: IATADescription;
+    country: string;
+    city: string;
+    airport: string;
+    iata: string;
+    gmtOffset: string;
   };
   flyTo: {
-    country: IATADescription;
-    city: IATADescription;
-    airport: IATADescription;
+    country: string;
+    city: string;
+    airport: string;
+    iata: string;
+    gmtOffset: string;
   };
-  duration: number; //seconds
   time: {
-    departure_local: string;
     departure_utc: string;
-    arrival: string;
     arrival_utc: string;
+    durMinutes: number;
   };
-  seatsAvailable: number;
-  airline: string;
-  flight_no: number;
-  bagsInfo: {
-    price: number[];
-    handLimit: {
-      length: number;
-      width: number;
-      height: number;
-      weight: number;
-    };
-    holdLimit: {
-      length: number;
-      width: number;
-      height: number;
-      weight: number;
-    };
+  seats: {
+    total: number;
+    available: number;
   };
-  price: number; // total result in EUR?
-  priceLocal: number; // total result in selected currency
-  fare: {
-    // cost per passenger
-    adult: number;
-    child: number;
-    infant: number;
-  };
+  flight_no: string;
+
+  price: Record<ECurrencies, number>; // total result in EUR?
 }
 
-export type IATADescription = {
-  name: string;
-  code: string;
-};
+export enum ECurrencies {
+  EUR = 'EUR',
+  USD = 'USD',
+  RUB = 'RUB',
+  PLN = 'PLN',
+}
+
+export interface IConvertedResponse {
+  forward: {
+    chosen: BookingFlightVariant;
+    options: BookingFlightVariant[];
+  } | null;
+  backward: {
+    chosen: BookingFlightVariant;
+    options: BookingFlightVariant[];
+  } | null;
+}

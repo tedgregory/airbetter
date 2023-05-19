@@ -51,17 +51,13 @@ export const bookingFeature = createFeature({
           status: EStatus.Loaded,
           flyToData: {
             ...state.flyToData,
-            chosenVariant: bookingData.leave?.length
-              ? bookingData.leave[2]
-              : null,
-            variants: bookingData.leave,
+            chosenVariant: bookingData.forward?.chosen || null,
+            variants: bookingData.forward?.options || null,
           },
           flyBackData: {
             ...state.flyToData,
-            chosenVariant: bookingData.return?.length
-              ? bookingData.return[2]
-              : null,
-            variants: bookingData.return,
+            chosenVariant: bookingData.backward?.chosen || null,
+            variants: bookingData.backward?.options || null,
           },
           error: null,
         };
@@ -72,6 +68,24 @@ export const bookingFeature = createFeature({
         ...state,
         status: EStatus.Error,
         error,
+      };
+    }),
+    on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
+      return {
+        ...state,
+        flyToData: {
+          ...state.flyToData,
+          chosenVariant: variant,
+        },
+      };
+    }),
+    on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
+      return {
+        ...state,
+        flyBackData: {
+          ...state.flyBackData,
+          chosenVariant: variant,
+        },
       };
     })
   ),

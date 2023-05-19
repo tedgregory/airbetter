@@ -1,0 +1,162 @@
+.flights-search {
+  .mat-mdc-card {
+    max-width: 580px;
+    border-radius: 8px;
+    background-color: rgba($color-white, 0.85);
+    box-shadow: none;
+    padding: 28px 24px 24px 24px;
+  }
+}
+
+.flights-search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: nowrap;
+
+  &__trip-type-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0 50px;
+    margin-left: -8px;
+    margin-bottom: 16px;
+
+    @include media-breakpoint-down(sm) {
+      gap: 0 20px;
+    }
+
+    .mdc-form-field > label {
+      font-weight: 500;
+      color: $color-primary;
+    }
+  }
+
+  &__locations-fields {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    margin-bottom: 28px;
+  }
+
+  &__from-field {
+    margin-bottom: 4px;
+  }
+
+  &__from-holder,
+  &__to-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+
+    .mdc-text-field__input {
+      width: auto;
+    }
+  }
+
+  &__switch {
+    &.mdc-button {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
+
+    &.mat-mdc-unelevated-button > .mat-icon,
+    &.mat-mdc-raised-button > .mat-icon,
+    &.mat-mdc-outlined-button > .mat-icon {
+      position: relative;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      margin-right: 0;
+    }
+
+    &.button--mat-primary.mat-mdc-unelevated-button.mat-mdc-button-base,
+    &.button--mat-simple.mat-mdc-unelevated-button.mat-mdc-button-base,
+    &.button--mat-outlined.mat-mdc-unelevated-button.mat-mdc-button-base {
+      width: 40px;
+      height: 40px;
+      min-width: unset;
+      background-color: $color-white;
+      border: 1px solid rgba(116, 118, 122, 0.6);
+      border-radius: 50%;
+      padding: 0;
+    }
+  }
+
+  &__cols {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 16px 20px;
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+
+      & > * {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  &__dates-field {
+    flex-basis: 58.46%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &__passengers-field {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    margin-top: 28px;
+  }
+
+  &__submit-button {
+    width: 126px;
+
+    &.mat-mdc-button.mat-mdc-button-base,
+    &.mat-mdc-raised-button.mat-mdc-button-base,
+    &.mat-mdc-unelevated-button.mat-mdc-button-base,
+    &.mat-mdc-outlined-button.mat-mdc-button-base {
+      height: 60px;
+    }
+  }
+}
+
+.flights-search-location {
+  padding: 6px 0;
+
+  &__row {
+    display: block;
+  }
+
+  &__city,
+  &__city-iata {
+    color: $color-grey-neutral;
+  }
+
+  &__airport,
+  &__country {
+    @include text-14-400;
+    color: $color-grey-neutral-30;
+  }
+}

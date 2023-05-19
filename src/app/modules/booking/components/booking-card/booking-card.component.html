@@ -1,7 +1,7 @@
 <div
   *ngIf="bookingVariant as flightData; else empty"
-  [class]="{ 'booking-card': true, active: isActive }"
-  (click)="setActive()">
+  [class]="{ 'booking-card': true }">
+  <!-- (click)="setActive()" -->
   <div class="date-title">
     <p class="date-title__day">
       {{ flightData.flightDate | date : 'dd MMM' }}
@@ -11,7 +11,7 @@
     </p>
   </div>
   <div class="price">
-    {{ flightData.price | currency : 'EUR' }}
+    {{ flightData.price.EUR | currency : 'EUR' }}
   </div>
 </div>
 

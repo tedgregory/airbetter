@@ -10,11 +10,11 @@
     "generate:svg-sprite": "svg2sprite ./src/assets/icons ./src/assets/sprites/sprite.svg --stripAttrs fill --stripAttrs stroke --stripAttrs id",
     "stylelint": "stylelint src/**/*.scss",
     "lint": "ng lint --fix && npm run stylelint",
-    "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html}\" --write",
+    "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts,html}": [
+    "*.{js,ts}": [
       "npx prettier --write"
     ]
   },
@@ -40,6 +40,7 @@
     "@types/moment": "^2.13.0",
     "moment": "^2.29.4",
     "rxjs": "~7.8.0",
+    "swiper": "^8.4.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

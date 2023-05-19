@@ -1,84 +1,100 @@
 import moment from 'moment';
-import { ApiResponse } from '../modules/booking/models/booking.interface';
 import {
-  BookingFlightBase,
+  ApiResponse,
+  IFlight,
+} from '../modules/booking/models/booking.interface';
+import {
   BookingFlightVariant,
+  IConvertedResponse,
 } from './booking/booking.state';
 
-export function convertApiResponseToVariant<
-  A extends ApiResponse,
-  T extends BookingFlightVariant
->(response: A, date: string) {
-  if (!response.data.length) {
-    return {
-      flightDate: date,
-      id: null,
-    } as BookingFlightBase;
+export function convertApiResponseToVariant(
+  response: ApiResponse
+): IConvertedResponse {
+  const result: IConvertedResponse = {
+    forward: null,
+    backward: null,
+  };
+  if (response[0]) {
+    result.forward = {
+      chosen: mapApiVariantToModel(response[0] as IFlight),
+      options: [],
+    };
+    result.forward.options.push(result.forward.chosen);
+    const altFlight = response[0].otherFlights;
+    for (let i = 1; i <= 5; i++) {
+      if (altFlight[`${i}`]) {
+        result.forward.options.push(
+          mapApiVariantToModel(altFlight[`${i}`] as IFlight)
+        );
+      }
+      if (altFlight[`-${i}`]) {
+        result.forward.options.unshift(
+          mapApiVariantToModel(altFlight[`-${i}`] as IFlight)
+        );
+      }
+    }
   }
-  const variant = response.data[0];
+  if (response[1]) {
+    result.backward = {
+      chosen: mapApiVariantToModel(response[1] as IFlight),
+      options: [],
+    };
+    result.backward.options.push(result.backward.chosen);
+    const altFlight = response[1].otherFlights;
+    for (let i = 1; i <= 5; i++) {
+      if (altFlight[`${i}`]) {
+        result.backward.options.push(
+          mapApiVariantToModel(altFlight[`${i}`] as IFlight)
+        );
+      }
+      if (altFlight[`-${i}`]) {
+        result.backward.options.unshift(
+          mapApiVariantToModel(altFlight[`-${i}`] as IFlight)
+        );
+      }
+    }
+  }
+  return result;
+}
+
+function mapApiVariantToModel(data: IFlight): BookingFlightVariant {
   return {
-    flightDate: date ? moment(date, 'DD/MM/YYYY').format() : Date.now(),
-    id: variant.id,
+    flightDate: moment(data.takeoffDate || Date.now()).format(),
+    id: generateToken(),
     flyFrom: {
-      country: {
-        name: variant.countryFrom.name,
-        code: variant.countryFrom.code,
-      },
-      city: {
-        name: variant.cityFrom,
-        code: variant.cityCodeFrom,
-      },
-      airport: {
-        name: variant.flyFrom,
-        code: variant.flyFrom,
-      },
+      country: data.form.country,
+      city: data.form.city,
+      airport: data.form.name,
+      gmtOffset: data.form.gmt,
+      iata: data.form.key,
     },
     flyTo: {
-      country: {
-        name: variant.countryTo.name,
-        code: variant.countryTo.code,
-      },
-      city: {
-        name: variant.cityTo,
-        code: variant.cityCodeTo,
-      },
-      airport: {
-        name: variant.flyTo,
-        code: variant.flyTo,
-      },
+      country: data.to.country,
+      city: data.to.city,
+      airport: data.to.name,
+      gmtOffset: data.to.gmt,
+      iata: data.to.key,
     },
-    duration: variant.duration.total, //seconds
     time: {
-      departure_local: variant.local_departure,
-      departure_utc: variant.utc_departure,
-      arrival: variant.local_arrival,
-      arrival_utc: variant.utc_arrival,
+      departure_utc: data.takeoffDate,
+      arrival_utc: data.landingDate,
+      durMinutes: data.timeMins,
     },
-    seatsAvailable: variant.availability.seats,
-    airline: variant.route[0].airline,
-    flight_no: variant.route[0].flight_no,
-    bagsInfo: {
-      price: [variant.bags_price['1'] || 0, variant.bags_price['2'] || 0],
-      handLimit: {
-        length: variant.baglimit.hand_length,
-        width: variant.baglimit.hand_width,
-        height: variant.baglimit.hand_height,
-        weight: variant.baglimit.hand_weight,
-      },
-      holdLimit: {
-        length: variant.baglimit.hold_length,
-        width: variant.baglimit.hold_width,
-        height: variant.baglimit.hold_height,
-        weight: variant.baglimit.hold_weight,
-      },
+    seats: {
+      total: data.seats.total,
+      available: data.seats.avaible,
     },
-    price: variant.conversion['EUR'], // total result in EUR?
-    priceLocal: variant.conversion[response.currency] || 0, // total result in selected currency
-    fare: {
-      // cost per passenger
-      adult: variant.fare.adults,
-      child: variant.fare.children,
-      infant: variant.fare.infants,
+    flight_no: data.flightNumber,
+    price: {
+      EUR: data.price.eur,
+      USD: data.price.usd,
+      RUB: data.price.rub,
+      PLN: data.price.pln,
     },
-  } as T;
+  };
+}
+
+function generateToken() {
+  return Math.random().toString(36).slice(2);
 }
