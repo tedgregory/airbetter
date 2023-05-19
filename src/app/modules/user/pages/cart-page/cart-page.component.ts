@@ -42,14 +42,20 @@ export class CartPageComponent {
     },
   ];
 
+  promoCodes = ['RS', 'FLY', '2023'];
+
+  appliedCodes: string[] = [];
+
+  promoCodeValue = '';
+
+  isDiscount = false;
+
   onContextMenuDeleteClick(flight: IFlight | null) {
     if (!flight) return;
 
     this.flightsData = this.flightsData.filter(
       (val) => val.number !== flight.number
     );
-
-    // this.flight = {};
 
     if (!this.selectedFlights) return;
 
@@ -62,12 +68,27 @@ export class CartPageComponent {
     if (!flight) return;
   }
 
-  countGeneral(): number {
+  countTotalPrice(): number {
     return this.selectedFlights
       ? this.selectedFlights.reduce(
           (total, curr) => total + (curr.price ? curr.price : 0),
           0
         )
       : 0;
+  }
+
+  countDiscountPrice(): number {
+    const discount = 1 - this.appliedCodes.length * 0.1;
+    return this.countTotalPrice() * discount;
+  }
+
+  setDiscount() {
+    if (
+      this.promoCodes.includes(this.promoCodeValue) &&
+      !this.appliedCodes.includes(this.promoCodeValue)
+    ) {
+      this.isDiscount = true;
+      this.appliedCodes.push(this.promoCodeValue);
+    }
   }
 }

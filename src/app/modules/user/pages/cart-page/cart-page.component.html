@@ -89,19 +89,48 @@
         class="cart-total__button button button--mat-simple">
         + Add new trip
       </button>
-      <div class="cart-total__title">
-        <span>Total</span
-        ><span class="cart-total__price">{{
-          countGeneral() | currency : currencyType
-        }}</span>
+      <div class="cart-total__prices">
+        <p *ngIf="isDiscount" class="cart-total__applied-codes">
+          Applied codes: {{ appliedCodes.join(', ') || '-' }}
+        </p>
+        <div
+          [ngClass]="{ 'line-through': isDiscount }"
+          class="cart-total__price-block">
+          <span>Total</span
+          ><span class="cart-total__price">{{
+            countTotalPrice() | currency : currencyType
+          }}</span>
+        </div>
+        <div *ngIf="isDiscount" class="cart-total__price-block">
+          <span>Total</span
+          ><span class="cart-total__price">{{
+            countDiscountPrice() | currency : currencyType
+          }}</span>
+        </div>
       </div>
     </div>
 
     <div class="cart-page__payment cart-payment">
-      <mat-form-field class="cart-payment__promo-code" floatLabel="always">
-        <input matInput placeholder="Promo Code" />
-        <button mat-flat-button class="button button--mat-simple">APPLY</button>
-      </mat-form-field>
+      <div class="cart-payment__promo-code promo-code">
+        <mat-form-field class="promo-code__input" floatLabel="always">
+          <input
+            [(ngModel)]="promoCodeValue"
+            matInput
+            placeholder="Promo Code" />
+          <button
+            (click)="setDiscount()"
+            mat-flat-button
+            class="button button--mat-simple">
+            APPLY
+          </button>
+        </mat-form-field>
+        <p class="promo-code__list">
+          <span class="promo-code__list-title">Promo codes for test:</span>
+          <span class="promo-code__list-items">{{
+            promoCodes.join(', ')
+          }}</span>
+        </p>
+      </div>
 
       <div class="cart-payment__pay">
         <span>{{ selectedFlights?.length ?? 0 }} selected</span

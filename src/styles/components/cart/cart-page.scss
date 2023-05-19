@@ -41,19 +41,36 @@
     padding: 38px 0;
     border-bottom: 1px solid $color-secondary-50;
 
-    @include media-breakpoint-down(mm) {
+    @include media-breakpoint-down(md) {
+      display: block;
       margin: 0 20px;
+      padding: 30px 10px;
     }
 
-    &__title {
+    &__prices {
+      @include media-breakpoint-down(md) {
+        margin-top: 40px;
+      }
+    }
+
+    &__price-block {
       display: flex;
       align-items: center;
+      width: fit-content;
       gap: 20px;
       @include font-h4;
 
-      @include media-breakpoint-down(mm) {
-        flex-direction: column;
-        gap: 5px;
+      &.line-through {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 110%;
+          left: -5%;
+          height: 4px;
+          background: $color-black;
+        }
       }
     }
 
@@ -69,6 +86,12 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    &__applied-codes {
+      margin: 0 0 7px;
+      @include font-h4;
+      font-size: 18px;
     }
 
     &__button {
@@ -116,48 +139,6 @@
         &.mat-mdc-unelevated-button.mat-mdc-button-base {
           height: auto;
           padding: 20px 30px;
-        }
-      }
-    }
-
-    &__promo-code {
-      /* stylelint-disable */
-      .mdc-text-field--no-label:not(.mdc-text-field--outlined)
-        .mat-mdc-form-field-infix {
-        /* stylelint-enable */
-        display: flex;
-        align-items: center;
-        padding-top: 0;
-        padding-bottom: 0;
-        min-height: 48px;
-        width: 340px;
-
-        @include media-breakpoint-down(lg) {
-          width: auto;
-        }
-
-        @include media-breakpoint-down(mkm) {
-          font-size: 14px;
-        }
-      }
-
-      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-        background: none;
-        color: $color-grey-neutral-30;
-      }
-
-      .button--mat-simple.mat-mdc-unelevated-button.mat-mdc-button-base {
-        background: none;
-        padding: 4px 8px;
-        --mat-mdc-button-persistent-ripple-color: rgba($color-black, 0);
-        --mat-mdc-button-ripple-color: rgba($color-black, 0.05);
-
-        &:hover {
-          background: rgba($color-black, 0.05);
-        }
-
-        @include media-breakpoint-down(mm) {
-          font-size: 14px;
         }
       }
     }
@@ -234,8 +215,62 @@
       }
 
       &--green {
-        color: $color-green;
+        color: $color-green-yellow;
       }
+    }
+  }
+
+  .promo-code {
+    &__input {
+      /* stylelint-disable */
+      .mdc-text-field--no-label:not(.mdc-text-field--outlined)
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        display: flex;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0;
+        min-height: 48px;
+        width: 340px;
+
+        @include media-breakpoint-down(lg) {
+          width: auto;
+        }
+
+        @include media-breakpoint-down(mkm) {
+          font-size: 14px;
+        }
+      }
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background: none;
+        color: $color-grey-neutral-30;
+      }
+
+      .button--mat-simple.mat-mdc-unelevated-button.mat-mdc-button-base {
+        background: none;
+        padding: 4px 8px;
+        --mat-mdc-button-persistent-ripple-color: rgba($color-black, 0);
+        --mat-mdc-button-ripple-color: rgba($color-black, 0.05);
+
+        &:hover {
+          background: rgba($color-black, 0.05);
+        }
+
+        @include media-breakpoint-down(mm) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    &__list {
+      margin: 7px 0 0;
+      font-weight: 700;
+      color: $color-grey-neutral-30;
+    }
+
+    &__list-title {
+      margin-right: 15px;
     }
   }
 }

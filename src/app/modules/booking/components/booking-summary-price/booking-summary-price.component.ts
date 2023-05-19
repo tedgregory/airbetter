@@ -32,7 +32,7 @@ export class BookingSummaryPriceComponent {
     },
   ];
 
-  countGeneral(): number {
+  countTotalPrice(): number {
     return this.prices.reduce((total, price) => total + price.totalPrice, 0);
   }
 }

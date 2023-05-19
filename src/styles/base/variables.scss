@@ -154,7 +154,8 @@ $color-grey-40: #d0d9df;
 $color-cobalt: #073590;
 $color-blue-bright: #0090bd;
 $color-yellow: #f1c933;
-$color-green: #7F8906;
+$color-green-yellow: #7F8906;
+$color-green: rgb(84, 196, 84);
 
 $color-indigo: mat.get-color-from-palette($airways-indigo-palette, 500);
 $color-indigo-dark: #10264c;
