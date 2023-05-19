@@ -1,5 +1,7 @@
 @import 'src/styles/libs/normalize';
 @import 'src/styles/libs/hamburgers/hamburgers';
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
 
 @import 'src/styles/base/variables';
 @import 'src/styles/base/mixins/breakpoints';
@@ -17,6 +19,7 @@
 @import 'src/styles/common/menu';
 @import 'src/styles/common/tabs';
 @import 'src/styles/common/checkbox';
+@import 'src/styles/common/datepicker';
 
 @import 'src/styles/layout/layout';
 @import 'src/styles/layout/header';
@@ -32,6 +35,11 @@
 
 @import 'src/styles/components/not-found/not-found-page';
 
+@import 'src/styles/components/flights/flights-page';
+@import 'src/styles/components/flights/flights-search';
+@import 'src/styles/components/flights/select-passengers';
+@import 'src/styles/components/flights/incrementer';
+
 @import 'src/styles/components/booking/booking-page';
 @import 'src/styles/components/booking/booking-content-block';
 @import 'src/styles/components/booking/booking-description';
@@ -45,3 +53,4 @@
 @import 'src/styles/components/booking/booking-summary';
 @import 'src/styles/components/booking/booking-summary-flight';
 @import 'src/styles/components/booking/booking-summary-price';
+@import 'src/styles/components/booking/booking-info-panel';

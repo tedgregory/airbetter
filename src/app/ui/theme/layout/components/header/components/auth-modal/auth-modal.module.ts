@@ -4,14 +4,14 @@ import { IconsModule } from 'src/app/core/icons/icons.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthModalComponent } from './auth-modal.component';
-import { LayoutDirectivesModule } from '../../../../directives/layout-directives.module';
+import { CoreDirectivesModule } from 'src/app/core/directives/core-directives.module';
 import { AuthFormModule } from '../auth-form/auth-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
     IconsModule,
-    LayoutDirectivesModule,
+    CoreDirectivesModule,
     MatButtonModule,
     MatIconModule,
     AuthFormModule,

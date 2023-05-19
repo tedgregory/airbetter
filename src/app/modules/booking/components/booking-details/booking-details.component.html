@@ -48,7 +48,11 @@
 <div class="flight-selection">
   <ng-container
     *ngIf="!props.isConfirmed && currentFlight && currentFlight.price as price">
-    <div class="flight-selection__seats">100 seats available</div>
+    <div
+      class="flight-selection__seats seats"
+      [appRangeBackground]="currentFlight.seatsAvailable">
+      {{ currentFlight.seatsAvailable }} seats available
+    </div>
     <div class="flight-selection__price-tag">Price</div>
     <div class="flight-selection__price">
       {{ price.EUR | currency : 'EUR' }}
