@@ -6,8 +6,8 @@ import { DateFormats } from '../common/common.models';
 const defaultState: SearchState = {
   flyFrom: 'DUS',
   flyTo: 'PRG',
-  dateLeave: '20/05/2023', // null
-  dateReturn: '26/05/2023', // null
+  dateLeave: '25/05/2023', // null
+  dateReturn: '26/06/2023', // null
   currency: 'EUR',
   dateFormat: DateFormats.DMY,
   step: 1,

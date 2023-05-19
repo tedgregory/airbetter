@@ -4,6 +4,7 @@ import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
 import SwiperCore, { Navigation, Swiper, SwiperOptions } from 'swiper';
 import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-booking-list',
@@ -48,7 +49,11 @@ export class BookingListComponent implements OnInit {
     },
   };
 
+  flyToIndex: number | null = null;
+  flyBackIndex: number | null = null;
+
   flyToData$ = this.store.select(bookingFeature.selectFlyToData);
+
   flyBackData$ = this.store.select(bookingFeature.selectFlyBackData);
 
   constructor(public store: Store) {}
@@ -56,6 +61,22 @@ export class BookingListComponent implements OnInit {
   ngOnInit() {
     SwiperCore.use([Navigation]);
     this.store.dispatch(BookingActions.getVariants());
+    this.flyToData$.pipe(
+      tap((data) => {
+        this.config1.initialSlide =
+          data.variants && data.chosenVariant
+            ? data.variants?.indexOf(data.chosenVariant)
+            : undefined;
+      })
+    );
+    this.flyBackData$.pipe(
+      tap((data) => {
+        this.config2.initialSlide =
+          data.variants && data.chosenVariant
+            ? data.variants?.indexOf(data.chosenVariant)
+            : undefined;
+      })
+    );
   }
 
   onSliderSlideChange(type: 'forward' | 'backward', event: [swiper: Swiper]) {
@@ -78,15 +99,17 @@ export class BookingListComponent implements OnInit {
     if (!variant) {
       return;
     }
+    console.log('switch ', type, 'to ', variant);
+
     this.setActiveCard(type, variant);
   }
 
   setActiveCard(type: 'forward' | 'backward', variant: BookingFlightVariant) {
-    // this.store.dispatch(
-    //   BookingActions[
-    //     type === 'forward' ? 'setChosenForward' : 'setChosenBackward'
-    //   ]({ variant })
-    // );
+    this.store.dispatch(
+      BookingActions[
+        type === 'forward' ? 'setChosenForward' : 'setChosenBackward'
+      ]({ variant })
+    );
   }
 
   onConfirmToggle(type: 'flyTo' | 'flyBack') {

@@ -17,7 +17,7 @@
   </div>
   <div class="flight-details__decor">
     <div class="details">
-      {{ flightInfo.time.durMinutes }}
+      {{ flightInfo.time.durMinutes | bookingVariantFlightDuration }}
       <div
         [class]="{
           details__image: true,
@@ -50,8 +50,8 @@
     *ngIf="!props.isConfirmed && currentFlight && currentFlight.price as price">
     <div
       class="flight-selection__seats seats"
-      [appRangeBackground]="currentFlight.seatsAvailable">
-      {{ currentFlight.seatsAvailable }} seats available
+      [appRangeBackground]="currentFlight.seats.available">
+      {{ currentFlight.seats.available }} seats available
     </div>
     <div class="flight-selection__price-tag">Price</div>
     <div class="flight-selection__price">

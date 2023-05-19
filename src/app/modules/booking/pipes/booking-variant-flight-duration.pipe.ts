@@ -4,9 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'bookingVariantFlightDuration',
 })
 export class BookingVariantFlightDurationPipe implements PipeTransform {
-  transform(seconds: number): unknown {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.ceil((seconds - hours * 3600) / 60);
+  transform(totalMinutes: number): unknown {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes - hours * 60;
     return `${hours}h ${minutes}m`;
   }
 }

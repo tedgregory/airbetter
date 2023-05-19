@@ -46,8 +46,6 @@ export const bookingFeature = createFeature({
     on(
       BookingActions.getVariantsSuccess,
       (state, { bookingData }): BookingState => {
-        console.log(bookingData);
-
         return {
           ...state,
           status: EStatus.Loaded,
@@ -66,31 +64,29 @@ export const bookingFeature = createFeature({
       }
     ),
     on(BookingActions.getVariantsError, (state, { error }): BookingState => {
-      console.log(error);
-
       return {
         ...state,
         status: EStatus.Error,
         error,
       };
+    }),
+    on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
+      return {
+        ...state,
+        flyToData: {
+          ...state.flyToData,
+          chosenVariant: variant,
+        },
+      };
+    }),
+    on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
+      return {
+        ...state,
+        flyBackData: {
+          ...state.flyBackData,
+          chosenVariant: variant,
+        },
+      };
     })
-    // , on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
-    //   return {
-    //     ...state,
-    //     flyToData: {
-    //       ...state.flyToData,
-    //       chosenVariant: variant,
-    //     },
-    //   };
-    // }),
-    // on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
-    //   return {
-    //     ...state,
-    //     flyBackData: {
-    //       ...state.flyBackData,
-    //       chosenVariant: variant,
-    //     },
-    //   };
-    // })
   ),
 });
