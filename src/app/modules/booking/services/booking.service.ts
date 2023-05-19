@@ -12,7 +12,7 @@ export class BookingService {
   constructor(private config: ConfigService, private http: HttpClient) {}
 
   getBookingData(params: SearchState) {
-    const { base, search } = this.config.getConfig().ApiURL;
+    const { base, search } = this.config.getConfig().ApiUrl;
     const body = {
       fromKey: params.flyFrom,
       toKey: params.flyTo,

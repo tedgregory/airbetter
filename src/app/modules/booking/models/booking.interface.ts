@@ -1,6 +1,6 @@
 // based on response
 
-interface Location {
+interface IFlightLocation {
   key: string;
   name: string;
   city: string;
@@ -8,7 +8,7 @@ interface Location {
   country: string;
 }
 
-interface Price {
+interface IFlightPrice {
   eur: number;
   usd: number;
   rub: number;
@@ -22,15 +22,15 @@ export interface IFlight {
   };
   flightNumber: string;
   timeMins: number;
-  form: Location;
-  to: Location;
+  form: IFlightLocation;
+  to: IFlightLocation;
   takeoffDate: string;
   landingDate: string;
-  price: Price;
+  price: IFlightPrice;
 }
 
-interface IResponse extends IFlight {
+interface IApiResponse extends IFlight {
   otherFlights: Record<string, IFlight>;
 }
 
-export type ApiResponse = Array<IResponse>;
+export type ApiResponse = Array<IApiResponse>;
