@@ -16,11 +16,7 @@
               class="swiper--direct"
               [config]="config1"
               *ngIf="!directFlights.confirmed && directFlights.variants"
-              (activeIndexChange)="onSliderActiveIndexChange('forward', $event)"
               (slideChange)="onSliderSlideChange('forward', $event)">
-              <!-- (slideChangeTransitionEnd)="" -->
-              <!-- (slideChangeTransitionStart)="" -->
-
               <ng-template
                 swiperSlide
                 *ngFor="let bookingVariant of directFlights.variants">
@@ -33,8 +29,7 @@
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get previous flights"
-                (click)="handleBackward()">
+                aria-label="Get previous flights">
                 <mat-icon>chevron_left</mat-icon>
               </button>
             </div>
@@ -42,8 +37,7 @@
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get next flights"
-                (click)="handleForward()">
+                aria-label="Get next flights">
                 <mat-icon>chevron_right</mat-icon>
               </button>
             </div>
@@ -84,13 +78,7 @@
               class="swiper--return"
               [config]="config2"
               *ngIf="!returnFlights.confirmed && returnFlights.variants"
-              (activeIndexChange)="
-                onSliderActiveIndexChange('backward', $event)
-              "
               (slideChange)="onSliderSlideChange('backward', $event)">
-              <!-- (slideChangeTransitionEnd)="" -->
-              <!-- (slideChangeTransitionStart)="" -->
-
               <ng-template
                 swiperSlide
                 *ngFor="let bookingVariant of returnFlights.variants">
@@ -99,22 +87,11 @@
               </ng-template>
             </swiper>
 
-            <!-- <swiper
-              class="swiper-slider"
-            >
-              <ng-template swiperSlide *ngFor="let slide of slides$ | async; index as i">
-                <div class="swiper-slide-container">
-                  {{ slide }}
-                </div>
-              </ng-template>
-            </swiper> -->
-
             <div class="flight__nav flight__nav--prev nav__return--prev">
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get previous flights"
-                (click)="handleBackward()">
+                aria-label="Get previous flights">
                 <mat-icon>chevron_left</mat-icon>
               </button>
             </div>
@@ -122,8 +99,7 @@
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get next flights"
-                (click)="handleBackward()">
+                aria-label="Get next flights">
                 <mat-icon>chevron_right</mat-icon>
               </button>
             </div>
