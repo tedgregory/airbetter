@@ -10,33 +10,37 @@
           {{ directFlights.chosenVariant.flyTo.city.name }}
         </h3>
         <div class="flight">
-          <div class="flight__options" *ngIf="!directFlights.confirmed">
-            <div class="flight__nav flight__nav--prev">
+          <div class="flight__options">
+            <swiper
+              #swiper1
+              class="swiper--direct"
+              [config]="config1"
+              *ngIf="!directFlights.confirmed && directFlights.variants"
+              (slideChange)="onSliderSlideChange('forward', $event)">
+              <ng-template
+                swiperSlide
+                *ngFor="let bookingVariant of directFlights.variants">
+                <app-booking-card
+                  [bookingVariant]="bookingVariant"></app-booking-card>
+              </ng-template>
+            </swiper>
+
+            <div class="flight__nav flight__nav--prev nav__forward--prev">
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get previous flights"
-                (click)="handleBackward()">
+                aria-label="Get previous flights">
                 <mat-icon>chevron_left</mat-icon>
               </button>
             </div>
-            <div class="flight__nav flight__nav--next">
+            <div class="flight__nav flight__nav--next nav__forward--next">
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get next flights"
-                (click)="handleForward()">
+                aria-label="Get next flights">
                 <mat-icon>chevron_right</mat-icon>
               </button>
             </div>
-            <app-booking-card
-              (chooseFlight)="onSwitchCurrentCard($event)"
-              *ngFor="
-                let bookingVariant of directFlights.variants;
-                let i = index
-              "
-              [bookingVariant]="bookingVariant"
-              [isActive]="i === 2"></app-booking-card>
           </div>
           <app-booking-details
             [currentFlight]="directFlights.chosenVariant"
@@ -68,33 +72,37 @@
           {{ returnFlights.chosenVariant.flyTo.city.name }}
         </h3>
         <div class="flight">
-          <div class="flight__options" *ngIf="!returnFlights.confirmed">
-            <div class="flight__nav flight__nav--prev">
+          <div class="flight__options">
+            <swiper
+              #swiper2
+              class="swiper--return"
+              [config]="config2"
+              *ngIf="!returnFlights.confirmed && returnFlights.variants"
+              (slideChange)="onSliderSlideChange('backward', $event)">
+              <ng-template
+                swiperSlide
+                *ngFor="let bookingVariant of returnFlights.variants">
+                <app-booking-card
+                  [bookingVariant]="bookingVariant"></app-booking-card>
+              </ng-template>
+            </swiper>
+
+            <div class="flight__nav flight__nav--prev nav__return--prev">
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get previous flights"
-                (click)="handleBackward()">
+                aria-label="Get previous flights">
                 <mat-icon>chevron_left</mat-icon>
               </button>
             </div>
-            <div class="flight__nav flight__nav--next">
+            <div class="flight__nav flight__nav--next nav__return--next">
               <button
                 mat-icon-button
                 class="small-button"
-                aria-label="Get next flights"
-                (click)="handleBackward()">
+                aria-label="Get next flights">
                 <mat-icon>chevron_right</mat-icon>
               </button>
             </div>
-            <app-booking-card
-              (chooseFlight)="onSwitchCurrentCard($event)"
-              [bookingVariant]="bookingVariant"
-              *ngFor="
-                let bookingVariant of returnFlights.variants;
-                let i = index
-              "
-              [isActive]="i === 2"></app-booking-card>
           </div>
           <app-booking-details
             [currentFlight]="returnFlights.chosenVariant"

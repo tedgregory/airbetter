@@ -74,5 +74,23 @@ export const bookingFeature = createFeature({
         error,
       };
     })
+    // , on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
+    //   return {
+    //     ...state,
+    //     flyToData: {
+    //       ...state.flyToData,
+    //       chosenVariant: variant,
+    //     },
+    //   };
+    // }),
+    // on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
+    //   return {
+    //     ...state,
+    //     flyBackData: {
+    //       ...state.flyBackData,
+    //       chosenVariant: variant,
+    //     },
+    //   };
+    // })
   ),
 });
