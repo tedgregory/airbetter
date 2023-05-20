@@ -77,6 +77,12 @@
   font-style: normal;
 }
 
+@mixin text-12-600 {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
 @mixin webkit-scrollbar(
   $width: 4px,
   $radius: 10px,

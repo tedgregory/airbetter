@@ -1,24 +1,18 @@
-<p>Booking summary component</p>
 <div class="booking-summary">
   <h3 class="booking-summary__title title title--medium title--iconic">
     <mat-icon>preview</mat-icon>
     <span>Summary</span>
   </h3>
+
   <div class="booking-summary__flights-block">
     <app-booking-summary-flight
       [flightItem]="flightItem"
       *ngFor="let flightItem of flightsList"></app-booking-summary-flight>
   </div>
+
   <div class="booking-summary__price-block">
     <app-booking-summary-price></app-booking-summary-price>
   </div>
-  <div class="booking-step-buttons">
-    <button mat-flat-button class="button button--mat-simple">Back</button>
-    <button mat-flat-button class="button button--mat-outlined">
-      Add to order cart
-    </button>
-    <button mat-flat-button color="primary" class="button button--mat-primary">
-      Continue
-    </button>
-  </div>
+
+  <button type="button" mat-button (click)="setCompleted()">Complete step three</button>
 </div>
