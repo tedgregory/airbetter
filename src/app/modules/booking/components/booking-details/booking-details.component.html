@@ -50,7 +50,10 @@
     *ngIf="!props.isConfirmed && currentFlight && currentFlight.price as price">
     <div
       class="flight-selection__seats seats"
-      [appRangeBackground]="currentFlight.seats.available">
+      [appRangeBackground]="[
+        currentFlight.seats.total,
+        currentFlight.seats.available
+      ]">
       {{ currentFlight.seats.available }} seats available
     </div>
     <div class="flight-selection__price-tag">Price</div>
