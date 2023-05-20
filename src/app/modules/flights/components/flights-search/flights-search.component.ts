@@ -33,7 +33,9 @@ import { NavigationPath } from 'src/app/core/navigation/models/navigation.interf
 export class FlightsSearchComponent implements OnInit {
   @HostBinding('class') class = 'flights-search';
 
-  savedSearchValues$ = this.store.select(searchFeature.selectSearchState);
+  selectedTripType$ = this.store.select(searchFeature.selectIsReturn);
+
+  selectedFrom$ = this.store.select(searchFeature.selectFlyFrom);
 
   fromControl = new FormControl('');
 
@@ -134,11 +136,6 @@ export class FlightsSearchComponent implements OnInit {
           },
         })
       );
-    });
-
-    this.savedSearchValues$.subscribe((state) => {
-      this.range.value.start ||= moment(state.dateLeave).toDate();
-      this.range.value.end ||= moment(state.dateReturn).toDate();
     });
 
     // const dateChange$ = combineLatest([

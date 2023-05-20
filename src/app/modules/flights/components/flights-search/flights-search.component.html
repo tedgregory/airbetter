@@ -9,12 +9,12 @@
           (change)="onTripTypeChange($event)">
           <mat-radio-button
             value="round-trip"
-            [checked]="(savedSearchValues$ | async)?.isReturn"
+            [checked]="selectedTripType$ | async"
             >Round Trip</mat-radio-button
           >
           <mat-radio-button
             value="one-way"
-            [checked]="(savedSearchValues$ | async)?.isReturn === false"
+            [checked]="(selectedTripType$ | async) === false"
             >One Way</mat-radio-button
           >
         </mat-radio-group>
