@@ -1,0 +1,250 @@
+.cart {
+  &.mat-mdc-card {
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+
+    .mat-mdc-card-content {
+      padding: 0;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    padding: 33px 31px 27px;
+  }
+
+  &__total,
+  &__payment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cart-total {
+    margin: 0 35px;
+    padding: 38px 0;
+    border-bottom: 1px solid $color-secondary-50;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      margin: 0 20px;
+      padding: 30px 10px;
+    }
+
+    &__prices {
+      @include media-breakpoint-down(md) {
+        margin-top: 40px;
+      }
+    }
+
+    &__price-block {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      gap: 20px;
+      @include font-h4;
+
+      &.line-through {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 110%;
+          left: -5%;
+          height: 4px;
+          background: $color-black;
+        }
+      }
+    }
+
+    &__price {
+      @include font-h2;
+      /* stylelint-disable */
+      background: linear-gradient(
+        90deg,
+        $color-primary 0%,
+        $color-indigo-light 100%
+      );
+      /* stylelint-enable */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    &__applied-codes {
+      margin: 0 0 7px;
+      @include font-h4;
+      font-size: 18px;
+    }
+
+    &__button {
+      &.button--mat-simple.mat-mdc-unelevated-button.mat-mdc-button-base {
+        background-color: $color-secondary-90;
+        padding: 4px 8px;
+
+        @include media-breakpoint-down(mm) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .cart-payment {
+    padding: 40px 35px;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      padding: 30px 20px;
+    }
+
+    &__pay {
+      @include text-16-400;
+      color: $color-grey-neutral-30;
+
+      @include media-breakpoint-down(md) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 40px;
+      }
+
+      @include media-breakpoint-down(mkm) {
+        font-size: 14px;
+      }
+
+      .button {
+        margin-left: 38px;
+
+        @include media-breakpoint-down(lg) {
+          margin-left: 30px;
+        }
+
+        &.mat-mdc-unelevated-button.mat-mdc-button-base {
+          height: auto;
+          padding: 20px 30px;
+        }
+      }
+    }
+  }
+
+  &__table {
+    /* stylelint-disable */
+    .p-datatable {
+      .p-datatable-table {
+        width: 1128px;
+
+        .p-datatable-thead {
+          background: $color-grey-light;
+
+          > tr {
+            background: $color-grey-light;
+
+            > th {
+              background: $color-grey-light;
+              color: $color-black;
+              border: none;
+              @include font-h4;
+              line-height: 20px;
+              padding: 14px;
+
+              .p-sortable-column-icon {
+                color: $color-black;
+              }
+            }
+          }
+        }
+
+        .p-datatable-tbody {
+          > tr {
+            color: $color-black;
+            @include font-h4;
+            font-weight: 500;
+            line-height: 32px;
+            letter-spacing: 0.5px;
+
+            > td {
+              padding: 20px 14px;
+              border: 1px solid $color-secondary-50;
+              border-width: 0 0 1px 0;
+            }
+          }
+        }
+      }
+
+      &.p-datatable-hoverable-rows
+        .p-datatable-tbody
+        > tr:not(.p-highlight):hover {
+        background: rgba($color-black, 0.01);
+      }
+    }
+    /* stylelint-enable */
+  }
+
+  .p-checkbox {
+    display: flex;
+  }
+
+  .table-content {
+    &__cell {
+      &--blue {
+        color: $color-blue-bright;
+        font-weight: 700;
+      }
+
+      &--green {
+        color: $color-green-yellow;
+      }
+    }
+  }
+
+  .promo-code {
+    &__input {
+      /* stylelint-disable */
+      .mdc-text-field--no-label:not(.mdc-text-field--outlined)
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        display: flex;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0;
+        min-height: 48px;
+        width: 340px;
+
+        @include media-breakpoint-down(lg) {
+          width: auto;
+        }
+
+        @include media-breakpoint-down(mkm) {
+          font-size: 14px;
+        }
+      }
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background: none;
+        color: $color-grey-neutral-30;
+      }
+
+      .button--mat-simple.mat-mdc-unelevated-button.mat-mdc-button-base {
+        background: none;
+        padding: 4px 8px;
+        --mat-mdc-button-persistent-ripple-color: rgba($color-black, 0);
+        --mat-mdc-button-ripple-color: rgba($color-black, 0.05);
+
+        &:hover {
+          background: rgba($color-black, 0.05);
+        }
+
+        @include media-breakpoint-down(mm) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    &__list {
+      margin: 7px 0 0;
+      font-weight: 700;
+      color: $color-grey-neutral-30;
+    }
+  }
+}
