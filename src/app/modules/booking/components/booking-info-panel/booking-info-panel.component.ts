@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { Store } from '@ngrx/store';
 import {
   Observable,
   Subject,
@@ -18,12 +19,15 @@ import {
 } from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
 import { LocationOption } from 'src/app/modules/flights/models/flights.interface';
 import { FlightsService } from 'src/app/modules/flights/services/flights.service';
+import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
+import { SearchActions } from 'src/app/redux/search/search.actions';
+import { searchFeature } from 'src/app/redux/search/search.reducer';
 
 @Component({
   selector: 'app-booking-info-panel',
   templateUrl: './booking-info-panel.component.html',
 })
-export class BookingInfoPanelComponent {
+export class BookingInfoPanelComponent implements OnInit {
   editMode = false;
 
   fromControl = new FormControl('');
@@ -37,6 +41,8 @@ export class BookingInfoPanelComponent {
   selectedFromOption: LocationOption | null = null;
 
   selectedToOption: LocationOption | null = null;
+
+  savedStoreValues$ = this.store.select(searchFeature.selectSearchState);
 
   // startDate = new Date();
   minDate: Date = new Date();
@@ -62,7 +68,7 @@ export class BookingInfoPanelComponent {
     [PassengerType.Infant]: 0,
   };
 
-  constructor(private flightsService: FlightsService) {}
+  constructor(private flightsService: FlightsService, private store: Store) {}
 
   toggleEditPanel() {
     this.editMode = !this.editMode;
@@ -109,6 +115,11 @@ export class BookingInfoPanelComponent {
   // location: LocationOption, event: MatOptionSelectionChange
   onFromSelection(location: LocationOption) {
     this.selectedFromOption = location;
+    this.store.dispatch(
+      SearchActions.setFlyFrom({
+        flyFrom: { iata: location.key, title: location.name },
+      })
+    );
   }
 
   onFromInput() {
@@ -118,6 +129,11 @@ export class BookingInfoPanelComponent {
   // location: LocationOption, event: MatOptionSelectionChange
   onToSelection(location: LocationOption) {
     this.selectedToOption = location;
+    this.store.dispatch(
+      SearchActions.setFlyTo({
+        flyTo: { iata: location.key, title: location.name },
+      })
+    );
   }
 
   onToInput() {
@@ -126,5 +142,16 @@ export class BookingInfoPanelComponent {
 
   onPassengerCountsChange(counts: CountsOptions) {
     this.passengerCounts = { ...counts };
+    this.store.dispatch(
+      PassengersActions.setPassengers({
+        adults: Array(counts[PassengerType.Adult]),
+        children: Array(counts[PassengerType.Child]),
+        infants: Array(counts[PassengerType.Infant]),
+      })
+    );
+  }
+
+  getPassengersQuantity(): number {
+    return Object.values(this.passengerCounts).reduce((r, i) => r + i, 0) || 0;
   }
 }

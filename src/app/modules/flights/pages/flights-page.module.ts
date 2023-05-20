@@ -6,6 +6,9 @@ import { GridModule } from 'src/app/ui/grid/grid.module';
 import { FlightsPageComponent } from './flights-page.component';
 import { FlightsPageRoutingModule } from './flights-page-routing.module';
 import { FlightsSearchModule } from '../components/flights-search/flights-search.module';
+import { StoreModule } from '@ngrx/store';
+import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
+import { searchFeature } from 'src/app/redux/search/search.reducer';
 
 @NgModule({
   imports: [
@@ -15,6 +18,8 @@ import { FlightsSearchModule } from '../components/flights-search/flights-search
     FlightsSearchModule,
     GridModule,
     ContainerModule,
+    StoreModule.forFeature(passengersFeature),
+    StoreModule.forFeature(searchFeature),
   ],
   declarations: [FlightsPageComponent],
 })

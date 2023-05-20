@@ -1,20 +1,28 @@
 <app-row mode="lg">
   <app-column [modes]="{ lg: 7 }">
     <mat-card>
-      <form class="flights-search-form">
-
+      <form class="flights-search-form" (ngSubmit)="onFormSubmit()">
         <mat-radio-group
           class="flights-search-form__trip-type-field"
           name="flight-type"
           required
-          (change)="onTripTypeChange($event)"
-        >
-          <mat-radio-button value="round-trip">Round Trip</mat-radio-button>
-          <mat-radio-button value="one-way">One Way</mat-radio-button>
+          (change)="onTripTypeChange($event)">
+          <mat-radio-button
+            value="round-trip"
+            [checked]="(savedSearchValues$ | async)?.isReturn"
+            >Round Trip</mat-radio-button
+          >
+          <mat-radio-button
+            value="one-way"
+            [checked]="(savedSearchValues$ | async)?.isReturn === false"
+            >One Way</mat-radio-button
+          >
         </mat-radio-group>
 
         <div class="flights-search-form__locations-fields">
-          <mat-form-field class="flights-search-form__from-field" appearance="fill">
+          <mat-form-field
+            class="flights-search-form__from-field"
+            appearance="fill">
             <mat-label>From</mat-label>
             <div class="flights-search-form__from-holder">
               <input
@@ -25,13 +33,11 @@
                 [formControl]="fromControl"
                 [matAutocomplete]="autoFrom"
                 aria-label="Your location"
-                (input)="onFromInput()"
-              />
+                (input)="onFromInput()" />
               <span
-                *ngIf="selectedFromOption"
-                class="flights-search-form__from-iata"
-              >
-                {{ selectedFromOption.key }}
+                *ngIf="selectedFromOption$ | async as selectedFrom"
+                class="flights-search-form__from-iata">
+                {{ selectedFrom.key }}
               </span>
             </div>
             <mat-autocomplete #autoFrom="matAutocomplete">
@@ -39,30 +45,39 @@
                 *ngFor="let location of filteredFromOptions$ | async"
                 [value]="location.city"
                 [disabled]="
-                  selectedToOption &&
-                  (selectedToOption.city === location.city) &&
-                  (selectedToOption.country === location.country)
+                  (selectedToOption$ | async) &&
+                  (selectedToOption$ | async)?.city === location.city &&
+                  (selectedToOption$ | async)?.country === location.country
                 "
-                (onSelectionChange)="onFromSelection(location)"
-              >
+                (onSelectionChange)="onFromSelection(location)">
                 <span class="flights-search-location">
-
-                  <span class="flights-search-location__row flights-search-location__row--city">
-                    <span class="flights-search-location__city">{{ location.city }} </span>
-                    <span class="flights-search-location__city-iata">({{ location.key }})</span>
+                  <span
+                    class="flights-search-location__row flights-search-location__row--city">
+                    <span class="flights-search-location__city"
+                      >{{ location.city }}
+                    </span>
+                    <span class="flights-search-location__city-iata"
+                      >({{ location.key }})</span
+                    >
                   </span>
 
-                  <span class="flights-search-location__row flights-search-location__row--airport">
-                    <span class="flights-search-location__airport">{{ location.name }}, </span>
-                    <span class="flights-search-location__country">{{ location.country }}</span>
+                  <span
+                    class="flights-search-location__row flights-search-location__row--airport">
+                    <span class="flights-search-location__airport"
+                      >{{ location.name }},
+                    </span>
+                    <span class="flights-search-location__country">{{
+                      location.country
+                    }}</span>
                   </span>
-
                 </span>
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
 
-          <mat-form-field class="flights-search-form__to-field" appearance="fill">
+          <mat-form-field
+            class="flights-search-form__to-field"
+            appearance="fill">
             <mat-label>Destination</mat-label>
             <div class="flights-search-form__to-holder">
               <input
@@ -73,13 +88,11 @@
                 [formControl]="toControl"
                 [matAutocomplete]="autoTo"
                 aria-label="Your destination"
-                (input)="onToInput()"
-              />
+                (input)="onToInput()" />
               <span
-                *ngIf="selectedToOption"
-                class="flights-search-form__to-iata"
-              >
-                {{ selectedToOption.key }}
+                *ngIf="selectedToOption$ | async as selectedTo"
+                class="flights-search-form__to-iata">
+                {{ selectedTo.key }}
               </span>
             </div>
             <mat-autocomplete #autoTo="matAutocomplete">
@@ -87,24 +100,31 @@
                 *ngFor="let location of filteredToOptions$ | async"
                 [value]="location.city"
                 [disabled]="
-                  selectedFromOption &&
-                  (selectedFromOption.city === location.city) &&
-                  (selectedFromOption.country === location.country)
+                  (selectedFromOption$ | async) &&
+                  (selectedFromOption$ | async)?.city === location.city &&
+                  (selectedFromOption$ | async)?.country === location.country
                 "
-                (onSelectionChange)="onToSelection(location)"
-              >
+                (onSelectionChange)="onToSelection(location)">
                 <span class="flights-search-location">
-
-                  <span class="flights-search-location__row flights-search-location__row--city">
-                    <span class="flights-search-location__city">{{ location.city }} </span>
-                    <span class="flights-search-location__city-iata">({{ location.key }})</span>
+                  <span
+                    class="flights-search-location__row flights-search-location__row--city">
+                    <span class="flights-search-location__city"
+                      >{{ location.city }}
+                    </span>
+                    <span class="flights-search-location__city-iata"
+                      >({{ location.key }})</span
+                    >
                   </span>
 
-                  <span class="flights-search-location__row flights-search-location__row--airport">
-                    <span class="flights-search-location__airport">{{ location.name }}, </span>
-                    <span class="flights-search-location__country">{{ location.country }}</span>
+                  <span
+                    class="flights-search-location__row flights-search-location__row--airport">
+                    <span class="flights-search-location__airport"
+                      >{{ location.name }},
+                    </span>
+                    <span class="flights-search-location__country">{{
+                      location.country
+                    }}</span>
                   </span>
-
                 </span>
               </mat-option>
             </mat-autocomplete>
@@ -114,41 +134,34 @@
             mat-flat-button
             class="flights-search-form__switch button button--mat-outlined"
             type="button"
-            (click)="onLocationSwitchClick()"
-          >
+            (click)="onLocationSwitchClick()">
             <mat-icon matSuffix svgIcon="appSwitch"></mat-icon>
           </button>
         </div>
 
         <div class="flights-search-form__cols">
-
           <mat-form-field
             class="flights-search-form__dates-field"
-            appearance="fill"
-          >
+            appearance="fill">
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input
               [formGroup]="range"
               [rangePicker]="picker"
-              [min]="minDate"
-              >
+              [min]="minDate">
               <input
                 matStartDate
                 formControlName="start"
                 placeholder="Start date"
-                (dateChange)="startDatePicker.next($event)"
-              />
+                (dateChange)="startDatePicker.next($event)" />
               <input
                 matEndDate
                 formControlName="end"
                 placeholder="End date"
-                (dateChange)="endDatePicker.next($event)"
-              />
+                (dateChange)="endDatePicker.next($event)" />
             </mat-date-range-input>
             <mat-datepicker-toggle
               matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
+              [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker>
               <mat-date-range-picker-actions>
                 <button mat-button matDateRangePickerCancel>Cancel</button>
@@ -158,18 +171,19 @@
 
             <mat-error
               *ngIf="range.controls.start.hasError('matStartDateInvalid')"
-            >Invalid start date</mat-error>
-            <mat-error
-              *ngIf="range.controls.end.hasError('matEndDateInvalid')"
-            >Invalid end date</mat-error>
+              >Invalid start date</mat-error
+            >
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+              >Invalid end date</mat-error
+            >
           </mat-form-field>
 
           <div class="flights-search-form__passengers-field">
             <app-select-passengers
-              (countsChange)="onPassengerCountsChange($event)"
-            ></app-select-passengers>
+              (countsChange)="
+                onPassengerCountsChange($event)
+              "></app-select-passengers>
           </div>
-
         </div>
 
         <div class="flights-search-form__actions">
@@ -177,12 +191,10 @@
             mat-flat-button
             color="primary"
             class="flights-search-form__submit-button button button--mat-primary"
-            type="submit"
-          >
+            type="submit">
             Search
           </button>
         </div>
-
       </form>
     </mat-card>
   </app-column>

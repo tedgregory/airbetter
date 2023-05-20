@@ -1,12 +1,16 @@
 import { DateFormats } from '../common/common.models';
 
 export interface SearchState {
-  flyFrom: string;
-  flyTo: string;
+  flyFrom: { iata: string; title: string };
+  flyTo: { iata: string; title: string };
   dateLeave: string | null;
   dateReturn: string | null;
-  //passengersCount: [number, number, number]; // adults/children/infants
+  isReturn: boolean;
   currency: string;
   dateFormat: DateFormats;
-  step: 1 | 2 | 3;
+  step: {
+    first: boolean;
+    second: boolean;
+    third: boolean;
+  };
 }

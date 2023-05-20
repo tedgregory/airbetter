@@ -1,12 +1,11 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
+  BehaviorSubject,
   Observable,
   Subject,
-  combineLatest,
   debounceTime,
   distinctUntilChanged,
-  map,
   of,
   startWith,
   switchMap,
@@ -19,6 +18,13 @@ import { FlightsService } from '../../services/flights.service';
 import { LocationOption } from '../../models/flights.interface';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { Store } from '@ngrx/store';
+import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
+import { SearchActions } from 'src/app/redux/search/search.actions';
+import { searchFeature } from 'src/app/redux/search/search.reducer';
+import moment from 'moment';
+import { Router } from '@angular/router';
+import { NavigationPath } from 'src/app/core/navigation/models/navigation.interface';
 
 @Component({
   selector: 'app-flights-search',
@@ -27,7 +33,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 export class FlightsSearchComponent implements OnInit {
   @HostBinding('class') class = 'flights-search';
 
-  selectedTripType: string | undefined;
+  savedSearchValues$ = this.store.select(searchFeature.selectSearchState);
 
   fromControl = new FormControl('');
 
@@ -37,9 +43,9 @@ export class FlightsSearchComponent implements OnInit {
 
   filteredToOptions$: Observable<LocationOption[]> = of<LocationOption[]>([]);
 
-  selectedFromOption: LocationOption | null = null;
+  selectedFromOption$ = new BehaviorSubject<LocationOption | null>(null);
 
-  selectedToOption: LocationOption | null = null;
+  selectedToOption$ = new BehaviorSubject<LocationOption | null>(null);
 
   // startDate = new Date();
   minDate: Date = new Date();
@@ -65,7 +71,11 @@ export class FlightsSearchComponent implements OnInit {
     [PassengerType.Infant]: 0,
   };
 
-  constructor(private flightsService: FlightsService) {}
+  constructor(
+    private flightsService: FlightsService,
+    private store: Store,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.filteredFromOptions$ = this.fromControl.valueChanges.pipe(
@@ -88,31 +98,76 @@ export class FlightsSearchComponent implements OnInit {
       })
     );
 
-    const dateChange$ = combineLatest([
-      this.startDatePicker,
-      this.endDatePicker,
-    ]).pipe(
-      map(([a$, b$]) => ({
-        start: a$,
-        end: b$,
-      }))
-    );
-
-    dateChange$.subscribe((data) => {
-      if (data.start.value && data.end.value) {
-        // console.log('User has picked both dates', data.start.value, data.end.value);
-      }
+    this.startDatePicker.subscribe((dateLeave) => {
+      this.store.dispatch(
+        SearchActions.setDateLeave({
+          dateLeave: moment(dateLeave.value).format(),
+        })
+      );
     });
+
+    this.endDatePicker.subscribe((dateReturn) => {
+      this.store.dispatch(
+        SearchActions.setDateReturn({
+          dateReturn: moment(dateReturn.value).format(),
+        })
+      );
+    });
+
+    this.selectedFromOption$.subscribe((from) => {
+      this.store.dispatch(
+        SearchActions.setFlyFrom({
+          flyFrom: {
+            iata: from?.key || '',
+            title: from?.name || '',
+          },
+        })
+      );
+    });
+
+    this.selectedToOption$.subscribe((to) => {
+      this.store.dispatch(
+        SearchActions.setFlyTo({
+          flyTo: {
+            iata: to?.key || '',
+            title: to?.name || '',
+          },
+        })
+      );
+    });
+
+    this.savedSearchValues$.subscribe((state) => {
+      this.range.value.start ||= moment(state.dateLeave).toDate();
+      this.range.value.end ||= moment(state.dateReturn).toDate();
+    });
+
+    // const dateChange$ = combineLatest([
+    //   this.startDatePicker,
+    //   this.endDatePicker,
+    // ]).pipe(
+    //   map(([a$, b$]) => ({
+    //     start: a$,
+    //     end: b$,
+    //   }))
+    // );
+
+    // dateChange$.subscribe((data) => {
+    //   if (data.start.value && data.end.value) {
+    //     // console.log('User has picked both dates', data.start.value, data.end.value);
+    //   }
+    // });
   }
 
   onTripTypeChange(event: MatRadioChange) {
-    this.selectedTripType = event.value;
+    this.store.dispatch(
+      SearchActions.setFlightType({ isReturn: event.value === 'round-trip' })
+    );
   }
 
   onLocationSwitchClick() {
-    [this.selectedFromOption, this.selectedToOption] = [
-      this.selectedToOption,
-      this.selectedFromOption,
+    [this.selectedFromOption$, this.selectedToOption$] = [
+      this.selectedToOption$,
+      this.selectedFromOption$,
     ];
 
     const [toValue, fromValue] = [this.fromControl.value, this.toControl.value];
@@ -122,23 +177,34 @@ export class FlightsSearchComponent implements OnInit {
 
   // location: LocationOption, event: MatOptionSelectionChange
   onFromSelection(location: LocationOption) {
-    this.selectedFromOption = location;
+    this.selectedFromOption$.next(location);
   }
 
   onFromInput() {
-    this.selectedFromOption = null;
+    this.selectedFromOption$.next(null);
   }
 
   // location: LocationOption, event: MatOptionSelectionChange
   onToSelection(location: LocationOption) {
-    this.selectedToOption = location;
+    this.selectedToOption$.next(location);
   }
 
   onToInput() {
-    this.selectedToOption = null;
+    this.selectedToOption$.next(null);
   }
 
   onPassengerCountsChange(counts: CountsOptions) {
     this.passengerCounts = { ...counts };
+    this.store.dispatch(
+      PassengersActions.setPassengers({
+        adults: Array(counts[PassengerType.Adult]),
+        children: Array(counts[PassengerType.Child]),
+        infants: Array(counts[PassengerType.Infant]),
+      })
+    );
+  }
+
+  onFormSubmit() {
+    this.router.navigate([`/${NavigationPath.Booking}`]);
   }
 }
