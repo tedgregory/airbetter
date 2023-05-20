@@ -24,6 +24,14 @@ const routes: Routes = [
           ),
       },
       {
+        path: NavigationPath.Cart,
+        loadChildren: () =>
+          import('src/app/modules/user/pages/cart-page/cart-page.module').then(
+            (m) => m.CartPageModule
+          ),
+      },
+
+      {
         path: '**',
         loadChildren: () =>
           import('src/app/core/pages/not-found/not-found-page.module').then(

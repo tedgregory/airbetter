@@ -22,7 +22,6 @@ import { FlightsService } from 'src/app/modules/flights/services/flights.service
 @Component({
   selector: 'app-booking-info-panel',
   templateUrl: './booking-info-panel.component.html',
-  styles: [],
 })
 export class BookingInfoPanelComponent {
   editMode = false;

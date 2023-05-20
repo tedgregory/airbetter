@@ -1,4 +1,5 @@
 @import 'src/styles/libs/normalize';
+@import 'primeicons/primeicons.css';
 @import 'src/styles/libs/hamburgers/hamburgers';
 @import 'swiper/scss';
 @import 'swiper/scss/navigation';
@@ -20,6 +21,7 @@
 @import 'src/styles/common/tabs';
 @import 'src/styles/common/checkbox';
 @import 'src/styles/common/datepicker';
+@import 'src/styles/common/primeng';
 
 @import 'src/styles/layout/layout';
 @import 'src/styles/layout/header';
@@ -54,3 +56,6 @@
 @import 'src/styles/components/booking/booking-summary-flight';
 @import 'src/styles/components/booking/booking-summary-price';
 @import 'src/styles/components/booking/booking-info-panel';
+
+@import 'src/styles/components/cart/cart-page';
+@import 'src/styles/components/cart/cart';

@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-booking-summary-price',
   templateUrl: './booking-summary-price.component.html',
-  styles: [],
 })
 export class BookingSummaryPriceComponent {
   currencyType = 'EUR';
@@ -32,7 +31,7 @@ export class BookingSummaryPriceComponent {
     },
   ];
 
-  countGeneral(): number {
+  countTotalPrice(): number {
     return this.prices.reduce((total, price) => total + price.totalPrice, 0);
   }
 }
