@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
@@ -11,6 +11,8 @@ import { tap } from 'rxjs';
   templateUrl: './booking-list.component.html',
 })
 export class BookingListComponent implements OnInit {
+  @Output() completed = new EventEmitter<boolean>();
+
   config1: SwiperOptions = {
     navigation: {
       prevEl: '.nav__forward--prev',
@@ -119,5 +121,9 @@ export class BookingListComponent implements OnInit {
         type === 'flyTo' ? 'toggleFlytoConfirmed' : 'toggleFlybackConfirmed'
       ]()
     );
+  }
+
+  setCompleted() {
+    this.completed.emit(true);
   }
 }

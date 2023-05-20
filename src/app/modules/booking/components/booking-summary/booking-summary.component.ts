@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-booking-summary',
   templateUrl: './booking-summary.component.html',
 })
 export class BookingSummaryComponent {
+  @Output() completed = new EventEmitter<boolean>();
+
   flightsList = [
     {
       name: 'Dublin — Warsaw Modlin',
@@ -17,4 +19,8 @@ export class BookingSummaryComponent {
       time: '7:40 — 11:00',
     },
   ];
+
+  setCompleted() {
+    this.completed.emit(true);
+  }
 }

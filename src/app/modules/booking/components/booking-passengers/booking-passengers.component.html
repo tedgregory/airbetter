@@ -1,4 +1,3 @@
-<p>Booking passengers component</p>
 <div class="booking-passengers">
   <div class="booking-passengers__block booking-content-block">
     <h3 class="booking-content-block__title title title--medium title--iconic">
@@ -27,10 +26,5 @@
     <app-booking-passengers-contacts></app-booking-passengers-contacts>
   </div>
 
-  <div class="booking-step-buttons">
-    <button mat-flat-button class="button button--mat-simple">Back</button>
-    <button mat-flat-button color="primary" class="button button--mat-primary">
-      Continue
-    </button>
-  </div>
+  <button type="button" mat-button (click)="setCompleted()">Complete step two</button>
 </div>
