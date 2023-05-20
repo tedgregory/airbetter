@@ -25,48 +25,7 @@ $container-max-widths: (
 $height-breakpoint-bg: 699px;
 
 $dark-primary-text: rgba(#000000, 0.87);
-// $dark-secondary-text: rgba(#000000, 0.54);
-// $dark-disabled-text: rgba(#000000, 0.38);
-// $dark-dividers: rgba(#000000, 0.12);
-// $dark-focused: rgba(#000000, 0.12);
 $light-primary-text: #ffffff;
-// $light-secondary-text: rgba(#ffffff, 0.7);
-// $light-disabled-text: rgba(#ffffff, 0.5);
-// $light-dividers: rgba(#ffffff, 0.12);
-// $light-focused: rgba(#ffffff, 0.12);
-
-// $indigo-palette: (
-//   50: #e8eaf6,
-//   100: #c5cae9,
-//   200: #9fa8da,
-//   300: #7986cb,
-//   400: #5c6bc0,
-//   500: #3f51b5, // primary
-//   600: #3949ab,
-//   700: #303f9f,
-//   800: #283593,
-//   900: #1a237e,
-//   A100: #8c9eff,
-//   A200: #536dfe,
-//   A400: #3d5afe,
-//   A700: #304ffe,
-//   contrast: (
-//     50: $dark-primary-text,
-//     100: $dark-primary-text,
-//     200: $dark-primary-text,
-//     300: $light-primary-text,
-//     400: $light-primary-text,
-//     500: $light-primary-text,
-//     600: $light-primary-text,
-//     700: $light-primary-text,
-//     800: $light-primary-text,
-//     900: $light-primary-text,
-//     A100: $dark-primary-text,
-//     A200: $light-primary-text,
-//     A400: $light-primary-text,
-//     A700: $light-primary-text,
-//   )
-// );
 
 $airways-indigo-palette: (
   50: #e2e7f0,
@@ -154,17 +113,17 @@ $color-grey-blue: #98a2ab;
 $color-grey-40: #d0d9df;
 $color-grey-60: #e9edf1;
 $color-cobalt: #073590;
-$color-blue-bright: #0090bd;
+$color-teal: #0090bd;
 $color-yellow: #f1c933;
 $color-green: #2ba82b;
-$color-green-yellow: #7F8906;
+$color-green-yellow: #7f8906;
 
 $color-indigo: mat.get-color-from-palette($airways-indigo-palette, 500);
 $color-indigo-dark: #10264c;
 $color-indigo-night: #10387f;
-$color-indigo-light: #005ABC;
+$color-indigo-light: #005abc;
 
-$color-secondary-inactive: $color-blue-bright;
+$color-secondary-inactive: $color-teal;
 $color-active-base: $color-yellow;
 
 $color-bg: $color-grey-light;

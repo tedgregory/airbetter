@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 // import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { BookingListComponent } from './booking-list.component';
 import { BookingCardModule } from '../booking-card/booking-card.module';
 import { BookingDetailsModule } from '../booking-details/booking-details.module';
@@ -20,7 +19,6 @@ import { SwiperModule } from 'swiper/angular';
   imports: [
     CommonModule,
     SwiperModule,
-    RouterModule,
     BookingCardModule,
     BookingDetailsModule,
     MatButtonModule,
