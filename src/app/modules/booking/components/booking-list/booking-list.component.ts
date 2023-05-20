@@ -19,7 +19,7 @@ export class BookingListComponent implements OnInit {
       nextEl: '.nav__forward--next',
     },
     uniqueNavElements: true,
-    slidesPerView: 5,
+    slidesPerView: 1,
     initialSlide: 2,
     centeredSlides: true,
     loop: false,
