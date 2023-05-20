@@ -99,8 +99,6 @@ export class BookingListComponent implements OnInit {
     if (!variant) {
       return;
     }
-    console.log('switch ', type, 'to ', variant);
-
     this.setActiveCard(type, variant);
   }
 

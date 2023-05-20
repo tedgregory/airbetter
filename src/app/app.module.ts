@@ -19,9 +19,6 @@ import { EffectsModule } from '@ngrx/effects';
     AppLocaleModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    // !environment.production
-    //   ? StoreDevtoolsModule.instrument({ logOnly: environment.production })
-    //   : [],
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     EffectsModule.forRoot(),

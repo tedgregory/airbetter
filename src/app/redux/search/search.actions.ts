@@ -22,5 +22,8 @@ export const SearchActions = createActionGroup({
     'Set Date Format': props<{
       dateFormat: SearchState['dateFormat'];
     }>(),
+    'Set Flight Type': props<{
+      isReturn: SearchState['isReturn'];
+    }>(),
   },
 });

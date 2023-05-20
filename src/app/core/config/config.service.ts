@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { Config } from './config.interface';
 
 export const CONFIG_DEFAULT: Config = {
-  ApiUrl: { base: 'https://api.air-ways.online', search: '/search/flight' },
+  ApiUrl: {
+    base: 'https://api.air-ways.online/search',
+    flight: '/flight',
+    airport: '/airport',
+  },
   ApiKey: '1fALT1a48faOP1_mJNETCkpbclAtiJoe',
   ApiDateFormat: 'DD/MM/YYYY',
 };
