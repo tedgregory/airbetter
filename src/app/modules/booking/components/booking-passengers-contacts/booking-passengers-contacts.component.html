@@ -4,31 +4,55 @@
       <div class="booking-contacts-card__phone-data">
         <mat-form-field
           class="booking-contacts-card__country-field"
-          appearance="fill">
-          <mat-label>Country code*</mat-label>
-          <mat-select name="country-code" [(ngModel)]="selectedValue">
+          appearance="fill"
+        >
+          <mat-label>Country code</mat-label>
+          <div class="booking-contacts-card__country-holder">
+            <input
+              type="text"
+              placeholder="Country code"
+              matInput
+              [formControl]="countryControl"
+              [matAutocomplete]="autoCountry"
+              aria-label="Your country code"
+              (input)="onCountryInput()"
+            >
+          </div>
+          <mat-autocomplete #autoCountry="matAutocomplete">
             <mat-option
-              *ngFor="let countryCode of countryCodes"
-              [value]="countryCode">
-              {{ countryCode }}
+              *ngFor="let country of filteredCountries$ | async"
+              [value]="country.name + ' (' + country.dialCode + ')'"
+              (onSelectionChange)="onCountrySelection(country)"
+            >
+              {{ country.name }}&nbsp;({{ country.dialCode }})
             </mat-option>
-          </mat-select>
+          </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field
-          *ngIf="selectedValue.length"
+          *ngIf="selectedCountry"
           floatLabel="always"
-          class="booking-contacts-card__phone-field">
-          <mat-label>Mobile phone number* </mat-label>
-          <input type="tel" matInput placeholder="e.g. 1111111111" />
+          class="booking-contacts-card__phone-field"
+        >
+          <mat-label>Mobile phone number*</mat-label>
+          <input
+            type="tel"
+            matInput
+            placeholder="e.g. 1111111111"
+          >
         </mat-form-field>
       </div>
 
       <mat-form-field
         floatLabel="always"
-        class="booking-contacts-card__email-field">
-        <mat-label>Email* </mat-label>
-        <input type="email" matInput placeholder="e.g. example@email.com" />
+        class="booking-contacts-card__email-field"
+      >
+        <mat-label>Email*</mat-label>
+        <input
+          type="email"
+          matInput
+          placeholder="e.g. example@email.com"
+        >
       </mat-form-field>
     </form>
   </mat-card-content>
