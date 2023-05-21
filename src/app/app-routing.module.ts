@@ -30,6 +30,13 @@ const routes: Routes = [
             (m) => m.CartPageModule
           ),
       },
+      {
+        path: NavigationPath.UserAccount,
+        loadChildren: () =>
+          import('src/app/modules/user/pages/user-page/user-page.module').then(
+            (m) => m.UserPageModule
+          ),
+      },
 
       {
         path: '**',
