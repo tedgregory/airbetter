@@ -1,0 +1,72 @@
+.orders {
+  &.mat-mdc-card {
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+
+    .mat-mdc-card-content {
+      padding: 0;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    padding: 33px 31px 27px;
+  }
+
+  &__link-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 35px;
+    padding: 38px 0;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      margin: 0 20px;
+      padding: 30px 10px;
+    }
+  }
+
+  &__link {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      background-color: $color-secondary-90;
+      padding: 4px 8px;
+
+      @include media-breakpoint-down(mm) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__table {
+    /* stylelint-disable */
+    @import '../../common/table.scss';
+    /* stylelint-enable */
+  }
+
+  .table-content {
+    &__cell {
+      &--blue {
+        color: $color-blue-bright;
+        font-weight: 700;
+      }
+
+      &--green {
+        color: $color-green-yellow;
+      }
+
+      .mat-mdc-unelevated-button.mat-mdc-button-base {
+        background-color: $color-secondary-90;
+        font-size: 14px;
+        line-height: 16px;
+        padding: 4px 8px;
+        height: auto;
+      }
+
+      .mdc-button {
+        min-width: 0;
+        width: 75px;
+      }
+    }
+  }
+}

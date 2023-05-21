@@ -11,7 +11,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 
 import { TableModule } from 'primeng/table';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
@@ -27,7 +26,6 @@ import { MatMenuModule } from '@angular/material/menu';
     MatInputModule,
     FormsModule,
     TableModule,
-    ConfirmDialogModule,
   ],
   exports: [CartComponent],
 })
