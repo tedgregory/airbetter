@@ -16,6 +16,11 @@ const defaultState: BookingState = {
     confirmed: false,
     variants: null,
   },
+  step: {
+    flights: true,
+    passengers: false,
+    review: false,
+  },
 };
 
 export const bookingFeature = createFeature({

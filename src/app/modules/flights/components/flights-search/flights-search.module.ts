@@ -15,10 +15,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { SelectPassengersModule } from '../select-passengers/select-passengers.module';
 import { FlightsServiceModule } from '../../services/flights-service.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     GridModule,
     ReactiveFormsModule,
     FlightsServiceModule,

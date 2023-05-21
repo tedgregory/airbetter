@@ -67,16 +67,16 @@ export class BookingListComponent implements OnInit {
       tap((data) => {
         this.config1.initialSlide =
           data.variants && data.chosenVariant
-            ? data.variants?.indexOf(data.chosenVariant)
-            : undefined;
+            ? data.variants.indexOf(data.chosenVariant)
+            : 2;
       })
     );
     this.flyBackData$.pipe(
       tap((data) => {
         this.config2.initialSlide =
           data.variants && data.chosenVariant
-            ? data.variants?.indexOf(data.chosenVariant)
-            : undefined;
+            ? data.variants.indexOf(data.chosenVariant)
+            : 2;
       })
     );
   }

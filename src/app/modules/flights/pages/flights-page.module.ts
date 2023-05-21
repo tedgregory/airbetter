@@ -9,6 +9,8 @@ import { FlightsSearchModule } from '../components/flights-search/flights-search
 import { StoreModule } from '@ngrx/store';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { SearchEffects } from 'src/app/redux/search/search.effects';
 
 @NgModule({
   imports: [
@@ -20,6 +22,7 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
     ContainerModule,
     StoreModule.forFeature(passengersFeature),
     StoreModule.forFeature(searchFeature),
+    EffectsModule.forFeature([SearchEffects]),
   ],
   declarations: [FlightsPageComponent],
 })

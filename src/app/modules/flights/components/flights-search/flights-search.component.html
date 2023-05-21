@@ -1,20 +1,17 @@
 <app-row mode="lg">
   <app-column [modes]="{ lg: 7 }">
     <mat-card>
-      <form class="flights-search-form" (ngSubmit)="onFormSubmit()">
+      <form class="flights-search-form" [formGroup]="flightsSearchForm">
         <mat-radio-group
           class="flights-search-form__trip-type-field"
           name="flight-type"
+          formControlName="isReturnControl"
           required
           (change)="onTripTypeChange($event)">
-          <mat-radio-button
-            value="round-trip"
-            [checked]="selectedTripType$ | async"
+          <mat-radio-button value="round-trip" [checked]="selectedIsReturn"
             >Round Trip</mat-radio-button
           >
-          <mat-radio-button
-            value="one-way"
-            [checked]="(selectedTripType$ | async) === false"
+          <mat-radio-button value="one-way" [checked]="!selectedIsReturn"
             >One Way</mat-radio-button
           >
         </mat-radio-group>
@@ -30,14 +27,14 @@
                 placeholder="Choose your location"
                 matInput
                 required
-                [formControl]="fromControl"
+                formControlName="fromControl"
                 [matAutocomplete]="autoFrom"
                 aria-label="Your location"
                 (input)="onFromInput()" />
               <span
-                *ngIf="selectedFromOption$ | async as selectedFrom"
+                *ngIf="selectedFromOption"
                 class="flights-search-form__from-iata">
-                {{ selectedFrom.key }}
+                {{ selectedFromOption.key }}
               </span>
             </div>
             <mat-autocomplete #autoFrom="matAutocomplete">
@@ -45,9 +42,9 @@
                 *ngFor="let location of filteredFromOptions$ | async"
                 [value]="location.city"
                 [disabled]="
-                  (selectedToOption$ | async) &&
-                  (selectedToOption$ | async)?.city === location.city &&
-                  (selectedToOption$ | async)?.country === location.country
+                  selectedToOption &&
+                  selectedToOption.city === location.city &&
+                  selectedToOption.country === location.country
                 "
                 (onSelectionChange)="onFromSelection(location)">
                 <span class="flights-search-location">
@@ -85,14 +82,14 @@
                 placeholder="Choose your destination"
                 matInput
                 required
-                [formControl]="toControl"
+                formControlName="toControl"
                 [matAutocomplete]="autoTo"
                 aria-label="Your destination"
                 (input)="onToInput()" />
               <span
-                *ngIf="selectedToOption$ | async as selectedTo"
+                *ngIf="selectedToOption"
                 class="flights-search-form__to-iata">
-                {{ selectedTo.key }}
+                {{ selectedToOption.key }}
               </span>
             </div>
             <mat-autocomplete #autoTo="matAutocomplete">
@@ -100,9 +97,9 @@
                 *ngFor="let location of filteredToOptions$ | async"
                 [value]="location.city"
                 [disabled]="
-                  (selectedFromOption$ | async) &&
-                  (selectedFromOption$ | async)?.city === location.city &&
-                  (selectedFromOption$ | async)?.country === location.country
+                  selectedFromOption &&
+                  selectedFromOption.city === location.city &&
+                  selectedFromOption.country === location.country
                 "
                 (onSelectionChange)="onToSelection(location)">
                 <span class="flights-search-location">
@@ -145,7 +142,7 @@
             appearance="fill">
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input
-              [formGroup]="range"
+              formGroupName="range"
               [rangePicker]="picker"
               [min]="minDate">
               <input
@@ -170,10 +167,21 @@
             </mat-date-range-picker>
 
             <mat-error
-              *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+              *ngIf="
+                flightsSearchForm
+                  .get('range')
+                  ?.get('start')
+                  ?.hasError('matStartDateInvalid')
+              "
               >Invalid start date</mat-error
             >
-            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+            <mat-error
+              *ngIf="
+                flightsSearchForm
+                  .get('range')
+                  ?.get('end')
+                  ?.hasError('matEndDateInvalid')
+              "
               >Invalid end date</mat-error
             >
           </mat-form-field>
@@ -191,7 +199,9 @@
             mat-flat-button
             color="primary"
             class="flights-search-form__submit-button button button--mat-primary"
-            type="submit">
+            type="button"
+            [disabled]="flightsSearchForm.invalid"
+            (click)="onFormSubmit()">
             Search
           </button>
         </div>
