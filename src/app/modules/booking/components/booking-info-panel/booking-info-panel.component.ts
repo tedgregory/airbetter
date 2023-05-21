@@ -12,6 +12,8 @@ import {
   of,
   startWith,
   switchMap,
+  take,
+  tap,
 } from 'rxjs';
 import {
   CountsOptions,
@@ -30,9 +32,14 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
 export class BookingInfoPanelComponent implements OnInit {
   editMode = false;
 
-  fromControl = new FormControl('');
-
-  toControl = new FormControl('');
+  flightEditForm = new FormGroup({
+    fromControl: new FormControl(''),
+    toControl: new FormControl(''),
+    range: new FormGroup({
+      start: new FormControl<Date | null>(null),
+      end: new FormControl<Date | null>(null),
+    }),
+  });
 
   filteredFromOptions$: Observable<LocationOption[]> = of<LocationOption[]>([]);
 
@@ -53,13 +60,7 @@ export class BookingInfoPanelComponent implements OnInit {
   // this.minDate = new Date(currentYear - 20, 0, 1);
   // this.maxDate = new Date(currentYear + 1, 11, 31);
 
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
-
   startDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
-
   endDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
 
   passengerCounts: CountsOptions = {
@@ -75,25 +76,43 @@ export class BookingInfoPanelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredFromOptions$ = this.fromControl.valueChanges.pipe(
-      startWith(''),
-      debounceTime(300),
-      distinctUntilChanged(),
-      // tap((searchTerm) => console.log(searchTerm)),
-      switchMap((searchTerm) => {
-        return this.flightsService.getLocations(searchTerm);
+    this.savedStoreValues$.pipe(
+      take(1),
+      tap((search) => {
+        this.flightEditForm.setValue({
+          fromControl: search.flyFrom.title,
+          toControl: search.flyTo.title,
+          range: {
+            start: search.dateLeave ? new Date(search.dateLeave) : null,
+            end: search.dateReturn ? new Date(search.dateReturn) : null,
+          },
+        });
       })
     );
 
-    this.filteredToOptions$ = this.toControl.valueChanges.pipe(
-      startWith(''),
-      debounceTime(300),
-      distinctUntilChanged(),
-      // tap((searchTerm) => console.log(searchTerm)),
-      switchMap((searchTerm) => {
-        return this.flightsService.getLocations(searchTerm);
-      })
-    );
+    const from = this.flightEditForm.get('fromControl');
+    this.filteredFromOptions$ =
+      from?.valueChanges.pipe(
+        startWith(''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        // tap((searchTerm) => console.log(searchTerm)),
+        switchMap((value) => {
+          return this.flightsService.getLocations(value);
+        })
+      ) || of<LocationOption[]>([]);
+
+    const to = this.flightEditForm.get('fromControl');
+    this.filteredFromOptions$ =
+      to?.valueChanges.pipe(
+        startWith(''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        // tap((searchTerm) => console.log(searchTerm)),
+        switchMap((value) => {
+          return this.flightsService.getLocations(value);
+        })
+      ) || of<LocationOption[]>([]);
 
     const dateChange$ = combineLatest([
       this.startDatePicker,
