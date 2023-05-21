@@ -7,13 +7,12 @@ import { CartComponent } from './cart.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
-
 import { TableModule } from 'primeng/table';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [CartComponent],
@@ -23,11 +22,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatSortModule,
     MatInputModule,
     FormsModule,
     TableModule,
-    ConfirmDialogModule,
+    RouterModule,
   ],
   exports: [CartComponent],
 })
