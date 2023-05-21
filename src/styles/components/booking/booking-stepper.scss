@@ -1,0 +1,51 @@
+.booking-stepper {
+  .mat-horizontal-content-container {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .mat-horizontal-stepper-header-container {
+    margin-bottom: 24px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .mat-horizontal-stepper-header {
+    height: 44px;
+    align-items: center;
+    padding: 0 16px;
+    overflow: hidden;
+  }
+
+  .mat-step-header .mat-step-icon-selected,
+  .mat-step-header .mat-step-icon-state-done,
+  .mat-step-header .mat-step-icon-state-edit {
+    background-color: $color-teal;
+    color: $color-white;
+  }
+
+  .mat-step-label {
+    @include text-14-500;
+  }
+
+  .mat-step-header .mat-step-label,
+  .mat-step-header .mat-step-optional {
+    color: $color-grey-neutral-30;
+    // color: rgba($color-black, 0.54);
+  }
+
+  .mat-step-header .mat-step-label.mat-step-label-active {
+    color: rgba($color-black, 0.7);
+    // color: rgba($color-black, 0.87);
+  }
+
+  .mat-step-header .mat-step-icon {
+    @include text-12-600;
+    // width: 16px;
+    // height: 16px;
+  }
+
+  &__actions {
+    margin-top: 40px;
+  }
+}

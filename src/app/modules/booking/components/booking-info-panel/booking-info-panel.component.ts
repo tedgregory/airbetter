@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {
@@ -23,7 +23,7 @@ import { FlightsService } from 'src/app/modules/flights/services/flights.service
   selector: 'app-booking-info-panel',
   templateUrl: './booking-info-panel.component.html',
 })
-export class BookingInfoPanelComponent {
+export class BookingInfoPanelComponent implements OnInit {
   editMode = false;
 
   fromControl = new FormControl('');
