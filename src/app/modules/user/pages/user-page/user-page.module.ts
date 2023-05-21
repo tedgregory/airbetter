@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { UserPageComponent } from './user-page.component';
 import { UserPageRoutingModule } from './user-page-routing.module';
-import { UserModule } from '../../components/user/user.module';
+import { OrdersModule } from '../../components/orders/orders.module';
 
 @NgModule({
   declarations: [UserPageComponent],
-  imports: [CommonModule, UserPageRoutingModule, UserModule],
+  imports: [CommonModule, UserPageRoutingModule, OrdersModule],
 })
 export class UserPageModule {}

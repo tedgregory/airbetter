@@ -3,9 +3,9 @@ import { IFlight } from '../cart/cart.component';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
+  templateUrl: './orders.component.html',
 })
-export class UserComponent {
+export class OrdersComponent {
   currencyType = 'EUR';
 
   flight!: IFlight;
