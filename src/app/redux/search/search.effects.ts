@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { catchError, map, of } from 'rxjs';
 import { SearchActions } from './search.actions';
 import { PassengersActions } from '../passengers/passengers.actions';
-import { PassengerType } from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
+import { PassengerType } from '../common/common.models';
 
 @Injectable() // how else to scope it?
 export class SearchEffects {

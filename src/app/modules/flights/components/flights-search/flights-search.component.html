@@ -212,7 +212,7 @@
           </mat-form-field>
           <div class="flights-search-form__passengers-field">
             <app-select-passengers (countsChange)="
-                onPassengerCountsChange($event)
+              onPassengerCountsChange($event)
               "></app-select-passengers>
           </div>
         </div>
@@ -222,12 +222,13 @@
             color="primary"
             class="flights-search-form__submit-button button button--mat-primary"
             type="button"
-            [disabled]="flightsSearchForm.invalid"
+            [disabled]="flightsSearchForm.invalid || (passengersError$ | async) === true"
             (click)="onFormSubmit()"
           >
             Search
           </button>
         </div>
+        <mat-error *ngIf="passengersError$ | async">Adult passenger required</mat-error>
       </form>
     </mat-card>
   </app-column>

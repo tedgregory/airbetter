@@ -16,6 +16,10 @@ export const SearchActions = createActionGroup({
     'Set Date Return': props<{
       dateReturn: SearchState['dateReturn'];
     }>(),
+    'Set Dates Range': props<{
+      dateLeave: SearchState['dateLeave'];
+      dateReturn: SearchState['dateReturn'];
+    }>(),
     'Set Currency': props<{
       currency: SearchState['currency'];
     }>(),

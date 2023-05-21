@@ -62,7 +62,7 @@
             placeholder="Choose your location"
             matInput
             required
-            formControlName="fromControl"
+            [formControl]="fromControl"
             [matAutocomplete]="autoFrom"
             aria-label="Your location"
             (input)="onFromInput()"
@@ -93,11 +93,7 @@
 
               <span class="flights-search-location__row flights-search-location__row--airport">
                 <span class="flights-search-location__airport">{{ location.name }},</span>
-                <span class="flights-search-location__country">
-                  {{
-                  location.country
-                }}
-                </span>
+                <span class="flights-search-location__country">{{ location.country }}</span>
               </span>
             </span>
           </mat-option>
@@ -115,7 +111,7 @@
             placeholder="Choose your destination"
             matInput
             required
-            formControlName="toControl"
+            [formControl]="toControl"
             [matAutocomplete]="autoTo"
             aria-label="Your destination"
             (input)="onToInput()"
@@ -146,11 +142,7 @@
 
               <span class="flights-search-location__row flights-search-location__row--airport">
                 <span class="flights-search-location__airport">{{ location.name }},</span>
-                <span class="flights-search-location__country">
-                  {{
-                  location.country
-                }}
-                </span>
+                <span class="flights-search-location__country">{{ location.country }}</span>
               </span>
             </span>
           </mat-option>
@@ -163,7 +155,7 @@
       >
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input
-          formGroupName="range"
+          [formGroup]="range"
           [rangePicker]="picker"
           [min]="minDate"
         >
@@ -201,14 +193,12 @@
           </mat-date-range-picker-actions>
         </mat-date-range-picker>
 
-        <mat-error *ngIf="this.flightEditForm.get('range')?.get('start')?.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-        <mat-error *ngIf="this.flightEditForm.get('range')?.get('end')?.hasError('matStartDateInvalid')">Invalid end date</mat-error>
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
       </mat-form-field>
 
       <div class="booking-info-panel__passengers-field">
-        <app-select-passengers (countsChange)="
-            onPassengerCountsChange($event)
-          "></app-select-passengers>
+        <app-select-passengers (countsChange)="onPassengerCountsChange($event)"></app-select-passengers>
       </div>
     </div>
   </app-container>

@@ -7,8 +7,8 @@ import moment from 'moment';
 const defaultState: SearchState = {
   flyFrom: { iata: 'DUS', title: 'Dusseldorf' },
   flyTo: { iata: 'PRG', title: 'Warsaw Modlin' },
-  dateLeave: '25/05/2023', // null
-  dateReturn: '26/06/2023', // null
+  dateLeave: '25/05/2023',
+  dateReturn: '26/06/2023',
   isReturn: false,
   currency: 'EUR',
   dateFormat: DateFormats.DMY,
@@ -25,6 +25,12 @@ export const searchFeature = createFeature({
     on(SearchActions.setDateReturn, (state, { dateReturn }): SearchState => {
       return { ...state, dateReturn };
     }),
+    on(
+      SearchActions.setDatesRange,
+      (state, { dateLeave, dateReturn }): SearchState => {
+        return { ...state, dateReturn, dateLeave };
+      }
+    ),
     on(SearchActions.setFlyFrom, (state, { flyFrom }): SearchState => {
       return { ...state, flyFrom };
     }),

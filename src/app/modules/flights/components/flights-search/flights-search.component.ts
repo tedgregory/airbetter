@@ -1,6 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
+  BehaviorSubject,
   Observable,
   Subject,
   debounceTime,
@@ -9,10 +10,7 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
-import {
-  CountsOptions,
-  PassengerType,
-} from '../select-passengers/select-passengers.component';
+import { CountsOptions } from '../select-passengers/select-passengers.component';
 import { FlightsService } from '../../services/flights.service';
 import { LocationOption } from '../../models/flights.interface';
 import { MatRadioChange } from '@angular/material/radio';
@@ -23,6 +21,7 @@ import { NavigationPath } from 'src/app/core/navigation/models/navigation.interf
 import { createDateValidator } from '../../validators/date.validator';
 import { ISearchData } from 'src/app/redux/search/search.state';
 import { SearchActions } from 'src/app/redux/search/search.actions';
+import { PassengerType } from 'src/app/redux/common/common.models';
 
 @Component({
   selector: 'app-flights-search',
@@ -75,6 +74,7 @@ export class FlightsSearchComponent implements OnInit {
     [PassengerType.Child]: 0,
     [PassengerType.Infant]: 0,
   };
+  passengersError$ = new BehaviorSubject(false);
 
   constructor(
     private flightsService: FlightsService,
@@ -124,7 +124,6 @@ export class FlightsSearchComponent implements OnInit {
 
   onTripTypeChange(event: MatRadioChange) {
     this.selectedIsReturn = event.value === 'round-trip';
-    console.log(this.flightsSearchForm.get('range')?.get('end')?.errors);
   }
 
   onLocationSwitchClick() {
@@ -161,10 +160,20 @@ export class FlightsSearchComponent implements OnInit {
 
   onPassengerCountsChange(counts: CountsOptions) {
     this.passengerCounts = { ...counts };
+
+    this.passengersError$.next(
+      this.getPassengersQuantity() > 0 &&
+        this.passengerCounts[PassengerType.Adult] === 0
+    );
+  }
+
+  getPassengersQuantity(): number {
+    return Object.values(this.passengerCounts).reduce((r, i) => r + i, 0) || 0;
   }
 
   onFormSubmit() {
     const { value: fromvalue } = this.flightsSearchForm;
+
     const searchData: ISearchData = {
       dateLeave: fromvalue.range?.start?.toISOString() || null,
       dateReturn: fromvalue.range?.end?.toISOString() || null,

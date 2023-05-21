@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-export enum PassengerType {
+enum PassengerType {
   Adult = 'Adult',
   Child = 'Child',
   Infant = 'Infant',

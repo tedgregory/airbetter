@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Store } from '@ngrx/store';
+import moment from 'moment';
 import {
   Observable,
   Subject,
@@ -15,15 +16,13 @@ import {
   take,
   tap,
 } from 'rxjs';
-import {
-  CountsOptions,
-  PassengerType,
-} from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
+import { CountsOptions } from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
 import { LocationOption } from 'src/app/modules/flights/models/flights.interface';
 import { FlightsService } from 'src/app/modules/flights/services/flights.service';
+import { DateFormats, PassengerType } from 'src/app/redux/common/common.models';
 import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
 import { SearchActions } from 'src/app/redux/search/search.actions';
-import { searchFeature } from 'src/app/redux/search/search.reducer';
+import CustomSearchSelectors from 'src/app/redux/search/search.selectors';
 
 @Component({
   selector: 'app-booking-info-panel',
@@ -32,13 +31,11 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
 export class BookingInfoPanelComponent implements OnInit {
   editMode = false;
 
-  flightEditForm = new FormGroup({
-    fromControl: new FormControl(''),
-    toControl: new FormControl(''),
-    range: new FormGroup({
-      start: new FormControl<Date | null>(null),
-      end: new FormControl<Date | null>(null),
-    }),
+  fromControl = new FormControl('', [Validators.required]);
+  toControl = new FormControl('', [Validators.required]);
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
   });
 
   filteredFromOptions$: Observable<LocationOption[]> = of<LocationOption[]>([]);
@@ -49,7 +46,9 @@ export class BookingInfoPanelComponent implements OnInit {
 
   selectedToOption: LocationOption | null = null;
 
-  savedStoreValues$ = this.store.select(searchFeature.selectSearchState);
+  savedStoreValues$ = this.store.select(
+    CustomSearchSelectors.selectSearchBasic
+  );
 
   // startDate = new Date();
   minDate: Date = new Date();
@@ -62,6 +61,9 @@ export class BookingInfoPanelComponent implements OnInit {
 
   startDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
   endDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
+  dateFormat = DateFormats.YMD;
+
+  isLoading = false;
 
   passengerCounts: CountsOptions = {
     [PassengerType.Adult]: 0,
@@ -76,23 +78,46 @@ export class BookingInfoPanelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.savedStoreValues$.pipe(
-      take(1),
-      tap((search) => {
-        this.flightEditForm.setValue({
-          fromControl: search.flyFrom.title,
-          toControl: search.flyTo.title,
-          range: {
-            start: search.dateLeave ? new Date(search.dateLeave) : null,
-            end: search.dateReturn ? new Date(search.dateReturn) : null,
-          },
-        });
-      })
-    );
+    this.savedStoreValues$
+      .pipe(
+        take(1),
+        tap((search) => {
+          this.fromControl.setValue(search.flyFrom.title);
+          this.toControl.setValue(search.flyTo.title);
+          this.range.setValue({
+            start: search.dateLeave
+              ? moment(search.dateLeave, search.dateFormat).toDate()
+              : null,
+            end: search.dateReturn
+              ? moment(search.dateReturn, search.dateFormat).toDate()
+              : null,
+          });
+          this.passengerCounts = search.passengersCount;
+          this.dateFormat = search.dateFormat;
+        })
+      )
+      .subscribe();
 
-    const from = this.flightEditForm.get('fromControl');
+    combineLatest([this.startDatePicker, this.endDatePicker])
+      .pipe(
+        map(([a$, b$]) => ({
+          start: a$.value,
+          end: b$.value,
+        }))
+      )
+      .subscribe((data) => {
+        if (data.start && data.end && !this.range.errors) {
+          this.store.dispatch(
+            SearchActions.setDatesRange({
+              dateLeave: moment(data.start).format(this.dateFormat),
+              dateReturn: moment(data.end).format(this.dateFormat),
+            })
+          );
+        }
+      });
+
     this.filteredFromOptions$ =
-      from?.valueChanges.pipe(
+      this.fromControl.valueChanges.pipe(
         startWith(''),
         debounceTime(300),
         distinctUntilChanged(),
@@ -102,9 +127,8 @@ export class BookingInfoPanelComponent implements OnInit {
         })
       ) || of<LocationOption[]>([]);
 
-    const to = this.flightEditForm.get('fromControl');
-    this.filteredFromOptions$ =
-      to?.valueChanges.pipe(
+    this.filteredToOptions$ =
+      this.toControl.valueChanges.pipe(
         startWith(''),
         debounceTime(300),
         distinctUntilChanged(),
@@ -113,22 +137,6 @@ export class BookingInfoPanelComponent implements OnInit {
           return this.flightsService.getLocations(value);
         })
       ) || of<LocationOption[]>([]);
-
-    const dateChange$ = combineLatest([
-      this.startDatePicker,
-      this.endDatePicker,
-    ]).pipe(
-      map(([a$, b$]) => ({
-        start: a$,
-        end: b$,
-      }))
-    );
-
-    dateChange$.subscribe((data) => {
-      if (data.start.value && data.end.value) {
-        // console.log('User has picked both dates', data.start.value, data.end.value);
-      }
-    });
   }
 
   // location: LocationOption, event: MatOptionSelectionChange

@@ -28,3 +28,9 @@ export enum ESeatsBreakpoints {
   M = 20,
   S = 10,
 }
+
+export enum PassengerType {
+  Adult = 'Adult',
+  Child = 'Child',
+  Infant = 'Infant',
+}
