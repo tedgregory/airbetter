@@ -15,7 +15,6 @@
             >One Way</mat-radio-button
           >
         </mat-radio-group>
-
         <div class="flights-search-form__locations-fields">
           <mat-form-field
             class="flights-search-form__from-field"
@@ -57,7 +56,6 @@
                       >({{ location.key }})</span
                     >
                   </span>
-
                   <span
                     class="flights-search-location__row flights-search-location__row--airport">
                     <span class="flights-search-location__airport"
@@ -71,7 +69,6 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-
           <mat-form-field
             class="flights-search-form__to-field"
             appearance="fill">
@@ -112,7 +109,6 @@
                       >({{ location.key }})</span
                     >
                   </span>
-
                   <span
                     class="flights-search-location__row flights-search-location__row--airport">
                     <span class="flights-search-location__airport"
@@ -126,7 +122,6 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-
           <button
             mat-flat-button
             class="flights-search-form__switch button button--mat-outlined"
@@ -135,7 +130,6 @@
             <mat-icon matSuffix svgIcon="appSwitch"></mat-icon>
           </button>
         </div>
-
         <div class="flights-search-form__cols">
           <mat-form-field
             class="flights-search-form__dates-field"
@@ -165,7 +159,6 @@
                 <button mat-button matDateRangePickerApply>OK</button>
               </mat-date-range-picker-actions>
             </mat-date-range-picker>
-
             <mat-error
               *ngIf="
                 flightsSearchForm
@@ -184,8 +177,13 @@
               "
               >Invalid end date</mat-error
             >
+            <mat-error
+              *ngIf="
+                flightsSearchForm.get('range')?.get('end')?.hasError('required')
+              "
+              >Please provide start and end date to search</mat-error
+            >
           </mat-form-field>
-
           <div class="flights-search-form__passengers-field">
             <app-select-passengers
               (countsChange)="
@@ -193,7 +191,6 @@
               "></app-select-passengers>
           </div>
         </div>
-
         <div class="flights-search-form__actions">
           <button
             mat-flat-button
@@ -208,6 +205,5 @@
       </form>
     </mat-card>
   </app-column>
-
   <app-column [modes]="{ lg: 5 }"></app-column>
 </app-row>

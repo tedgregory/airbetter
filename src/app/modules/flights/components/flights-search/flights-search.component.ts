@@ -124,6 +124,7 @@ export class FlightsSearchComponent implements OnInit {
 
   onTripTypeChange(event: MatRadioChange) {
     this.selectedIsReturn = event.value === 'round-trip';
+    console.log(this.flightsSearchForm.get('range')?.get('end')?.errors);
   }
 
   onLocationSwitchClick() {
