@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CoreServiceModule } from 'src/app/core/services/core-service.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IconsModule } from 'src/app/core/icons/icons.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,10 +15,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AuthSocialModule } from '../auth-social/auth-social.module';
 import { AuthFormComponent } from './auth-form.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
     CommonModule,
+    CoreServiceModule,
     ReactiveFormsModule,
     IconsModule,
     MatButtonModule,
@@ -29,6 +32,7 @@ import { AuthFormComponent } from './auth-form.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonToggleModule,
+    MatAutocompleteModule,
     MatCheckboxModule,
     AuthSocialModule,
   ],

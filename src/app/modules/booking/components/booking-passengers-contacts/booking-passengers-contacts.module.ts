@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { CoreServiceModule } from 'src/app/core/services/core-service.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BookingPassengersContactsComponent } from './booking-passengers-contacts.component';
 
 @NgModule({
   declarations: [BookingPassengersContactsComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    CoreServiceModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatSelectModule,
     MatInputModule,
+    MatAutocompleteModule,
   ],
   exports: [BookingPassengersContactsComponent],
 })
