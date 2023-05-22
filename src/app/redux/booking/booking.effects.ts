@@ -5,6 +5,7 @@ import { BookingActions } from './booking.actions';
 import { Store } from '@ngrx/store';
 import { catchError, map, of, switchMap, throwError } from 'rxjs';
 import CustomSearchSelectors from '../search/search.selectors';
+import { SearchActions } from '../search/search.actions';
 
 @Injectable() // how else to scope it?
 export class BookingEffects {

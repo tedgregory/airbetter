@@ -77,6 +77,10 @@ export class BookingInfoPanelComponent implements OnInit {
     this.editMode = !this.editMode;
   }
 
+  get isValidLocationInput() {
+    return !!this.selectedFromOption && !!this.selectedToOption;
+  }
+
   ngOnInit() {
     this.savedStoreValues$
       .pipe(
@@ -151,6 +155,7 @@ export class BookingInfoPanelComponent implements OnInit {
 
   onFromInput() {
     this.selectedFromOption = null;
+    this.fromControl.setErrors({ incorrect: true });
   }
 
   // location: LocationOption, event: MatOptionSelectionChange
@@ -165,6 +170,7 @@ export class BookingInfoPanelComponent implements OnInit {
 
   onToInput() {
     this.selectedToOption = null;
+    this.toControl.setErrors({ incorrect: true });
   }
 
   onPassengerCountsChange(counts: CountsOptions) {
