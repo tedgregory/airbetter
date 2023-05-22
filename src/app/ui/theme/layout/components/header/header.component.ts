@@ -64,7 +64,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     | ElementRef<HTMLElement>
     | undefined = undefined;
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   NavigationPath = Object.keys(NavigationPath).reduce((res, key, i) => {
     res[key as keyof typeof NavigationPath] = Object.values(NavigationPath)[i];
     return res;

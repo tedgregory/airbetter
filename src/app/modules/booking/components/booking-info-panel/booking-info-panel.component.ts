@@ -4,6 +4,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Store } from '@ngrx/store';
 import moment from 'moment';
 import {
+  BehaviorSubject,
   Observable,
   Subject,
   combineLatest,
@@ -73,6 +74,8 @@ export class BookingInfoPanelComponent implements OnInit {
     [PassengerType.Child]: 0,
     [PassengerType.Infant]: 0,
   };
+
+  passengersError$ = new BehaviorSubject(false);
 
   constructor(private flightsService: FlightsService, private store: Store) {}
 
@@ -178,13 +181,19 @@ export class BookingInfoPanelComponent implements OnInit {
 
   onPassengerCountsChange(counts: CountsOptions) {
     this.passengerCounts = { ...counts };
-    this.store.dispatch(
-      PassengersActions.setPassengers({
-        adults: Array(counts[PassengerType.Adult]),
-        children: Array(counts[PassengerType.Child]),
-        infants: Array(counts[PassengerType.Infant]),
-      })
-    );
+    const isError =
+      this.getPassengersQuantity() > 0 &&
+      this.passengerCounts[PassengerType.Adult] === 0;
+    this.passengersError$.next(isError);
+    if (!isError) {
+      this.store.dispatch(
+        PassengersActions.setPassengers({
+          adults: Array(counts[PassengerType.Adult]),
+          children: Array(counts[PassengerType.Child]),
+          infants: Array(counts[PassengerType.Infant]),
+        })
+      );
+    }
   }
 
   getPassengersQuantity(): number {
