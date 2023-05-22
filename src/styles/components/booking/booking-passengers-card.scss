@@ -4,52 +4,110 @@
     border-radius: 8px;
   }
 
-  &__form {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0;
+  .passenger-form {
+    width: 100%;
 
-    @include media-breakpoint-down(xl) {
-      flex-direction: column;
-      width: 100%;
-    }
+    &__data {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0;
+      gap: 20px;
 
-    .mat-mdc-form-field {
       @include media-breakpoint-down(xl) {
         flex-direction: column;
+        gap: 40px;
         width: 100%;
       }
-    }
 
-    .mat-button-toggle {
-      width: 108px;
+      .mat-mdc-form-field-error {
+        @include text-12-400;
+      }
 
-      @include media-breakpoint-down(xl) {
-        width: 100%;
+      &--person {
+        margin-bottom: 40px;
+
+        .mat-mdc-form-field {
+          @include media-breakpoint-down(xl) {
+            flex-direction: column;
+            width: 100%;
+          }
+        }
+
+        .mat-button-toggle {
+          width: 108px;
+
+          @include media-breakpoint-down(xl) {
+            width: 100%;
+          }
+        }
+
+        .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
+        .mat-button-toggle-button.mat-focus-indicator {
+          height: 58px;
+
+          @include media-breakpoint-down(xl) {
+            width: 100%;
+          }
+        }
+
+        /* stylelint-disable */
+        .mat-mdc-text-field-wrapper.mdc-text-field
+          .mat-mdc-form-field-flex
+          .mat-mdc-form-field-infix {
+          @include media-breakpoint-down(xl) {
+            width: auto;
+          }
+        }
+        /* stylelint-enable */
+      }
+
+      &--baggage {
+        /* stylelint-disable */
+        .mat-mdc-text-field-wrapper.mdc-text-field
+          .mat-mdc-form-field-flex
+          .mat-mdc-form-field-infix {
+          width: 24px;
+        }
+        /* stylelint-enable */
+      }
+
+      .baggage {
+        &__amount {
+          margin-right: 10px;
+
+          @include media-breakpoint-down(mm) {
+            margin-bottom: 5px;
+          }
+
+          // stylelint-disable-next-line selector-max-compound-selectors
+          .mat-mdc-form-field-error-wrapper {
+            position: absolute;
+            width: 230px;
+            padding: 0;
+
+            @include media-breakpoint-down(mm) {
+              top: -40px;
+              left: 65px;
+              right: 0;
+            }
+          }
+        }
+
+        &__type {
+          @include media-breakpoint-down(mm) {
+            display: block;
+          }
+        }
       }
     }
+  }
+}
 
-    .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
-    .mat-button-toggle-button.mat-focus-indicator {
-      height: 58px;
-
-      @include media-breakpoint-down(xl) {
-        width: 100%;
-      }
-    }
-
-    /* stylelint-disable */
-    .mat-mdc-text-field-wrapper.mdc-text-field
-      .mat-mdc-form-field-flex
-      .mat-mdc-form-field-infix {
-      @include media-breakpoint-down(xl) {
-        width: auto;
-      }
-    }
-    /* stylelint-enable */
+.booking-content-block .mat-mdc-card.mdc-card .mat-mdc-card-content {
+  @include media-breakpoint-down(sm) {
+    padding: 20px;
   }
 }
