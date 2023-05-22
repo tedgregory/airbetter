@@ -7,6 +7,7 @@ import { BookingDetailsModule } from '../booking-details/booking-details.module'
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SwiperModule } from 'swiper/angular';
+import { SpinnerModule } from 'src/app/ui/spinner/spinner.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { SwiperModule } from 'swiper/angular';
     BookingDetailsModule,
     MatButtonModule,
     MatIconModule,
+    SpinnerModule,
   ],
   declarations: [BookingListComponent],
   exports: [BookingListComponent],

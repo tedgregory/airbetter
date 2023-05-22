@@ -17,10 +17,10 @@ export enum DateFormats {
 }
 
 export enum EStatus {
-  Default,
-  Loading,
-  Error,
-  Loaded,
+  Default = 'Default',
+  Loading = 'Loading',
+  Error = 'Error',
+  Loaded = 'Loaded',
 }
 
 export enum ESeatsBreakpoints {

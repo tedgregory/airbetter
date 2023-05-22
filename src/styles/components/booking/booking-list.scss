@@ -8,6 +8,14 @@ app-booking-list {
       }
     }
 
+    &__status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 287px;
+      background-color: $color-grey-40;
+    }
+
     .flight {
       margin-bottom: 1.5rem;
       position: relative;

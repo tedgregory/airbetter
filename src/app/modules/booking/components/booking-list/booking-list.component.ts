@@ -4,7 +4,7 @@ import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
 import SwiperCore, { Navigation, Swiper, SwiperOptions } from 'swiper';
 import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
-import { tap } from 'rxjs';
+import { of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-booking-list',
@@ -54,31 +54,33 @@ export class BookingListComponent implements OnInit {
   flyToIndex: number | null = null;
   flyBackIndex: number | null = null;
 
-  flyToData$ = this.store.select(bookingFeature.selectFlyToData);
+  flyToData$ = this.store.select(bookingFeature.selectFlyToData).pipe(
+    tap((data) => {
+      this.config1.initialSlide =
+        data.variants && data.chosenVariant
+          ? data.variants.indexOf(data.chosenVariant)
+          : 2;
+    })
+  );
 
-  flyBackData$ = this.store.select(bookingFeature.selectFlyBackData);
+  flyBackData$ = this.store.select(bookingFeature.selectFlyBackData).pipe(
+    tap((data) => {
+      this.config2.initialSlide =
+        data.variants && data.chosenVariant
+          ? data.variants.indexOf(data.chosenVariant)
+          : 2;
+    })
+  );
+
+  loadingStatus$ = this.store
+    .select(bookingFeature.selectStatus)
+    .pipe(switchMap((status) => of(status.valueOf())));
 
   constructor(public store: Store) {}
 
   ngOnInit() {
     SwiperCore.use([Navigation]);
     this.store.dispatch(BookingActions.getVariants());
-    this.flyToData$.pipe(
-      tap((data) => {
-        this.config1.initialSlide =
-          data.variants && data.chosenVariant
-            ? data.variants.indexOf(data.chosenVariant)
-            : 2;
-      })
-    );
-    this.flyBackData$.pipe(
-      tap((data) => {
-        this.config2.initialSlide =
-          data.variants && data.chosenVariant
-            ? data.variants.indexOf(data.chosenVariant)
-            : 2;
-      })
-    );
   }
 
   onSliderSlideChange(type: 'forward' | 'backward', event: [swiper: Swiper]) {

@@ -23,6 +23,9 @@ export class BookingEffects {
       switchMap(([, params]) => {
         return this.apiService.getBookingData(params).pipe(
           map((result) => {
+            if (!params.isReturn) {
+              result.backward = null;
+            }
             return BookingActions.getVariantsSuccess({
               bookingData: result,
             });

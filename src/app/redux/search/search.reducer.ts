@@ -7,8 +7,8 @@ import moment from 'moment';
 const defaultState: SearchState = {
   flyFrom: { iata: 'DUS', title: 'Dusseldorf' },
   flyTo: { iata: 'PRG', title: 'Warsaw Modlin' },
-  dateLeave: '25/05/2023',
-  dateReturn: '26/06/2023',
+  dateLeave: '25/06/2023',
+  dateReturn: '26/07/2023',
   isReturn: false,
   currency: 'EUR',
   dateFormat: DateFormats.DMY,

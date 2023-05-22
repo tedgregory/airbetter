@@ -34,8 +34,8 @@ export class BookingInfoPanelComponent implements OnInit {
   fromControl = new FormControl('', [Validators.required]);
   toControl = new FormControl('', [Validators.required]);
   range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
+    start: new FormControl<Date | null>(null, [Validators.required]),
+    end: new FormControl<Date | null>(null, [Validators.required]),
   });
 
   filteredFromOptions$: Observable<LocationOption[]> = of<LocationOption[]>([]);
