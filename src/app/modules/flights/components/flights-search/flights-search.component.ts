@@ -18,7 +18,6 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { NavigationPath } from 'src/app/core/navigation/models/navigation.interface';
-import { createDateValidator } from '../../validators/date.validator';
 import { ISearchData } from 'src/app/redux/search/search.state';
 import { SearchActions } from 'src/app/redux/search/search.actions';
 import { PassengerType } from 'src/app/redux/common/common.models';
@@ -32,14 +31,8 @@ export class FlightsSearchComponent implements OnInit {
 
   flightsSearchForm = new FormGroup({
     range: new FormGroup({
-      start: new FormControl<Date | null>(null, [
-        Validators.required,
-        createDateValidator(),
-      ]),
-      end: new FormControl<Date | null>(null, [
-        Validators.required,
-        createDateValidator(),
-      ]),
+      start: new FormControl<Date | null>(null, [Validators.required]),
+      end: new FormControl<Date | null>(null, [Validators.required]),
     }),
     fromControl: new FormControl('', [Validators.required]),
     toControl: new FormControl('', [Validators.required]),
@@ -56,14 +49,10 @@ export class FlightsSearchComponent implements OnInit {
 
   selectedIsReturn = false;
 
-  // startDate = new Date();
   minDate: Date = new Date();
-  // maxDate: Date;
-
-  // Set the maximum to December 31st a year in the future.
-  // const currentYear = new Date().getFullYear();
-  // this.minDate = new Date(currentYear - 20, 0, 1);
-  // this.maxDate = new Date(currentYear + 1, 11, 31);
+  maxDate: Date = new Date(
+    new Date().setFullYear(this.minDate.getFullYear() + 1)
+  );
 
   startDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
 
@@ -147,6 +136,7 @@ export class FlightsSearchComponent implements OnInit {
 
   onFromInput() {
     this.selectedFromOption = null;
+    this.flightsSearchForm.get('fromControl')?.setErrors({ incorrect: true });
   }
 
   // location: LocationOption, event: MatOptionSelectionChange
@@ -156,6 +146,7 @@ export class FlightsSearchComponent implements OnInit {
 
   onToInput() {
     this.selectedToOption = null;
+    this.flightsSearchForm.get('toControl')?.setErrors({ incorrect: true });
   }
 
   onPassengerCountsChange(counts: CountsOptions) {
