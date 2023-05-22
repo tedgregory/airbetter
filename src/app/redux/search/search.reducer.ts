@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { SearchState } from './search.state';
 import { SearchActions } from './search.actions';
-import { DateFormats } from '../common/common.models';
+import { ECurrencies, EDateFormats } from '../common/common.models';
 import moment from 'moment';
 
 const defaultState: SearchState = {
@@ -10,8 +10,8 @@ const defaultState: SearchState = {
   dateLeave: '25/06/2023',
   dateReturn: '26/07/2023',
   isReturn: false,
-  currency: 'EUR',
-  dateFormat: DateFormats.DMY,
+  currency: ECurrencies.RUB,
+  dateFormat: EDateFormats.DMY,
   error: null,
 };
 

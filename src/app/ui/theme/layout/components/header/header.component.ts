@@ -25,16 +25,11 @@ import {
 import { Subject, Subscription, takeUntil, tap } from 'rxjs';
 import { CoreService } from 'src/app/core/services/core.service';
 import { AuthModalPosition } from '../../interfaces/layout.interfaces';
-
-interface DateFormat {
-  value: string;
-  viewValue: string;
-}
-
-interface Currency {
-  value: string;
-  viewValue: string;
-}
+import { ECurrencies, EDateFormats } from 'src/app/redux/common/common.models';
+import { Store } from '@ngrx/store';
+import { searchFeature } from 'src/app/redux/search/search.reducer';
+import { FormControl } from '@angular/forms';
+import { SearchActions } from 'src/app/redux/search/search.actions';
 
 @Component({
   selector: 'app-header',
@@ -70,7 +65,10 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     | undefined = undefined;
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  NavigationPath = NavigationPath;
+  NavigationPath = Object.keys(NavigationPath).reduce((res, key, i) => {
+    res[key as keyof typeof NavigationPath] = Object.values(NavigationPath)[i];
+    return res;
+  }, {} as Record<keyof typeof NavigationPath, string>);
 
   isLtLgScreen = false;
 
@@ -78,19 +76,17 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private readonly destroy$ = new Subject<void>();
 
-  dateFormats: DateFormat[] = [
-    { value: 'mm-dd-yyyy', viewValue: 'MM/DD/YYYY' },
-    { value: 'dd-mm-yyyy', viewValue: 'DD/MM/YYYY' },
-    { value: 'yyyy-dd-mm', viewValue: 'YYYY/DD/MM' },
-    { value: 'yyyy-mm-dd', viewValue: 'YYYY/MM/DD' },
-  ];
+  dateFormats = Object.values(EDateFormats).map((key) => ({
+    value: key,
+    viewValue: key,
+  }));
+  dateFormatsControl = new FormControl<EDateFormats>(EDateFormats.DMY);
 
-  currencies: Currency[] = [
-    { value: 'eur', viewValue: 'EUR' },
-    { value: 'usa', viewValue: 'USA' },
-    { value: 'rub', viewValue: 'RUB' },
-    { value: 'pln', viewValue: 'PLN' },
-  ];
+  currencies = Object.keys(ECurrencies).map((key) => ({
+    value: key,
+    viewValue: key,
+  }));
+  currenciesControl = new FormControl<ECurrencies>(ECurrencies.PLN);
 
   isAuthModalOpen = false;
 
@@ -100,13 +96,14 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     rightTopY: 0,
   };
 
-  selectedDateFormat = this.dateFormats[0].value;
+  selectedDateFormat$ = this.store.select(searchFeature.selectDateFormat);
 
-  selectedCurrency = this.currencies[0].value;
+  selectedCurrency$ = this.store.select(searchFeature.selectCurrency);
 
   private resizeSubscription: Subscription | undefined;
 
   constructor(
+    private store: Store,
     private route: ActivatedRoute,
     private readonly breakpointObserver: BreakpointObserver,
     private coreService: CoreService,
@@ -127,6 +124,17 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.resizeSubscription = this.coreService.onWindowResize(() => {
       this.calcSignInBtnCoords(this.isLtLgScreen);
+    });
+
+    this.dateFormatsControl.valueChanges.subscribe((value) => {
+      console.log(value);
+
+      value &&
+        this.store.dispatch(SearchActions.setDateFormat({ dateFormat: value }));
+    });
+    this.currenciesControl.valueChanges.subscribe((value) => {
+      value &&
+        this.store.dispatch(SearchActions.setCurrency({ currency: value }));
     });
   }
 

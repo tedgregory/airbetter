@@ -9,11 +9,18 @@ export interface ContactDetails {
   email: string;
 }
 
-export enum DateFormats {
+export enum EDateFormats {
   DMY = 'DD/MM/YYYY',
   MDY = 'MM/DD/YYYY',
   YDM = 'YYYY/DD/MM',
   YMD = 'YYYY/MM/DD',
+}
+
+export enum ECurrencies {
+  EUR = 'EUR',
+  USD = 'USD',
+  RUB = 'RUB',
+  PLN = 'PLN',
 }
 
 export enum EStatus {

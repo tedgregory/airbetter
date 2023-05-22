@@ -19,7 +19,10 @@ import {
 import { CountsOptions } from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
 import { LocationOption } from 'src/app/modules/flights/models/flights.interface';
 import { FlightsService } from 'src/app/modules/flights/services/flights.service';
-import { DateFormats, PassengerType } from 'src/app/redux/common/common.models';
+import {
+  EDateFormats,
+  PassengerType,
+} from 'src/app/redux/common/common.models';
 import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
 import { SearchActions } from 'src/app/redux/search/search.actions';
 import CustomSearchSelectors from 'src/app/redux/search/search.selectors';
@@ -61,7 +64,7 @@ export class BookingInfoPanelComponent implements OnInit {
 
   startDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
   endDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
-  dateFormat = DateFormats.YMD;
+  dateFormat = EDateFormats.YMD;
 
   isLoading = false;
 

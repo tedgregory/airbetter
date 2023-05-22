@@ -1,5 +1,5 @@
 import { CountsOptions } from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
-import { DateFormats } from '../common/common.models';
+import { ECurrencies, EDateFormats } from '../common/common.models';
 
 export interface SearchState {
   flyFrom: { iata: string; title: string };
@@ -7,8 +7,8 @@ export interface SearchState {
   dateLeave: string | null;
   dateReturn: string | null;
   isReturn: boolean;
-  currency: string;
-  dateFormat: DateFormats;
+  currency: ECurrencies;
+  dateFormat: EDateFormats;
   error: Error | null;
 }
 

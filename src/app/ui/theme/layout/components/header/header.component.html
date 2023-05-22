@@ -1,32 +1,46 @@
-<header class="header" [ngClass]="{ 'header--translucent': isFlightsPage() }">
+<header
+  class="header"
+  [ngClass]="{ 'header--translucent': isFlightsPage() }"
+>
   <div class="header__inner">
     <app-container height="max-height">
       <div class="header__container-inner">
-        <a class="header__logo" [routerLink]="[NavigationPath.Flights]">
-          <img src="/assets/images/logo.svg" alt="Airways Logo" />
+        <a
+          class="header__logo"
+          [routerLink]="[NavigationPath.Flights]"
+        >
+          <img
+            src="/assets/images/logo.svg"
+            alt="Airways Logo"
+          >
         </a>
 
         <div
           class="header__menu"
           [@collapse]="collapse"
           appClickOutside
-          (clickOutside)="clickedOutsideMenu($event)">
+          (clickOutside)="clickedOutsideMenu($event)"
+        >
           <div class="header__menu-inner">
             <a
               *ngIf="isFlightsPage()"
               class="header__booking-link"
-              [routerLink]="[NavigationPath.Booking]">
+              [routerLink]="[NavigationPath.Booking]"
+            >
               Book flights
             </a>
 
             <mat-form-field
               class="header__select header__select--date"
-              appearance="outline">
-              <mat-select [(value)]="selectedDateFormat">
+              appearance="outline"
+            >
+              <mat-select [value]="(selectedDateFormat$ | async)" [formControl]="dateFormatsControl">
                 <mat-option
                   name="date-format"
+
                   *ngFor="let dateFormat of dateFormats"
-                  [value]="dateFormat.value">
+                  [value]="dateFormat.value"
+                >
                   {{ dateFormat.viewValue }}
                 </mat-option>
               </mat-select>
@@ -34,12 +48,14 @@
 
             <mat-form-field
               class="header__select header__select--currency"
-              appearance="outline">
-              <mat-select [(value)]="selectedCurrency">
+              appearance="outline"
+            >
+              <mat-select [value]="selectedCurrency$ | async" [formControl]="currenciesControl">
                 <mat-option
                   name="currency"
                   *ngFor="let currency of currencies"
-                  [value]="currency.value">
+                  [value]="currency.value"
+                >
                   {{ currency.viewValue }}
                 </mat-option>
               </mat-select>
@@ -54,7 +70,8 @@
               }"
               type="button"
               (click)="onSingInBtnClick()"
-              #signInBtn>
+              #signInBtn
+            >
               <svg>
                 <use xlink:href="./assets/sprites/sprite.svg#icon-user"></use>
               </svg>
@@ -64,9 +81,10 @@
             <a
               class="header__button header__button--cart"
               [routerLink]="[NavigationPath.Cart]"
-              aria-label="Cart">
+              aria-label="Cart"
+            >
               <svg>
-                <use xlink:href="./assets/sprites/sprite.svg#icon-cart"></use>
+                <use :xlink:href="./assets/sprites/sprite.svg#icon-cart"></use>
               </svg>
             </a>
           </div>
@@ -78,7 +96,8 @@
           [class.is-active]="!collapse"
           type="button"
           (click)="toggleCollapse()"
-          #hamburgerToggle>
+          #hamburgerToggle
+        >
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
           </span>
@@ -92,4 +111,5 @@
   *ngIf="isAuthModalOpen"
   [isOpen]="isAuthModalOpen"
   [position]="authModalPos"
-  (closeModal)="closeAuthModal()"></app-auth-modal>
+  (closeModal)="closeAuthModal()"
+></app-auth-modal>
