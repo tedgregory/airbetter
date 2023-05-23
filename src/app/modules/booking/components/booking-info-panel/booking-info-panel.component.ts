@@ -88,12 +88,8 @@ export class BookingInfoPanelComponent implements OnInit {
           this.fromControl.setValue(search.flyFrom.title);
           this.toControl.setValue(search.flyTo.title);
           this.range.setValue({
-            start: search.dateLeave
-              ? moment(search.dateLeave, search.dateFormat).toDate()
-              : null,
-            end: search.dateReturn
-              ? moment(search.dateReturn, search.dateFormat).toDate()
-              : null,
+            start: search.dateLeave ? moment(search.dateLeave).toDate() : null,
+            end: search.dateReturn ? moment(search.dateReturn).toDate() : null,
           });
           this.passengerCounts = search.passengersCount;
           this.dateFormat = search.dateFormat;
@@ -112,8 +108,8 @@ export class BookingInfoPanelComponent implements OnInit {
         if (data.start && data.end && !this.range.errors) {
           this.store.dispatch(
             SearchActions.setDatesRange({
-              dateLeave: moment(data.start).format(this.dateFormat),
-              dateReturn: moment(data.end).format(this.dateFormat),
+              dateLeave: data.start.toISOString(),
+              dateReturn: data.end.toISOString(),
             })
           );
         }
