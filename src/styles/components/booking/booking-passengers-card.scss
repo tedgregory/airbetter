@@ -4,52 +4,130 @@
     border-radius: 8px;
   }
 
-  &__form {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0;
+  .passenger-form {
+    width: 100%;
 
-    @include media-breakpoint-down(xl) {
-      flex-direction: column;
-      width: 100%;
+    &__person-data,
+    &__baggage-data {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0;
+      margin-bottom: 40px;
+
+      .mat-mdc-form-field-error,
+      .mat-mdc-form-field-hint-wrapper {
+        @include text-12-400;
+      }
     }
 
-    .mat-mdc-form-field {
+    &__person-data {
+      gap: 20px;
+
       @include media-breakpoint-down(xl) {
         flex-direction: column;
+        gap: 40px;
         width: 100%;
       }
-    }
 
-    .mat-button-toggle {
-      width: 108px;
+      .mat-mdc-form-field {
+        @include media-breakpoint-down(xl) {
+          flex-direction: column;
+          width: 100%;
+        }
+      }
 
-      @include media-breakpoint-down(xl) {
-        width: 100%;
+      .mat-button-toggle {
+        width: 108px;
+
+        @include media-breakpoint-down(xl) {
+          width: 100%;
+        }
+      }
+
+      .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
+      .mat-button-toggle-button.mat-focus-indicator {
+        height: 58px;
+
+        @include media-breakpoint-down(xl) {
+          width: 100%;
+        }
+      }
+
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field
+        .mat-mdc-form-field-flex
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        @include media-breakpoint-down(xl) {
+          width: auto;
+        }
       }
     }
 
-    .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
-    .mat-button-toggle-button.mat-focus-indicator {
-      height: 58px;
+    &__baggage-data {
+      gap: 40px;
 
-      @include media-breakpoint-down(xl) {
-        width: 100%;
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field
+        .mat-mdc-form-field-flex
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        width: 24px;
       }
     }
 
-    /* stylelint-disable */
-    .mat-mdc-text-field-wrapper.mdc-text-field
-      .mat-mdc-form-field-flex
-      .mat-mdc-form-field-infix {
-      @include media-breakpoint-down(xl) {
-        width: auto;
+    .baggage {
+      &__field {
+        min-width: 230px;
+      }
+
+      &__amount {
+        margin-right: 10px;
+
+        @include media-breakpoint-down(mm) {
+          margin-bottom: 5px;
+        }
+
+        /* stylelint-disable */
+        .mdc-text-field {
+          padding: 0 13px;
+        }
+
+        .mat-mdc-text-field-wrapper.mdc-text-field
+          .mat-mdc-form-field-flex
+          .mat-mdc-form-field-infix {
+          width: 32px;
+        }
+
+        .mat-mdc-form-field-hint-wrapper,
+        .mat-mdc-form-field-error-wrapper {
+          /* stylelint-enable */
+          position: absolute;
+          width: 230px;
+          padding: 0;
+
+          @include media-breakpoint-down(mm) {
+            top: -40px;
+            left: 65px;
+            right: 0;
+          }
+        }
+      }
+
+      &__type {
+        @include media-breakpoint-down(mm) {
+          display: block;
+        }
       }
     }
-    /* stylelint-enable */
+  }
+}
+
+.booking-content-block .mat-mdc-card.mdc-card .mat-mdc-card-content {
+  @include media-breakpoint-down(sm) {
+    padding: 20px;
   }
 }
