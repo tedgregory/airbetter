@@ -14,16 +14,12 @@
             matInput
           >
           <mat-icon
-            matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
-            matTooltipPosition="right"
             matSuffix
-          >
-            info
-          </mat-icon>
-          <mat-error *ngIf="passengerForm.get('firstName')?.invalid && (passengerForm.get('firstName')?.dirty || passengerForm.get('firstName')?.touched)">
-            <span *ngIf="passengerForm.get('firstName')?.hasError('required')">First Name is required</span>
-            <span *ngIf="passengerForm.get('firstName')?.hasError('pattern')">Invalid character</span>
-          </mat-error>
+            svgIcon="appInfo"
+          ></mat-icon>
+          <mat-error *ngIf="passengerForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+          <mat-error *ngIf="passengerForm.get('firstName')?.hasError('pattern')">Invalid character</mat-error>
+          <mat-error *ngIf="passengerForm.get('firstName')?.hasError('maxlength')">Must be up to 30 characters</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -33,21 +29,18 @@
             matInput
           >
           <mat-icon
-            matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
-            matTooltipPosition="right"
             matSuffix
-          >
-            info
-          </mat-icon>
-          <mat-error *ngIf="passengerForm.get('lastName')?.invalid && (passengerForm.get('lastName')?.dirty || passengerForm.get('lastName')?.touched)">
-            <span *ngIf="passengerForm.get('lastName')?.hasError('required')">Last Name is required</span>
-            <span *ngIf="passengerForm.get('lastName')?.hasError('pattern')">Invalid character</span>
-          </mat-error>
+            svgIcon="appInfo"
+          ></mat-icon>
+          <mat-error *ngIf="passengerForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+          <mat-error *ngIf="passengerForm.get('lastName')?.hasError('pattern')">Invalid character</mat-error>
+          <mat-error *ngIf="passengerForm.get('lastName')?.hasError('maxlength')">Must be up to 30 characters</mat-error>
         </mat-form-field>
 
         <mat-button-toggle-group
+          [ngClass]="{'invalid': passengerForm.get('gender')?.hasError('required')}"
           formControlName="gender"
-          name="chooseGender"
+          name="gender"
           aria-label="Choose Gender"
         >
           <mat-button-toggle value="male">Male</mat-button-toggle>
@@ -72,10 +65,8 @@
             [for]="picker"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="passengerForm.get('dateOfBirth')?.invalid && (passengerForm.get('dateOfBirth')?.dirty || passengerForm.get('dateOfBirth')?.touched)">
-            <span *ngIf="passengerForm.get('dateOfBirth')?.hasError('required')">Date of Birth is required</span>
-            <span *ngIf="passengerForm.get('dateOfBirth')?.hasError('invalidDate')">Invalid Date of Birth</span>
-          </mat-error>
+          <mat-error *ngIf="passengerForm.get('dateOfBirth')?.hasError('required')">Date of Birth is required</mat-error>
+          <mat-error *ngIf="passengerForm.get('dateOfBirth')?.hasError('invalidDate')">Invalid Date of Birth</mat-error>
         </mat-form-field>
       </div>
       <div
@@ -85,13 +76,14 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              min="0"
+              max="3"
               type="number"
               formControlName="cabin"
-              placeholder="0-3"
               matInput
             >
             <mat-hint>3 bags max., total max. 12&nbsp;kg</mat-hint>
-            <mat-error *ngIf="passengerForm.get('baggage.cabin')?.invalid">Must contain from 0 to 3 bags</mat-error>
+            <mat-error *ngIf="passengerForm.get('baggage.cabin')?.invalid">Must be up to 3 bags</mat-error>
           </mat-form-field>
           <span class="baggage__type">cabin bag(s)</span>
         </div>
@@ -99,13 +91,14 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              min="0"
+              max="3"
               type="number"
               formControlName="personal"
-              placeholder="0-3"
               matInput
             >
             <mat-hint>3 bags max., total max. 8&nbsp;kg</mat-hint>
-            <mat-error *ngIf="passengerForm.get('baggage.personal')?.invalid">Must contain from 0 to 3 bags</mat-error>
+            <mat-error *ngIf="passengerForm.get('baggage.personal')?.invalid">Must be up to 3 bags</mat-error>
           </mat-form-field>
           <span class="baggage__type">personal item(s)</span>
         </div>
@@ -113,13 +106,14 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              min="0"
+              max="3"
               type="number"
               formControlName="checked"
-              placeholder="0-3"
               matInput
             >
             <mat-hint>3 bags max., total max. 23&nbsp;kg</mat-hint>
-            <mat-error *ngIf="passengerForm.get('baggage.checked')?.invalid">Must contain from 0 to 3 bags</mat-error>
+            <mat-error *ngIf="passengerForm.get('baggage.checked')?.invalid">Must be up to 3 bags</mat-error>
           </mat-form-field>
           <span class="baggage__type">checked bag(s)</span>
         </div>

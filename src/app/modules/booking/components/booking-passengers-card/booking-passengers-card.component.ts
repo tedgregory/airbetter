@@ -12,13 +12,13 @@ export class BookingPassengersCardComponent {
   passengerForm = new FormGroup({
     firstName: new FormControl('', [
       Validators.required,
+      Validators.maxLength(30),
       Validators.pattern('^[a-zA-Z\\s]*$'),
-      Validators.max(30),
     ]),
     lastName: new FormControl('', [
       Validators.required,
+      Validators.maxLength(30),
       Validators.pattern('^[a-zA-Z\\s]*$'),
-      Validators.max(30),
     ]),
     gender: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [

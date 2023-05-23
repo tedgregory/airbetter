@@ -108,18 +108,6 @@
           position: absolute;
           width: 230px;
           padding: 0;
-
-          @include media-breakpoint-down(mm) {
-            top: -40px;
-            left: 65px;
-            right: 0;
-          }
-        }
-      }
-
-      &__type {
-        @include media-breakpoint-down(mm) {
-          display: block;
         }
       }
     }
