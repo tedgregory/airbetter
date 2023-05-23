@@ -1,5 +1,8 @@
 import { Component, HostBinding } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Store } from '@ngrx/store';
+import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
+import { BookingActions } from 'src/app/redux/booking/booking.actions';
 
 @Component({
   selector: 'app-booking-stepper',
@@ -14,21 +17,11 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 export class BookingStepperComponent {
   @HostBinding('class') class = 'booking-stepper';
 
-  isCompletedStepOne = false;
+  bookingSteps$ = this.store.select(bookingFeature.selectSteps);
 
-  isCompletedStepTwo = false;
+  constructor(private store: Store) {}
 
-  isCompletedStepThree = false;
-
-  onCompletedStepOne(isCompleted: boolean) {
-    this.isCompletedStepOne = isCompleted;
-  }
-
-  onCompletedStepTwo(isCompleted: boolean) {
-    this.isCompletedStepTwo = isCompleted;
-  }
-
-  onCompletedStepThree(isCompleted: boolean) {
-    this.isCompletedStepThree = isCompleted;
+  onChangeCompleted(step: string) {
+    this.store.dispatch(BookingActions.setStepCompleted({ step }));
   }
 }

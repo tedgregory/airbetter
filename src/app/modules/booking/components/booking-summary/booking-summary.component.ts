@@ -5,7 +5,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   templateUrl: './booking-summary.component.html',
 })
 export class BookingSummaryComponent {
-  @Output() completed = new EventEmitter<boolean>();
+  @Output() completed = new EventEmitter<string>();
 
   flightsList = [
     {
@@ -21,6 +21,6 @@ export class BookingSummaryComponent {
   ];
 
   setCompleted() {
-    this.completed.emit(true);
+    this.completed.emit('review');
   }
 }

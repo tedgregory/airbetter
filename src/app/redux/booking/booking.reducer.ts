@@ -16,8 +16,8 @@ const defaultState: BookingState = {
     confirmed: false,
     variants: null,
   },
-  step: {
-    flights: true,
+  steps: {
+    flights: false,
     passengers: false,
     review: false,
   },
@@ -73,6 +73,15 @@ export const bookingFeature = createFeature({
         ...state,
         status: EStatus.Error,
         error,
+      };
+    }),
+    on(BookingActions.setStepCompleted, (state, { step }): BookingState => {
+      return {
+        ...state,
+        steps: {
+          ...state.steps,
+          [step]: true,
+        },
       };
     }),
     on(BookingActions.setChosenForward, (state, { variant }): BookingState => {

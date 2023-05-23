@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 import { NavigationPath } from 'src/app/core/navigation/models/navigation.interface';
 import { ISearchData } from 'src/app/redux/search/search.state';
 import { SearchActions } from 'src/app/redux/search/search.actions';
-import { PassengerType } from 'src/app/redux/common/common.models';
+import { EPassengerType } from 'src/app/redux/common/common.models';
 
 @Component({
   selector: 'app-flights-search',
@@ -59,9 +59,9 @@ export class FlightsSearchComponent implements OnInit {
   endDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
 
   passengerCounts: CountsOptions = {
-    [PassengerType.Adult]: 0,
-    [PassengerType.Child]: 0,
-    [PassengerType.Infant]: 0,
+    [EPassengerType.Adult]: 0,
+    [EPassengerType.Child]: 0,
+    [EPassengerType.Infant]: 0,
   };
   passengersError$ = new BehaviorSubject(false);
 
@@ -154,7 +154,7 @@ export class FlightsSearchComponent implements OnInit {
 
     this.passengersError$.next(
       this.getPassengersQuantity() > 0 &&
-        this.passengerCounts[PassengerType.Adult] === 0
+        this.passengerCounts[EPassengerType.Adult] === 0
     );
   }
 

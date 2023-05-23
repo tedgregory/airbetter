@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { SearchActions } from './search.actions';
 import { PassengersActions } from '../passengers/passengers.actions';
-import { PassengerType } from '../common/common.models';
+import { EPassengerType } from '../common/common.models';
 import { BookingActions } from '../booking/booking.actions';
 
 @Injectable() // how else to scope it?
@@ -17,14 +17,14 @@ export class SearchEffects {
       map((params) => {
         const passengers = params.data.passengers;
         return PassengersActions.setPassengers({
-          adults: passengers[PassengerType.Adult]
-            ? Array(params.data.passengers[PassengerType.Adult])
+          adults: passengers[EPassengerType.Adult]
+            ? Array(params.data.passengers[EPassengerType.Adult])
             : null,
-          children: passengers[PassengerType.Child]
-            ? Array(params.data.passengers[PassengerType.Child])
+          children: passengers[EPassengerType.Child]
+            ? Array(params.data.passengers[EPassengerType.Child])
             : null,
-          infants: passengers[PassengerType.Infant]
-            ? Array(params.data.passengers[PassengerType.Infant])
+          infants: passengers[EPassengerType.Infant]
+            ? Array(params.data.passengers[EPassengerType.Infant])
             : null,
         });
       }),

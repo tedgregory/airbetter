@@ -22,7 +22,7 @@ import { LocationOption } from 'src/app/modules/flights/models/flights.interface
 import { FlightsService } from 'src/app/modules/flights/services/flights.service';
 import {
   EDateFormats,
-  PassengerType,
+  EPassengerType,
 } from 'src/app/redux/common/common.models';
 import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
 import { SearchActions } from 'src/app/redux/search/search.actions';
@@ -67,9 +67,9 @@ export class BookingInfoPanelComponent implements OnInit {
   isLoading = false;
 
   passengerCounts: CountsOptions = {
-    [PassengerType.Adult]: 0,
-    [PassengerType.Child]: 0,
-    [PassengerType.Infant]: 0,
+    [EPassengerType.Adult]: 0,
+    [EPassengerType.Child]: 0,
+    [EPassengerType.Infant]: 0,
   };
 
   passengersError$ = new BehaviorSubject(false);
@@ -172,14 +172,14 @@ export class BookingInfoPanelComponent implements OnInit {
     this.passengerCounts = { ...counts };
     const isError =
       this.getPassengersQuantity() > 0 &&
-      this.passengerCounts[PassengerType.Adult] === 0;
+      this.passengerCounts[EPassengerType.Adult] === 0;
     this.passengersError$.next(isError);
     if (!isError) {
       this.store.dispatch(
         PassengersActions.setPassengers({
-          adults: Array(counts[PassengerType.Adult]),
-          children: Array(counts[PassengerType.Child]),
-          infants: Array(counts[PassengerType.Infant]),
+          adults: Array(counts[EPassengerType.Adult]),
+          children: Array(counts[EPassengerType.Child]),
+          infants: Array(counts[EPassengerType.Infant]),
         })
       );
     }

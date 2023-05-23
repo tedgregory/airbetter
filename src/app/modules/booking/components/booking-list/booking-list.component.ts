@@ -4,14 +4,14 @@ import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
 import SwiperCore, { Navigation, Swiper, SwiperOptions } from 'swiper';
 import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
-import { of, switchMap, tap } from 'rxjs';
+import { combineLatest, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-booking-list',
   templateUrl: './booking-list.component.html',
 })
 export class BookingListComponent implements OnInit {
-  @Output() completed = new EventEmitter<boolean>();
+  @Output() completed = new EventEmitter<string>();
 
   config1: SwiperOptions = {
     navigation: {
@@ -81,6 +81,13 @@ export class BookingListComponent implements OnInit {
   ngOnInit() {
     SwiperCore.use([Navigation]);
     this.store.dispatch(BookingActions.getVariants());
+    combineLatest([this.flyToData$, this.flyBackData$]).subscribe(
+      ([forward, backward]) => {
+        if (forward.confirmed && (backward.confirmed || !backward.variants)) {
+          this.setCompleted();
+        }
+      }
+    );
   }
 
   onSliderSlideChange(type: 'forward' | 'backward', event: [swiper: Swiper]) {
@@ -124,6 +131,6 @@ export class BookingListComponent implements OnInit {
   }
 
   setCompleted() {
-    this.completed.emit(true);
+    this.completed.emit('flights');
   }
 }

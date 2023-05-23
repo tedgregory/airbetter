@@ -13,11 +13,7 @@ export interface BookingState {
     confirmed: boolean;
     variants: BookingFlightVariant[] | null; // null
   };
-  step: {
-    flights: boolean;
-    passengers: boolean;
-    review: boolean;
-  };
+  steps: { [key: string]: boolean };
 }
 
 // some extra interfaces, to deal with

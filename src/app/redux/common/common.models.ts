@@ -36,7 +36,7 @@ export enum ESeatsBreakpoints {
   S = 10,
 }
 
-export enum PassengerType {
+export enum EPassengerType {
   Adult = 'Adult',
   Child = 'Child',
   Infant = 'Infant',
