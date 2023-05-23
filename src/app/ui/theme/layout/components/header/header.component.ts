@@ -126,8 +126,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.dateFormatsControl.valueChanges.subscribe((value) => {
-      console.log(value);
-
       value &&
         this.store.dispatch(SearchActions.setDateFormat({ dateFormat: value }));
     });

@@ -16,8 +16,8 @@ export class BookingService {
     const body = {
       fromKey: params.flyFrom.iata,
       toKey: params.flyTo.iata,
-      forwardDate: moment(params.dateLeave, params.dateFormat).utc(),
-      backDate: moment(params.dateReturn, params.dateFormat).utc(),
+      forwardDate: moment(params.dateLeave).utc(),
+      backDate: moment(params.dateReturn).utc(),
     };
     return this.http
       .post(`${base}${flight}`, body, {

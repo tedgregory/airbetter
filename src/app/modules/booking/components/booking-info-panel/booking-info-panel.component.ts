@@ -56,12 +56,9 @@ export class BookingInfoPanelComponent implements OnInit {
 
   // startDate = new Date();
   minDate: Date = new Date();
-  // maxDate: Date;
-
-  // Set the maximum to December 31st a year in the future.
-  // const currentYear = new Date().getFullYear();
-  // this.minDate = new Date(currentYear - 20, 0, 1);
-  // this.maxDate = new Date(currentYear + 1, 11, 31);
+  maxDate: Date = new Date(
+    new Date().setFullYear(this.minDate.getFullYear() + 1)
+  );
 
   startDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
   endDatePicker = new Subject<MatDatepickerInputEvent<Date | null>>();
@@ -81,10 +78,6 @@ export class BookingInfoPanelComponent implements OnInit {
 
   toggleEditPanel() {
     this.editMode = !this.editMode;
-  }
-
-  get isValidLocationInput() {
-    return !!this.selectedFromOption && !!this.selectedToOption;
   }
 
   ngOnInit() {

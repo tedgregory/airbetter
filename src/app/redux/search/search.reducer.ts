@@ -2,13 +2,12 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 import { SearchState } from './search.state';
 import { SearchActions } from './search.actions';
 import { ECurrencies, EDateFormats } from '../common/common.models';
-import moment from 'moment';
 
 const defaultState: SearchState = {
   flyFrom: { iata: 'DUS', title: 'Dusseldorf' },
   flyTo: { iata: 'PRG', title: 'Warsaw Modlin' },
-  dateLeave: '25/06/2023',
-  dateReturn: '26/07/2023',
+  dateLeave: '2023-05-28T23:37:00.000Z',
+  dateReturn: '2023-06-21T23:37:00.000Z',
   isReturn: false,
   currency: ECurrencies.RUB,
   dateFormat: EDateFormats.DMY,
@@ -31,6 +30,9 @@ export const searchFeature = createFeature({
         return { ...state, dateReturn, dateLeave };
       }
     ),
+    on(SearchActions.setDateFormat, (state, { dateFormat }): SearchState => {
+      return { ...state, dateFormat };
+    }),
     on(SearchActions.setFlyFrom, (state, { flyFrom }): SearchState => {
       return { ...state, flyFrom };
     }),
@@ -55,8 +57,8 @@ export const searchFeature = createFeature({
         return {
           ...state,
           isReturn,
-          dateLeave: moment(dateLeave).format(state.dateFormat),
-          dateReturn: moment(dateReturn).format(state.dateFormat),
+          dateLeave,
+          dateReturn,
           flyFrom,
           flyTo,
         };

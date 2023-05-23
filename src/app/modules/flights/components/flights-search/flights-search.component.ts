@@ -163,11 +163,11 @@ export class FlightsSearchComponent implements OnInit {
   }
 
   onFormSubmit() {
-    const { value: fromvalue } = this.flightsSearchForm;
+    const { value: formValues } = this.flightsSearchForm;
 
     const searchData: ISearchData = {
-      dateLeave: fromvalue.range?.start?.toISOString() || null,
-      dateReturn: fromvalue.range?.end?.toISOString() || null,
+      dateLeave: formValues.range?.start?.toISOString() || null,
+      dateReturn: formValues.range?.end?.toISOString() || null,
       isReturn: this.selectedIsReturn,
       flyFrom: {
         iata: this.selectedFromOption?.key || '',
@@ -179,7 +179,6 @@ export class FlightsSearchComponent implements OnInit {
       },
       passengers: this.passengerCounts,
     };
-
     this.store.dispatch(
       SearchActions.setFlightSearchData({ data: searchData })
     );

@@ -24,8 +24,8 @@
           </span>
           <div class="info-data__separator"></div>
           <span class="info-data__dates">
-            {{ (savedStoreValues$ | async)?.dateLeave || 'N/A' }} -
-            {{ (savedStoreValues$ | async)?.dateReturn || 'N/A' }}
+            {{ (savedStoreValues$ | async)?.dateLeave | dateFormat:(savedStoreValues$ | async)?.dateFormat }} -
+            {{ (savedStoreValues$ | async)?.dateReturn | dateFormat:(savedStoreValues$ | async)?.dateFormat }}
           </span>
           <div class="info-data__separator"></div>
           <span class="info-data__passengers-count">
@@ -158,6 +158,7 @@
           [formGroup]="range"
           [rangePicker]="picker"
           [min]="minDate"
+          [max]="maxDate"
         >
           <input
             matStartDate
