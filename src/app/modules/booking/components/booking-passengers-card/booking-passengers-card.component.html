@@ -1,6 +1,6 @@
 <mat-card class="booking-passengers-card">
   <mat-card-content class="booking-passengers-card__content">
-    <div class="booking-passengers-card__title title title--medium title--primary-dark">1. Adult</div>
+    <div class="booking-passengers-card__title title title--medium title--primary-dark">{{ order + 1 }}. {{ type | titlecase }}</div>
 
     <form
       [formGroup]="passengerForm"
@@ -128,7 +128,6 @@
 
     <div
       *ngIf="!isInfant"
-      (click)="onSubmit()"
       class="booking-passengers-card__options"
     >
       <mat-slide-toggle class="airways-slide-toggle">
