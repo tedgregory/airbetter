@@ -7,13 +7,23 @@
   .passenger-form {
     width: 100%;
 
-    &__data {
+    &__person-data,
+    &__baggage-data {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: flex-start;
       flex-wrap: wrap;
       padding: 0;
+      margin-bottom: 40px;
+
+      .mat-mdc-form-field-error,
+      .mat-mdc-form-field-hint-wrapper {
+        @include text-12-400;
+      }
+    }
+
+    &__person-data {
       gap: 20px;
 
       @include media-breakpoint-down(xl) {
@@ -22,84 +32,94 @@
         width: 100%;
       }
 
-      .mat-mdc-form-field-error {
-        @include text-12-400;
+      .mat-mdc-form-field {
+        @include media-breakpoint-down(xl) {
+          flex-direction: column;
+          width: 100%;
+        }
       }
 
-      &--person {
-        margin-bottom: 40px;
+      .mat-button-toggle {
+        width: 108px;
 
-        .mat-mdc-form-field {
-          @include media-breakpoint-down(xl) {
-            flex-direction: column;
-            width: 100%;
-          }
+        @include media-breakpoint-down(xl) {
+          width: 100%;
         }
+      }
 
-        .mat-button-toggle {
-          width: 108px;
+      .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
+      .mat-button-toggle-button.mat-focus-indicator {
+        height: 58px;
 
-          @include media-breakpoint-down(xl) {
-            width: 100%;
-          }
+        @include media-breakpoint-down(xl) {
+          width: 100%;
         }
+      }
 
-        .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
-        .mat-button-toggle-button.mat-focus-indicator {
-          height: 58px;
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field
+        .mat-mdc-form-field-flex
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        @include media-breakpoint-down(xl) {
+          width: auto;
+        }
+      }
+    }
 
-          @include media-breakpoint-down(xl) {
-            width: 100%;
-          }
+    &__baggage-data {
+      gap: 40px;
+
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field
+        .mat-mdc-form-field-flex
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        width: 24px;
+      }
+    }
+
+    .baggage {
+      &__field {
+        min-width: 230px;
+      }
+
+      &__amount {
+        margin-right: 10px;
+
+        @include media-breakpoint-down(mm) {
+          margin-bottom: 5px;
         }
 
         /* stylelint-disable */
+        .mdc-text-field {
+          padding: 0 13px;
+        }
+
         .mat-mdc-text-field-wrapper.mdc-text-field
           .mat-mdc-form-field-flex
           .mat-mdc-form-field-infix {
-          @include media-breakpoint-down(xl) {
-            width: auto;
-          }
+          width: 32px;
         }
-        /* stylelint-enable */
-      }
 
-      &--baggage {
-        /* stylelint-disable */
-        .mat-mdc-text-field-wrapper.mdc-text-field
-          .mat-mdc-form-field-flex
-          .mat-mdc-form-field-infix {
-          width: 24px;
-        }
-        /* stylelint-enable */
-      }
-
-      .baggage {
-        &__amount {
-          margin-right: 10px;
+        .mat-mdc-form-field-hint-wrapper,
+        .mat-mdc-form-field-error-wrapper {
+          /* stylelint-enable */
+          position: absolute;
+          width: 230px;
+          padding: 0;
 
           @include media-breakpoint-down(mm) {
-            margin-bottom: 5px;
-          }
-
-          // stylelint-disable-next-line selector-max-compound-selectors
-          .mat-mdc-form-field-error-wrapper {
-            position: absolute;
-            width: 230px;
-            padding: 0;
-
-            @include media-breakpoint-down(mm) {
-              top: -40px;
-              left: 65px;
-              right: 0;
-            }
+            top: -40px;
+            left: 65px;
+            right: 0;
           }
         }
+      }
 
-        &__type {
-          @include media-breakpoint-down(mm) {
-            display: block;
-          }
+      &__type {
+        @include media-breakpoint-down(mm) {
+          display: block;
         }
       }
     }

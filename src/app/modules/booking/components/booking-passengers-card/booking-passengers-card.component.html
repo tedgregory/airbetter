@@ -6,7 +6,7 @@
       [formGroup]="passengerForm"
       class="booking-passengers-card__form passenger-form"
     >
-      <div class="passenger-form__data passenger-form__data--person">
+      <div class="passenger-form__person-data">
         <mat-form-field>
           <mat-label>First name</mat-label>
           <input
@@ -62,6 +62,8 @@
           <input
             formControlName="dateOfBirth"
             matInput
+            [min]="minBirthDate"
+            [max]="maxBirthDate"
             [matDatepicker]="picker"
             placeholder="MM/DD/YYYY"
           >
@@ -72,53 +74,60 @@
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="passengerForm.get('dateOfBirth')?.invalid && (passengerForm.get('dateOfBirth')?.dirty || passengerForm.get('dateOfBirth')?.touched)">
             <span *ngIf="passengerForm.get('dateOfBirth')?.hasError('required')">Date of Birth is required</span>
-            <span *ngIf="passengerForm.get('dateOfBirth')?.hasError('futureDate')">Invalid Date of Birth</span>
+            <span *ngIf="passengerForm.get('dateOfBirth')?.hasError('invalidDate')">Invalid Date of Birth</span>
           </mat-error>
         </mat-form-field>
       </div>
       <div
         formGroupName="baggage"
-        class="passenger-form__data passenger-form__data--baggage baggage"
+        class="passenger-form__baggage-data baggage"
       >
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
-              formControlName="cabinBaggage"
+              type="number"
+              formControlName="cabin"
               placeholder="0-3"
               matInput
             >
-            <mat-error *ngIf="passengerForm.get('baggage.cabinBaggage')?.invalid">Must contain from 0 to 3 bags</mat-error>
+            <mat-hint>3 bags max., total max. 12&nbsp;kg</mat-hint>
+            <mat-error *ngIf="passengerForm.get('baggage.cabin')?.invalid">Must contain from 0 to 3 bags</mat-error>
           </mat-form-field>
-          <span class="baggage__type">cabin bag(s), total max. 12kg</span>
+          <span class="baggage__type">cabin bag(s)</span>
         </div>
 
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
-              formControlName="personalBaggage"
+              type="number"
+              formControlName="personal"
               placeholder="0-3"
               matInput
             >
-            <mat-error *ngIf="passengerForm.get('baggage.personalBaggage')?.invalid">Must contain from 0 to 3 bags</mat-error>
+            <mat-hint>3 bags max., total max. 8&nbsp;kg</mat-hint>
+            <mat-error *ngIf="passengerForm.get('baggage.personal')?.invalid">Must contain from 0 to 3 bags</mat-error>
           </mat-form-field>
-          <span class="baggage__type">personal items (total max. 8kg)</span>
+          <span class="baggage__type">personal item(s)</span>
         </div>
 
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
-              formControlName="checkedBaggage"
+              type="number"
+              formControlName="checked"
               placeholder="0-3"
               matInput
             >
-            <mat-error *ngIf="passengerForm.get('baggage.checkedBaggage')?.invalid">Must contain from 0 to 3 bags</mat-error>
+            <mat-hint>3 bags max., total max. 23&nbsp;kg</mat-hint>
+            <mat-error *ngIf="passengerForm.get('baggage.checked')?.invalid">Must contain from 0 to 3 bags</mat-error>
           </mat-form-field>
-          <span class="baggage__type">checked bag(s) (total max. 23kg)</span>
+          <span class="baggage__type">checked bag(s)</span>
         </div>
       </div>
     </form>
 
     <div
+      *ngIf="!isInfant"
       (click)="onSubmit()"
       class="booking-passengers-card__options"
     >

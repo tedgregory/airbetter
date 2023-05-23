@@ -7,14 +7,18 @@ import { birthDateValidator } from '../../validators/birth-date-validator';
   templateUrl: './booking-passengers-card.component.html',
 })
 export class BookingPassengersCardComponent {
+  isInfant = false;
+
   passengerForm = new FormGroup({
     firstName: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z]{3,}'),
+      Validators.pattern('^[a-zA-Z\\s]*$'),
+      Validators.max(30),
     ]),
     lastName: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z]{3,}'),
+      Validators.pattern('^[a-zA-Z\\s]*$'),
+      Validators.max(30),
     ]),
     gender: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [
@@ -22,17 +26,26 @@ export class BookingPassengersCardComponent {
       birthDateValidator(),
     ]),
     baggage: new FormGroup({
-      cabinBaggage: new FormControl(0, [Validators.min(0), Validators.max(3)]),
-      personalBaggage: new FormControl(0, [
+      cabin: new FormControl(0, [
+        Validators.required,
         Validators.min(0),
         Validators.max(3),
       ]),
-      checkedBaggage: new FormControl(0, [
+      personal: new FormControl(0, [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(3),
+      ]),
+      checked: new FormControl(0, [
+        Validators.required,
         Validators.min(0),
         Validators.max(3),
       ]),
     }),
   });
+
+  minBirthDate = new Date('1.1.1900');
+  maxBirthDate = new Date();
 
   onSubmit() {
     console.log(this.passengerForm);

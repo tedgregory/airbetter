@@ -6,8 +6,10 @@ export function birthDateValidator(): ValidatorFn {
     if (!value) {
       return null;
     }
-    const isValid = new Date(value).getTime() <= Date.now();
+    const isValid =
+      new Date(value).getTime() <= Date.now() &&
+      new Date(value).getTime() >= new Date('1.1.1900').getTime();
 
-    return isValid ? null : { futureDate: true };
+    return isValid ? null : { invalidDate: true };
   };
 }
