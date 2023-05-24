@@ -22,7 +22,7 @@ import {
   GridBreakpointType,
   mediaBreakpointDown,
 } from '../../../utils/grid-breakpoints.util';
-import { Subject, Subscription, takeUntil, tap } from 'rxjs';
+import { Subject, Subscription, combineLatest, takeUntil, tap } from 'rxjs';
 import { CoreService } from 'src/app/core/services/core.service';
 import { AuthModalPosition } from '../../interfaces/layout.interfaces';
 import { ECurrencies, EDateFormats } from 'src/app/redux/common/common.models';
@@ -76,14 +76,14 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly destroy$ = new Subject<void>();
 
   dateFormats = Object.values(EDateFormats).map((key) => ({
-    value: key,
-    viewValue: key,
+    value: key as EDateFormats,
+    viewValue: key as EDateFormats,
   }));
-  dateFormatsControl = new FormControl<EDateFormats>(EDateFormats.DMY);
+  dateFormatsControl = new FormControl<EDateFormats>(EDateFormats.YMD);
 
   currencies = Object.keys(ECurrencies).map((key) => ({
-    value: key,
-    viewValue: key,
+    value: key as ECurrencies,
+    viewValue: key as ECurrencies,
   }));
   currenciesControl = new FormControl<ECurrencies>(ECurrencies.PLN);
 
@@ -133,11 +133,17 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
       value &&
         this.store.dispatch(SearchActions.setCurrency({ currency: value }));
     });
+
+    combineLatest([this.selectedDateFormat$, this.selectedCurrency$]).subscribe(
+      ([format, currency]) => {
+        this.dateFormatsControl.setValue(format);
+        this.currenciesControl.setValue(currency);
+      }
+    );
   }
 
   ngAfterViewInit() {
     this.calcSignInBtnCoords(this.isLtLgScreen);
-    this.cd.detectChanges();
   }
 
   ngOnDestroy() {

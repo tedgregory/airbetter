@@ -34,10 +34,12 @@
               class="header__select header__select--date"
               appearance="outline"
             >
-              <mat-select [value]="(selectedDateFormat$ | async)" [formControl]="dateFormatsControl">
+              <mat-select
+                [value]="selectedDateFormat$ | async"
+                [formControl]="dateFormatsControl"
+              >
                 <mat-option
                   name="date-format"
-
                   *ngFor="let dateFormat of dateFormats"
                   [value]="dateFormat.value"
                 >
@@ -50,7 +52,7 @@
               class="header__select header__select--currency"
               appearance="outline"
             >
-              <mat-select [value]="selectedCurrency$ | async" [formControl]="currenciesControl">
+              <mat-select [formControl]="currenciesControl" [value]="selectedCurrency$ | async">
                 <mat-option
                   name="currency"
                   *ngFor="let currency of currencies"
@@ -84,7 +86,7 @@
               aria-label="Cart"
             >
               <svg>
-                <use :xlink:href="./assets/sprites/sprite.svg#icon-cart"></use>
+                <use xlink:href="./assets/sprites/sprite.svg#icon-cart"></use>
               </svg>
             </a>
           </div>

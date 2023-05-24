@@ -9,7 +9,7 @@ const defaultState: SearchState = {
   dateLeave: '2023-05-28T23:37:00.000Z',
   dateReturn: '2023-06-21T23:37:00.000Z',
   isReturn: false,
-  currency: ECurrencies.RUB,
+  currency: ECurrencies.EUR,
   dateFormat: EDateFormats.DMY,
   error: null,
 };

@@ -3,7 +3,7 @@ import { PassengersState } from './passengers.state';
 import { PassengersActions } from './passengers.actions';
 
 const defaultState: PassengersState = {
-  adults: Array(2),
+  adults: null,
   children: null,
   infants: null,
   contactDetails: {

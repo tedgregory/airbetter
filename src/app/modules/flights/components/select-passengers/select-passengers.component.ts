@@ -8,6 +8,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 
 enum PassengerType {
   Adult = 'Adult',
@@ -68,8 +70,21 @@ export class SelectPassengersComponent implements OnInit {
 
   public isDropdownOpen = false;
 
+  private savedPassengers$ = this.store.select(
+    passengersFeature.selectPassengersState
+  );
+
+  constructor(private store: Store) {}
+
   ngOnInit() {
-    this.passengersValueText = this.setValueText(this.counts);
+    this.savedPassengers$.subscribe((passengers) => {
+      this.counts = {
+        [PassengerType.Adult]: passengers.adults?.length || 0,
+        [PassengerType.Child]: passengers.children?.length || 0,
+        [PassengerType.Infant]: passengers.infants?.length || 0,
+      };
+      this.passengersValueText = this.setValueText(this.counts);
+    });
   }
 
   closeDropdown() {
