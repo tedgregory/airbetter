@@ -5,6 +5,7 @@ import { BookingActions } from 'src/app/redux/booking/booking.actions';
 import SwiperCore, { Navigation, Swiper, SwiperOptions } from 'swiper';
 import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
 import { combineLatest, of, switchMap, tap } from 'rxjs';
+import { searchFeature } from 'src/app/redux/search/search.reducer';
 
 @Component({
   selector: 'app-booking-list',
@@ -71,6 +72,8 @@ export class BookingListComponent implements OnInit {
           : 2;
     })
   );
+
+  selectedCurrency$ = this.store.select(searchFeature.selectCurrency);
 
   loadingStatus$ = this.store
     .select(bookingFeature.selectStatus)

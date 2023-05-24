@@ -58,7 +58,7 @@
     </div>
     <div class="flight-selection__price-tag">Price</div>
     <div class="flight-selection__price">
-      {{ price.EUR | currency : 'EUR' }}
+      {{ price[props.currency || 'EUR'] | currency : (props.currency || 'EUR') :'symbol':'1.0-0' }}
     </div>
   </ng-container>
   <div class="flight-selection__select">

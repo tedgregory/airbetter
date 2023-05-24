@@ -59,7 +59,8 @@
             (confirmation)="onConfirmToggle('flyTo')"
             [props]="{
               isReturn: false,
-              isConfirmed: directFlights.confirmed
+              isConfirmed: directFlights.confirmed,
+              currency: (selectedCurrency$ | async) || null
             }"
           ></app-booking-details>
         </div>
@@ -122,7 +123,8 @@
             (confirmation)="onConfirmToggle('flyBack')"
             [props]="{
               isReturn: true,
-              isConfirmed: returnFlights.confirmed
+              isConfirmed: returnFlights.confirmed,
+              currency: selectedCurrency$ | async
             }"
           ></app-booking-details>
         </div>

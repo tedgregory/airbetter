@@ -8,14 +8,6 @@ import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
 export class BookingCardComponent {
   @Input()
   bookingVariant: BookingFlightVariant | null = null;
-  // @Input()
-  // isActive = false;
-  // @Input()
-  // variantID = 0;
-  // @Output()
-  // chooseFlight = new EventEmitter<string | null>();
-
-  // setActive() {
-  //   this.chooseFlight.emit(this.bookingVariant?.id || null);
-  // }
+  @Input()
+  currency: keyof BookingFlightVariant['price'] | null = null;
 }
