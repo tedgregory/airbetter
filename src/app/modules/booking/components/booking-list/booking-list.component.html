@@ -124,7 +124,7 @@
             [props]="{
               isReturn: true,
               isConfirmed: returnFlights.confirmed,
-              currency: selectedCurrency$ | async
+              currency: (selectedCurrency$ | async) || null
             }"
           ></app-booking-details>
         </div>
