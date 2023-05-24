@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   Observable,
   debounceTime,
@@ -21,6 +21,17 @@ export class BookingPassengersContactsComponent implements OnInit {
 
   filteredCountries$: Observable<Country[]> = of<Country[]>([]);
 
+  contactsForm = new FormGroup({
+    countryCode: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(10),
+      Validators.pattern('^[0-9]*$'),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+  });
+
   constructor(private coreService: CoreService) {}
 
   ngOnInit() {
@@ -40,5 +51,19 @@ export class BookingPassengersContactsComponent implements OnInit {
 
   onCountryInput() {
     this.selectedCountry = null;
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+  }
+
+  onSubmit() {
+    this.validateAllFormFields(this.contactsForm);
+
+    console.log(this.contactsForm);
+    console.log(this.contactsForm.valid);
   }
 }

@@ -1,6 +1,9 @@
 <mat-card class="booking-contacts-card">
   <mat-card-content class="booking-contacts-card__content">
-    <form class="booking-contacts-card__form">
+    <form
+      [formGroup]="contactsForm"
+      class="booking-contacts-card__form"
+    >
       <div class="booking-contacts-card__phone-data">
         <mat-form-field
           class="booking-contacts-card__country-field"
@@ -9,6 +12,7 @@
           <mat-label>Country code</mat-label>
           <div class="booking-contacts-card__country-holder">
             <input
+              formControlName="countryCode"
               type="text"
               placeholder="Country code"
               matInput
@@ -27,6 +31,7 @@
               {{ country.name }}&nbsp;({{ country.dialCode }})
             </mat-option>
           </mat-autocomplete>
+          <mat-error *ngIf="contactsForm.get('countryCode')?.hasError('required')">Phone number is required</mat-error>
         </mat-form-field>
 
         <mat-form-field
@@ -34,12 +39,17 @@
           floatLabel="always"
           class="booking-contacts-card__phone-field"
         >
-          <mat-label>Mobile phone number*</mat-label>
+          <mat-label>Mobile phone number</mat-label>
           <input
+            formControlName="phone"
             type="tel"
             matInput
             placeholder="e.g. 1111111111"
           >
+          <mat-error *ngIf="contactsForm.get('phone')?.hasError('required')">Phone number is required</mat-error>
+          <mat-error *ngIf="contactsForm.get('phone')?.hasError('minlength') && !contactsForm.get('phone')?.hasError('pattern')">Phone number is too short</mat-error>
+          <mat-error *ngIf="contactsForm.get('phone')?.hasError('maxlength') && !contactsForm.get('phone')?.hasError('pattern')">Phone number is too short</mat-error>
+          <mat-error *ngIf="contactsForm.get('phone')?.hasError('pattern')">Phone number is invalid</mat-error>
         </mat-form-field>
       </div>
 
@@ -47,13 +57,22 @@
         floatLabel="always"
         class="booking-contacts-card__email-field"
       >
-        <mat-label>Email*</mat-label>
+        <mat-label>Email</mat-label>
         <input
+          formControlName="email"
           type="email"
           matInput
           placeholder="e.g. example@email.com"
         >
+        <mat-error *ngIf="contactsForm.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="contactsForm.get('email')?.hasError('email')">Email is invalid</mat-error>
       </mat-form-field>
     </form>
+    <button
+      type="button"
+      (click)="onSubmit()"
+    >
+      Temp Submit
+    </button>
   </mat-card-content>
 </mat-card>
