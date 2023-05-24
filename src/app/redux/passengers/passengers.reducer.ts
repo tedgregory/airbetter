@@ -11,12 +11,16 @@ const defaultState: PassengersState = {
     phone: '',
     email: '',
   },
+  error: null,
 };
 
 export const passengersFeature = createFeature({
   name: 'passengers',
   reducer: createReducer<PassengersState>(
     defaultState,
+    on(PassengersActions.setError, (state, { error }): PassengersState => {
+      return { ...state, error };
+    }),
     on(
       PassengersActions.setPassengers,
       (state, { adults, children, infants }): PassengersState => {

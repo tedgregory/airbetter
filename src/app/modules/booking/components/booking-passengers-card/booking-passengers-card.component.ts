@@ -62,7 +62,20 @@ export class BookingPassengersCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.passengerForm.valueChanges.subscribe((value) => {
-      this.formDataValid.emit(this.mapPassengerData(value));
+      this.formDataValid.emit(
+        this.passengerForm.valid ? this.mapPassengerData(value) : null
+      );
+    });
+    this.passengerForm.setValue({
+      firstName: this.initialData?.name?.first || '',
+      lastName: this.initialData?.name?.last || '',
+      baggage: {
+        cabin: this.initialData?.baggage?.hand || 0,
+        personal: this.initialData?.baggage?.hold || 0,
+        checked: this.initialData?.baggage?.hand || 0,
+      },
+      dateOfBirth: this.initialData?.birthDate || '',
+      gender: this.initialData?.gender || null,
     });
   }
 
@@ -75,6 +88,11 @@ export class BookingPassengersCardComponent implements OnInit {
       },
       birthDate: value.dateOfBirth || new Date().toISOString(),
       gender: value.gender as Gender,
+      baggage: {
+        hand: value.baggage?.cabin || 0,
+        hold: value.baggage?.personal || 0,
+        checked: value.baggage?.checked || 0,
+      },
       specialCare: !this.isInfant,
     };
     return passengerData;

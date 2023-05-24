@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 import {
   BookingPassenger,
@@ -17,37 +19,60 @@ export class BookingPassengersComponent implements OnInit {
     passengersFeature.selectPassengersState
   );
 
-  passengersCollectedInfo: Omit<PassengersState, 'contactDetails'> = {
+  passengersCollectedInfo$ = new BehaviorSubject<
+    Omit<PassengersState, 'contactDetails' | 'error'>
+  >({
     adults: [],
     children: [],
     infants: [],
-  };
-  contactCollectedInfo: Partial<Pick<PassengersState, 'contactDetails'>> = {
-    contactDetails: undefined,
-  };
+  });
+
+  contactCollectedInfo$ = new BehaviorSubject<Pick<
+    PassengersState,
+    'contactDetails'
+  > | null>(null);
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
     // TODO - THIS WON'T WORK! MAke another stream line
-    this.passengersStateData$.subscribe((data) => {
+    combineLatest([
+      this.passengersCollectedInfo$,
+      this.contactCollectedInfo$,
+      this.passengersStateData$,
+    ]).subscribe(([passengers, contacts, state]) => {
       if (
-        data.adults?.length !== this.passengersCollectedInfo.adults?.length ||
-        data.children?.length !==
-          this.passengersCollectedInfo.children?.length ||
-        data.infants?.length !== this.passengersCollectedInfo.infants?.length
+        state.adults?.length !== passengers.adults?.length ||
+        state.children?.length !== passengers.children?.length ||
+        state.infants?.length !== passengers.infants?.length ||
+        !contacts
       ) {
         return;
       }
+      this.setPassengersCompleted();
+      this.store.dispatch(
+        PassengersActions.setFullPassengersDetails({
+          data: {
+            ...passengers,
+            ...contacts,
+            error: null,
+          },
+        })
+      );
     });
   }
 
   onPassengerFormAccepted(
-    type: keyof Omit<PassengersState, 'contactDetails'>,
+    type: keyof Omit<PassengersState, 'contactDetails' | 'error'>,
     data: BookingPassenger | null
   ) {
     if (!data) return;
-    this.passengersCollectedInfo[type]?.push(data);
+    const passInfo = this.passengersCollectedInfo$.value;
+    const passTypeData = passInfo?.[type];
+    this.passengersCollectedInfo$.next({
+      ...passInfo,
+      [type]: passTypeData && data ? [...passTypeData, data] : passTypeData,
+    });
   }
 
   setPassengersCompleted() {
