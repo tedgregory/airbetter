@@ -12,5 +12,11 @@ export const PassengersActions = createActionGroup({
     'Set Contact Details': props<{
       contactDetails: PassengersState['contactDetails'];
     }>(),
+    'Set Full Passengers Details': props<{
+      data: PassengersState;
+    }>(),
+    'Set Error': props<{
+      error: PassengersState['error'];
+    }>(),
   },
 });

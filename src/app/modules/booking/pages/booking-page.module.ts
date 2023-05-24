@@ -14,6 +14,7 @@ import { BookingEffects } from 'src/app/redux/booking/booking.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { BookingStepperModule } from '../components/booking-stepper/booking-stepper.module';
 import { SearchEffects } from 'src/app/redux/search/search.effects';
+import { PassengersEffects } from 'src/app/redux/passengers/passengers.effects';
 
 @NgModule({
   imports: [
@@ -26,7 +27,11 @@ import { SearchEffects } from 'src/app/redux/search/search.effects';
     StoreModule.forFeature(passengersFeature),
     StoreModule.forFeature(userFeature),
     StoreModule.forFeature(searchFeature),
-    EffectsModule.forFeature([BookingEffects, SearchEffects]),
+    EffectsModule.forFeature([
+      BookingEffects,
+      SearchEffects,
+      PassengersEffects,
+    ]),
     BookingStepperModule,
   ],
   declarations: [BookingPageComponent],

@@ -3,7 +3,7 @@ import { PassengersState } from './passengers.state';
 import { PassengersActions } from './passengers.actions';
 
 const defaultState: PassengersState = {
-  adults: null,
+  adults: Array(2),
   children: null,
   infants: null,
   contactDetails: {
@@ -11,12 +11,16 @@ const defaultState: PassengersState = {
     phone: '',
     email: '',
   },
+  error: null,
 };
 
 export const passengersFeature = createFeature({
   name: 'passengers',
   reducer: createReducer<PassengersState>(
     defaultState,
+    on(PassengersActions.setError, (state, { error }): PassengersState => {
+      return { ...state, error };
+    }),
     on(
       PassengersActions.setPassengers,
       (state, { adults, children, infants }): PassengersState => {

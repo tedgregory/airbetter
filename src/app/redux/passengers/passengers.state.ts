@@ -7,6 +7,11 @@ export type BookingPassenger = {
   };
   gender: Gender;
   birthDate: string;
+  baggage: {
+    hand: number;
+    hold: number;
+    checked: number;
+  };
   specialCare: boolean;
 };
 
@@ -17,5 +22,6 @@ export interface PassengersState {
     | (Omit<BookingPassenger, 'specialCare'> &
         Partial<Pick<BookingPassenger, 'specialCare'>>)[]
     | null;
-  contactDetails: ContactDetails;
+  contactDetails: ContactDetails | null;
+  error: Error | null;
 }
