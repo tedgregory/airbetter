@@ -14,6 +14,8 @@
             matInput
           >
           <mat-icon
+            matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
+            matTooltipPosition="right"
             matSuffix
             svgIcon="appInfo"
           ></mat-icon>
@@ -29,6 +31,8 @@
             matInput
           >
           <mat-icon
+            matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
+            matTooltipPosition="right"
             matSuffix
             svgIcon="appInfo"
           ></mat-icon>
@@ -37,15 +41,19 @@
           <mat-error *ngIf="passengerForm.get('lastName')?.hasError('maxlength')">Must be up to 30 characters</mat-error>
         </mat-form-field>
 
-        <mat-button-toggle-group
-          [ngClass]="{'invalid': passengerForm.get('gender')?.hasError('required')}"
-          formControlName="gender"
-          name="gender"
-          aria-label="Choose Gender"
-        >
-          <mat-button-toggle value="male">Male</mat-button-toggle>
-          <mat-button-toggle value="female">Female</mat-button-toggle>
-        </mat-button-toggle-group>
+        <div class="passenger-form__gender-field-holder">
+          <mat-button-toggle-group
+            [class.invalid]="isFieldValid('gender')"
+            formControlName="gender"
+            name="gender"
+            aria-label="Choose Gender"
+          >
+            <mat-button-toggle value="male">Male</mat-button-toggle>
+            <mat-button-toggle value="female">Female</mat-button-toggle>
+          </mat-button-toggle-group>
+          <!-- *ngIf="isFieldValid('gender')" -->
+          <span class="passenger-form__gender-field-error">Choose an option</span>
+        </div>
 
         <mat-form-field
           floatLabel="always"
@@ -76,9 +84,9 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              type="number"
               min="0"
               max="3"
-              type="number"
               formControlName="cabin"
               matInput
             >
@@ -91,9 +99,9 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              type="number"
               min="0"
               max="3"
-              type="number"
               formControlName="personal"
               matInput
             >
@@ -106,9 +114,9 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              type="number"
               min="0"
               max="3"
-              type="number"
               formControlName="checked"
               matInput
             >
@@ -122,7 +130,6 @@
 
     <div
       *ngIf="!isInfant"
-      (click)="onSubmit()"
       class="booking-passengers-card__options"
     >
       <mat-slide-toggle class="airways-slide-toggle">
@@ -130,5 +137,12 @@
         Need special assistance?
       </mat-slide-toggle>
     </div>
+
+    <button
+      type="button"
+      (click)="onSubmit()"
+    >
+      Temp Submit
+    </button>
   </mat-card-content>
 </mat-card>
