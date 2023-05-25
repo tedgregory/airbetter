@@ -82,6 +82,10 @@
     &__gender-field-holder {
       position: relative;
 
+      @include media-breakpoint-down(xl) {
+        width: 100%;
+      }
+
       .invalid {
         // stylelint-disable-next-line selector-max-compound-selectors
         & + .passenger-form__gender-field-error {
@@ -128,7 +132,7 @@
       .mat-mdc-text-field-wrapper.mdc-text-field {
         .mat-mdc-form-field-flex {
           .mat-mdc-form-field-infix {
-      /* stylelint-enable */
+            /* stylelint-enable */
             width: 32px;
           }
         }

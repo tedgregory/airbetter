@@ -8,6 +8,7 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
+import { validateAllFormFields } from 'src/app/core/helpers/validation.helper';
 import { CoreService, Country } from 'src/app/core/services/core.service';
 
 @Component({
@@ -15,8 +16,6 @@ import { CoreService, Country } from 'src/app/core/services/core.service';
   templateUrl: './booking-passengers-contacts.component.html',
 })
 export class BookingPassengersContactsComponent implements OnInit {
-  countryControl = new FormControl('');
-
   selectedCountry: Country | null = null;
 
   filteredCountries$: Observable<Country[]> = of<Country[]>([]);
@@ -35,14 +34,15 @@ export class BookingPassengersContactsComponent implements OnInit {
   constructor(private coreService: CoreService) {}
 
   ngOnInit() {
-    this.filteredCountries$ = this.countryControl.valueChanges.pipe(
-      startWith(''),
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((searchTerm) => {
-        return this.coreService.getCountries(searchTerm);
-      })
-    );
+    this.filteredCountries$ =
+      this.contactsForm?.get('countryCode')?.valueChanges.pipe(
+        startWith(''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((searchTerm) => {
+          return this.coreService.getCountries(searchTerm);
+        })
+      ) || of<Country[]>([]);
   }
 
   onCountrySelection(country: Country) {
@@ -53,15 +53,15 @@ export class BookingPassengersContactsComponent implements OnInit {
     this.selectedCountry = null;
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((field) => {
-      const control = formGroup.get(field);
-      control?.markAsTouched({ onlySelf: true });
-    });
-  }
+  // validateAllFormFields(formGroup: FormGroup) {
+  //   Object.keys(formGroup.controls).forEach((field) => {
+  //     const control = formGroup.get(field);
+  //     control?.markAsTouched({ onlySelf: true });
+  //   });
+  // }
 
   onSubmit() {
-    this.validateAllFormFields(this.contactsForm);
+    validateAllFormFields(this.contactsForm);
 
     console.log(this.contactsForm);
     console.log(this.contactsForm.valid);

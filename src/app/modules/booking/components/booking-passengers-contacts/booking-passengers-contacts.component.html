@@ -12,11 +12,11 @@
           <mat-label>Country code</mat-label>
           <div class="booking-contacts-card__country-holder">
             <input
+              required
               formControlName="countryCode"
               type="text"
               placeholder="Country code"
               matInput
-              [formControl]="countryControl"
               [matAutocomplete]="autoCountry"
               aria-label="Your country code"
               (input)="onCountryInput()"
@@ -41,15 +41,16 @@
         >
           <mat-label>Mobile phone number</mat-label>
           <input
+            required
             formControlName="phone"
             type="tel"
             matInput
             placeholder="e.g. 1111111111"
           >
           <mat-error *ngIf="contactsForm.get('phone')?.hasError('required')">Phone number is required</mat-error>
-          <mat-error *ngIf="contactsForm.get('phone')?.hasError('minlength') && !contactsForm.get('phone')?.hasError('pattern')">Phone number is too short</mat-error>
-          <mat-error *ngIf="contactsForm.get('phone')?.hasError('maxlength') && !contactsForm.get('phone')?.hasError('pattern')">Phone number is too short</mat-error>
-          <mat-error *ngIf="contactsForm.get('phone')?.hasError('pattern')">Phone number is invalid</mat-error>
+          <mat-error *ngIf="contactsForm.get('phone')?.hasError('minlength')">Phone number is too short</mat-error>
+          <mat-error *ngIf="contactsForm.get('phone')?.hasError('maxlength')">Phone number is too long</mat-error>
+          <mat-error *ngIf="contactsForm.get('phone')?.hasError('pattern')">Only numbers</mat-error>
         </mat-form-field>
       </div>
 
@@ -59,6 +60,7 @@
       >
         <mat-label>Email</mat-label>
         <input
+          required
           formControlName="email"
           type="email"
           matInput

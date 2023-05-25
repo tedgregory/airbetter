@@ -10,6 +10,7 @@
         <mat-form-field>
           <mat-label>First name</mat-label>
           <input
+            required
             formControlName="firstName"
             matInput
           >
@@ -27,6 +28,7 @@
         <mat-form-field>
           <mat-label>Last name</mat-label>
           <input
+            required
             formControlName="lastName"
             matInput
           >
@@ -43,7 +45,7 @@
 
         <div class="passenger-form__gender-field-holder">
           <mat-button-toggle-group
-            [class.invalid]="isFieldValid('gender')"
+            [class.invalid]="isFieldValid('gender', passengerForm, isFormSubmitAttempt)"
             formControlName="gender"
             name="gender"
             aria-label="Choose Gender"
@@ -61,6 +63,7 @@
         >
           <mat-label>Date of birth</mat-label>
           <input
+            required
             formControlName="dateOfBirth"
             matInput
             [min]="minBirthDate"
@@ -84,6 +87,7 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              required
               type="number"
               min="0"
               max="3"
@@ -99,6 +103,7 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              required
               type="number"
               min="0"
               max="3"
@@ -114,6 +119,7 @@
         <div class="baggage__field">
           <mat-form-field class="baggage__amount">
             <input
+              required
               type="number"
               min="0"
               max="3"
