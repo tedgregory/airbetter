@@ -79,6 +79,37 @@
       }
     }
 
+    &__gender-field-holder {
+      position: relative;
+
+      @include media-breakpoint-down(xl) {
+        width: 100%;
+      }
+
+      .invalid {
+        // stylelint-disable-next-line selector-max-compound-selectors
+        & + .passenger-form__gender-field-error {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    &__gender-field-error {
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      display: block;
+      width: 100%;
+      @include text-12-400;
+      color: $color-danger;
+      padding: 0 16px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: transform 0.36s ease-out, opacity 0.36s ease-out;
+    }
+
     .baggage {
       &__field {
         min-width: 230px;
@@ -90,37 +121,29 @@
         @include media-breakpoint-down(mm) {
           margin-bottom: 5px;
         }
+      }
 
-        /* stylelint-disable */
-        .mdc-text-field {
-          padding: 0 13px;
-        }
+      // stylelint-disable-next-line selector-max-compound-selectors
+      .mdc-text-field {
+        padding: 0 13px;
+      }
 
-        .mat-mdc-text-field-wrapper.mdc-text-field
-          .mat-mdc-form-field-flex
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field {
+        .mat-mdc-form-field-flex {
           .mat-mdc-form-field-infix {
-          width: 32px;
-        }
-
-        .mat-mdc-form-field-hint-wrapper,
-        .mat-mdc-form-field-error-wrapper {
-          /* stylelint-enable */
-          position: absolute;
-          width: 230px;
-          padding: 0;
-
-          @include media-breakpoint-down(mm) {
-            top: -40px;
-            left: 65px;
-            right: 0;
+            /* stylelint-enable */
+            width: 32px;
           }
         }
       }
 
-      &__type {
-        @include media-breakpoint-down(mm) {
-          display: block;
-        }
+      // stylelint-disable-next-line selector-max-compound-selectors
+      .mat-mdc-form-field-hint-wrapper,
+      .mat-mdc-form-field-error-wrapper {
+        position: absolute;
+        width: 230px;
+        padding: 0;
       }
     }
   }

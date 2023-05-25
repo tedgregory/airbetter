@@ -3,12 +3,19 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export function birthDateValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const { value } = control;
+
+    if (value === null) {
+      return { invalidDate: true };
+    }
+
     if (!value) {
       return null;
     }
+
+    const dateValue = new Date(value).getTime();
+
     const isValid =
-      new Date(value).getTime() <= Date.now() &&
-      new Date(value).getTime() >= new Date('1.1.1900').getTime();
+      dateValue <= Date.now() && dateValue >= new Date('1900-01-01').getTime();
 
     return isValid ? null : { invalidDate: true };
   };
