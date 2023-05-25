@@ -28,8 +28,14 @@
 
 .mat-button-toggle-group-appearance-standard {
   border: 1px solid $color-grey-neutral-30-50;
-}
 
-.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
-  border-left: 1px solid $color-grey-neutral-30-50;
+  &.invalid {
+    border-color: $color-danger;
+  }
+
+  .mat-button-toggle {
+    & + .mat-button-toggle {
+      border-left: 1px solid $color-grey-neutral-30-50;
+    }
+  }
 }

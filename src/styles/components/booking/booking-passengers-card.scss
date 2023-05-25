@@ -4,52 +4,153 @@
     border-radius: 8px;
   }
 
-  &__form {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0;
+  .passenger-form {
+    width: 100%;
 
-    @include media-breakpoint-down(xl) {
-      flex-direction: column;
-      width: 100%;
+    &__person-data,
+    &__baggage-data {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0;
+      margin-bottom: 40px;
+
+      .mat-mdc-form-field-error,
+      .mat-mdc-form-field-hint-wrapper {
+        @include text-12-400;
+      }
     }
 
-    .mat-mdc-form-field {
+    &__person-data {
+      gap: 20px;
+
       @include media-breakpoint-down(xl) {
         flex-direction: column;
+        gap: 40px;
         width: 100%;
+      }
+
+      .mat-mdc-form-field {
+        @include media-breakpoint-down(xl) {
+          flex-direction: column;
+          width: 100%;
+        }
+      }
+
+      .mat-button-toggle {
+        width: 108px;
+
+        @include media-breakpoint-down(xl) {
+          width: 100%;
+        }
+      }
+
+      .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
+      .mat-button-toggle-button.mat-focus-indicator {
+        height: 58px;
+
+        @include media-breakpoint-down(xl) {
+          width: 100%;
+        }
+      }
+
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field
+        .mat-mdc-form-field-flex
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        @include media-breakpoint-down(xl) {
+          width: auto;
+        }
       }
     }
 
-    .mat-button-toggle {
-      width: 108px;
+    &__baggage-data {
+      gap: 40px;
+
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field
+        .mat-mdc-form-field-flex
+        .mat-mdc-form-field-infix {
+        /* stylelint-enable */
+        width: 24px;
+      }
+    }
+
+    &__gender-field-holder {
+      position: relative;
 
       @include media-breakpoint-down(xl) {
         width: 100%;
       }
-    }
 
-    .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
-    .mat-button-toggle-button.mat-focus-indicator {
-      height: 58px;
-
-      @include media-breakpoint-down(xl) {
-        width: 100%;
+      .invalid {
+        // stylelint-disable-next-line selector-max-compound-selectors
+        & + .passenger-form__gender-field-error {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     }
 
-    /* stylelint-disable */
-    .mat-mdc-text-field-wrapper.mdc-text-field
-      .mat-mdc-form-field-flex
-      .mat-mdc-form-field-infix {
-      @include media-breakpoint-down(xl) {
-        width: auto;
+    &__gender-field-error {
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      display: block;
+      width: 100%;
+      @include text-12-400;
+      color: $color-danger;
+      padding: 0 16px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: transform 0.36s ease-out, opacity 0.36s ease-out;
+    }
+
+    .baggage {
+      &__field {
+        min-width: 230px;
+      }
+
+      &__amount {
+        margin-right: 10px;
+
+        @include media-breakpoint-down(mm) {
+          margin-bottom: 5px;
+        }
+      }
+
+      // stylelint-disable-next-line selector-max-compound-selectors
+      .mdc-text-field {
+        padding: 0 13px;
+      }
+
+      /* stylelint-disable */
+      .mat-mdc-text-field-wrapper.mdc-text-field {
+        .mat-mdc-form-field-flex {
+          .mat-mdc-form-field-infix {
+            /* stylelint-enable */
+            width: 32px;
+          }
+        }
+      }
+
+      // stylelint-disable-next-line selector-max-compound-selectors
+      .mat-mdc-form-field-hint-wrapper,
+      .mat-mdc-form-field-error-wrapper {
+        position: absolute;
+        width: 230px;
+        padding: 0;
       }
     }
-    /* stylelint-enable */
+  }
+}
+
+.booking-content-block .mat-mdc-card.mdc-card .mat-mdc-card-content {
+  @include media-breakpoint-down(sm) {
+    padding: 20px;
   }
 }
