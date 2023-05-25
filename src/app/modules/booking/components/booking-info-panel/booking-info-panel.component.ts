@@ -26,7 +26,6 @@ import {
 } from 'src/app/redux/common/common.models';
 import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
-import { BookingPassenger } from 'src/app/redux/passengers/passengers.state';
 import { SearchActions } from 'src/app/redux/search/search.actions';
 import CustomSearchSelectors from 'src/app/redux/search/search.selectors';
 
@@ -183,14 +182,6 @@ export class BookingInfoPanelComponent implements OnInit {
         PassengersActions.updateQuantities({ count: counts })
       );
     }
-  }
-
-  mergePassengers(previuos: BookingPassenger[] | null, amount: number) {
-    if (!previuos || !previuos.length) return null;
-    return [...previuos, Array(amount)].slice(
-      0,
-      amount - 1
-    ) as BookingPassenger[];
   }
 
   getPassengersQuantity(): number {
