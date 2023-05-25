@@ -25,6 +25,8 @@ import {
   EPassengerType,
 } from 'src/app/redux/common/common.models';
 import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
+import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
+import { BookingPassenger } from 'src/app/redux/passengers/passengers.state';
 import { SearchActions } from 'src/app/redux/search/search.actions';
 import CustomSearchSelectors from 'src/app/redux/search/search.selectors';
 
@@ -53,6 +55,8 @@ export class BookingInfoPanelComponent implements OnInit {
   savedStoreValues$ = this.store.select(
     CustomSearchSelectors.selectSearchBasic
   );
+
+  savedPassengers$ = this.store.select(passengersFeature.selectPassengersState);
 
   // startDate = new Date();
   minDate: Date = new Date();
@@ -176,13 +180,17 @@ export class BookingInfoPanelComponent implements OnInit {
     this.passengersError$.next(isError);
     if (!isError) {
       this.store.dispatch(
-        PassengersActions.setPassengers({
-          adults: Array(counts[EPassengerType.Adult]),
-          children: Array(counts[EPassengerType.Child]),
-          infants: Array(counts[EPassengerType.Infant]),
-        })
+        PassengersActions.updateQuantities({ count: counts })
       );
     }
+  }
+
+  mergePassengers(previuos: BookingPassenger[] | null, amount: number) {
+    if (!previuos || !previuos.length) return null;
+    return [...previuos, Array(amount)].slice(
+      0,
+      amount - 1
+    ) as BookingPassenger[];
   }
 
   getPassengersQuantity(): number {

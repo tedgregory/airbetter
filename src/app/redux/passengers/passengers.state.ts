@@ -13,6 +13,7 @@ export type BookingPassenger = {
     checked: number;
   };
   specialCare: boolean;
+  seat?: string;
 };
 
 export interface PassengersState {

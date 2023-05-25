@@ -1,18 +1,18 @@
 <mat-card class="booking-summary-price">
   <mat-card-content>
     <div class="booking-summary-price__list price-list">
-      <div *ngFor="let price of prices" class="price-list__item">
+      <div *ngFor="let price of pricesViewData" class="price-list__item">
         <p class="price-list__row price-list__row--bold">
-          <span>{{ price.amount }} x {{ price.type }} Fare</span>
-          <span>{{ price.totalPrice | currency : currencyType }}</span>
+          <span>{{ price['amount'] }} x {{ price['type'] }} Fare</span>
+          <span>{{ price['totalPrice'] | currency : currency?.toString() }}</span>
         </p>
         <p class="price-list__row price-list__row--normal">
           <span>Fare</span>
-          <span>{{ price.farePrice | currency : currencyType }}</span>
+          <span>{{ price['farePrice'] | currency : currency?.toString() }}</span>
         </p>
         <p class="price-list__row price-list__row--normal">
           <span>Tax & Service Charge</span>
-          <span>{{ price.otherPrice | currency : currencyType }}</span>
+          <span>{{ price['otherPrice'] | currency : currency?.toString() }}</span>
         </p>
       </div>
     </div>
@@ -20,7 +20,7 @@
     <div class="booking-summary-price__total price-total">
       <span class="price-total__title">TOTAL:</span>
       <span class="price-total__sum">{{
-        countTotalPrice() | currency : currencyType
+        countTotalPrice() | currency : currency?.toString()
       }}</span>
     </div>
   </mat-card-content>

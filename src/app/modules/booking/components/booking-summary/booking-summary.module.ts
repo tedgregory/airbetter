@@ -5,6 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { BookingSummaryFlightModule } from '../booking-summary-flight/booking-summary-flight.module';
 import { BookingSummaryPriceModule } from '../booking-summary-price/booking-summary-price.module';
 import { BookingSummaryComponent } from './booking-summary.component';
+import { StoreModule } from '@ngrx/store';
+import { searchFeature } from 'src/app/redux/search/search.reducer';
+import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
+import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 
 @NgModule({
   declarations: [BookingSummaryComponent],
@@ -14,6 +18,9 @@ import { BookingSummaryComponent } from './booking-summary.component';
     MatButtonModule,
     BookingSummaryFlightModule,
     BookingSummaryPriceModule,
+    StoreModule.forFeature(searchFeature),
+    StoreModule.forFeature(bookingFeature),
+    StoreModule.forFeature(passengersFeature),
   ],
   exports: [BookingSummaryComponent],
 })

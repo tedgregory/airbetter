@@ -1,5 +1,6 @@
 import { createActionGroup, props } from '@ngrx/store';
 import { PassengersState } from './passengers.state';
+import { CountsOptions } from 'src/app/modules/flights/components/select-passengers/select-passengers.component';
 
 export const PassengersActions = createActionGroup({
   source: 'Passengers',
@@ -17,6 +18,9 @@ export const PassengersActions = createActionGroup({
     }>(),
     'Set Error': props<{
       error: PassengersState['error'];
+    }>(),
+    'Update Quantities': props<{
+      count: CountsOptions;
     }>(),
   },
 });

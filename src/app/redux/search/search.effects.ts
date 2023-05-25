@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { SearchActions } from './search.actions';
 import { PassengersActions } from '../passengers/passengers.actions';
 import { EPassengerType } from '../common/common.models';
 import { BookingActions } from '../booking/booking.actions';
+import { BookingPassenger } from '../passengers/passengers.state';
+import { passengersFeature } from '../passengers/passengers.reducer';
 
 @Injectable() // how else to scope it?
 export class SearchEffects {
@@ -14,18 +16,24 @@ export class SearchEffects {
   private setSearchData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SearchActions.setFlightSearchData),
-      map((params) => {
-        const passengers = params.data.passengers;
+      concatLatestFrom(() =>
+        this.store.select(passengersFeature.selectPassengersState)
+      ),
+      map(([params, passStored]) => {
+        const paramPassengers = params.data.passengers;
         return PassengersActions.setPassengers({
-          adults: passengers[EPassengerType.Adult]
-            ? Array(params.data.passengers[EPassengerType.Adult])
-            : null,
-          children: passengers[EPassengerType.Child]
-            ? Array(params.data.passengers[EPassengerType.Child])
-            : null,
-          infants: passengers[EPassengerType.Infant]
-            ? Array(params.data.passengers[EPassengerType.Infant])
-            : null,
+          adults: this.mergePassengers(
+            passStored.adults,
+            paramPassengers[EPassengerType.Adult]
+          ),
+          children: this.mergePassengers(
+            passStored.children,
+            paramPassengers[EPassengerType.Child]
+          ),
+          infants: this.mergePassengers(
+            passStored.infants as BookingPassenger[],
+            paramPassengers[EPassengerType.Infant]
+          ),
         });
       }),
       catchError((e) => of(SearchActions.setError({ error: e as Error })))
@@ -46,4 +54,12 @@ export class SearchEffects {
       })
     );
   });
+
+  mergePassengers(previuos: BookingPassenger[] | null, amount: number) {
+    if (!previuos || !previuos.length) return null;
+    return [...previuos, Array(amount)].slice(
+      0,
+      amount - 1
+    ) as BookingPassenger[];
+  }
 }

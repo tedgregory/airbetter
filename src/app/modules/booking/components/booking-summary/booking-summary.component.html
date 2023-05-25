@@ -6,13 +6,12 @@
 
   <div class="booking-summary__flights-block">
     <app-booking-summary-flight
+      *ngFor="let flightItem of flightsList"
       [flightItem]="flightItem"
-      *ngFor="let flightItem of flightsList"></app-booking-summary-flight>
+    ></app-booking-summary-flight>
   </div>
 
   <div class="booking-summary__price-block">
     <app-booking-summary-price></app-booking-summary-price>
   </div>
-
-  <button type="button" mat-button (click)="setCompleted()">Complete step three</button>
 </div>

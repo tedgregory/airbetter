@@ -1,9 +1,12 @@
 <mat-stepper [linear]="true" [animationDuration]="'0'" #bookingStepper>
   <mat-step
-    [completed]="(bookingSteps$ | async)?.['flights']"
+    [completed]="true"
     label="Flights"
-    [editable]="(bookingSteps$ | async)?.['flights'] === false"
+    [editable]="false"
     >
+    <!-- [completed]="(bookingSteps$ | async)?.['flights']"
+    label="Flights"
+    [editable]="(bookingSteps$ | async)?.['flights'] === false" -->
     <!-- [state]="(bookingSteps$ | async)?.['flights'] ? 'create' : 'number'" -->
     <app-booking-list (completed)="onChangeCompleted($event)"></app-booking-list>
 
@@ -31,10 +34,13 @@
   </mat-step>
 
   <mat-step
-    [completed]="(bookingSteps$ | async)?.['passengers']"
+    [completed]="true"
     label="Passengers"
-    [editable]="(bookingSteps$ | async)?.['flights']"
+    [editable]="false"
     >
+    <!-- [completed]="(bookingSteps$ | async)?.['passengers']"
+    label="Passengers"
+    [editable]="(bookingSteps$ | async)?.['flights']" -->
     <!-- [state]="(bookingSteps$ | async)?.['passengers'] ? 'create' : 'number'" -->
     <app-booking-passengers (completed)="onChangeCompleted($event)"></app-booking-passengers>
 
@@ -62,10 +68,13 @@
   </mat-step>
 
   <mat-step
-    [completed]="(bookingSteps$ | async)?.['review']"
+    [completed]="false"
     label="Review & Payment"
-    [editable]="(bookingSteps$ | async)?.['passengers']"
+    [editable]="true"
     >
+    <!-- [completed]="(bookingSteps$ | async)?.['review']"
+    label="Review & Payment"
+    [editable]="(bookingSteps$ | async)?.['passengers']" -->
     <!-- [state]="(bookingSteps$ | async)?.['review'] ? 'create' : 'number'" -->
     <app-booking-summary (completed)="onChangeCompleted($event)"></app-booking-summary>
 
