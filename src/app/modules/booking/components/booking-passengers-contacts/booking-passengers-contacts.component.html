@@ -13,7 +13,7 @@
           <div class="booking-contacts-card__country-holder">
             <input
               required
-              formControlName="countryCode"
+              [formControlName]="contactsFormKeys.COUNTRY_CODE"
               type="text"
               placeholder="Country code"
               matInput
@@ -31,7 +31,8 @@
               {{ country.name }}&nbsp;({{ country.dialCode }})
             </mat-option>
           </mat-autocomplete>
-          <mat-error *ngIf="contactsForm.get('countryCode')?.hasError('required')">Phone number is required</mat-error>
+          <mat-error *ngIf="contactsForm.get(contactsFormKeys.COUNTRY_CODE)?.hasError('required')">Choose country code</mat-error>
+          <mat-error *ngIf="contactsForm.get(contactsFormKeys.COUNTRY_CODE)?.hasError('invalidCountryCode')">Choose country code</mat-error>
         </mat-form-field>
 
         <mat-form-field
@@ -42,15 +43,15 @@
           <mat-label>Mobile phone number</mat-label>
           <input
             required
-            formControlName="phone"
+            [formControlName]="contactsFormKeys.PHONE"
             type="tel"
             matInput
             placeholder="e.g. 1111111111"
           >
-          <mat-error *ngIf="contactsForm.get('phone')?.hasError('required')">Phone number is required</mat-error>
-          <mat-error *ngIf="contactsForm.get('phone')?.hasError('minlength')">Phone number is too short</mat-error>
-          <mat-error *ngIf="contactsForm.get('phone')?.hasError('maxlength')">Phone number is too long</mat-error>
-          <mat-error *ngIf="contactsForm.get('phone')?.hasError('pattern')">Only numbers</mat-error>
+          <mat-error *ngIf="contactsForm.get(contactsFormKeys.PHONE)?.hasError('required')">Phone number is required</mat-error>
+          <mat-error *ngIf="contactsForm.get(contactsFormKeys.PHONE)?.hasError('minlength')">Phone number is too short</mat-error>
+          <mat-error *ngIf="contactsForm.get(contactsFormKeys.PHONE)?.hasError('maxlength')">Phone number is too long</mat-error>
+          <mat-error *ngIf="contactsForm.get(contactsFormKeys.PHONE)?.hasError('pattern')">Only numbers</mat-error>
         </mat-form-field>
       </div>
 
@@ -61,13 +62,13 @@
         <mat-label>Email</mat-label>
         <input
           required
-          formControlName="email"
+          [formControlName]="contactsFormKeys.EMAIL"
           type="email"
           matInput
           placeholder="e.g. example@email.com"
         >
-        <mat-error *ngIf="contactsForm.get('email')?.hasError('required')">Email is required</mat-error>
-        <mat-error *ngIf="contactsForm.get('email')?.hasError('email')">Email is invalid</mat-error>
+        <mat-error *ngIf="contactsForm.get(contactsFormKeys.EMAIL)?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="contactsForm.get(contactsFormKeys.EMAIL)?.hasError('email')">Email is invalid</mat-error>
       </mat-form-field>
     </form>
     <button

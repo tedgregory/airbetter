@@ -1,11 +1,22 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { birthDateValidator } from '../../validators/birth-date-validator';
-
+import { birthDateValidator } from '../../../../core/validators/birth-date-validator';
 import {
   isFieldValid,
   validateAllFormFields,
 } from 'src/app/core/helpers/validation.helper';
+import { dateValidator } from 'src/app/core/validators/date-validator';
+
+enum PassengerFormKeys {
+  FIRST_NAME = 'firstName',
+  LAST_NAME = 'lastName',
+  GENDER = 'gender',
+  DATE_OF_BIRTH = 'dateOfBirth',
+  BAGGAGE = 'baggage',
+  CABIN = 'cabin',
+  PERSONAL = 'personal',
+  CHECKED = 'checked',
+}
 
 @Component({
   selector: 'app-booking-passengers-card',
@@ -14,34 +25,36 @@ import {
 export class BookingPassengersCardComponent {
   isInfant = false;
 
+  passengerFormKeys = PassengerFormKeys;
+
   passengerForm = new FormGroup({
-    firstName: new FormControl('', [
+    [PassengerFormKeys.FIRST_NAME]: new FormControl('', [
       Validators.required,
       Validators.maxLength(30),
       Validators.pattern('^[a-zA-Z\\s]*$'),
     ]),
-    lastName: new FormControl('', [
+    [PassengerFormKeys.LAST_NAME]: new FormControl('', [
       Validators.required,
       Validators.maxLength(30),
       Validators.pattern('^[a-zA-Z\\s]*$'),
     ]),
-    gender: new FormControl('', [Validators.required]),
-    dateOfBirth: new FormControl('', [
-      Validators.required,
+    [PassengerFormKeys.GENDER]: new FormControl('', [Validators.required]),
+    [PassengerFormKeys.DATE_OF_BIRTH]: new FormControl('', [
+      dateValidator(),
       birthDateValidator(),
     ]),
-    baggage: new FormGroup({
-      cabin: new FormControl(0, [
+    [PassengerFormKeys.BAGGAGE]: new FormGroup({
+      [PassengerFormKeys.CABIN]: new FormControl(0, [
         Validators.required,
         Validators.min(0),
         Validators.max(3),
       ]),
-      personal: new FormControl(0, [
+      [PassengerFormKeys.PERSONAL]: new FormControl(0, [
         Validators.required,
         Validators.min(0),
         Validators.max(3),
       ]),
-      checked: new FormControl(0, [
+      [PassengerFormKeys.CHECKED]: new FormControl(0, [
         Validators.required,
         Validators.min(0),
         Validators.max(3),
@@ -49,33 +62,13 @@ export class BookingPassengersCardComponent {
     }),
   });
 
-  minBirthDate = new Date('1.1.1900');
+  minBirthDate = new Date('1900-01-01');
+
   maxBirthDate = new Date();
 
   isFormSubmitAttempt = false;
 
   isFieldValid = isFieldValid;
-
-  // isFieldValid(field: string) {
-  //   const isValid =
-  //     (!this.passengerForm.get(field)?.valid &&
-  //       this.passengerForm.get(field)?.touched) ||
-  //     (this.passengerForm.get(field)?.untouched && this.isFormSubmitAttempt);
-
-  //   return isValid;
-  // }
-
-  // validateAllFormFields(formGroup: FormGroup) {
-  //   Object.keys(formGroup.controls).forEach((field) => {
-  //     const control = formGroup.get(field);
-
-  //     if (control instanceof FormControl) {
-  //       control.markAsTouched({ onlySelf: true });
-  //     } else if (control instanceof FormGroup) {
-  //       this.validateAllFormFields(control);
-  //     }
-  //   });
-  // }
 
   onSubmit() {
     this.isFormSubmitAttempt = true;

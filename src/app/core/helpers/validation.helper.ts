@@ -1,6 +1,6 @@
 import { FormControl, FormGroup } from '@angular/forms';
 
-function isFieldValid(
+export function isFieldValid(
   field: string,
   formGroup: FormGroup,
   isSubmitAttempt: boolean
@@ -12,7 +12,7 @@ function isFieldValid(
   return isValid;
 }
 
-function validateAllFormFields(formGroup: FormGroup) {
+export function validateAllFormFields(formGroup: FormGroup) {
   Object.keys(formGroup.controls).forEach((field) => {
     const control = formGroup.get(field);
 
@@ -23,5 +23,3 @@ function validateAllFormFields(formGroup: FormGroup) {
     }
   });
 }
-
-export { isFieldValid, validateAllFormFields };
