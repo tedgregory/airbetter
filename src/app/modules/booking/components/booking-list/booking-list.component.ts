@@ -12,7 +12,7 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
   templateUrl: './booking-list.component.html',
 })
 export class BookingListComponent implements OnInit {
-  @Output() completed = new EventEmitter<string>();
+  @Output() completed = new EventEmitter<[string, boolean]>();
 
   config1: SwiperOptions = {
     navigation: {
@@ -88,6 +88,8 @@ export class BookingListComponent implements OnInit {
       ([forward, backward]) => {
         if (forward.confirmed && (backward.confirmed || !backward.variants)) {
           this.setCompleted();
+        } else {
+          this.setInvalid();
         }
       }
     );
@@ -134,6 +136,9 @@ export class BookingListComponent implements OnInit {
   }
 
   setCompleted() {
-    this.completed.emit('flights');
+    this.completed.emit(['flights', true]);
+  }
+  setInvalid() {
+    this.completed.emit(['flights', false]);
   }
 }

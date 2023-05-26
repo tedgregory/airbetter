@@ -45,7 +45,7 @@
 
         <div class="passenger-form__gender-field-holder">
           <mat-button-toggle-group
-            [class.invalid]="isFieldValid(passengerFormKeys.GENDER, passengerForm, isFormSubmitAttempt)"
+            [class.invalid]="isFieldValid(passengerFormKeys.GENDER)"
             [formControlName]="passengerFormKeys.GENDER"
             name="gender"
             aria-label="Choose Gender"
@@ -141,12 +141,12 @@
         Need special assistance?
       </mat-slide-toggle>
     </div>
-
+<!--
     <button
       type="button"
       (click)="onSubmit()"
     >
       Temp Submit
-    </button>
+    </button> -->
   </mat-card-content>
 </mat-card>

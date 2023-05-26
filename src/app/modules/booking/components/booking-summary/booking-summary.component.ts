@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import moment from 'moment';
-import { combineLatest, tap } from 'rxjs';
+import { Observable, combineLatest, tap } from 'rxjs';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
@@ -11,7 +11,9 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
   templateUrl: './booking-summary.component.html',
 })
 export class BookingSummaryComponent implements OnInit {
-  @Output() completed = new EventEmitter<string>();
+  @Input()
+  submissionTrigger: Observable<boolean> | null = null;
+  @Output() completed = new EventEmitter<[string, boolean]>();
 
   constructor(private store: Store) {}
 
@@ -84,6 +86,6 @@ export class BookingSummaryComponent implements OnInit {
   }
 
   setCompleted() {
-    this.completed.emit('review');
+    this.completed.emit(['review', true]);
   }
 }

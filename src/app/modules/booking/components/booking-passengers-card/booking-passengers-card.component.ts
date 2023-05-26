@@ -8,6 +8,7 @@ import {
   validateAllFormFields,
 } from 'src/app/core/helpers/validation.helper';
 import { dateValidator } from 'src/app/core/validators/date-validator';
+import { Observable } from 'rxjs';
 
 enum PassengerFormKeys {
   FIRST_NAME = 'firstName',
@@ -31,6 +32,8 @@ export class BookingPassengersCardComponent implements OnInit {
   order = 1;
   @Input()
   type = 'Adult';
+  @Input()
+  submissionTrigger: Observable<boolean> | null = null;
   @Output()
   formDataValid = new EventEmitter<BookingPassenger | null>();
 
@@ -80,22 +83,39 @@ export class BookingPassengersCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.passengerForm.valueChanges.subscribe((value) => {
-      this.formDataValid.emit(
-        this.passengerForm.valid ? this.mapPassengerData(value) : null
-      );
-    });
-    this.passengerForm.setValue({
-      firstName: this.initialData?.name?.first || '',
-      lastName: this.initialData?.name?.last || '',
-      baggage: {
-        cabin: this.initialData?.baggage?.hand || 0,
-        personal: this.initialData?.baggage?.hold || 0,
-        checked: this.initialData?.baggage?.hand || 0,
-      },
-      dateOfBirth: this.initialData?.birthDate || '',
-      gender: this.initialData?.gender || null,
-    });
+    // this.passengerForm.valueChanges.subscribe((value) => {
+    //   this.formDataValid.emit(
+    //     this.passengerForm.valid ? this.mapPassengerData(value) : null
+    //   );
+    // });
+    if (this.initialData) {
+      this.passengerForm.setValue({
+        firstName: this.initialData?.name?.first || '',
+        lastName: this.initialData?.name?.last || '',
+        baggage: {
+          cabin: this.initialData?.baggage?.hand || 0,
+          personal: this.initialData?.baggage?.hold || 0,
+          checked: this.initialData?.baggage?.hand || 0,
+        },
+        dateOfBirth: this.initialData?.birthDate || '',
+        gender: this.initialData?.gender || null,
+      });
+    }
+
+    this.submissionTrigger &&
+      this.submissionTrigger.subscribe(() => {
+        this.isFormSubmitAttempt = true;
+        validateAllFormFields(this.passengerForm);
+        if (!this.passengerForm.valid) {
+          return;
+        }
+        this.isFormSubmitAttempt = false;
+        this.formDataValid.emit(
+          this.passengerForm.valid
+            ? this.mapPassengerData(this.passengerForm.value)
+            : null
+        );
+      });
   }
 
   mapPassengerData(value: typeof this.passengerForm.value) {
@@ -118,13 +138,14 @@ export class BookingPassengersCardComponent implements OnInit {
   }
   isFormSubmitAttempt = false;
 
-  isFieldValid = isFieldValid;
+  isFieldValid = (control: string) =>
+    isFieldValid(control, this.passengerForm, this.isFormSubmitAttempt);
 
-  onSubmit() {
-    this.isFormSubmitAttempt = true;
-    validateAllFormFields(this.passengerForm);
+  // onSubmit() {
+  //   this.isFormSubmitAttempt = true;
+  //   validateAllFormFields(this.passengerForm);
 
-    console.log(this.passengerForm);
-    console.log(this.passengerForm.valid);
-  }
+  //   console.log(this.passengerForm);
+  //   console.log(this.passengerForm.valid);
+  // }
 }

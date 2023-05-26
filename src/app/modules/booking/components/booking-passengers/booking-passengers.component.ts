@@ -1,6 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, combineLatest } from 'rxjs';
+import { ContactDetails } from 'src/app/redux/common/common.models';
 import { PassengersActions } from 'src/app/redux/passengers/passengers.actions';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 import {
@@ -12,8 +20,10 @@ import {
   selector: 'app-booking-passengers',
   templateUrl: './booking-passengers.component.html',
 })
-export class BookingPassengersComponent implements OnInit {
-  @Output() completed = new EventEmitter<string>();
+export class BookingPassengersComponent implements OnInit, OnDestroy {
+  @Input()
+  submissionTrigger: Observable<boolean> | null = null;
+  @Output() completed = new EventEmitter<[string, boolean]>();
 
   passengersStateData$ = this.store.select(
     passengersFeature.selectPassengersState
@@ -22,9 +32,9 @@ export class BookingPassengersComponent implements OnInit {
   passengersCollectedInfo$ = new BehaviorSubject<
     Omit<PassengersState, 'contactDetails' | 'error'>
   >({
-    adults: [],
-    children: [],
-    infants: [],
+    adults: null,
+    children: null,
+    infants: null,
   });
 
   contactCollectedInfo$ = new BehaviorSubject<Pick<
@@ -32,50 +42,72 @@ export class BookingPassengersComponent implements OnInit {
     'contactDetails'
   > | null>(null);
 
+  subscriptions: Subscription[] = [];
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    // TODO - THIS WON'T WORK! MAke another stream line
-    combineLatest([
-      this.passengersCollectedInfo$,
-      this.contactCollectedInfo$,
-      this.passengersStateData$,
-    ]).subscribe(([passengers, contacts, state]) => {
-      if (
-        state.adults?.length !== passengers.adults?.length ||
-        state.children?.length !== passengers.children?.length ||
-        state.infants?.length !== passengers.infants?.length ||
-        !contacts
-      ) {
-        return;
-      }
-      this.setPassengersCompleted();
-      this.store.dispatch(
-        PassengersActions.setFullPassengersDetails({
-          data: {
-            ...passengers,
-            ...contacts,
-            error: null,
-          },
-        })
-      );
-    });
+    this.subscriptions.push(
+      combineLatest([
+        this.passengersCollectedInfo$,
+        this.contactCollectedInfo$,
+      ]).subscribe(([passengers, contacts]) => {
+        if (passengers && contacts) {
+          this.setPassengersCompleted();
+        }
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(
+      (sub) => sub instanceof Subscription && sub.unsubscribe()
+    );
   }
 
   onPassengerFormAccepted(
     type: keyof Omit<PassengersState, 'contactDetails' | 'error'>,
     data: BookingPassenger | null
   ) {
-    if (!data) return;
+    if (!data) {
+      this.setPassengersInvalid();
+      return;
+    }
     const passInfo = this.passengersCollectedInfo$.value;
-    const passTypeData = passInfo?.[type];
-    this.passengersCollectedInfo$.next({
+    const passTypeData = passInfo?.[type]?.filter(
+      (item) =>
+        item.birthDate !== data.birthDate && item.name.first !== data.name.first
+    );
+    const newData = {
       ...passInfo,
-      [type]: passTypeData && data ? [...passTypeData, data] : passTypeData,
-    });
+      [type]: passTypeData?.length ? [...passTypeData, data] : [data],
+    };
+    this.passengersCollectedInfo$.next(newData);
   }
 
+  onContactDetailsAccepted(data: ContactDetails | null) {
+    if (!data) {
+      this.setPassengersInvalid();
+      return;
+    }
+    this.contactCollectedInfo$.next({ contactDetails: data });
+  }
+
+  setPassengersInvalid() {
+    this.completed.emit(['passengers', false]);
+  }
   setPassengersCompleted() {
-    this.completed.emit('passengers');
+    this.store.dispatch(
+      PassengersActions.setFullPassengersDetails({
+        data: {
+          ...this.passengersCollectedInfo$.value,
+          ...this.contactCollectedInfo$.value,
+          error: null,
+        } as PassengersState,
+      })
+    );
+    console.log('COMPLETED');
+
+    this.completed.emit(['passengers', true]);
   }
 }

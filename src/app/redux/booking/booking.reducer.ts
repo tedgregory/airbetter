@@ -75,15 +75,18 @@ export const bookingFeature = createFeature({
         error,
       };
     }),
-    on(BookingActions.setStepCompleted, (state, { step }): BookingState => {
-      return {
-        ...state,
-        steps: {
-          ...state.steps,
-          [step]: true,
-        },
-      };
-    }),
+    on(
+      BookingActions.setStepCompleted,
+      (state, { step, status }): BookingState => {
+        return {
+          ...state,
+          steps: {
+            ...state.steps,
+            [step]: status,
+          },
+        };
+      }
+    ),
     on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
       return {
         ...state,

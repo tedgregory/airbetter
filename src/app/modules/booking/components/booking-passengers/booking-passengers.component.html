@@ -15,6 +15,7 @@
       [order]="i"
       [type]="'adult'"
       (formDataValid)="onPassengerFormAccepted('adults', $event)"
+      [submissionTrigger]="submissionTrigger"
     ></app-booking-passengers-card>
     <app-booking-passengers-card
       *ngFor="let child of (passengersStateData$ | async)?.children; let i=index"
@@ -22,6 +23,7 @@
       [order]="i"
       [type]="'child'"
       (formDataValid)="onPassengerFormAccepted('children', $event)"
+      [submissionTrigger]="submissionTrigger"
     ></app-booking-passengers-card>
     <app-booking-passengers-card
       *ngFor="let infant of (passengersStateData$ | async)?.infants; let i=index"
@@ -29,6 +31,7 @@
       [order]="i"
       [type]="'infant'"
       (formDataValid)="onPassengerFormAccepted('infants', $event)"
+      [submissionTrigger]="submissionTrigger"
     ></app-booking-passengers-card>
   </div>
 
@@ -43,6 +46,10 @@
       regarding your flight.
     </p>
 
-    <app-booking-passengers-contacts></app-booking-passengers-contacts>
+    <app-booking-passengers-contacts
+      (formDataValid)="onContactDetailsAccepted($event)"
+      [submissionTrigger]="submissionTrigger"
+      [initialData]="(passengersStateData$ | async)?.contactDetails || null"
+    ></app-booking-passengers-contacts>
   </div>
 </div>
