@@ -95,6 +95,10 @@ app-booking-info-panel {
     box-shadow: 0 1px 4px rgba($color-black, 0.2);
     padding: 20px;
 
+    .mdc-text-field__input {
+      width: auto;
+    }
+
     @include media-breakpoint-down(xl) {
       padding: 20px 44px;
     }
