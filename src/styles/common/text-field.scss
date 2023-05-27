@@ -40,3 +40,7 @@
 .mat-mdc-form-field-error {
   @include text-12-400;
 }
+
+.mat-mdc-form-field-error.mat-mdc-form-field-bottom-align::before {
+  height: 13px;
+}
