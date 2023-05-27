@@ -1,24 +1,37 @@
-import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-incrementer',
   templateUrl: './incrementer.component.html',
 })
-export class IncrementerComponent {
+export class IncrementerComponent implements OnInit {
   @HostBinding('class') class = 'incrementer';
+
+  @Input()
+  initValue = 0;
 
   @Output() valueChange = new EventEmitter<number>();
 
   formGroup = new FormGroup({
     formField: new FormControl(),
   });
-
   _value = 0;
   _step = 1;
   _min = 0;
   _max = Infinity;
   color = 'default';
+
+  ngOnInit(): void {
+    this._value = this.initValue;
+  }
 
   setColor(color: string) {
     this.color = color;

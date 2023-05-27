@@ -13,6 +13,7 @@ export interface BookingState {
     confirmed: boolean;
     variants: BookingFlightVariant[] | null; // null
   };
+  steps: { [key: string]: boolean };
 }
 
 // some extra interfaces, to deal with
@@ -48,7 +49,7 @@ export interface BookingFlightVariant extends BookingFlightBase {
   };
   flight_no: string;
 
-  price: Record<ECurrencies, number>; // total result in EUR?
+  price: Record<ECurrencies, number>;
 }
 
 export enum ECurrencies {

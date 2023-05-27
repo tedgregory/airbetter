@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { SearchState } from './search.state';
+import { ISearchData, SearchState } from './search.state';
 
 export const SearchActions = createActionGroup({
   source: 'Search',
@@ -16,11 +16,24 @@ export const SearchActions = createActionGroup({
     'Set Date Return': props<{
       dateReturn: SearchState['dateReturn'];
     }>(),
+    'Set Dates Range': props<{
+      dateLeave: SearchState['dateLeave'];
+      dateReturn: SearchState['dateReturn'];
+    }>(),
     'Set Currency': props<{
       currency: SearchState['currency'];
     }>(),
     'Set Date Format': props<{
       dateFormat: SearchState['dateFormat'];
+    }>(),
+    'Set Flight Type': props<{
+      isReturn: SearchState['isReturn'];
+    }>(),
+    'Set Error': props<{
+      error: SearchState['error'];
+    }>(),
+    'Set Flight Search Data': props<{
+      data: ISearchData;
     }>(),
   },
 });

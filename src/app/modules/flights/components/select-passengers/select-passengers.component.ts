@@ -44,8 +44,14 @@ export class SelectPassengersComponent implements OnInit {
     }
   }
 
-  @Input() label = 'Passengers*';
-
+  @Input()
+  label = 'Passengers*';
+  @Input()
+  counts: CountsOptions = {
+    [PassengerType.Adult]: 0,
+    [PassengerType.Child]: 0,
+    [PassengerType.Infant]: 0,
+  };
   @Output() countsChange = new EventEmitter<CountsOptions>();
 
   @ViewChild('dropdownList') dropdownListRef:
@@ -58,18 +64,12 @@ export class SelectPassengersComponent implements OnInit {
     { type: PassengerType.Infant, note: '0-2 years' },
   ];
 
-  counts: CountsOptions = {
-    [PassengerType.Adult]: 0,
-    [PassengerType.Child]: 0,
-    [PassengerType.Infant]: 0,
-  };
-
   passengersValueText = '';
 
   public isDropdownOpen = false;
 
-  ngOnInit() {
-    this.passengersValueText = this.setValueText(this.counts);
+  ngOnInit(): void {
+    this.displayResult();
   }
 
   closeDropdown() {

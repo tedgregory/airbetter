@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { StoreModule } from '@ngrx/store';
+import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    StoreModule.forFeature(passengersFeature),
   ],
   declarations: [SelectPassengersComponent],
   exports: [SelectPassengersComponent],

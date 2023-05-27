@@ -1,6 +1,6 @@
 <mat-card class="booking-passengers-card">
   <mat-card-content class="booking-passengers-card__content">
-    <div class="booking-passengers-card__title title title--medium title--primary-dark">1. Adult</div>
+    <div class="booking-passengers-card__title title title--medium title--primary-dark">{{ order + 1 }}. {{ type | titlecase }}</div>
 
     <form
       [formGroup]="passengerForm"
@@ -45,7 +45,7 @@
 
         <div class="passenger-form__gender-field-holder">
           <mat-button-toggle-group
-            [class.invalid]="isFieldValid(passengerFormKeys.GENDER, passengerForm, isFormSubmitAttempt)"
+            [class.invalid]="isFieldValid(passengerFormKeys.GENDER)"
             [formControlName]="passengerFormKeys.GENDER"
             name="gender"
             aria-label="Choose Gender"
@@ -78,7 +78,7 @@
           <mat-error *ngIf="passengerForm.get(passengerFormKeys.DATE_OF_BIRTH)?.hasError('invalidDate')">Invalid Date of Birth</mat-error>
         </mat-form-field>
       </div>
-      <div
+      <div *ngIf="!isInfant"
         formGroupName="baggage"
         class="passenger-form__baggage-data baggage"
       >
@@ -141,12 +141,12 @@
         Need special assistance?
       </mat-slide-toggle>
     </div>
-
+<!--
     <button
       type="button"
       (click)="onSubmit()"
     >
       Temp Submit
-    </button>
+    </button> -->
   </mat-card-content>
 </mat-card>

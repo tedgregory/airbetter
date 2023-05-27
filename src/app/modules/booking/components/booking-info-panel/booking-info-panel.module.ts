@@ -12,6 +12,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { BookingPipesModule } from '../../pipes/booking-pipes.module';
 
 @NgModule({
   declarations: [BookingInfoPanelComponent],
@@ -19,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CommonModule,
     ContainerModule,
     ReactiveFormsModule,
+    BookingPipesModule,
     FlightsServiceModule,
     SelectPassengersModule,
     MatButtonModule,

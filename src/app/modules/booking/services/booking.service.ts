@@ -12,15 +12,15 @@ export class BookingService {
   constructor(private config: ConfigService, private http: HttpClient) {}
 
   getBookingData(params: SearchState) {
-    const { base, search } = this.config.getConfig().ApiUrl;
+    const { base, flight } = this.config.getConfig().ApiUrl;
     const body = {
-      fromKey: params.flyFrom,
-      toKey: params.flyTo,
-      forwardDate: moment(params.dateLeave, params.dateFormat).utc(),
-      backDate: moment(params.dateReturn, params.dateFormat).utc(),
+      fromKey: params.flyFrom.iata,
+      toKey: params.flyTo.iata,
+      forwardDate: moment(params.dateLeave).utc(),
+      backDate: moment(params.dateReturn).utc(),
     };
     return this.http
-      .post(`${base}${search}`, body, {
+      .post(`${base}${flight}`, body, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),

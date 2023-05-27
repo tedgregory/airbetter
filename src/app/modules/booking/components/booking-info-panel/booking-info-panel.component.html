@@ -1,39 +1,60 @@
 <div class="booking-info-panel">
   <div class="booking-info-panel__header-wrapper">
     <app-container height="max-height">
-
       <div class="booking-info-panel__header info-header">
         <div class="info-header__title">
-          <div>Dublin</div>
-          <img src="/assets/images/flight.svg" alt="flight" />
-          <div>Warsaw Modlin</div>
+          <div>
+            {{ (savedStoreValues$ | async)?.flyFrom?.title || 'From' }}
+          </div>
+          <img
+            src="/assets/images/flight.svg"
+            alt="flight"
+          >
+          <div>
+            {{ (savedStoreValues$ | async)?.flyTo?.title || 'From' }}
+          </div>
         </div>
         <div class="info-header__data info-data">
-          <span class="info-data__flight-type">Return</span>
+          <span class="info-data__flight-type">
+            {{
+            (savedStoreValues$ | async)?.isReturn
+              ? 'Return'
+              : 'One-way' || 'Unselected'
+          }}
+          </span>
           <div class="info-data__separator"></div>
-          <span class="info-data__dates">1Mar - 18 Mar</span>
+          <span class="info-data__dates">
+            {{ (savedStoreValues$ | async)?.dateLeave | dateFormat:(savedStoreValues$ | async)?.dateFormat }} -
+            {{ (savedStoreValues$ | async)?.dateReturn | dateFormat:(savedStoreValues$ | async)?.dateFormat }}
+          </span>
           <div class="info-data__separator"></div>
           <span class="info-data__passengers-count">
-            <span>3</span> <mat-icon>person</mat-icon>
+            <span>{{ getPassengersQuantity() }}</span>
+            <mat-icon>person</mat-icon>
           </span>
         </div>
         <div class="info-header__edit">
           <button
             (click)="toggleEditPanel()"
             mat-flat-button
-            class="button button--mat-simple">
-            Edit
+            class="button button--mat-simple"
+          >
+            {{ editMode ? 'Close' : 'Edit' }}
           </button>
         </div>
       </div>
-
     </app-container>
   </div>
 
   <app-container height="max-height">
-    <div *ngIf="editMode" class="booking-info-panel__fields">
-
-      <mat-form-field class="booking-info-panel__from-field" appearance="fill">
+    <div
+      *ngIf="editMode"
+      class="booking-info-panel__fields"
+    >
+      <mat-form-field
+        class="booking-info-panel__from-field"
+        appearance="fill"
+      >
         <mat-label>From</mat-label>
         <div class="booking-info-panel__from-holder">
           <input
@@ -45,7 +66,7 @@
             [matAutocomplete]="autoFrom"
             aria-label="Your location"
             (input)="onFromInput()"
-          />
+          >
           <span
             *ngIf="selectedFromOption"
             class="booking-info-panel__from-iata"
@@ -59,29 +80,30 @@
             [value]="location.city"
             [disabled]="
               selectedToOption &&
-              (selectedToOption.city === location.city) &&
-              (selectedToOption.country === location.country)
+              selectedToOption.city === location.city &&
+              selectedToOption.country === location.country
             "
             (onSelectionChange)="onFromSelection(location)"
           >
             <span class="flights-search-location">
-
               <span class="flights-search-location__row flights-search-location__row--city">
-                <span class="flights-search-location__city">{{ location.city }} </span>
+                <span class="flights-search-location__city">{{ location.city }}</span>
                 <span class="flights-search-location__city-iata">({{ location.key }})</span>
               </span>
 
               <span class="flights-search-location__row flights-search-location__row--airport">
-                <span class="flights-search-location__airport">{{ location.name }}, </span>
+                <span class="flights-search-location__airport">{{ location.name }},</span>
                 <span class="flights-search-location__country">{{ location.country }}</span>
               </span>
-
             </span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="booking-info-panel__to-field" appearance="fill">
+      <mat-form-field
+        class="booking-info-panel__to-field"
+        appearance="fill"
+      >
         <mat-label>Destination</mat-label>
         <div class="booking-info-panel__to-holder">
           <input
@@ -93,7 +115,7 @@
             [matAutocomplete]="autoTo"
             aria-label="Your destination"
             (input)="onToInput()"
-          />
+          >
           <span
             *ngIf="selectedToOption"
             class="booking-info-panel__to-iata"
@@ -107,23 +129,21 @@
             [value]="location.city"
             [disabled]="
               selectedFromOption &&
-              (selectedFromOption.city === location.city) &&
-              (selectedFromOption.country === location.country)
+              selectedFromOption.city === location.city &&
+              selectedFromOption.country === location.country
             "
             (onSelectionChange)="onToSelection(location)"
           >
             <span class="flights-search-location">
-
               <span class="flights-search-location__row flights-search-location__row--city">
-                <span class="flights-search-location__city">{{ location.city }} </span>
+                <span class="flights-search-location__city">{{ location.city }}</span>
                 <span class="flights-search-location__city-iata">({{ location.key }})</span>
               </span>
 
               <span class="flights-search-location__row flights-search-location__row--airport">
-                <span class="flights-search-location__airport">{{ location.name }}, </span>
+                <span class="flights-search-location__airport">{{ location.name }},</span>
                 <span class="flights-search-location__country">{{ location.country }}</span>
               </span>
-
             </span>
           </mat-option>
         </mat-autocomplete>
@@ -138,19 +158,20 @@
           [formGroup]="range"
           [rangePicker]="picker"
           [min]="minDate"
-          >
+          [max]="maxDate"
+        >
           <input
             matStartDate
             formControlName="start"
             placeholder="Start date"
             (dateChange)="startDatePicker.next($event)"
-          />
+          >
           <input
             matEndDate
             formControlName="end"
             placeholder="End date"
             (dateChange)="endDatePicker.next($event)"
-          />
+          >
         </mat-date-range-input>
         <mat-datepicker-toggle
           matIconSuffix
@@ -158,25 +179,28 @@
         ></mat-datepicker-toggle>
         <mat-date-range-picker #picker>
           <mat-date-range-picker-actions>
-            <button mat-button matDateRangePickerCancel>Cancel</button>
-            <button mat-button matDateRangePickerApply>OK</button>
+            <button
+              mat-button
+              matDateRangePickerCancel
+            >
+              Cancel
+            </button>
+            <button
+              mat-button
+              matDateRangePickerApply
+            >
+              OK
+            </button>
           </mat-date-range-picker-actions>
         </mat-date-range-picker>
 
-        <mat-error
-          *ngIf="range.controls.start.hasError('matStartDateInvalid')"
-        >Invalid start date</mat-error>
-        <mat-error
-          *ngIf="range.controls.end.hasError('matEndDateInvalid')"
-        >Invalid end date</mat-error>
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
       </mat-form-field>
 
       <div class="booking-info-panel__passengers-field">
-        <app-select-passengers
-          (countsChange)="onPassengerCountsChange($event)"
-        ></app-select-passengers>
+        <app-select-passengers (countsChange)="onPassengerCountsChange($event)" [counts]="passengerCounts"></app-select-passengers>
       </div>
-
     </div>
   </app-container>
 </div>

@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { BookingState } from './booking.state';
 import { BookingActions } from './booking.actions';
 import { EStatus } from '../common/common.models';
@@ -15,6 +15,11 @@ const defaultState: BookingState = {
     chosenVariant: null,
     confirmed: false,
     variants: null,
+  },
+  steps: {
+    flights: false,
+    passengers: false,
+    review: false,
   },
 };
 
@@ -70,23 +75,52 @@ export const bookingFeature = createFeature({
         error,
       };
     }),
-    on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
+    on(
+      BookingActions.setStepCompleted,
+      (state, { step, status }): BookingState => {
+        return {
+          ...state,
+          steps: {
+            ...state.steps,
+            [step]: status,
+          },
+        };
+      }
+    ),
+    on(BookingActions.setChosenForward, (state, { index }): BookingState => {
       return {
         ...state,
         flyToData: {
           ...state.flyToData,
-          chosenVariant: variant,
+          chosenVariant: state?.flyToData?.variants?.[index] || null,
         },
       };
     }),
-    on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
+    on(BookingActions.setChosenBackward, (state, { index }): BookingState => {
       return {
         ...state,
         flyBackData: {
           ...state.flyBackData,
-          chosenVariant: variant,
+          chosenVariant: state?.flyBackData?.variants?.[index] || null,
         },
       };
     })
   ),
+  extraSelectors: ({ selectFlyToData, selectFlyBackData }) => {
+    return {
+      selectChosenForwardIndex: createSelector(selectFlyToData, (flyTo) => {
+        return flyTo.chosenVariant
+          ? flyTo.variants?.indexOf(flyTo.chosenVariant)
+          : 0;
+      }),
+      selectChosenBackwardIndex: createSelector(
+        selectFlyBackData,
+        (flyBack) => {
+          return flyBack.chosenVariant
+            ? flyBack.variants?.indexOf(flyBack.chosenVariant)
+            : 0;
+        }
+      ),
+    };
+  },
 });

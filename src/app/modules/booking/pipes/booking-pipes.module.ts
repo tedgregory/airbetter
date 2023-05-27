@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BookingVariantFlightDurationPipe } from './booking-variant-flight-duration.pipe';
+import { DateFormatPipe } from './date-format.pipe';
 
-const pipes = [BookingVariantFlightDurationPipe];
+const pipes = [BookingVariantFlightDurationPipe, DateFormatPipe];
 
 @NgModule({
   declarations: [...pipes],

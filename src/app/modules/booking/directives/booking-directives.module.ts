@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RangeBackgroundDirective } from './range-background.directive';
+import { SlideActiveBgDirective } from './slide-active-bg.directive';
 
-const directives = [RangeBackgroundDirective];
+const directives = [RangeBackgroundDirective, SlideActiveBgDirective];
 
 @NgModule({
   declarations: [...directives],

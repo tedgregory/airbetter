@@ -6,7 +6,7 @@
       {{ flightInfo.time.departure_utc | date : 'EEE, d LLL yyyy' }}
     </div>
     <div class="timing__local-time">
-      <p class="time">{{ flightInfo.time.departure_utc | date : 'H:mm' }}</p>
+      <p class="time">{{ flightInfo.time.departure_utc | date : 'HH:mm' }}</p>
       <p class="time__gmt">
         {{ flightInfo.time.departure_utc | date : 'z' }}
       </p>
@@ -32,7 +32,7 @@
     </div>
     <div class="timing__local-time">
       <p class="time__gmt">{{ flightInfo.time.arrival_utc | date : 'z' }}</p>
-      <p class="time">{{ flightInfo.time.arrival_utc | date : 'H:mm' }}</p>
+      <p class="time">{{ flightInfo.time.arrival_utc | date : 'HH:mm' }}</p>
     </div>
     <div class="timing__airport">
       {{ flightInfo.flyTo.city }}
@@ -50,12 +50,15 @@
     *ngIf="!props.isConfirmed && currentFlight && currentFlight.price as price">
     <div
       class="flight-selection__seats seats"
-      [appRangeBackground]="currentFlight.seats.available">
+      [appRangeBackground]="[
+      currentFlight.seats.available,
+      currentFlight.seats.total
+      ]">
       {{ currentFlight.seats.available }} seats available
     </div>
     <div class="flight-selection__price-tag">Price</div>
     <div class="flight-selection__price">
-      {{ price.EUR | currency : 'EUR' }}
+      {{ price[props.currency || 'EUR'] | currency : (props.currency || 'EUR') :'symbol':'1.0-0' }}
     </div>
   </ng-container>
   <div class="flight-selection__select">

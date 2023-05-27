@@ -1,16 +1,17 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { SearchState } from './search.state';
 import { SearchActions } from './search.actions';
-import { DateFormats } from '../common/common.models';
+import { ECurrencies, EDateFormats } from '../common/common.models';
 
 const defaultState: SearchState = {
-  flyFrom: 'DUS',
-  flyTo: 'PRG',
-  dateLeave: '25/05/2023', // null
-  dateReturn: '26/06/2023', // null
-  currency: 'EUR',
-  dateFormat: DateFormats.DMY,
-  step: 1,
+  flyFrom: { iata: 'DUS', title: 'Dusseldorf' },
+  flyTo: { iata: 'PRG', title: 'Warsaw Modlin' },
+  dateLeave: '2023-06-10T23:37:00.000Z',
+  dateReturn: '2023-06-30T23:37:00.000Z',
+  isReturn: true,
+  currency: ECurrencies.EUR,
+  dateFormat: EDateFormats.DMY,
+  error: null,
 };
 
 export const searchFeature = createFeature({
@@ -23,6 +24,15 @@ export const searchFeature = createFeature({
     on(SearchActions.setDateReturn, (state, { dateReturn }): SearchState => {
       return { ...state, dateReturn };
     }),
+    on(
+      SearchActions.setDatesRange,
+      (state, { dateLeave, dateReturn }): SearchState => {
+        return { ...state, dateReturn, dateLeave };
+      }
+    ),
+    on(SearchActions.setDateFormat, (state, { dateFormat }): SearchState => {
+      return { ...state, dateFormat };
+    }),
     on(SearchActions.setFlyFrom, (state, { flyFrom }): SearchState => {
       return { ...state, flyFrom };
     }),
@@ -32,8 +42,27 @@ export const searchFeature = createFeature({
     on(SearchActions.setCurrency, (state, { currency }): SearchState => {
       return { ...state, currency };
     }),
-    on(SearchActions.setFlyTo, (state, { flyTo }): SearchState => {
-      return { ...state, flyTo };
-    })
+    on(SearchActions.setError, (state, { error }): SearchState => {
+      return { ...state, error };
+    }),
+    on(SearchActions.setFlightType, (state, { isReturn }): SearchState => {
+      return { ...state, isReturn };
+    }),
+    on(
+      SearchActions.setFlightSearchData,
+      (
+        state,
+        { data: { dateLeave, dateReturn, isReturn, flyFrom, flyTo } }
+      ): SearchState => {
+        return {
+          ...state,
+          isReturn,
+          dateLeave,
+          dateReturn,
+          flyFrom,
+          flyTo,
+        };
+      }
+    )
   ),
 });

@@ -11,7 +11,10 @@ export const BookingActions = createActionGroup({
     'Get Variants Error': props<{ error: Error }>(),
     'Toggle FlyTo Confirmed': emptyProps(),
     'Toggle FlyBack Confirmed': emptyProps(),
-    'Set Chosen Forward': props<{ variant: BookingFlightVariant }>(),
-    'Set Chosen Backward': props<{ variant: BookingFlightVariant }>(),
+    'Set Step Completed': props<{ step: string; status: boolean }>(),
+    'Set Chosen Forward': props<{ index: number }>(),
+    'Set Chosen Backward': props<{ index: number }>(),
+    // 'Set Chosen Forward': props<{ variant: BookingFlightVariant }>(),
+    // 'Set Chosen Backward': props<{ variant: BookingFlightVariant }>(),
   },
 });

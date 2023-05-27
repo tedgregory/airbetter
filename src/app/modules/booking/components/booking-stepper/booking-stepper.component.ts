@@ -1,5 +1,10 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, ViewChild } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Store } from '@ngrx/store';
+import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
+import { BookingActions } from 'src/app/redux/booking/booking.actions';
+import { Subject } from 'rxjs';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-booking-stepper',
@@ -13,22 +18,20 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 })
 export class BookingStepperComponent {
   @HostBinding('class') class = 'booking-stepper';
+  @ViewChild('bookingStepper', { static: false })
+  bookingStepper: MatStepper | null = null;
 
-  isCompletedStepOne = false;
+  bookingSteps$ = this.store.select(bookingFeature.selectSteps);
+  submissionTrigger$ = new Subject<boolean>();
 
-  isCompletedStepTwo = false;
+  constructor(private store: Store) {}
 
-  isCompletedStepThree = false;
-
-  onCompletedStepOne(isCompleted: boolean) {
-    this.isCompletedStepOne = isCompleted;
+  onFormsSubmitAttempt() {
+    this.submissionTrigger$.next(true);
   }
 
-  onCompletedStepTwo(isCompleted: boolean) {
-    this.isCompletedStepTwo = isCompleted;
-  }
-
-  onCompletedStepThree(isCompleted: boolean) {
-    this.isCompletedStepThree = isCompleted;
+  onSetStepCompleted([step, status]: [string, boolean]) {
+    this.store.dispatch(BookingActions.setStepCompleted({ step, status }));
+    status && this.bookingStepper?.next();
   }
 }
