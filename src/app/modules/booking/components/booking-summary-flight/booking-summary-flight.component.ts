@@ -9,10 +9,11 @@ import {
 type ViewPassengerDataType = {
   name: string;
   baggage: string[];
-  seat: string;
+  seat: string | null;
 };
 
 type ViewFlightDataType = {
+  jet: string;
   name: string;
   date: string;
   time: string;
@@ -51,7 +52,9 @@ export class BookingSummaryFlightComponent implements OnInit {
     linearPassengersData.push(...this.filterEmptyPassengers(data.adults));
     linearPassengersData.push(...this.filterEmptyPassengers(data.children));
     linearPassengersData.push(
-      ...this.filterEmptyPassengers(data.infants as BookingPassenger[])
+      ...this.filterEmptyPassengers(data.infants as BookingPassenger[]).map(
+        (item) => ({ ...item, seat: 'infant' })
+      )
     );
     linearPassengersData = this.filterEmptyPassengers(linearPassengersData);
 
@@ -69,7 +72,10 @@ export class BookingSummaryFlightComponent implements OnInit {
             passenger.baggage.hold % 10 !== 1 ? 's' : ''
           } (max. 8 kg) included`,
         ],
-        seat: passenger.seat || `${defaultSeat}${rows[i % maxRow]}`,
+        seat:
+          passenger.seat !== 'infant'
+            ? `${defaultSeat}${rows[i % maxRow]}`
+            : null,
       };
     });
   }

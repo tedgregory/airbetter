@@ -20,7 +20,7 @@
     <div class="booking-summary-price__total price-total">
       <span class="price-total__title">TOTAL:</span>
       <span class="price-total__sum">{{
-        countTotalPrice() | currency : currency?.toString()
+        totalPrice | currency : currency?.toString()
       }}</span>
     </div>
   </mat-card-content>

@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ECurrencies } from 'src/app/redux/common/common.models';
 
 @Component({
   selector: 'app-booking-summary-price',
   templateUrl: './booking-summary-price.component.html',
 })
-export class BookingSummaryPriceComponent {
+export class BookingSummaryPriceComponent implements OnInit {
   @Input()
   basePrice: Record<string, number> = {};
   @Input()
@@ -15,33 +15,42 @@ export class BookingSummaryPriceComponent {
 
   pricesViewData: Record<string, number | string>[] = [];
 
+  ngOnInit(): void {
+    this.buildPricesData();
+  }
+
   buildPricesData() {
+    const base = this.currency
+      ? this.basePrice[this.currency]
+      : this.basePrice[0];
+    const childPrice = base * 0.8;
+    const infantPrice = base * 0.4;
     this.pricesViewData = [
       {
         type: 'Adult',
-        amount: 1,
-        totalPrice: 257.31,
-        farePrice: 166.0,
-        otherPrice: 91.31,
+        amount: this.passengersQuantity[0],
+        totalPrice: base,
+        farePrice: base * 0.7,
+        otherPrice: base * 0.3,
       },
       {
         type: 'Child',
-        amount: 1,
-        totalPrice: 196.08,
-        farePrice: 106.0,
-        otherPrice: 90.08,
+        amount: this.passengersQuantity[1],
+        totalPrice: childPrice,
+        farePrice: childPrice * 0.8,
+        otherPrice: childPrice * 0.2,
       },
       {
         type: 'Infant',
-        amount: 1,
-        totalPrice: 98.0,
-        farePrice: 88.0,
-        otherPrice: 10.0,
+        amount: this.passengersQuantity[2],
+        totalPrice: infantPrice,
+        farePrice: infantPrice * 0.9,
+        otherPrice: infantPrice * 0.1,
       },
     ];
   }
 
-  countTotalPrice(): number {
+  get totalPrice(): number {
     return this.pricesViewData.reduce(
       (total, price) => total + +price['totalPrice'],
       0
