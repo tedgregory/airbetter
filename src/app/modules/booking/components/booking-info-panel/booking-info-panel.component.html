@@ -199,7 +199,7 @@
       </mat-form-field>
 
       <div class="booking-info-panel__passengers-field">
-        <app-select-passengers (countsChange)="onPassengerCountsChange($event)"></app-select-passengers>
+        <app-select-passengers (countsChange)="onPassengerCountsChange($event)" [counts]="passengerCounts"></app-select-passengers>
       </div>
     </div>
   </app-container>

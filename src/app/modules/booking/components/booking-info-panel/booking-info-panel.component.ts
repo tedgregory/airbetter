@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Store } from '@ngrx/store';
@@ -7,6 +7,7 @@ import {
   BehaviorSubject,
   Observable,
   Subject,
+  Subscription,
   combineLatest,
   debounceTime,
   distinctUntilChanged,
@@ -33,7 +34,7 @@ import CustomSearchSelectors from 'src/app/redux/search/search.selectors';
   selector: 'app-booking-info-panel',
   templateUrl: './booking-info-panel.component.html',
 })
-export class BookingInfoPanelComponent implements OnInit {
+export class BookingInfoPanelComponent implements OnInit, OnDestroy {
   editMode = false;
 
   fromControl = new FormControl('', [Validators.required]);
@@ -77,6 +78,8 @@ export class BookingInfoPanelComponent implements OnInit {
 
   passengersError$ = new BehaviorSubject(false);
 
+  subscriptions: Subscription[] = [];
+
   constructor(private flightsService: FlightsService, private store: Store) {}
 
   toggleEditPanel() {
@@ -84,39 +87,47 @@ export class BookingInfoPanelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.savedStoreValues$
-      .pipe(
-        take(1),
-        tap((search) => {
-          this.fromControl.setValue(search.flyFrom.title);
-          this.toControl.setValue(search.flyTo.title);
-          this.range.setValue({
-            start: search.dateLeave ? moment(search.dateLeave).toDate() : null,
-            end: search.dateReturn ? moment(search.dateReturn).toDate() : null,
-          });
-          this.passengerCounts = search.passengersCount;
-          this.dateFormat = search.dateFormat;
-        })
-      )
-      .subscribe();
+    this.subscriptions.push(
+      this.savedStoreValues$
+        .pipe(
+          take(1),
+          tap((search) => {
+            this.fromControl.setValue(search.flyFrom.title);
+            this.toControl.setValue(search.flyTo.title);
+            this.range.setValue({
+              start: search.dateLeave
+                ? moment(search.dateLeave).toDate()
+                : null,
+              end: search.dateReturn
+                ? moment(search.dateReturn).toDate()
+                : null,
+            });
+            this.passengerCounts = search.passengersCount;
+            this.dateFormat = search.dateFormat;
+          })
+        )
+        .subscribe()
+    );
 
-    combineLatest([this.startDatePicker, this.endDatePicker])
-      .pipe(
-        map(([a$, b$]) => ({
-          start: a$.value,
-          end: b$.value,
-        }))
-      )
-      .subscribe((data) => {
-        if (data.start && data.end && !this.range.errors) {
-          this.store.dispatch(
-            SearchActions.setDatesRange({
-              dateLeave: data.start.toISOString(),
-              dateReturn: data.end.toISOString(),
-            })
-          );
-        }
-      });
+    this.subscriptions.push(
+      combineLatest([this.startDatePicker, this.endDatePicker])
+        .pipe(
+          map(([a$, b$]) => ({
+            start: a$.value,
+            end: b$.value,
+          }))
+        )
+        .subscribe((data) => {
+          if (data.start && data.end && !this.range.errors) {
+            this.store.dispatch(
+              SearchActions.setDatesRange({
+                dateLeave: data.start.toISOString(),
+                dateReturn: data.end.toISOString(),
+              })
+            );
+          }
+        })
+    );
 
     this.filteredFromOptions$ =
       this.fromControl.valueChanges.pipe(
@@ -139,6 +150,12 @@ export class BookingInfoPanelComponent implements OnInit {
           return this.flightsService.getLocations(value);
         })
       ) || of<LocationOption[]>([]);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(
+      (sub) => sub instanceof Subscription && sub.unsubscribe()
+    );
   }
 
   // location: LocationOption, event: MatOptionSelectionChange

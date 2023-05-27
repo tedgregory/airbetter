@@ -6,9 +6,9 @@ import { ECurrencies, EDateFormats } from '../common/common.models';
 const defaultState: SearchState = {
   flyFrom: { iata: 'DUS', title: 'Dusseldorf' },
   flyTo: { iata: 'PRG', title: 'Warsaw Modlin' },
-  dateLeave: '2023-05-28T23:37:00.000Z',
-  dateReturn: '2023-06-21T23:37:00.000Z',
-  isReturn: false,
+  dateLeave: '2023-06-10T23:37:00.000Z',
+  dateReturn: '2023-06-30T23:37:00.000Z',
+  isReturn: true,
   currency: ECurrencies.EUR,
   dateFormat: EDateFormats.DMY,
   error: null,

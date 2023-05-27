@@ -8,10 +8,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 
-enum PassengerType {
+export enum PassengerType {
   Adult = 'Adult',
   Child = 'Child',
   Infant = 'Infant',
@@ -46,8 +44,14 @@ export class SelectPassengersComponent implements OnInit {
     }
   }
 
-  @Input() label = 'Passengers*';
-
+  @Input()
+  label = 'Passengers*';
+  @Input()
+  counts: CountsOptions = {
+    [PassengerType.Adult]: 0,
+    [PassengerType.Child]: 0,
+    [PassengerType.Infant]: 0,
+  };
   @Output() countsChange = new EventEmitter<CountsOptions>();
 
   @ViewChild('dropdownList') dropdownListRef:
@@ -60,31 +64,12 @@ export class SelectPassengersComponent implements OnInit {
     { type: PassengerType.Infant, note: '0-2 years' },
   ];
 
-  counts: CountsOptions = {
-    [PassengerType.Adult]: 0,
-    [PassengerType.Child]: 0,
-    [PassengerType.Infant]: 0,
-  };
-
   passengersValueText = '';
 
   public isDropdownOpen = false;
 
-  private savedPassengers$ = this.store.select(
-    passengersFeature.selectPassengersState
-  );
-
-  constructor(private store: Store) {}
-
-  ngOnInit() {
-    this.savedPassengers$.subscribe((passengers) => {
-      this.counts = {
-        [PassengerType.Adult]: passengers.adults?.length || 0,
-        [PassengerType.Child]: passengers.children?.length || 0,
-        [PassengerType.Infant]: passengers.infants?.length || 0,
-      };
-      this.passengersValueText = this.setValueText(this.counts);
-    });
+  ngOnInit(): void {
+    this.displayResult();
   }
 
   closeDropdown() {

@@ -1,14 +1,15 @@
-<mat-stepper [linear]="true" [animationDuration]="'0'" #bookingStepper>
+<mat-stepper
+  [linear]="true"
+  [animationDuration]="'0'"
+  #bookingStepper
+>
   <mat-step
-    [completed]="true"
     label="Flights"
-    [editable]="false"
-    >
-    <!-- [completed]="(bookingSteps$ | async)?.['flights']"
-    label="Flights"
-    [editable]="(bookingSteps$ | async)?.['flights'] === false" -->
-    <!-- [state]="(bookingSteps$ | async)?.['flights'] ? 'create' : 'number'" -->
-    <app-booking-list (completed)="onChangeCompleted($event)"></app-booking-list>
+    [completed]="(bookingSteps$ | async)?.['flights']"
+  >
+    <!-- [editable]="!(bookingSteps$ | async)?.['flights']"
+    [state]="!(bookingSteps$ | async)?.['flights'] ? 'create' : 'number'" -->
+    <app-booking-list (completed)="onSetStepCompleted($event)"></app-booking-list>
 
     <div class="booking-stepper__actions booking-step-buttons">
       <button
@@ -34,15 +35,15 @@
   </mat-step>
 
   <mat-step
-    [completed]="true"
     label="Passengers"
-    [editable]="false"
-    >
-    <!-- [completed]="(bookingSteps$ | async)?.['passengers']"
-    label="Passengers"
-    [editable]="(bookingSteps$ | async)?.['flights']" -->
-    <!-- [state]="(bookingSteps$ | async)?.['passengers'] ? 'create' : 'number'" -->
-    <app-booking-passengers (completed)="onChangeCompleted($event)"></app-booking-passengers>
+    [completed]="(bookingSteps$ | async)?.['passengers']"
+  >
+    <!-- [editable]="!(bookingSteps$ | async)?.['passengers']"
+    [state]="(bookingSteps$ | async)?.['flights'] ? 'create' : 'number'" -->
+    <app-booking-passengers
+      (completed)="onSetStepCompleted($event)"
+      [submissionTrigger]="submissionTrigger$"
+    ></app-booking-passengers>
 
     <div class="booking-stepper__actions booking-step-buttons">
       <button
@@ -59,7 +60,7 @@
         color="primary"
         matStepperNext
         class="button button--mat-primary"
-        [disabled]="!(bookingSteps$ | async)?.['passengers']"
+        (click)="onFormsSubmitAttempt()"
       >
         Continue
       </button>
@@ -68,15 +69,15 @@
   </mat-step>
 
   <mat-step
-    [completed]="false"
     label="Review & Payment"
-    [editable]="true"
-    >
-    <!-- [completed]="(bookingSteps$ | async)?.['review']"
-    label="Review & Payment"
-    [editable]="(bookingSteps$ | async)?.['passengers']" -->
-    <!-- [state]="(bookingSteps$ | async)?.['review'] ? 'create' : 'number'" -->
-    <app-booking-summary (completed)="onChangeCompleted($event)"></app-booking-summary>
+    [completed]="(bookingSteps$ | async)?.['review']"
+  >
+    <!-- [editable]="(bookingSteps$ | async)?.['passengers']"
+    [state]="(bookingSteps$ | async)?.['passengers'] ? 'create' : 'number'" -->
+    <app-booking-summary
+      (completed)="onSetStepCompleted($event)"
+      [submissionTrigger]="submissionTrigger$"
+    ></app-booking-summary>
 
     <div class="booking-stepper__actions booking-step-buttons">
       <button

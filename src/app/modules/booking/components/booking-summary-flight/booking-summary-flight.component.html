@@ -2,11 +2,11 @@
   <mat-card-content>
     <div class="booking-summary-flight__header summary-header">
       <h4 class="summary-header__title">
-        <span class="summary-header__flight-number">FR 1925</span>
-        <span>{{ flightItem?.date }} - {{ flightItem?.time }} </span>
+        <span class="summary-header__flight-number">{{ flightItem?.name }}</span>
+        <span>{{ flightItem?.name }} </span>
       </h4>
       <div class="summary-header__time-data">
-        <span>{{ flightItem?.time }}</span>
+        <span> {{ flightItem?.date }} </span> <span>{{ flightItem?.time }}</span>
       </div>
     </div>
     <div

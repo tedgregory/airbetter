@@ -25,7 +25,7 @@ const defaultState: PassengersState = {
     {
       name: {
         first: 'Lily',
-        last: 'Potter',
+        last: '',
       },
       birthDate: '2000-05-25T18:46:31.370Z',
       gender: Gender.Male,
@@ -36,8 +36,37 @@ const defaultState: PassengersState = {
         hold: 1,
       },
     },
+    {
+      name: {
+        first: 'Assie',
+        last: 'Van Damme',
+      },
+      birthDate: '2001-02-22T18:46:31.370Z',
+      gender: Gender.Male,
+      specialCare: false,
+      baggage: {
+        checked: 2,
+        hand: 3,
+        hold: 1,
+      },
+    },
   ],
-  infants: null,
+  infants: [
+    {
+      name: {
+        first: 'Peppi',
+        last: 'Diesel',
+      },
+      birthDate: '2021-02-22T18:46:31.370Z',
+      gender: Gender.Female,
+      specialCare: false,
+      baggage: {
+        checked: 0,
+        hand: 0,
+        hold: 0,
+      },
+    },
+  ],
   contactDetails: {
     countryCode: '',
     phone: '',

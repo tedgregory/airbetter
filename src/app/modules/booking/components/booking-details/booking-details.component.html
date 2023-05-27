@@ -51,8 +51,8 @@
     <div
       class="flight-selection__seats seats"
       [appRangeBackground]="[
-        currentFlight.seats.total,
-        currentFlight.seats.available
+      currentFlight.seats.available,
+      currentFlight.seats.total
       ]">
       {{ currentFlight.seats.available }} seats available
     </div>

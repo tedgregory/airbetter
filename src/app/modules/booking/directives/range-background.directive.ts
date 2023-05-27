@@ -14,16 +14,23 @@ export class RangeBackgroundDirective implements AfterContentChecked {
   constructor(private el: ElementRef<HTMLElement>) {}
 
   ngAfterContentChecked(): void {
-    let className = 'seats--z';
-    if (this.value[0] / this.value[1] >= 2) {
+    const [available, total] = this.value;
+    let className = '';
+    if (total / available >= 2) {
       className = 'seats--l';
     }
-    if (this.value[0] / this.value[1] < 2) {
+    if (total / available < 2) {
       className = 'seats--m';
     }
-    if (this.value[1] < 10) {
+    if (available < 10) {
       className = 'seats--s';
     }
+    this.el.nativeElement.classList.remove(
+      'seats--s',
+      'seats--m',
+      'seats--l',
+      'seats--z'
+    );
     this.el.nativeElement.classList.add(className);
   }
 }
