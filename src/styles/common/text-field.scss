@@ -14,6 +14,18 @@
 
   &.mdc-text-field--invalid {
     border: 1px solid $color-danger;
+
+    svg {
+      fill: $color-danger;
+    }
+
+    .mat-mdc-icon-button {
+      --mat-mdc-button-persistent-ripple-color: #{$color-danger};
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+      color: $color-danger;
+    }
   }
 }
 

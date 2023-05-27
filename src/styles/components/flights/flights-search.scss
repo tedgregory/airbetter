@@ -47,6 +47,10 @@
 
   &__from-field {
     margin-bottom: 4px;
+
+    .mat-mdc-form-field-error-wrapper {
+      top: -76px;
+    }
   }
 
   &__from-holder,
