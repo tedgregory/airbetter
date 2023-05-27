@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { BookingState } from './booking.state';
 import { BookingActions } from './booking.actions';
 import { EStatus } from '../common/common.models';
@@ -105,23 +105,22 @@ export const bookingFeature = createFeature({
         },
       };
     })
-    // on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
-    //   return {
-    //     ...state,
-    //     flyToData: {
-    //       ...state.flyToData,
-    //       chosenVariant: variant,
-    //     },
-    //   };
-    // }),
-    // on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
-    //   return {
-    //     ...state,
-    //     flyBackData: {
-    //       ...state.flyBackData,
-    //       chosenVariant: variant,
-    //     },
-    //   };
-    // })
   ),
+  extraSelectors: ({ selectFlyToData, selectFlyBackData }) => {
+    return {
+      selectChosenForwardIndex: createSelector(selectFlyToData, (flyTo) => {
+        return flyTo.chosenVariant
+          ? flyTo.variants?.indexOf(flyTo.chosenVariant)
+          : 0;
+      }),
+      selectChosenBackwardIndex: createSelector(
+        selectFlyBackData,
+        (flyBack) => {
+          return flyBack.chosenVariant
+            ? flyBack.variants?.indexOf(flyBack.chosenVariant)
+            : 0;
+        }
+      ),
+    };
+  },
 });

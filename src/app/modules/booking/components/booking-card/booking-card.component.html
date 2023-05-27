@@ -1,6 +1,6 @@
 <div
   *ngIf="bookingVariant as flightData; else empty"
-  [class]="{ 'booking-card': true }">
+  [class]="{ 'booking-card': true }" [appSlideActiveBg]="[flightData.seats.available, flightData.seats.total]">
   <!-- (click)="setActive()" -->
   <div class="date-title">
     <p class="date-title__day">

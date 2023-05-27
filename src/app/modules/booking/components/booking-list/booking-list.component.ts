@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
 import SwiperCore, { Navigation, Swiper, SwiperOptions } from 'swiper';
-import { Subscription, combineLatest, of, switchMap, tap } from 'rxjs';
+import { Subscription, combineLatest, of, switchMap } from 'rxjs';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
 
 @Component({
@@ -26,10 +26,10 @@ export class BookingListComponent implements OnInit, OnDestroy {
     },
     uniqueNavElements: true,
     slidesPerView: 1,
-    initialSlide: 2,
+    initialSlide: undefined,
     centeredSlides: true,
     loop: false,
-    speed: 500,
+    speed: 300,
     slideToClickedSlide: true,
     // centeredSlidesBounds: true,
     // keyboard: {
@@ -59,26 +59,15 @@ export class BookingListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  flyToIndex: number | null = null;
-  flyBackIndex: number | null = null;
+  // flyToIndex: number | null = null;
+  // flyBackIndex: number | null = null;
 
-  flyToData$ = this.store.select(bookingFeature.selectFlyToData).pipe(
-    tap((data) => {
-      this.config1.initialSlide =
-        data.variants && data.chosenVariant
-          ? data.variants.indexOf(data.chosenVariant)
-          : 2;
-    })
-  );
+  flyToData$ = this.store.select(bookingFeature.selectFlyToData);
 
-  flyBackData$ = this.store.select(bookingFeature.selectFlyBackData).pipe(
-    tap((data) => {
-      this.config2.initialSlide =
-        data.variants && data.chosenVariant
-          ? data.variants.indexOf(data.chosenVariant)
-          : 2;
-    })
-  );
+  flyBackData$ = this.store.select(bookingFeature.selectFlyBackData);
+
+  flyToChosen$ = this.store.select(bookingFeature.selectChosenForwardIndex);
+  flyBackChosen$ = this.store.select(bookingFeature.selectChosenBackwardIndex);
 
   selectedCurrency$ = this.store.select(searchFeature.selectCurrency);
 
@@ -86,7 +75,18 @@ export class BookingListComponent implements OnInit, OnDestroy {
     .select(bookingFeature.selectStatus)
     .pipe(switchMap((status) => of(status.valueOf())));
 
-  constructor(public store: Store) {}
+  constructor(public store: Store) {
+    this.subscriptions.push(
+      this.flyToChosen$.subscribe((index) => {
+        this.config1.initialSlide = index;
+      })
+    );
+    this.subscriptions.push(
+      this.flyBackChosen$.subscribe((index) => {
+        this.config2.initialSlide = index;
+      })
+    );
+  }
 
   ngOnInit() {
     SwiperCore.use([Navigation]);

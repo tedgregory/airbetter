@@ -29,7 +29,6 @@ app-booking-list {
         z-index: 1;
         top: 36px;
 
-
         &--prev {
           left: 0;
         }
@@ -65,15 +64,16 @@ app-booking-list {
     position: relative;
     margin: 0;
 
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: -1px;
-      left: -1px;
-      right: -1px;
-      height: 4px;
-      background-color: $color-active-base;
+    .booking-card {
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        left: -1px;
+        right: -1px;
+        height: 4px;
+      }
     }
 
     .date-title {

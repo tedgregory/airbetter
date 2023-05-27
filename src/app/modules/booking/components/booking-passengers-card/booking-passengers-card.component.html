@@ -78,7 +78,7 @@
           <mat-error *ngIf="passengerForm.get(passengerFormKeys.DATE_OF_BIRTH)?.hasError('invalidDate')">Invalid Date of Birth</mat-error>
         </mat-form-field>
       </div>
-      <div
+      <div *ngIf="!isInfant"
         formGroupName="baggage"
         class="passenger-form__baggage-data baggage"
       >
