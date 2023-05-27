@@ -62,7 +62,12 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     this.submissionTrigger &&
       this.subscriptions.push(
         this.submissionTrigger.subscribe(() => {
-          console.log('Submission trigger passengers main');
+          this.hasErrors = false;
+          this.passengersCollectedInfo$.next({
+            adults: null,
+            children: null,
+            infants: null,
+          });
         })
       );
     this.subscriptions.push(
@@ -94,7 +99,7 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     data: BookingPassenger | null
   ) {
     if (!data) {
-      this.setPassengersInvalid();
+      this.hasErrors = true;
       return;
     }
     const passInfo = this.passengersCollectedInfo$.value;
@@ -111,6 +116,7 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
 
   onContactDetailsAccepted(data: ContactDetails | null) {
     if (!data) {
+      this.hasErrors = true;
       return;
     }
     this.contactCollectedInfo$.next({ contactDetails: data });
