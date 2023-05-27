@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import moment from 'moment';
-import { Observable, combineLatest, tap } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
@@ -19,21 +19,11 @@ export class BookingSummaryComponent implements OnInit {
 
   savedFlyTo$ = this.store.select(bookingFeature.selectFlyToData);
   savedFlyBack$ = this.store.select(bookingFeature.selectFlyBackData);
-  savedPassengers$ = this.store
-    .select(passengersFeature.selectPassengersState)
-    .pipe(
-      tap((passengers) => {
-        this.passengersQuantities = [
-          passengers.adults?.length || 0,
-          passengers.children?.length || 0,
-          passengers.infants?.length || 0,
-        ];
-        console.log(this.passengersQuantities);
-      })
-    );
+  savedPassengers$ = this.store.select(passengersFeature.selectPassengersState);
   savedSearchValues$ = this.store.select(searchFeature.selectSearchState);
 
   flightsList: {
+    jet: string;
     name: string;
     date: string;
     time: string;
@@ -47,7 +37,8 @@ export class BookingSummaryComponent implements OnInit {
         this.flightsList = [];
         if (flyTo && flyTo.chosenVariant) {
           this.flightsList.push({
-            name: `${flyTo.chosenVariant?.flyFrom.airport} - ${flyTo.chosenVariant?.flyTo.airport}`,
+            jet: flyTo.chosenVariant?.flight_no,
+            name: `${flyTo.chosenVariant?.flyFrom.city} - ${flyTo.chosenVariant?.flyTo.city}`,
             date: this.formatFlightDate(flyTo.chosenVariant?.flightDate),
             time: this.combineTimeIntervalText(
               flyTo.chosenVariant?.time.departure_utc,
@@ -57,7 +48,8 @@ export class BookingSummaryComponent implements OnInit {
         }
         if (flyBack && flyBack.chosenVariant) {
           this.flightsList.push({
-            name: `${flyBack.chosenVariant?.flyFrom.airport} - ${flyBack.chosenVariant?.flyTo.airport}`,
+            jet: flyBack.chosenVariant?.flight_no,
+            name: `${flyBack.chosenVariant?.flyFrom.city} - ${flyBack.chosenVariant?.flyTo.city}`,
             date: this.formatFlightDate(flyBack.chosenVariant?.flightDate),
             time: this.combineTimeIntervalText(
               flyBack.chosenVariant?.time.departure_utc,
