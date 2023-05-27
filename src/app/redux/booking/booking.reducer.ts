@@ -7,7 +7,7 @@ const defaultState: BookingState = {
   status: EStatus.Default,
   error: null,
   flyToData: {
-    chosenVariant: null, // what if it's a stepover flight?
+    chosenVariant: null,
     confirmed: false,
     variants: null,
   },

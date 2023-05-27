@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ECurrencies } from 'src/app/redux/common/common.models';
 
 @Component({
@@ -7,52 +8,53 @@ import { ECurrencies } from 'src/app/redux/common/common.models';
 })
 export class BookingSummaryPriceComponent implements OnInit {
   @Input()
-  basePrice: Record<ECurrencies, number> | undefined = undefined;
+  basePrice: Record<ECurrencies, number> | undefined | null;
   @Input()
   currency: ECurrencies | undefined = undefined;
   @Input()
   passengersQuantity: number[] = [];
 
-  pricesViewData: Record<string, number | string>[] = [];
+  pricesViewData = new BehaviorSubject<Record<string, number | string>[]>([]);
 
   ngOnInit(): void {
     this.buildPricesData();
   }
 
   buildPricesData() {
-    const base =
-      this.currency && this.basePrice
-        ? this.basePrice[this.currency]
-        : this.basePrice?.[ECurrencies.EUR] || 500;
-    const childPrice = base * 0.8;
-    const infantPrice = base * 0.4;
-    this.pricesViewData = [
+    if (!this.currency || !this.basePrice) {
+      return;
+    }
+    const [adultsCount, childCount, infantCount] = this.passengersQuantity;
+    const basePrice = this.basePrice[this.currency];
+    const childPrice = basePrice * 0.76;
+    const infantPrice = basePrice * 0.44;
+    this.pricesViewData.next([
       {
         type: 'Adult',
-        amount: this.passengersQuantity[0],
-        totalPrice: base,
-        farePrice: base * 0.7,
-        otherPrice: base * 0.3,
+        amount: adultsCount,
+        totalPrice: basePrice,
+        farePrice: basePrice * 0.7,
+        otherPrice: basePrice * 0.3,
       },
       {
         type: 'Child',
-        amount: this.passengersQuantity[1],
+        amount: childCount,
         totalPrice: childPrice,
         farePrice: childPrice * 0.8,
         otherPrice: childPrice * 0.2,
       },
       {
         type: 'Infant',
-        amount: this.passengersQuantity[2],
+        amount: infantCount,
         totalPrice: infantPrice,
         farePrice: infantPrice * 0.9,
         otherPrice: infantPrice * 0.1,
       },
-    ];
+    ]);
   }
 
   get totalPrice(): number {
-    return this.pricesViewData.reduce(
+    return this.pricesViewData.value.reduce(
       (total, price) => total + +price['totalPrice'],
       0
     );

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   OnDestroy,
@@ -16,7 +17,7 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
   selector: 'app-booking-list',
   templateUrl: './booking-list.component.html',
 })
-export class BookingListComponent implements OnInit, OnDestroy {
+export class BookingListComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() completed = new EventEmitter<[string, boolean]>();
 
   config1: SwiperOptions = {
@@ -58,9 +59,6 @@ export class BookingListComponent implements OnInit, OnDestroy {
   };
 
   subscriptions: Subscription[] = [];
-
-  // flyToIndex: number | null = null;
-  // flyBackIndex: number | null = null;
 
   flyToData$ = this.store.select(bookingFeature.selectFlyToData);
 
@@ -108,6 +106,10 @@ export class BookingListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(
       (sub) => sub instanceof Subscription && sub.unsubscribe()
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.setInvalid();
   }
 
   onSliderSlideChange(type: 'forward' | 'backward', event: [swiper: Swiper]) {

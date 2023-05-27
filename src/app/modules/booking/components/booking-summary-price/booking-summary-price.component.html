@@ -1,7 +1,7 @@
 <mat-card class="booking-summary-price">
   <mat-card-content>
     <div class="booking-summary-price__list price-list">
-      <div *ngFor="let price of pricesViewData" class="price-list__item">
+      <div *ngFor="let price of (pricesViewData | async)" class="price-list__item">
         <p class="price-list__row price-list__row--bold">
           <span>{{ price['amount'] }} x {{ price['type'] }} Fare</span>
           <span>{{ price['totalPrice'] | currency : currency?.toString() }}</span>

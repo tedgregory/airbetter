@@ -8,8 +8,9 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import moment from 'moment';
-import { Observable, Subscription, combineLatest } from 'rxjs';
+import { Observable, Subscription, combineLatest, map } from 'rxjs';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
+import { ECurrencies } from 'src/app/redux/common/common.models';
 import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
 
@@ -26,6 +27,7 @@ export class BookingSummaryComponent implements OnInit, OnDestroy {
 
   savedFlyTo$ = this.store.select(bookingFeature.selectFlyToData);
   savedFlyBack$ = this.store.select(bookingFeature.selectFlyBackData);
+  savedBookingData$ = this.store.select(bookingFeature.selectBookingState);
   savedPassengers$ = this.store.select(passengersFeature.selectPassengersState);
   savedSearchValues$ = this.store.select(searchFeature.selectSearchState);
 
@@ -37,6 +39,31 @@ export class BookingSummaryComponent implements OnInit, OnDestroy {
   }[] = [];
 
   passengersQuantities: number[] = [];
+  combinedPrices$: Observable<Record<ECurrencies, number> | undefined> =
+    this.savedBookingData$.pipe(
+      map((data) => {
+        const forward = data.flyToData.chosenVariant?.price;
+        const backward = data.flyBackData.chosenVariant?.price;
+        if (!forward) {
+          return;
+        }
+        const combPrices = {
+          [ECurrencies.EUR]:
+            forward[ECurrencies.EUR] +
+              (backward ? backward?.[ECurrencies.EUR] : 0) || 0,
+          [ECurrencies.USD]:
+            forward[ECurrencies.USD] +
+              (backward ? backward?.[ECurrencies.USD] : 0) || 0,
+          [ECurrencies.RUB]:
+            forward[ECurrencies.RUB] +
+              (backward ? backward?.[ECurrencies.RUB] : 0) || 0,
+          [ECurrencies.PLN]:
+            forward[ECurrencies.PLN] +
+              (backward ? backward?.[ECurrencies.PLN] : 0) || 0,
+        };
+        return combPrices;
+      })
+    );
 
   subscriptions: Subscription[] = [];
 
@@ -79,6 +106,8 @@ export class BookingSummaryComponent implements OnInit, OnDestroy {
         ];
       })
     );
+
+    // this.combinedPrices$.subscribe(console.log);
   }
 
   ngOnDestroy(): void {

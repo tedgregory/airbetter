@@ -13,7 +13,7 @@
 
   <div class="booking-summary__price-block">
     <app-booking-summary-price
-      [basePrice]="(savedFlyTo$ |async)?.chosenVariant?.price"
+      [basePrice]="combinedPrices$ | async"
       [currency]="(savedSearchValues$ |async)?.currency"
       [passengersQuantity]="passengersQuantities"
     ></app-booking-summary-price>
