@@ -49,7 +49,7 @@ export interface BookingFlightVariant extends BookingFlightBase {
   };
   flight_no: string;
 
-  price: Record<ECurrencies, number>;
+  price: Record<ECurrencies, number> | null;
 }
 
 export enum ECurrencies {

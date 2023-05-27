@@ -47,16 +47,16 @@ export class BookingSummaryComponent implements OnInit, OnDestroy {
         if (!forward) {
           return;
         }
+        if (!backward) {
+          return forward;
+        }
         const combPrices = {
           [ECurrencies.EUR]:
-            forward[ECurrencies.EUR] +
-              (backward ? backward?.[ECurrencies.EUR] : 0) || 0,
+            forward[ECurrencies.EUR] + backward[ECurrencies.EUR],
           [ECurrencies.USD]:
-            forward[ECurrencies.USD] +
-              (backward ? backward?.[ECurrencies.USD] : 0) || 0,
+            forward[ECurrencies.USD] + backward[ECurrencies.USD],
           [ECurrencies.RUB]:
-            forward[ECurrencies.RUB] +
-              (backward ? backward?.[ECurrencies.RUB] : 0) || 0,
+            forward[ECurrencies.RUB] + backward[ECurrencies.RUB],
           [ECurrencies.PLN]:
             forward[ECurrencies.PLN] +
               (backward ? backward?.[ECurrencies.PLN] : 0) || 0,

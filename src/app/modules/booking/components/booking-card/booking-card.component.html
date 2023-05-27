@@ -11,7 +11,7 @@
     </p>
   </div>
   <div class="price">
-    {{ flightData.price.EUR | currency : 'EUR' }}
+    {{ flightData.price?.[currency || 'EUR'] | currency : currency || 'EUR' :'symbol':'1.0-0' }}
   </div>
 </div>
 
