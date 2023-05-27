@@ -51,7 +51,22 @@ const defaultState: PassengersState = {
       },
     },
   ],
-  infants: null,
+  infants: [
+    {
+      name: {
+        first: 'Peppi',
+        last: 'Diesel',
+      },
+      birthDate: '2021-02-22T18:46:31.370Z',
+      gender: Gender.Female,
+      specialCare: false,
+      baggage: {
+        checked: 0,
+        hand: 0,
+        hold: 0,
+      },
+    },
+  ],
   contactDetails: {
     countryCode: '',
     phone: '',

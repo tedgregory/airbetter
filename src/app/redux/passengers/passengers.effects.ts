@@ -58,7 +58,10 @@ export class PassengersEffects {
   });
 
   private mergePassengers(previous: BookingPassenger[] | null, amount: number) {
-    if (!previous || !previous.length) return amount ? Array(amount) : null;
-    return [...previous, ...Array(amount)].slice(0, amount);
+    if (!previous || !previous.length)
+      return amount !== 0 ? Array(amount) : null;
+    const result =
+      amount !== 0 ? [...previous, ...Array(amount)].slice(0, amount) : null;
+    return result;
   }
 }

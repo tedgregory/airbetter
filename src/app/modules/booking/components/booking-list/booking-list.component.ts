@@ -1,17 +1,22 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
 import SwiperCore, { Navigation, Swiper, SwiperOptions } from 'swiper';
-import { BookingFlightVariant } from 'src/app/redux/booking/booking.state';
-import { combineLatest, of, switchMap, tap } from 'rxjs';
+import { Subscription, combineLatest, of, switchMap, tap } from 'rxjs';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
 
 @Component({
   selector: 'app-booking-list',
   templateUrl: './booking-list.component.html',
 })
-export class BookingListComponent implements OnInit {
+export class BookingListComponent implements OnInit, OnDestroy {
   @Output() completed = new EventEmitter<[string, boolean]>();
 
   config1: SwiperOptions = {
@@ -52,6 +57,8 @@ export class BookingListComponent implements OnInit {
     },
   };
 
+  subscriptions: Subscription[] = [];
+
   flyToIndex: number | null = null;
   flyBackIndex: number | null = null;
 
@@ -84,45 +91,37 @@ export class BookingListComponent implements OnInit {
   ngOnInit() {
     SwiperCore.use([Navigation]);
     this.store.dispatch(BookingActions.getVariants());
-    combineLatest([this.flyToData$, this.flyBackData$]).subscribe(
-      ([forward, backward]) => {
-        if (forward.confirmed && (backward.confirmed || !backward.variants)) {
-          this.setCompleted();
-        } else {
-          this.setInvalid();
+    this.subscriptions.push(
+      combineLatest([this.flyToData$, this.flyBackData$]).subscribe(
+        ([forward, backward]) => {
+          if (forward.confirmed && (backward.confirmed || !backward.variants)) {
+            this.setCompleted();
+          } else {
+            this.setInvalid();
+          }
         }
-      }
+      )
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(
+      (sub) => sub instanceof Subscription && sub.unsubscribe()
     );
   }
 
   onSliderSlideChange(type: 'forward' | 'backward', event: [swiper: Swiper]) {
-    let variant: BookingFlightVariant | null = null;
-    switch (type) {
-      case 'forward':
-        this.flyToData$
-          .subscribe((data) => {
-            variant = data.variants?.[event[0].activeIndex] || null;
-          })
-          .unsubscribe(); // is it ok?
-        break;
-      case 'backward':
-        this.flyBackData$
-          .subscribe((data) => {
-            variant = data.variants?.[event[0].activeIndex] || null;
-          })
-          .unsubscribe();
-    }
-    if (!variant) {
+    if (!event || !event[0]) {
       return;
     }
-    this.setActiveCard(type, variant);
+    this.setActiveCard(type, event[0].activeIndex);
   }
 
-  setActiveCard(type: 'forward' | 'backward', variant: BookingFlightVariant) {
+  setActiveCard(type: 'forward' | 'backward', index: number) {
     this.store.dispatch(
       BookingActions[
         type === 'forward' ? 'setChosenForward' : 'setChosenBackward'
-      ]({ variant })
+      ]({ index })
     );
   }
 

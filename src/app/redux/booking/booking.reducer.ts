@@ -87,23 +87,41 @@ export const bookingFeature = createFeature({
         };
       }
     ),
-    on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
+    on(BookingActions.setChosenForward, (state, { index }): BookingState => {
       return {
         ...state,
         flyToData: {
           ...state.flyToData,
-          chosenVariant: variant,
+          chosenVariant: state?.flyToData?.variants?.[index] || null,
         },
       };
     }),
-    on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
+    on(BookingActions.setChosenBackward, (state, { index }): BookingState => {
       return {
         ...state,
         flyBackData: {
           ...state.flyBackData,
-          chosenVariant: variant,
+          chosenVariant: state?.flyBackData?.variants?.[index] || null,
         },
       };
     })
+    // on(BookingActions.setChosenForward, (state, { variant }): BookingState => {
+    //   return {
+    //     ...state,
+    //     flyToData: {
+    //       ...state.flyToData,
+    //       chosenVariant: variant,
+    //     },
+    //   };
+    // }),
+    // on(BookingActions.setChosenBackward, (state, { variant }): BookingState => {
+    //   return {
+    //     ...state,
+    //     flyBackData: {
+    //       ...state.flyBackData,
+    //       chosenVariant: variant,
+    //     },
+    //   };
+    // })
   ),
 });

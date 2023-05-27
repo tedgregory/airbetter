@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingPassenger } from 'src/app/redux/passengers/passengers.state';
 import { Gender } from 'src/app/redux/common/common.models';
@@ -8,7 +15,7 @@ import {
   validateAllFormFields,
 } from 'src/app/core/helpers/validation.helper';
 import { dateValidator } from 'src/app/core/validators/date-validator';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 enum PassengerFormKeys {
   FIRST_NAME = 'firstName',
@@ -25,7 +32,7 @@ enum PassengerFormKeys {
   selector: 'app-booking-passengers-card',
   templateUrl: './booking-passengers-card.component.html',
 })
-export class BookingPassengersCardComponent implements OnInit {
+export class BookingPassengersCardComponent implements OnInit, OnDestroy {
   @Input()
   initialData: Partial<BookingPassenger> | null = null;
   @Input()
@@ -78,16 +85,15 @@ export class BookingPassengersCardComponent implements OnInit {
 
   maxBirthDate = new Date();
 
+  isFormSubmitAttempt = false;
+
   get isInfant() {
     return this.type === 'infant';
   }
 
+  subscriptions: Subscription[] = [];
+
   ngOnInit(): void {
-    // this.passengerForm.valueChanges.subscribe((value) => {
-    //   this.formDataValid.emit(
-    //     this.passengerForm.valid ? this.mapPassengerData(value) : null
-    //   );
-    // });
     if (this.initialData) {
       this.passengerForm.setValue({
         firstName: this.initialData?.name?.first || '',
@@ -103,19 +109,27 @@ export class BookingPassengersCardComponent implements OnInit {
     }
 
     this.submissionTrigger &&
-      this.submissionTrigger.subscribe(() => {
-        this.isFormSubmitAttempt = true;
-        validateAllFormFields(this.passengerForm);
-        if (!this.passengerForm.valid) {
-          return;
-        }
-        this.isFormSubmitAttempt = false;
-        this.formDataValid.emit(
-          this.passengerForm.valid
-            ? this.mapPassengerData(this.passengerForm.value)
-            : null
-        );
-      });
+      this.subscriptions.push(
+        this.submissionTrigger.subscribe(() => {
+          this.isFormSubmitAttempt = true;
+          validateAllFormFields(this.passengerForm);
+          this.isFormSubmitAttempt = false;
+          if (!this.passengerForm.valid) {
+            return;
+          }
+          this.formDataValid.emit(
+            this.passengerForm.valid
+              ? this.mapPassengerData(this.passengerForm.value)
+              : null
+          );
+        })
+      );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(
+      (sub) => sub instanceof Subscription && sub.unsubscribe()
+    );
   }
 
   mapPassengerData(value: typeof this.passengerForm.value) {
@@ -136,16 +150,7 @@ export class BookingPassengersCardComponent implements OnInit {
     };
     return passengerData;
   }
-  isFormSubmitAttempt = false;
 
   isFieldValid = (control: string) =>
     isFieldValid(control, this.passengerForm, this.isFormSubmitAttempt);
-
-  // onSubmit() {
-  //   this.isFormSubmitAttempt = true;
-  //   validateAllFormFields(this.passengerForm);
-
-  //   console.log(this.passengerForm);
-  //   console.log(this.passengerForm.valid);
-  // }
 }

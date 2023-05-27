@@ -3,7 +3,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Store } from '@ngrx/store';
 import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
 import { BookingActions } from 'src/app/redux/booking/booking.actions';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-booking-stepper',
@@ -19,7 +19,7 @@ export class BookingStepperComponent {
   @HostBinding('class') class = 'booking-stepper';
 
   bookingSteps$ = this.store.select(bookingFeature.selectSteps);
-  submissionTrigger$ = new BehaviorSubject<boolean>(false);
+  submissionTrigger$ = new Subject<boolean>();
 
   constructor(private store: Store) {}
 

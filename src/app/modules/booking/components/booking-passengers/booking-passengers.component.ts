@@ -42,6 +42,8 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     'contactDetails'
   > | null>(null);
 
+  hasErrors = false;
+
   subscriptions: Subscription[] = [];
 
   constructor(private store: Store) {}
@@ -52,9 +54,31 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
         this.passengersCollectedInfo$,
         this.contactCollectedInfo$,
       ]).subscribe(([passengers, contacts]) => {
-        if (passengers && contacts) {
+        if (passengers && contacts && !this.hasErrors) {
           this.setPassengersCompleted();
         }
+      })
+    );
+    this.submissionTrigger &&
+      this.subscriptions.push(
+        this.submissionTrigger.subscribe(() => {
+          console.log('Submission trigger passengers main');
+        })
+      );
+    this.subscriptions.push(
+      this.passengersStateData$.subscribe((passState) => {
+        const passValues = this.passengersCollectedInfo$.value;
+        if (passState.adults?.length !== passValues.adults?.length)
+          passValues.adults =
+            passValues.adults?.slice(0, passState.adults?.length) || null;
+        if (passState.children?.length !== passValues.children?.length)
+          passValues.children =
+            passValues.children?.slice(0, passState.children?.length) || null;
+        if (passState.infants?.length !== passValues.infants?.length)
+          passValues.infants =
+            passValues.infants?.slice(0, passState.infants?.length) || null;
+        passValues !== this.passengersCollectedInfo$.value &&
+          this.passengersCollectedInfo$.next(passValues);
       })
     );
   }
@@ -87,7 +111,6 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
 
   onContactDetailsAccepted(data: ContactDetails | null) {
     if (!data) {
-      this.setPassengersInvalid();
       return;
     }
     this.contactCollectedInfo$.next({ contactDetails: data });
@@ -97,6 +120,7 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     this.completed.emit(['passengers', false]);
   }
   setPassengersCompleted() {
+    this.completed.emit(['passengers', true]);
     this.store.dispatch(
       PassengersActions.setFullPassengersDetails({
         data: {
@@ -106,8 +130,5 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
         } as PassengersState,
       })
     );
-    console.log('COMPLETED');
-
-    this.completed.emit(['passengers', true]);
   }
 }

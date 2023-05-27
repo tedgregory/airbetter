@@ -12,7 +12,9 @@ export const BookingActions = createActionGroup({
     'Toggle FlyTo Confirmed': emptyProps(),
     'Toggle FlyBack Confirmed': emptyProps(),
     'Set Step Completed': props<{ step: string; status: boolean }>(),
-    'Set Chosen Forward': props<{ variant: BookingFlightVariant }>(),
-    'Set Chosen Backward': props<{ variant: BookingFlightVariant }>(),
+    'Set Chosen Forward': props<{ index: number }>(),
+    'Set Chosen Backward': props<{ index: number }>(),
+    // 'Set Chosen Forward': props<{ variant: BookingFlightVariant }>(),
+    // 'Set Chosen Backward': props<{ variant: BookingFlightVariant }>(),
   },
 });
