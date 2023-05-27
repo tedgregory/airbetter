@@ -36,3 +36,7 @@
     position: relative;
   }
 }
+
+.mat-mdc-form-field-error {
+  @include text-12-400;
+}
