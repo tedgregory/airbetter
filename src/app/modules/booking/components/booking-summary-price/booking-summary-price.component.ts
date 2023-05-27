@@ -7,9 +7,9 @@ import { ECurrencies } from 'src/app/redux/common/common.models';
 })
 export class BookingSummaryPriceComponent implements OnInit {
   @Input()
-  basePrice: Record<string, number> = {};
+  basePrice: Record<ECurrencies, number> | undefined = undefined;
   @Input()
-  currency: ECurrencies | null = null;
+  currency: ECurrencies | undefined = undefined;
   @Input()
   passengersQuantity: number[] = [];
 
@@ -20,9 +20,10 @@ export class BookingSummaryPriceComponent implements OnInit {
   }
 
   buildPricesData() {
-    const base = this.currency
-      ? this.basePrice[this.currency]
-      : this.basePrice[0];
+    const base =
+      this.currency && this.basePrice
+        ? this.basePrice[this.currency]
+        : this.basePrice?.[ECurrencies.EUR] || 500;
     const childPrice = base * 0.8;
     const infantPrice = base * 0.4;
     this.pricesViewData = [

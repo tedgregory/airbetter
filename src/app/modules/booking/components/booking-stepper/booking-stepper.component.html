@@ -5,8 +5,10 @@
 >
   <mat-step
     label="Flights"
-    [completed]="(bookingSteps$ | async)?.['flights']"
-  >
+    [completed]="true"
+    [editable]="false"
+    >
+    <!-- [completed]="(bookingSteps$ | async)?.['flights']" -->
     <!-- [editable]="!(bookingSteps$ | async)?.['flights']"
     [state]="!(bookingSteps$ | async)?.['flights'] ? 'create' : 'number'" -->
     <app-booking-list (completed)="onSetStepCompleted($event)"></app-booking-list>
@@ -36,8 +38,10 @@
 
   <mat-step
     label="Passengers"
-    [completed]="(bookingSteps$ | async)?.['passengers']"
-  >
+    [completed]="true"
+    [editable]="false"
+    >
+    <!-- [completed]="(bookingSteps$ | async)?.['passengers']" -->
     <!-- [editable]="!(bookingSteps$ | async)?.['passengers']"
     [state]="(bookingSteps$ | async)?.['flights'] ? 'create' : 'number'" -->
     <app-booking-passengers
