@@ -153,3 +153,8 @@
     padding: 20px;
   }
 }
+
+app-booking-passengers-card:not(:last-child) {
+  display: block;
+  margin-bottom: 20px;
+}
