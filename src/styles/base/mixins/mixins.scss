@@ -83,6 +83,12 @@
   font-weight: 600;
 }
 
+@mixin text-11-500 {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
 @mixin webkit-scrollbar(
   $width: 4px,
   $radius: 10px,

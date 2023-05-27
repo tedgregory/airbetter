@@ -1,0 +1,28 @@
+<div
+  class="user-modal__inner"
+  [ngStyle]="{
+    'position': position.pos,
+    'top': position.rightTopY + 'px',
+    'right': position.rightTopX + 'px',
+  }"
+  appClickOutside
+  (clickOutside)="clickedOutsideModal($event)">
+  <div class="user-modal__content-container">
+    <button
+      mat-button
+      disableRipple
+      class="user-modal__close"
+      type="button"
+      aria-label="Close"
+      (click)="onModalClose()">
+      <mat-icon matSuffix svgIcon="appClose"></mat-icon>
+    </button>
+
+    <div class="user-modal__content">
+      <div class="user-dialog">
+        <h2 class="user-dialog__title">You're not authorized</h2>
+        <p class="user-dialog__text">Please, sign in</p>
+      </div>
+    </div>
+  </div>
+</div>

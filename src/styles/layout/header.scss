@@ -176,7 +176,8 @@ app-header {
       fill: currentColor;
     }
 
-    &--signin {
+    &--signin,
+    &--user {
       img,
       svg {
         width: 14px;
@@ -184,7 +185,9 @@ app-header {
       }
     }
 
-    &--cart {
+    &--cart,
+    &--signout {
+      position: relative;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -200,9 +203,47 @@ app-header {
 
       img,
       svg {
-        width: 22px;
+        width: 24px;
         height: 19px;
       }
+    }
+
+    &--signout {
+      @include btn-reset;
+      color: $color-grey-neutral-10;
+      padding: 7px 2px;
+      margin-left: -12px;
+      margin-right: -16px;
+      cursor: pointer;
+
+      img,
+      svg {
+        width: 29px;
+        height: 28px;
+      }
+    }
+  }
+
+  .cart-amount-indicator {
+    position: absolute;
+    top: 6px;
+    right: -1px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    background: $color-danger;
+    @include text-11-500;
+    color: $color-white;
+    font-weight: 700;
+    border-radius: 9px;
+
+    @include media-breakpoint-down(lg) {
+      right: 50%;
+      transform: translateX(21px);
     }
   }
 
@@ -234,6 +275,29 @@ app-header {
       .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,
       .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing {
         border-color: $color-white;
+      }
+    }
+
+    .header__button--signout {
+      color: $color-white;
+    }
+  }
+
+  &--authorized {
+    .button--mat-translucent-dark {
+      &.mat-mdc-unelevated-button.mat-mdc-button-base {
+        color: $color-primary;
+        background: rgba($color-grey-puff, 0.15);
+        border: 1px solid $color-grey-cloud;
+      }
+    }
+
+    &:not(.header--translucent) {
+      .header__button--cart,
+      .header__button--signout,
+      .mat-mdc-select-value,
+      .mat-mdc-select-arrow {
+        color: $color-primary;
       }
     }
   }

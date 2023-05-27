@@ -16,6 +16,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AuthSocialModule } from '../auth-social/auth-social.module';
 import { AuthFormComponent } from './auth-form.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from 'src/app/redux/auth/auth.effects';
+import { USER_AUTH_FEATURE_NAME } from 'src/app/redux/auth/auth.state';
+import { userAuthReducer } from 'src/app/redux/auth/auth.reducer';
 
 @NgModule({
   imports: [
@@ -28,6 +34,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatTooltipModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -35,6 +42,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatAutocompleteModule,
     MatCheckboxModule,
     AuthSocialModule,
+    StoreModule.forFeature(USER_AUTH_FEATURE_NAME, userAuthReducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [AuthFormComponent],
   exports: [AuthFormComponent],

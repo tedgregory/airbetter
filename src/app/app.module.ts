@@ -1,5 +1,5 @@
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -10,6 +10,7 @@ import { AppLocaleModule } from './app-locale.module';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { UserAuthInitService } from './modules/user/services/user-auth-init.service';
 
 @NgModule({
   imports: [
@@ -28,6 +29,14 @@ import { EffectsModule } from '@ngrx/effects';
     {
       provide: ENVIRONMENTS,
       useValue: environment,
+    },
+    UserAuthInitService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (authInitializer: UserAuthInitService) => () =>
+        authInitializer.initialize(),
+      deps: [UserAuthInitService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

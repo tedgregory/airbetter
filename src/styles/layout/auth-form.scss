@@ -64,8 +64,65 @@
     }
   }
 
+  &__gender-field-holder {
+    position: relative;
+
+    mat-button-toggle-group {
+      width: 100%;
+    }
+
+    .invalid {
+      // stylelint-disable-next-line selector-max-compound-selectors
+      & + .auth-form__gender-field-error {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__policy-field-holder {
+    position: relative;
+
+    .invalid {
+      // stylelint-disable-next-line selector-max-compound-selectors
+      & + .auth-form__policy-field-error {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__gender-field-error,
+  &__policy-field-error {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    @include text-12-400;
+    color: $color-danger;
+    padding: 0 16px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.36s ease-out, opacity 0.36s ease-out;
+  }
+
+  &__policy-field-error {
+    bottom: 0;
+    padding: 0 10px;
+  }
+
   &__checkbox-line {
     padding: 8px 0 12px 0;
+
+    &.invalid {
+      // stylelint-disable-next-line selector-max-compound-selectors
+      &.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate='true']) ~ .mdc-checkbox__background {
+        border-color: $color-danger;
+        background-color: transparent;
+      }
+    }
   }
 
   &__cols {
@@ -87,6 +144,26 @@
         flex-basis: 100%;
       }
     }
+
+    .mat-mdc-form-field {
+      max-width: 100%;
+    }
+  }
+
+  &__error {
+    @include text-14-400;
+    color: $color-danger;
+    padding: 0 0 10px 0;
+    margin-top: -10px;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    top: -1px;
+  }
+
+  .mat-mdc-form-field-error,
+  .mat-mdc-form-field-hint-wrapper {
+    @include text-12-400;
   }
 
   .mat-datepicker-toggle[data-mat-calendar] {
