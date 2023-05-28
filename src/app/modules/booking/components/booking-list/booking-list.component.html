@@ -6,7 +6,7 @@
         *ngIf="(loadingStatus$ | async) !== 'Loaded'"
       >
         <app-spinner *ngIf="(loadingStatus$ | async) === 'Loading'"></app-spinner>
-        <p *ngIf="(loadingStatus$ | async) === 'Error'">Error loading flights</p>
+        <p *ngIf="(loadingStatus$ | async) === 'Error'">No flights found. Try <a [routerLink]="['']">new search</a></p>
       </div>
       <ng-container *ngIf="directFlights.variants?.length && directFlights.chosenVariant">
         <h3 class="booking-content-block__title booking-content-block__title--m title title--medium title--iconic">

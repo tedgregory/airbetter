@@ -1,12 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { Observable, take } from 'rxjs';
 import { ECurrencies } from 'src/app/redux/common/common.models';
 
 @Component({
   selector: 'app-booking-summary-price',
   templateUrl: './booking-summary-price.component.html',
 })
-export class BookingSummaryPriceComponent implements OnInit {
+export class BookingSummaryPriceComponent implements OnInit, OnChanges {
   @Input()
   basePrice$: Observable<Record<ECurrencies, number> | null> | null = null;
   @Input()
@@ -18,18 +24,26 @@ export class BookingSummaryPriceComponent implements OnInit {
 
   ngOnInit(): void {
     this.basePrice$ &&
-      this.basePrice$.subscribe((data) => {
+      this.basePrice$.pipe(take(1)).subscribe((data) => {
         if (!data) return;
         this.buildPricesData(data);
       });
   }
 
-  buildPricesData(base: Record<ECurrencies, number>) {
-    if (!this.currency || !base) {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.basePrice$ &&
+      this.basePrice$.subscribe((data) => {
+        if (!data) return;
+        this.buildPricesData(data, changes['currency'].currentValue);
+      });
+  }
+
+  buildPricesData(base: Record<ECurrencies, number>, currency = this.currency) {
+    if (!currency || !base) {
       return;
     }
     const [adultsCount, childCount, infantCount] = this.passengersQuantity;
-    const basePrice = base[this.currency] * adultsCount;
+    const basePrice = base[currency] * adultsCount;
     const childPrice = basePrice * 0.76 * childCount;
     const infantPrice = basePrice * 0.44 * infantCount;
     this.pricesViewData = [

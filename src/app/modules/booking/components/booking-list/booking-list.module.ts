@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SwiperModule } from 'swiper/angular';
 import { SpinnerModule } from 'src/app/ui/spinner/spinner.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { SpinnerModule } from 'src/app/ui/spinner/spinner.module';
     MatButtonModule,
     MatIconModule,
     SpinnerModule,
+    RouterModule,
   ],
   declarations: [BookingListComponent],
   exports: [BookingListComponent],
