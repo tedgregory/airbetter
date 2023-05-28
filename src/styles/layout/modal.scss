@@ -1,4 +1,5 @@
-.auth-modal {
+.auth-modal,
+.user-modal {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -16,6 +17,7 @@
   // }
 
   &__inner {
+    position: relative;
     display: flex;
     flex-direction: row;
     height: auto;
@@ -77,4 +79,26 @@
       color: $color-grey-neutral-30;
     }
   }
+
+  &__cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba($color-white, 0.8);
+    border-radius: 8px;
+    z-index: 1;
+  }
+}
+
+.user-modal {
+  align-items: flex-start;
+}
+
+.user-dialog {
+  text-align: center;
 }

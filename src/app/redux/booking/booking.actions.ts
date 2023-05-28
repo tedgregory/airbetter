@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { BookingFlightVariant, IConvertedResponse } from './booking.state';
+import { IConvertedResponse } from './booking.state';
 
 export const BookingActions = createActionGroup({
   source: 'Booking',
