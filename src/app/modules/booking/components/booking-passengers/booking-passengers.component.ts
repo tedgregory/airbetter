@@ -37,6 +37,8 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     infants: null,
   });
 
+  passengerCounts = [0, 0, 0];
+
   contactCollectedInfo$ = new BehaviorSubject<Pick<
     PassengersState,
     'contactDetails'
@@ -54,7 +56,7 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
         this.passengersCollectedInfo$,
         this.contactCollectedInfo$,
       ]).subscribe(([passengers, contacts]) => {
-        if (passengers && contacts && !this.hasErrors) {
+        if (passengers && contacts && !this.isCountError) {
           this.setPassengersCompleted();
         }
       })
@@ -62,28 +64,20 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     this.submissionTrigger &&
       this.subscriptions.push(
         this.submissionTrigger.subscribe(() => {
-          this.hasErrors = false;
-          // this.passengersCollectedInfo$.next({
-          //   adults: null,
-          //   children: null,
-          //   infants: null,
-          // });
+          this.passengersCollectedInfo$.next({
+            adults: null,
+            children: null,
+            infants: null,
+          });
         })
       );
     this.subscriptions.push(
       this.passengersStateData$.subscribe((passState) => {
-        const passValues = this.passengersCollectedInfo$.value;
-        if (passState.adults?.length !== passValues.adults?.length)
-          passValues.adults =
-            passValues.adults?.slice(0, passState.adults?.length) || null;
-        if (passState.children?.length !== passValues.children?.length)
-          passValues.children =
-            passValues.children?.slice(0, passState.children?.length) || null;
-        if (passState.infants?.length !== passValues.infants?.length)
-          passValues.infants =
-            passValues.infants?.slice(0, passState.infants?.length) || null;
-        passValues !== this.passengersCollectedInfo$.value &&
-          this.passengersCollectedInfo$.next(passValues);
+        this.passengerCounts = [
+          passState.adults?.length || 0,
+          passState.children?.length || 0,
+          passState.infants?.length || 0,
+        ];
       })
     );
   }
@@ -99,7 +93,6 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     data: BookingPassenger | null
   ) {
     if (!data) {
-      this.hasErrors = true;
       return;
     }
     const passInfo = this.passengersCollectedInfo$.value;
@@ -116,10 +109,20 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
 
   onContactDetailsAccepted(data: ContactDetails | null) {
     if (!data) {
-      this.hasErrors = true;
       return;
     }
     this.contactCollectedInfo$.next({ contactDetails: data });
+  }
+
+  get isCountError() {
+    const { value: collected } = this.passengersCollectedInfo$;
+    const collectedCounts = [
+      collected.adults?.length || 0,
+      collected.children?.length || 0,
+      collected.infants?.length || 0,
+    ];
+    return !!collectedCounts.filter((num, i) => num !== this.passengerCounts[i])
+      .length;
   }
 
   setPassengersInvalid() {

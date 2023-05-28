@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingPassenger } from 'src/app/redux/passengers/passengers.state';
-import { Gender } from 'src/app/redux/common/common.models';
 import { birthDateValidator } from '../../../../core/validators/birth-date-validator';
 import {
   isFieldValid,
@@ -46,6 +45,11 @@ export class BookingPassengersCardComponent implements OnInit, OnDestroy {
 
   passengerFormKeys = PassengerFormKeys;
 
+  genderValues = {
+    Male: 'Male',
+    Female: 'Female',
+  };
+
   passengerForm = new FormGroup({
     [PassengerFormKeys.FIRST_NAME]: new FormControl('', [
       Validators.required,
@@ -57,7 +61,9 @@ export class BookingPassengersCardComponent implements OnInit, OnDestroy {
       Validators.maxLength(30),
       Validators.pattern('^[a-zA-Z\\s]*$'),
     ]),
-    [PassengerFormKeys.GENDER]: new FormControl('', [Validators.required]),
+    [PassengerFormKeys.GENDER]: new FormControl<string | null>(null, [
+      Validators.required,
+    ]),
     [PassengerFormKeys.DATE_OF_BIRTH]: new FormControl('', [
       dateValidator(),
       birthDateValidator(),
@@ -140,7 +146,7 @@ export class BookingPassengersCardComponent implements OnInit, OnDestroy {
         last: value.lastName || 'No last name',
       },
       birthDate: value.dateOfBirth || new Date().toISOString(),
-      gender: value.gender as Gender,
+      gender: value.gender || 'No',
       baggage: {
         hand: value.baggage?.cabin || 0,
         hold: value.baggage?.personal || 0,
@@ -151,6 +157,9 @@ export class BookingPassengersCardComponent implements OnInit, OnDestroy {
     return passengerData;
   }
 
-  isFieldValid = (control: string) =>
-    isFieldValid(control, this.passengerForm, this.isFormSubmitAttempt);
+  isFieldValid = (
+    control: string,
+    form = this.passengerForm,
+    isAttempt = this.isFormSubmitAttempt
+  ) => isFieldValid(control, form, isAttempt);
 }

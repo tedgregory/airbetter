@@ -1,11 +1,11 @@
-import { ContactDetails, Gender } from '../common/common.models';
+import { ContactDetails } from '../common/common.models';
 
 export type BookingPassenger = {
   name: {
     first: string;
     last: string;
   };
-  gender: Gender;
+  gender: string;
   birthDate: string;
   baggage: {
     hand: number;

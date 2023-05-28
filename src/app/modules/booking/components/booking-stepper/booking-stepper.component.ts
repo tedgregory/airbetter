@@ -32,6 +32,6 @@ export class BookingStepperComponent {
 
   onSetStepCompleted([step, status]: [string, boolean]) {
     this.store.dispatch(BookingActions.setStepCompleted({ step, status }));
-    status && this.bookingStepper?.next();
+    // this.bookingStepper?.next();
   }
 }
