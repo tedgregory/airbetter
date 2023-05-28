@@ -35,9 +35,9 @@
 
   <mat-step
     label="Passengers"
-    [completed]="(bookingSteps$ | async)?.['passengers']"
     [state]="(bookingSteps$ | async)?.['passengers'] ? 'create' : 'number'"
     >
+    <!-- [completed]="(bookingSteps$ | async)?.['passengers']" -->
     <app-booking-passengers
       (completed)="onSetStepCompleted($event)"
       [submissionTrigger]="submissionTrigger$"
@@ -56,7 +56,6 @@
         type="button"
         mat-flat-button
         color="primary"
-        matStepperNext
         class="button button--mat-primary"
         (click)="onFormsSubmitAttempt()"
       >
@@ -70,7 +69,7 @@
     label="Review & Payment"
     [completed]="(bookingSteps$ | async)?.['review']"
     [state]="(bookingSteps$ | async)?.['review'] ? 'create' : 'number'"
-    [editable]="(bookingSteps$ | async)?.['passengers']"
+    [editable]="(bookingSteps$ | async)?.['passengers'] && (bookingSteps$ | async)?.['flights']"
   >
     <app-booking-summary
       (completed)="onSetStepCompleted($event)"

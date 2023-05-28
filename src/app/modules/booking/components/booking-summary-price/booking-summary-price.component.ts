@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { ECurrencies } from 'src/app/redux/common/common.models';
 
@@ -30,11 +24,11 @@ export class BookingSummaryPriceComponent implements OnInit, OnChanges {
       });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.basePrice$ &&
       this.basePrice$.subscribe((data) => {
         if (!data) return;
-        this.buildPricesData(data, changes['currency'].currentValue);
+        this.buildPricesData(data);
       });
   }
 

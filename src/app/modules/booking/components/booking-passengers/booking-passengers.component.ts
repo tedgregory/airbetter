@@ -25,7 +25,7 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
   submissionTrigger: Observable<boolean> | null = null;
   @Output() completed = new EventEmitter<[string, boolean]>();
 
-  passengersStateData$ = this.store.select(
+  passengersStateData$: Observable<PassengersState> = this.store.select(
     passengersFeature.selectPassengersState
   );
 
@@ -43,8 +43,6 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     PassengersState,
     'contactDetails'
   > | null>(null);
-
-  hasErrors = false;
 
   subscriptions: Subscription[] = [];
 
@@ -129,7 +127,6 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
     this.completed.emit(['passengers', false]);
   }
   setPassengersCompleted() {
-    this.completed.emit(['passengers', true]);
     this.store.dispatch(
       PassengersActions.setFullPassengersDetails({
         data: {
@@ -139,5 +136,6 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
         } as PassengersState,
       })
     );
+    this.completed.emit(['passengers', true]);
   }
 }
