@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ECurrencies } from 'src/app/redux/common/common.models';
 
 @Component({
@@ -8,27 +8,31 @@ import { ECurrencies } from 'src/app/redux/common/common.models';
 })
 export class BookingSummaryPriceComponent implements OnInit {
   @Input()
-  basePrice: Record<ECurrencies, number> | undefined | null;
+  basePrice$: Observable<Record<ECurrencies, number> | null> | null = null;
   @Input()
   currency: ECurrencies | undefined = undefined;
   @Input()
   passengersQuantity: number[] = [];
 
-  pricesViewData = new BehaviorSubject<Record<string, number | string>[]>([]);
+  pricesViewData: Record<string, number | string>[] | null = null;
 
   ngOnInit(): void {
-    this.buildPricesData();
+    this.basePrice$ &&
+      this.basePrice$.subscribe((data) => {
+        if (!data) return;
+        this.buildPricesData(data);
+      });
   }
 
-  buildPricesData() {
-    if (!this.currency || !this.basePrice) {
+  buildPricesData(base: Record<ECurrencies, number>) {
+    if (!this.currency || !base) {
       return;
     }
     const [adultsCount, childCount, infantCount] = this.passengersQuantity;
-    const basePrice = this.basePrice[this.currency];
+    const basePrice = base[this.currency];
     const childPrice = basePrice * 0.76;
     const infantPrice = basePrice * 0.44;
-    this.pricesViewData.next([
+    this.pricesViewData = [
       {
         type: 'Adult',
         amount: adultsCount,
@@ -50,13 +54,15 @@ export class BookingSummaryPriceComponent implements OnInit {
         farePrice: infantPrice * 0.9,
         otherPrice: infantPrice * 0.1,
       },
-    ]);
+    ];
   }
 
   get totalPrice(): number {
-    return this.pricesViewData.value.reduce(
-      (total, price) => total + +price['totalPrice'],
-      0
+    return (
+      this.pricesViewData?.reduce(
+        (total, price) => total + +price['totalPrice'],
+        0
+      ) || 0
     );
   }
 }

@@ -15,6 +15,12 @@ import { CoreServiceModule } from 'src/app/core/services/core-service.module';
 import { StoreModule } from '@ngrx/store';
 import { userFeature } from 'src/app/redux/user/user.reducer';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BookingEffects } from 'src/app/redux/booking/booking.effects';
+import { SearchEffects } from 'src/app/redux/search/search.effects';
+import { PassengersEffects } from 'src/app/redux/passengers/passengers.effects';
+import { bookingFeature } from 'src/app/redux/booking/booking.reducer';
+import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 
 @NgModule({
   imports: [
@@ -31,8 +37,15 @@ import { searchFeature } from 'src/app/redux/search/search.reducer';
     MatIconModule,
     AuthModalModule,
     CoreDirectivesModule,
+    StoreModule.forFeature(bookingFeature),
+    StoreModule.forFeature(passengersFeature),
     StoreModule.forFeature(userFeature),
     StoreModule.forFeature(searchFeature),
+    EffectsModule.forFeature([
+      BookingEffects,
+      SearchEffects,
+      PassengersEffects,
+    ]),
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent],

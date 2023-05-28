@@ -10,12 +10,8 @@ import {
   of,
   startWith,
   switchMap,
-  tap,
 } from 'rxjs';
-import {
-  CountsOptions,
-  PassengerType,
-} from '../select-passengers/select-passengers.component';
+import { CountsOptions } from '../select-passengers/select-passengers.component';
 import { FlightsService } from '../../services/flights.service';
 import { LocationOption } from '../../models/flights.interface';
 import { MatRadioChange } from '@angular/material/radio';
@@ -26,7 +22,6 @@ import { NavigationPath } from 'src/app/core/navigation/models/navigation.interf
 import { ISearchData } from 'src/app/redux/search/search.state';
 import { SearchActions } from 'src/app/redux/search/search.actions';
 import { EPassengerType } from 'src/app/redux/common/common.models';
-import { passengersFeature } from 'src/app/redux/passengers/passengers.reducer';
 
 @Component({
   selector: 'app-flights-search',
@@ -69,6 +64,7 @@ export class FlightsSearchComponent implements OnInit, OnDestroy {
     [EPassengerType.Child]: 0,
     [EPassengerType.Infant]: 0,
   };
+
   passengersError$ = new BehaviorSubject(false);
 
   subscriptions: Subscription[] = [];
@@ -102,20 +98,20 @@ export class FlightsSearchComponent implements OnInit, OnDestroy {
         })
       ) || of<LocationOption[]>([]);
 
-    this.subscriptions.push(
-      this.store
-        .select(passengersFeature.selectPassengersState)
-        .pipe(
-          tap((passengers) => {
-            this.passengerCounts = {
-              [PassengerType.Adult]: passengers.adults?.length || 0,
-              [PassengerType.Child]: passengers.children?.length || 0,
-              [PassengerType.Infant]: passengers.infants?.length || 0,
-            };
-          })
-        )
-        .subscribe()
-    );
+    // this.subscriptions.push(
+    //   this.store
+    //     .select(passengersFeature.selectPassengersState)
+    //     .pipe(
+    //       tap((passengers) => {
+    //         this.passengerCounts = {
+    //           [PassengerType.Adult]: passengers.adults?.length || 0,
+    //           [PassengerType.Child]: passengers.children?.length || 0,
+    //           [PassengerType.Infant]: passengers.infants?.length || 0,
+    //         };
+    //       })
+    //     )
+    //     .subscribe()
+    // );
     // const dateChange$ = combineLatest([
     //   this.startDatePicker,
     //   this.endDatePicker,
@@ -179,17 +175,26 @@ export class FlightsSearchComponent implements OnInit, OnDestroy {
 
   onPassengerCountsChange(counts: CountsOptions) {
     this.passengerCounts = counts;
-    this.passengersError$.next(
-      this.getPassengersQuantity() > 0 &&
-        this.passengerCounts[EPassengerType.Adult] === 0
-    );
   }
 
   getPassengersQuantity(): number {
     return Object.values(this.passengerCounts).reduce((r, i) => r + i, 0) || 0;
   }
 
+  validatePassengers() {
+    this.passengersError$.next(false);
+    this.passengersError$.next(
+      (this.getPassengersQuantity() > 0 &&
+        this.passengerCounts[EPassengerType.Adult] === 0) ||
+        this.getPassengersQuantity() === 0
+    );
+  }
+
   onFormSubmit() {
+    this.validatePassengers();
+    if (this.passengersError$.value) {
+      return;
+    }
     const { value: formValues } = this.flightsSearchForm;
     const searchData: ISearchData = {
       dateLeave: formValues.range?.start?.toISOString() || null,

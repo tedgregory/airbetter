@@ -223,7 +223,7 @@
             color="primary"
             class="flights-search-form__submit-button button button--mat-primary"
             type="button"
-            [disabled]="flightsSearchForm.invalid || (passengersError$ | async) === true"
+            [disabled]="flightsSearchForm.invalid === true"
             (click)="onFormSubmit()"
           >
             Search

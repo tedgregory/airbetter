@@ -39,31 +39,29 @@ export class BookingSummaryComponent implements OnInit, OnDestroy {
   }[] = [];
 
   passengersQuantities: number[] = [];
-  combinedPrices$: Observable<Record<ECurrencies, number> | undefined> =
-    this.savedBookingData$.pipe(
-      map((data) => {
-        const forward = data.flyToData.chosenVariant?.price;
-        const backward = data.flyBackData.chosenVariant?.price;
-        if (!forward) {
-          return;
-        }
-        if (!backward) {
-          return forward;
-        }
-        const combPrices = {
-          [ECurrencies.EUR]:
-            forward[ECurrencies.EUR] + backward[ECurrencies.EUR],
-          [ECurrencies.USD]:
-            forward[ECurrencies.USD] + backward[ECurrencies.USD],
-          [ECurrencies.RUB]:
-            forward[ECurrencies.RUB] + backward[ECurrencies.RUB],
-          [ECurrencies.PLN]:
-            forward[ECurrencies.PLN] +
-              (backward ? backward?.[ECurrencies.PLN] : 0) || 0,
-        };
-        return combPrices;
-      })
-    );
+  combinedPrices$ = this.savedBookingData$.pipe(
+    map((data) => {
+      const forward = data.flyToData.chosenVariant?.price;
+      const backward = data.flyBackData.chosenVariant?.price;
+      if (!forward) {
+        return null;
+      }
+      if (!backward) {
+        return forward;
+      }
+      const combPrices = {
+        [ECurrencies.EUR]: forward[ECurrencies.EUR] + backward[ECurrencies.EUR],
+        [ECurrencies.USD]: forward[ECurrencies.USD] + backward[ECurrencies.USD],
+        [ECurrencies.RUB]: forward[ECurrencies.RUB] + backward[ECurrencies.RUB],
+        [ECurrencies.PLN]:
+          forward[ECurrencies.PLN] +
+            (backward ? backward?.[ECurrencies.PLN] : 0) || 0,
+      };
+      console.log(combPrices);
+
+      return combPrices;
+    })
+  );
 
   subscriptions: Subscription[] = [];
 
