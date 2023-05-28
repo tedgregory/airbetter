@@ -22,14 +22,21 @@ import {
   GridBreakpointType,
   mediaBreakpointDown,
 } from '../../../utils/grid-breakpoints.util';
-import { Subject, Subscription, combineLatest, takeUntil, tap } from 'rxjs';
+import { Subject, combineLatest, takeUntil, tap } from 'rxjs';
 import { CoreService } from 'src/app/core/services/core.service';
-import { AuthModalPosition } from '../../interfaces/layout.interfaces';
+import { ModalPosition } from '../../interfaces/layout.interfaces';
 import { ECurrencies, EDateFormats } from 'src/app/redux/common/common.models';
 import { Store } from '@ngrx/store';
 import { searchFeature } from 'src/app/redux/search/search.reducer';
 import { FormControl } from '@angular/forms';
 import { SearchActions } from 'src/app/redux/search/search.actions';
+import { UserModalService } from 'src/app/modules/user/services/user-modal.service';
+import { UserAuthActions } from 'src/app/redux/auth/auth.actions';
+import {
+  selectAuthData,
+  selectIsAuth,
+  selectLoaded,
+} from 'src/app/redux/auth/auth.selectors';
 
 @Component({
   selector: 'app-header',
@@ -64,6 +71,12 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     | ElementRef<HTMLElement>
     | undefined = undefined;
 
+  isAuth$ = this.store.select(selectIsAuth);
+
+  authData$ = this.store.select(selectAuthData);
+
+  authLoaded$ = this.store.select(selectLoaded);
+
   NavigationPath = Object.keys(NavigationPath).reduce((res, key, i) => {
     res[key as keyof typeof NavigationPath] = Object.values(NavigationPath)[i];
     return res;
@@ -79,17 +92,19 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     value: key as EDateFormats,
     viewValue: key as EDateFormats,
   }));
+
   dateFormatsControl = new FormControl<EDateFormats>(EDateFormats.YMD);
 
   currencies = Object.keys(ECurrencies).map((key) => ({
     value: key as ECurrencies,
     viewValue: key as ECurrencies,
   }));
+
   currenciesControl = new FormControl<ECurrencies>(ECurrencies.PLN);
 
   isAuthModalOpen = false;
 
-  authModalPos: AuthModalPosition = {
+  modalPos: ModalPosition = {
     pos: 'static',
     rightTopX: 0,
     rightTopY: 0,
@@ -99,14 +114,13 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   selectedCurrency$ = this.store.select(searchFeature.selectCurrency);
 
-  private resizeSubscription: Subscription | undefined;
-
   constructor(
     private store: Store,
     private route: ActivatedRoute,
     private readonly breakpointObserver: BreakpointObserver,
     private coreService: CoreService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    public userModalService: UserModalService
   ) {}
 
   ngOnInit() {
@@ -121,14 +135,18 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
       )
       .subscribe();
 
-    this.resizeSubscription = this.coreService.onWindowResize(() => {
-      this.calcSignInBtnCoords(this.isLtLgScreen);
-    });
+    this.coreService
+      .onWindowResize(() => {
+        this.calcSignInBtnCoords(this.isLtLgScreen);
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
 
     this.dateFormatsControl.valueChanges.subscribe((value) => {
       value &&
         this.store.dispatch(SearchActions.setDateFormat({ dateFormat: value }));
     });
+
     this.currenciesControl.valueChanges.subscribe((value) => {
       value &&
         this.store.dispatch(SearchActions.setCurrency({ currency: value }));
@@ -149,9 +167,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
-    if (this.resizeSubscription) {
-      this.resizeSubscription.unsubscribe();
-    }
   }
 
   isFlightsPage() {
@@ -163,8 +178,16 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isAuthModalOpen = true;
   }
 
+  onSignOutBtnClick() {
+    this.store.dispatch(UserAuthActions.signOut());
+  }
+
   closeAuthModal() {
     this.isAuthModalOpen = false;
+  }
+
+  closeUserModal() {
+    this.userModalService.isUserModalOpen = false;
   }
 
   toggleCollapse() {
@@ -194,13 +217,13 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
       : 0;
 
     if (!isReset) {
-      this.authModalPos = {
+      this.modalPos = {
         pos: 'absolute',
         rightTopX: window.innerWidth - signInBtnLeftBottomPosX - 20,
         rightTopY: signInBtnLeftBottomPosY + 28,
       };
     } else {
-      this.authModalPos = {
+      this.modalPos = {
         pos: 'static',
         rightTopX: 0,
         rightTopY: 0,

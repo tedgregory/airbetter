@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavigationPath } from './core/navigation/models/navigation.interface';
 import { LayoutComponent } from './ui/theme/layout/layout.component';
 import { LayoutModule } from './ui/theme/layout/layout.module';
+import { canActivate } from './modules/user/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,6 +26,8 @@ const routes: Routes = [
       },
       {
         path: NavigationPath.Cart,
+        canActivate: [canActivate],
+        // canMatch: [canMatch],
         loadChildren: () =>
           import('src/app/modules/user/pages/cart-page/cart-page.module').then(
             (m) => m.CartPageModule
@@ -32,6 +35,8 @@ const routes: Routes = [
       },
       {
         path: NavigationPath.UserAccount,
+        canActivate: [canActivate],
+        // canMatch: [canMatch],
         loadChildren: () =>
           import('src/app/modules/user/pages/user-page/user-page.module').then(
             (m) => m.UserPageModule

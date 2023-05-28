@@ -1,25 +1,32 @@
 <mat-tab-group>
   <mat-tab label="Sign in">
-    <form class="auth-form">
-      <app-auth-social></app-auth-social>
+    <form
+      class="auth-form"
+      [formGroup]="signInForm"
+    >
+      <app-auth-social (deliver)="onPrefilledDataDeliver($event, 'signIn')"></app-auth-social>
 
       <div class="auth-form__divider">
         <span class="auth-form__divider-text">or log in with your email</span>
       </div>
 
       <mat-form-field>
-        <mat-label>E-mail*</mat-label>
+        <mat-label>E-mail</mat-label>
         <input
           matInput
           type="email"
+          [formControlName]="signInFormKeys.EMAIL"
         >
+        <mat-error *ngIf="signInForm.get(signInFormKeys.EMAIL)?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="signInForm.get(signInFormKeys.EMAIL)?.hasError('email')">Invalid email</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Password*</mat-label>
+        <mat-label>Password</mat-label>
         <input
           matInput
           [type]="isPasswordHidden ? 'password' : 'text'"
+          [formControlName]="signInFormKeys.PASSWORD"
         >
         <button
           mat-icon-button
@@ -35,17 +42,27 @@
           }}
           </mat-icon>
         </button>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.PASSWORD)?.hasError('required')">Enter your password</mat-error>
       </mat-form-field>
 
       <div class="auth-form__note auth-form__note--password">
         <a href="#">Forgot password?</a>
       </div>
 
+      <div
+        *ngIf="lastFormSubmitted === 'signIn' && (authServerError$ | async)"
+        class="auth-form__error"
+      >
+        {{ authServerError$ | async }}. Please, try again
+      </div>
+
+      <!-- [disabled]="signInForm.invalid" -->
       <button
         mat-flat-button
         color="primary"
         class="auth-form__button button button--mat-primary"
-        type="submit"
+        type="button"
+        (click)="onSignInFormSubmit()"
       >
         Sign in
       </button>
@@ -53,8 +70,11 @@
   </mat-tab>
 
   <mat-tab label="Sign up">
-    <form class="auth-form">
-      <app-auth-social></app-auth-social>
+    <form
+      class="auth-form"
+      [formGroup]="signUpForm"
+    >
+      <app-auth-social (deliver)="onPrefilledDataDeliver($event, 'signUp')"></app-auth-social>
 
       <div class="auth-form__divider">
         <span class="auth-form__divider-text">or sign up with your email</span>
@@ -64,19 +84,23 @@
         floatLabel="always"
         class="auth-form__email-field"
       >
-        <mat-label>Email*</mat-label>
+        <mat-label>Email</mat-label>
         <input
           type="email"
           matInput
           placeholder="e.g. example@email.com"
+          [formControlName]="signUpFormKeys.EMAIL"
         >
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.EMAIL)?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.EMAIL)?.hasError('email')">Invalid email</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Password*</mat-label>
+        <mat-label>Password</mat-label>
         <input
           matInput
           [type]="isPasswordHidden ? 'password' : 'text'"
+          [formControlName]="signUpFormKeys.PASSWORD"
         >
         <button
           mat-icon-button
@@ -87,29 +111,48 @@
           [attr.aria-pressed]="isPasswordHidden"
         >
           <mat-icon>
-            {{
-            isPasswordHidden ? 'visibility_off' : 'visibility'
-          }}
+            {{isPasswordHidden ? 'visibility_off' : 'visibility'}}
           </mat-icon>
         </button>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.PASSWORD)?.hasError('required')">Enter your password</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.PASSWORD)?.hasError('minlength')">Must be at least 8 characters</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.PASSWORD)?.hasError('strength')">
+          Include at least one of each: 0-9, A-Z, a-z, !/?/@/#
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>First name*</mat-label>
-        <input matInput>
+        <mat-label>First name</mat-label>
+        <input
+          matInput
+          [formControlName]="signUpFormKeys.FIRST_NAME"
+        >
         <mat-icon
+          matTooltip="First name as it is written in the documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
+          matTooltipPosition="above"
           matSuffix
           svgIcon="appInfo"
         ></mat-icon>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.FIRST_NAME)?.hasError('required')">First Name is required</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.FIRST_NAME)?.hasError('pattern')">Invalid character</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.FIRST_NAME)?.hasError('maxlength')">Must be up to 30 characters</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Last name*</mat-label>
-        <input matInput>
+        <mat-label>Last name</mat-label>
+        <input
+          matInput
+          [formControlName]="signUpFormKeys.LAST_NAME"
+        >
         <mat-icon
+          matTooltip="Last name as it is written in the documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
+          matTooltipPosition="above"
           matSuffix
           svgIcon="appInfo"
         ></mat-icon>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.LAST_NAME)?.hasError('required')">Last Name is required</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.LAST_NAME)?.hasError('pattern')">Invalid character</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.LAST_NAME)?.hasError('maxlength')">Must be up to 30 characters</mat-error>
       </mat-form-field>
 
       <mat-form-field
@@ -120,7 +163,10 @@
         <input
           matInput
           [matDatepicker]="picker"
+          [min]="minBirthDate"
+          [max]="maxBirthDate"
           placeholder="MM/DD/YYYY"
+          [formControlName]="signUpFormKeys.DATE_OF_BIRTH"
         >
         <mat-datepicker-toggle
           matIconSuffix
@@ -128,15 +174,23 @@
         >
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.DATE_OF_BIRTH)?.hasError('requiredDate')">Date of Birth is required</mat-error>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.DATE_OF_BIRTH)?.hasError('invalidDate')">Invalid Date of Birth</mat-error>
       </mat-form-field>
 
-      <mat-button-toggle-group
-        name="gender"
-        aria-label="Choose Gender"
-      >
-        <mat-button-toggle value="male">Male</mat-button-toggle>
-        <mat-button-toggle value="female">Female</mat-button-toggle>
-      </mat-button-toggle-group>
+      <div class="auth-form__gender-field-holder">
+        <!-- (change)="onGenderGroupChange($event)" -->
+        <mat-button-toggle-group
+          [class.invalid]="isFieldValid(signUpFormKeys.GENDER, signUpForm, isSignUpFormSubmitAttempt)"
+          name="gender"
+          aria-label="Choose Gender"
+          [formControlName]="signUpFormKeys.GENDER"
+        >
+          <mat-button-toggle value="male">Male</mat-button-toggle>
+          <mat-button-toggle value="female">Female</mat-button-toggle>
+        </mat-button-toggle-group>
+        <span class="auth-form__gender-field-error">Choose an option</span>
+      </div>
 
       <div class="auth-form__cols">
         <mat-form-field
@@ -144,15 +198,17 @@
           appearance="fill"
         >
           <mat-label>Country code</mat-label>
+          <!-- [formControl]="countryControl" -->
           <div class="auth-form__country-holder">
             <input
               type="text"
               placeholder="Country code"
               matInput
-              [formControl]="countryControl"
               [matAutocomplete]="autoCountry"
               aria-label="Your country code"
               (input)="onCountryInput()"
+              [formControlName]="signUpFormKeys.COUNTRY_CODE"
+              required
             >
           </div>
           <mat-autocomplete #autoCountry="matAutocomplete">
@@ -164,18 +220,26 @@
               {{ country.name }}&nbsp;({{ country.dialCode }})
             </mat-option>
           </mat-autocomplete>
+          <mat-error *ngIf="signUpForm.get(signUpFormKeys.COUNTRY_CODE)?.hasError('required')">Choose country code</mat-error>
+          <mat-error *ngIf="signUpForm.get(signUpFormKeys.COUNTRY_CODE)?.hasError('invalidCountryCode')">Choose country code</mat-error>
         </mat-form-field>
 
         <mat-form-field
           floatLabel="always"
           class="auth-form__phone-field"
         >
-          <mat-label>Mobile phone number*</mat-label>
+          <mat-label>Mobile phone number</mat-label>
           <input
             type="tel"
             matInput
             placeholder="e.g. 1111111111"
+            [formControlName]="signUpFormKeys.PHONE"
+            required
           >
+          <mat-error *ngIf="signUpForm.get(signUpFormKeys.PHONE)?.hasError('required')">Phone number is required</mat-error>
+          <mat-error *ngIf="signUpForm.get(signUpFormKeys.PHONE)?.hasError('minlength')">Phone number is too short</mat-error>
+          <mat-error *ngIf="signUpForm.get(signUpFormKeys.PHONE)?.hasError('maxlength')">Phone number is too long</mat-error>
+          <mat-error *ngIf="signUpForm.get(signUpFormKeys.PHONE)?.hasError('pattern')">Only numbers</mat-error>
         </mat-form-field>
       </div>
 
@@ -189,10 +253,10 @@
             type="text"
             placeholder="Citizenship"
             matInput
-            [formControl]="citizenshipControl"
             [matAutocomplete]="autoCitizenship"
             aria-label="Your citizenship"
             (input)="onCitizenshipInput()"
+            [formControlName]="signUpFormKeys.CITIZENSHIP"
           >
         </div>
         <mat-autocomplete #autoCitizenship="matAutocomplete">
@@ -204,25 +268,40 @@
             {{ citizenship.nationality }}&nbsp;({{ citizenship.alpha2Code }})
           </mat-option>
         </mat-autocomplete>
+        <mat-error *ngIf="signUpForm.get(signUpFormKeys.CITIZENSHIP)?.hasError('invalidCitizenship')">Choose a correct option</mat-error>
       </mat-form-field>
 
-      <mat-checkbox
-        color="primary"
-        checked="false"
-        required
-        class="auth-form__checkbox-line"
-      >
-        I agree to Airway's
-        <a href="#">Privacy Policy</a>
-        and
-        <a href="#">Terms of Use</a>
-      </mat-checkbox>
+      <div class="auth-form__policy-field-holder">
+        <mat-checkbox
+          color="primary"
+          [class.invalid]="isFieldValid(signUpFormKeys.POLICY, signUpForm, isSignUpFormSubmitAttempt)"
+          checked="false"
+          class="auth-form__checkbox-line"
+          [formControlName]="signUpFormKeys.POLICY"
+          required
+        >
+          I agree to Airway's
+          <a href="#">Privacy Policy</a>
+          and
+          <a href="#">Terms of Use</a>
+        </mat-checkbox>
+        <span class="auth-form__policy-field-error">Agree to the terms</span>
+      </div>
 
+      <div
+        *ngIf="lastFormSubmitted === 'signUp' && (authServerError$ | async)"
+        class="auth-form__error"
+      >
+        {{ authServerError$ | async }}. Please, try again
+      </div>
+
+      <!-- [disabled]="signUpForm.invalid" -->
       <button
         mat-flat-button
         color="primary"
         class="auth-form__button button button--mat-primary"
-        type="submit"
+        type="button"
+        (click)="onSignUpFormSubmit()"
       >
         Sign up
       </button>
