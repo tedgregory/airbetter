@@ -3,12 +3,22 @@ import { SearchState } from './search.state';
 import { SearchActions } from './search.actions';
 import { ECurrencies, EDateFormats } from '../common/common.models';
 
+// const defaultState: SearchState = {
+//   flyFrom: { iata: 'DUS', title: 'Dusseldorf' },
+//   flyTo: { iata: 'PRG', title: 'Warsaw Modlin' },
+//   dateLeave: '2023-06-10T23:37:00.000Z',
+//   dateReturn: '2023-06-30T23:37:00.000Z',
+//   isReturn: true,
+//   currency: ECurrencies.EUR,
+//   dateFormat: EDateFormats.DMY,
+//   error: null,
+// };
 const defaultState: SearchState = {
-  flyFrom: { iata: 'DUS', title: 'Dusseldorf' },
-  flyTo: { iata: 'PRG', title: 'Warsaw Modlin' },
-  dateLeave: '2023-06-10T23:37:00.000Z',
-  dateReturn: '2023-06-30T23:37:00.000Z',
-  isReturn: true,
+  flyFrom: { iata: '', title: '' },
+  flyTo: { iata: '', title: '' },
+  dateLeave: '',
+  dateReturn: '',
+  isReturn: false,
   currency: ECurrencies.EUR,
   dateFormat: EDateFormats.DMY,
   error: null,

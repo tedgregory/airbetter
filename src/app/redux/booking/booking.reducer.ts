@@ -7,7 +7,7 @@ const defaultState: BookingState = {
   status: EStatus.Default,
   error: null,
   flyToData: {
-    chosenVariant: null, // what if it's a stepover flight?
+    chosenVariant: null,
     confirmed: false,
     variants: null,
   },
@@ -58,11 +58,13 @@ export const bookingFeature = createFeature({
             ...state.flyToData,
             chosenVariant: bookingData.forward?.chosen || null,
             variants: bookingData.forward?.options || null,
+            confirmed: false,
           },
           flyBackData: {
             ...state.flyToData,
             chosenVariant: bookingData.backward?.chosen || null,
             variants: bookingData.backward?.options || null,
+            confirmed: false,
           },
           error: null,
         };

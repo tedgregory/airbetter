@@ -63,11 +63,11 @@ export class BookingPassengersComponent implements OnInit, OnDestroy {
       this.subscriptions.push(
         this.submissionTrigger.subscribe(() => {
           this.hasErrors = false;
-          this.passengersCollectedInfo$.next({
-            adults: null,
-            children: null,
-            infants: null,
-          });
+          // this.passengersCollectedInfo$.next({
+          //   adults: null,
+          //   children: null,
+          //   infants: null,
+          // });
         })
       );
     this.subscriptions.push(
