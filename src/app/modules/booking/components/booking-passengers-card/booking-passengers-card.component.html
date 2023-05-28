@@ -50,8 +50,8 @@
             name="gender"
             aria-label="Choose Gender"
           >
-            <mat-button-toggle value="male">Male</mat-button-toggle>
-            <mat-button-toggle value="female">Female</mat-button-toggle>
+            <mat-button-toggle [value]="genderValues.Male">{{genderValues.Male}}</mat-button-toggle>
+            <mat-button-toggle [value]="genderValues.Female">{{genderValues.Female}}</mat-button-toggle>
           </mat-button-toggle-group>
           <span class="passenger-form__gender-field-error">Choose an option</span>
         </div>

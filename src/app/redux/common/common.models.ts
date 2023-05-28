@@ -1,6 +1,7 @@
 export enum Gender {
   Male = 'Male',
   Female = 'Female',
+  NA = 'NA',
 }
 
 export interface ContactDetails {

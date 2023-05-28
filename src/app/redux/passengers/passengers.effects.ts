@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { passengersFeature } from './passengers.reducer';
 import { EPassengerType } from '../common/common.models';
 import { BookingPassenger } from './passengers.state';
+import { BookingActions } from '../booking/booking.actions';
 
 @Injectable()
 export class PassengersEffects {
@@ -51,6 +52,22 @@ export class PassengersEffects {
               count[EPassengerType.Infant]
             ) as BookingPassenger[],
           })
+        );
+      }),
+      catchError((error) => of(PassengersActions.setError({ error })))
+    );
+  });
+
+  dropPassengersStep$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(PassengersActions.updateQuantities),
+      switchMap(() => {
+        return of(
+          BookingActions.setStepCompleted({
+            step: 'passengers',
+            status: false,
+          }),
+          BookingActions.setStepCompleted({ step: 'review', status: false })
         );
       }),
       catchError((error) => of(PassengersActions.setError({ error })))
