@@ -57,8 +57,6 @@ export class BookingSummaryComponent implements OnInit, OnDestroy {
           forward[ECurrencies.PLN] +
             (backward ? backward?.[ECurrencies.PLN] : 0) || 0,
       };
-      console.log(combPrices);
-
       return combPrices;
     })
   );

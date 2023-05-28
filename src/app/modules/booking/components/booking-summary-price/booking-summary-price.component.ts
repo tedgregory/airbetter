@@ -29,9 +29,9 @@ export class BookingSummaryPriceComponent implements OnInit {
       return;
     }
     const [adultsCount, childCount, infantCount] = this.passengersQuantity;
-    const basePrice = base[this.currency];
-    const childPrice = basePrice * 0.76;
-    const infantPrice = basePrice * 0.44;
+    const basePrice = base[this.currency] * adultsCount;
+    const childPrice = basePrice * 0.76 * childCount;
+    const infantPrice = basePrice * 0.44 * infantCount;
     this.pricesViewData = [
       {
         type: 'Adult',
