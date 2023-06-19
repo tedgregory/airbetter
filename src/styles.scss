@@ -1,0 +1,65 @@
+@import 'src/styles/libs/normalize';
+@import 'primeicons/primeicons.css';
+@import 'src/styles/libs/hamburgers/hamburgers';
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+
+@import 'src/styles/base/variables';
+@import 'src/styles/base/mixins/breakpoints';
+@import 'src/styles/base/mixins/mixins';
+@import 'src/styles/base/global';
+@import 'src/styles/base/material';
+
+@import 'src/styles/common/text-field';
+@import 'src/styles/common/button-toggle';
+@import 'src/styles/common/button';
+@import 'src/styles/common/icon';
+@import 'src/styles/common/slide-toggle';
+@import 'src/styles/common/title';
+@import 'src/styles/common/tooltip';
+@import 'src/styles/common/menu';
+@import 'src/styles/common/tabs';
+@import 'src/styles/common/checkbox';
+@import 'src/styles/common/datepicker';
+@import 'src/styles/common/primeng';
+@import 'src/styles/common/stepper';
+
+@import 'src/styles/layout/layout';
+@import 'src/styles/layout/header';
+@import 'src/styles/layout/footer';
+@import 'src/styles/layout/main';
+@import 'src/styles/layout/modal';
+@import 'src/styles/layout/auth-form';
+
+@import 'src/styles/components/ui/container';
+@import 'src/styles/components/ui/column';
+@import 'src/styles/components/ui/row';
+@import 'src/styles/components/ui/spinner';
+
+@import 'src/styles/components/not-found/not-found-page';
+
+@import 'src/styles/components/flights/flights-page';
+@import 'src/styles/components/flights/flights-search';
+@import 'src/styles/components/flights/select-passengers';
+@import 'src/styles/components/flights/incrementer';
+
+@import 'src/styles/components/booking/booking-page';
+@import 'src/styles/components/booking/booking-stepper';
+@import 'src/styles/components/booking/booking-content-block';
+@import 'src/styles/components/booking/booking-description';
+@import 'src/styles/components/booking/booking-card';
+@import 'src/styles/components/booking/booking-list';
+@import 'src/styles/components/booking/booking-passengers';
+@import 'src/styles/components/booking/booking-passengers-card';
+@import 'src/styles/components/booking/booking-passengers-contacts';
+@import 'src/styles/components/booking/booking-step-buttons';
+@import 'src/styles/components/booking/booking-details';
+@import 'src/styles/components/booking/booking-summary';
+@import 'src/styles/components/booking/booking-summary-flight';
+@import 'src/styles/components/booking/booking-summary-price';
+@import 'src/styles/components/booking/booking-info-panel';
+
+@import 'src/styles/components/cart/cart-page';
+@import 'src/styles/components/cart/cart';
+@import 'src/styles/components/cart/user-page';
+@import 'src/styles/components/cart/orders';

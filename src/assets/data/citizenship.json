@@ -1,0 +1,1745 @@
+[
+  {
+    "numCode": "4",
+    "alpha2Code": "AF",
+    "alpha3Code": "AFG",
+    "enShortName": "Afghanistan",
+    "nationality": "Afghan"
+  },
+  {
+    "numCode": "248",
+    "alpha2Code": "AX",
+    "alpha3Code": "ALA",
+    "enShortName": "\u00c5land Islands",
+    "nationality": "\u00c5land Island"
+  },
+  {
+    "numCode": "8",
+    "alpha2Code": "AL",
+    "alpha3Code": "ALB",
+    "enShortName": "Albania",
+    "nationality": "Albanian"
+  },
+  {
+    "numCode": "12",
+    "alpha2Code": "DZ",
+    "alpha3Code": "DZA",
+    "enShortName": "Algeria",
+    "nationality": "Algerian"
+  },
+  {
+    "numCode": "16",
+    "alpha2Code": "AS",
+    "alpha3Code": "ASM",
+    "enShortName": "American Samoa",
+    "nationality": "American Samoan"
+  },
+  {
+    "numCode": "20",
+    "alpha2Code": "AD",
+    "alpha3Code": "AND",
+    "enShortName": "Andorra",
+    "nationality": "Andorran"
+  },
+  {
+    "numCode": "24",
+    "alpha2Code": "AO",
+    "alpha3Code": "AGO",
+    "enShortName": "Angola",
+    "nationality": "Angolan"
+  },
+  {
+    "numCode": "660",
+    "alpha2Code": "AI",
+    "alpha3Code": "AIA",
+    "enShortName": "Anguilla",
+    "nationality": "Anguillan"
+  },
+  {
+    "numCode": "10",
+    "alpha2Code": "AQ",
+    "alpha3Code": "ATA",
+    "enShortName": "Antarctica",
+    "nationality": "Antarctic"
+  },
+  {
+    "numCode": "28",
+    "alpha2Code": "AG",
+    "alpha3Code": "ATG",
+    "enShortName": "Antigua and Barbuda",
+    "nationality": "Antiguan or Barbudan"
+  },
+  {
+    "numCode": "32",
+    "alpha2Code": "AR",
+    "alpha3Code": "ARG",
+    "enShortName": "Argentina",
+    "nationality": "Argentine"
+  },
+  {
+    "numCode": "51",
+    "alpha2Code": "AM",
+    "alpha3Code": "ARM",
+    "enShortName": "Armenia",
+    "nationality": "Armenian"
+  },
+  {
+    "numCode": "533",
+    "alpha2Code": "AW",
+    "alpha3Code": "ABW",
+    "enShortName": "Aruba",
+    "nationality": "Aruban"
+  },
+  {
+    "numCode": "36",
+    "alpha2Code": "AU",
+    "alpha3Code": "AUS",
+    "enShortName": "Australia",
+    "nationality": "Australian"
+  },
+  {
+    "numCode": "40",
+    "alpha2Code": "AT",
+    "alpha3Code": "AUT",
+    "enShortName": "Austria",
+    "nationality": "Austrian"
+  },
+  {
+    "numCode": "31",
+    "alpha2Code": "AZ",
+    "alpha3Code": "AZE",
+    "enShortName": "Azerbaijan",
+    "nationality": "Azerbaijani, Azeri"
+  },
+  {
+    "numCode": "44",
+    "alpha2Code": "BS",
+    "alpha3Code": "BHS",
+    "enShortName": "Bahamas",
+    "nationality": "Bahamian"
+  },
+  {
+    "numCode": "48",
+    "alpha2Code": "BH",
+    "alpha3Code": "BHR",
+    "enShortName": "Bahrain",
+    "nationality": "Bahraini"
+  },
+  {
+    "numCode": "50",
+    "alpha2Code": "BD",
+    "alpha3Code": "BGD",
+    "enShortName": "Bangladesh",
+    "nationality": "Bangladeshi"
+  },
+  {
+    "numCode": "52",
+    "alpha2Code": "BB",
+    "alpha3Code": "BRB",
+    "enShortName": "Barbados",
+    "nationality": "Barbadian"
+  },
+  {
+    "numCode": "112",
+    "alpha2Code": "BY",
+    "alpha3Code": "BLR",
+    "enShortName": "Belarus",
+    "nationality": "Belarusian"
+  },
+  {
+    "numCode": "56",
+    "alpha2Code": "BE",
+    "alpha3Code": "BEL",
+    "enShortName": "Belgium",
+    "nationality": "Belgian"
+  },
+  {
+    "numCode": "84",
+    "alpha2Code": "BZ",
+    "alpha3Code": "BLZ",
+    "enShortName": "Belize",
+    "nationality": "Belizean"
+  },
+  {
+    "numCode": "204",
+    "alpha2Code": "BJ",
+    "alpha3Code": "BEN",
+    "enShortName": "Benin",
+    "nationality": "Beninese, Beninois"
+  },
+  {
+    "numCode": "60",
+    "alpha2Code": "BM",
+    "alpha3Code": "BMU",
+    "enShortName": "Bermuda",
+    "nationality": "Bermudian, Bermudan"
+  },
+  {
+    "numCode": "64",
+    "alpha2Code": "BT",
+    "alpha3Code": "BTN",
+    "enShortName": "Bhutan",
+    "nationality": "Bhutanese"
+  },
+  {
+    "numCode": "68",
+    "alpha2Code": "BO",
+    "alpha3Code": "BOL",
+    "enShortName": "Bolivia (Plurinational State of)",
+    "nationality": "Bolivian"
+  },
+  {
+    "numCode": "535",
+    "alpha2Code": "BQ",
+    "alpha3Code": "BES",
+    "enShortName": "Bonaire, Sint Eustatius and Saba",
+    "nationality": "Bonaire"
+  },
+  {
+    "numCode": "70",
+    "alpha2Code": "BA",
+    "alpha3Code": "BIH",
+    "enShortName": "Bosnia and Herzegovina",
+    "nationality": "Bosnian or Herzegovinian"
+  },
+  {
+    "numCode": "72",
+    "alpha2Code": "BW",
+    "alpha3Code": "BWA",
+    "enShortName": "Botswana",
+    "nationality": "Motswana, Botswanan"
+  },
+  {
+    "numCode": "74",
+    "alpha2Code": "BV",
+    "alpha3Code": "BVT",
+    "enShortName": "Bouvet Island",
+    "nationality": "Bouvet Island"
+  },
+  {
+    "numCode": "76",
+    "alpha2Code": "BR",
+    "alpha3Code": "BRA",
+    "enShortName": "Brazil",
+    "nationality": "Brazilian"
+  },
+  {
+    "numCode": "86",
+    "alpha2Code": "IO",
+    "alpha3Code": "IOT",
+    "enShortName": "British Indian Ocean Territory",
+    "nationality": "BIOT"
+  },
+  {
+    "numCode": "96",
+    "alpha2Code": "BN",
+    "alpha3Code": "BRN",
+    "enShortName": "Brunei Darussalam",
+    "nationality": "Bruneian"
+  },
+  {
+    "numCode": "100",
+    "alpha2Code": "BG",
+    "alpha3Code": "BGR",
+    "enShortName": "Bulgaria",
+    "nationality": "Bulgarian"
+  },
+  {
+    "numCode": "854",
+    "alpha2Code": "BF",
+    "alpha3Code": "BFA",
+    "enShortName": "Burkina Faso",
+    "nationality": "Burkinab\u00e9"
+  },
+  {
+    "numCode": "108",
+    "alpha2Code": "BI",
+    "alpha3Code": "BDI",
+    "enShortName": "Burundi",
+    "nationality": "Burundian"
+  },
+  {
+    "numCode": "132",
+    "alpha2Code": "CV",
+    "alpha3Code": "CPV",
+    "enShortName": "Cabo Verde",
+    "nationality": "Cabo Verdean"
+  },
+  {
+    "numCode": "116",
+    "alpha2Code": "KH",
+    "alpha3Code": "KHM",
+    "enShortName": "Cambodia",
+    "nationality": "Cambodian"
+  },
+  {
+    "numCode": "120",
+    "alpha2Code": "CM",
+    "alpha3Code": "CMR",
+    "enShortName": "Cameroon",
+    "nationality": "Cameroonian"
+  },
+  {
+    "numCode": "124",
+    "alpha2Code": "CA",
+    "alpha3Code": "CAN",
+    "enShortName": "Canada",
+    "nationality": "Canadian"
+  },
+  {
+    "numCode": "136",
+    "alpha2Code": "KY",
+    "alpha3Code": "CYM",
+    "enShortName": "Cayman Islands",
+    "nationality": "Caymanian"
+  },
+  {
+    "numCode": "140",
+    "alpha2Code": "CF",
+    "alpha3Code": "CAF",
+    "enShortName": "Central African Republic",
+    "nationality": "Central African"
+  },
+  {
+    "numCode": "148",
+    "alpha2Code": "TD",
+    "alpha3Code": "TCD",
+    "enShortName": "Chad",
+    "nationality": "Chadian"
+  },
+  {
+    "numCode": "152",
+    "alpha2Code": "CL",
+    "alpha3Code": "CHL",
+    "enShortName": "Chile",
+    "nationality": "Chilean"
+  },
+  {
+    "numCode": "156",
+    "alpha2Code": "CN",
+    "alpha3Code": "CHN",
+    "enShortName": "China",
+    "nationality": "Chinese"
+  },
+  {
+    "numCode": "162",
+    "alpha2Code": "CX",
+    "alpha3Code": "CXR",
+    "enShortName": "Christmas Island",
+    "nationality": "Christmas Island"
+  },
+  {
+    "numCode": "166",
+    "alpha2Code": "CC",
+    "alpha3Code": "CCK",
+    "enShortName": "Cocos (Keeling) Islands",
+    "nationality": "Cocos Island"
+  },
+  {
+    "numCode": "170",
+    "alpha2Code": "CO",
+    "alpha3Code": "COL",
+    "enShortName": "Colombia",
+    "nationality": "Colombian"
+  },
+  {
+    "numCode": "174",
+    "alpha2Code": "KM",
+    "alpha3Code": "COM",
+    "enShortName": "Comoros",
+    "nationality": "Comoran, Comorian"
+  },
+  {
+    "numCode": "178",
+    "alpha2Code": "CG",
+    "alpha3Code": "COG",
+    "enShortName": "Congo (Republic of the)",
+    "nationality": "Congolese"
+  },
+  {
+    "numCode": "180",
+    "alpha2Code": "CD",
+    "alpha3Code": "COD",
+    "enShortName": "Congo (Democratic Republic of the)",
+    "nationality": "Congolese"
+  },
+  {
+    "numCode": "184",
+    "alpha2Code": "CK",
+    "alpha3Code": "COK",
+    "enShortName": "Cook Islands",
+    "nationality": "Cook Island"
+  },
+  {
+    "numCode": "188",
+    "alpha2Code": "CR",
+    "alpha3Code": "CRI",
+    "enShortName": "Costa Rica",
+    "nationality": "Costa Rican"
+  },
+  {
+    "numCode": "384",
+    "alpha2Code": "CI",
+    "alpha3Code": "CIV",
+    "enShortName": "C\u00f4te d'Ivoire",
+    "nationality": "Ivorian"
+  },
+  {
+    "numCode": "191",
+    "alpha2Code": "HR",
+    "alpha3Code": "HRV",
+    "enShortName": "Croatia",
+    "nationality": "Croatian"
+  },
+  {
+    "numCode": "192",
+    "alpha2Code": "CU",
+    "alpha3Code": "CUB",
+    "enShortName": "Cuba",
+    "nationality": "Cuban"
+  },
+  {
+    "numCode": "531",
+    "alpha2Code": "CW",
+    "alpha3Code": "CUW",
+    "enShortName": "Cura\u00e7ao",
+    "nationality": "Cura\u00e7aoan"
+  },
+  {
+    "numCode": "196",
+    "alpha2Code": "CY",
+    "alpha3Code": "CYP",
+    "enShortName": "Cyprus",
+    "nationality": "Cypriot"
+  },
+  {
+    "numCode": "203",
+    "alpha2Code": "CZ",
+    "alpha3Code": "CZE",
+    "enShortName": "Czech Republic",
+    "nationality": "Czech"
+  },
+  {
+    "numCode": "208",
+    "alpha2Code": "DK",
+    "alpha3Code": "DNK",
+    "enShortName": "Denmark",
+    "nationality": "Danish"
+  },
+  {
+    "numCode": "262",
+    "alpha2Code": "DJ",
+    "alpha3Code": "DJI",
+    "enShortName": "Djibouti",
+    "nationality": "Djiboutian"
+  },
+  {
+    "numCode": "212",
+    "alpha2Code": "DM",
+    "alpha3Code": "DMA",
+    "enShortName": "Dominica",
+    "nationality": "Dominican"
+  },
+  {
+    "numCode": "214",
+    "alpha2Code": "DO",
+    "alpha3Code": "DOM",
+    "enShortName": "Dominican Republic",
+    "nationality": "Dominican"
+  },
+  {
+    "numCode": "218",
+    "alpha2Code": "EC",
+    "alpha3Code": "ECU",
+    "enShortName": "Ecuador",
+    "nationality": "Ecuadorian"
+  },
+  {
+    "numCode": "818",
+    "alpha2Code": "EG",
+    "alpha3Code": "EGY",
+    "enShortName": "Egypt",
+    "nationality": "Egyptian"
+  },
+  {
+    "numCode": "222",
+    "alpha2Code": "SV",
+    "alpha3Code": "SLV",
+    "enShortName": "El Salvador",
+    "nationality": "Salvadoran"
+  },
+  {
+    "numCode": "226",
+    "alpha2Code": "GQ",
+    "alpha3Code": "GNQ",
+    "enShortName": "Equatorial Guinea",
+    "nationality": "Equatorial Guinean, Equatoguinean"
+  },
+  {
+    "numCode": "232",
+    "alpha2Code": "ER",
+    "alpha3Code": "ERI",
+    "enShortName": "Eritrea",
+    "nationality": "Eritrean"
+  },
+  {
+    "numCode": "233",
+    "alpha2Code": "EE",
+    "alpha3Code": "EST",
+    "enShortName": "Estonia",
+    "nationality": "Estonian"
+  },
+  {
+    "numCode": "231",
+    "alpha2Code": "ET",
+    "alpha3Code": "ETH",
+    "enShortName": "Ethiopia",
+    "nationality": "Ethiopian"
+  },
+  {
+    "numCode": "238",
+    "alpha2Code": "FK",
+    "alpha3Code": "FLK",
+    "enShortName": "Falkland Islands (Malvinas)",
+    "nationality": "Falkland Island"
+  },
+  {
+    "numCode": "234",
+    "alpha2Code": "FO",
+    "alpha3Code": "FRO",
+    "enShortName": "Faroe Islands",
+    "nationality": "Faroese"
+  },
+  {
+    "numCode": "242",
+    "alpha2Code": "FJ",
+    "alpha3Code": "FJI",
+    "enShortName": "Fiji",
+    "nationality": "Fijian"
+  },
+  {
+    "numCode": "246",
+    "alpha2Code": "FI",
+    "alpha3Code": "FIN",
+    "enShortName": "Finland",
+    "nationality": "Finnish"
+  },
+  {
+    "numCode": "250",
+    "alpha2Code": "FR",
+    "alpha3Code": "FRA",
+    "enShortName": "France",
+    "nationality": "French"
+  },
+  {
+    "numCode": "254",
+    "alpha2Code": "GF",
+    "alpha3Code": "GUF",
+    "enShortName": "French Guiana",
+    "nationality": "French Guianese"
+  },
+  {
+    "numCode": "258",
+    "alpha2Code": "PF",
+    "alpha3Code": "PYF",
+    "enShortName": "French Polynesia",
+    "nationality": "French Polynesian"
+  },
+  {
+    "numCode": "260",
+    "alpha2Code": "TF",
+    "alpha3Code": "ATF",
+    "enShortName": "French Southern Territories",
+    "nationality": "French Southern Territories"
+  },
+  {
+    "numCode": "266",
+    "alpha2Code": "GA",
+    "alpha3Code": "GAB",
+    "enShortName": "Gabon",
+    "nationality": "Gabonese"
+  },
+  {
+    "numCode": "270",
+    "alpha2Code": "GM",
+    "alpha3Code": "GMB",
+    "enShortName": "Gambia",
+    "nationality": "Gambian"
+  },
+  {
+    "numCode": "268",
+    "alpha2Code": "GE",
+    "alpha3Code": "GEO",
+    "enShortName": "Georgia",
+    "nationality": "Georgian"
+  },
+  {
+    "numCode": "276",
+    "alpha2Code": "DE",
+    "alpha3Code": "DEU",
+    "enShortName": "Germany",
+    "nationality": "German"
+  },
+  {
+    "numCode": "288",
+    "alpha2Code": "GH",
+    "alpha3Code": "GHA",
+    "enShortName": "Ghana",
+    "nationality": "Ghanaian"
+  },
+  {
+    "numCode": "292",
+    "alpha2Code": "GI",
+    "alpha3Code": "GIB",
+    "enShortName": "Gibraltar",
+    "nationality": "Gibraltar"
+  },
+  {
+    "numCode": "300",
+    "alpha2Code": "GR",
+    "alpha3Code": "GRC",
+    "enShortName": "Greece",
+    "nationality": "Greek, Hellenic"
+  },
+  {
+    "numCode": "304",
+    "alpha2Code": "GL",
+    "alpha3Code": "GRL",
+    "enShortName": "Greenland",
+    "nationality": "Greenlandic"
+  },
+  {
+    "numCode": "308",
+    "alpha2Code": "GD",
+    "alpha3Code": "GRD",
+    "enShortName": "Grenada",
+    "nationality": "Grenadian"
+  },
+  {
+    "numCode": "312",
+    "alpha2Code": "GP",
+    "alpha3Code": "GLP",
+    "enShortName": "Guadeloupe",
+    "nationality": "Guadeloupe"
+  },
+  {
+    "numCode": "316",
+    "alpha2Code": "GU",
+    "alpha3Code": "GUM",
+    "enShortName": "Guam",
+    "nationality": "Guamanian, Guambat"
+  },
+  {
+    "numCode": "320",
+    "alpha2Code": "GT",
+    "alpha3Code": "GTM",
+    "enShortName": "Guatemala",
+    "nationality": "Guatemalan"
+  },
+  {
+    "numCode": "831",
+    "alpha2Code": "GG",
+    "alpha3Code": "GGY",
+    "enShortName": "Guernsey",
+    "nationality": "Channel Island"
+  },
+  {
+    "numCode": "324",
+    "alpha2Code": "GN",
+    "alpha3Code": "GIN",
+    "enShortName": "Guinea",
+    "nationality": "Guinean"
+  },
+  {
+    "numCode": "624",
+    "alpha2Code": "GW",
+    "alpha3Code": "GNB",
+    "enShortName": "Guinea-Bissau",
+    "nationality": "Bissau-Guinean"
+  },
+  {
+    "numCode": "328",
+    "alpha2Code": "GY",
+    "alpha3Code": "GUY",
+    "enShortName": "Guyana",
+    "nationality": "Guyanese"
+  },
+  {
+    "numCode": "332",
+    "alpha2Code": "HT",
+    "alpha3Code": "HTI",
+    "enShortName": "Haiti",
+    "nationality": "Haitian"
+  },
+  {
+    "numCode": "334",
+    "alpha2Code": "HM",
+    "alpha3Code": "HMD",
+    "enShortName": "Heard Island and McDonald Islands",
+    "nationality": "Heard Island or McDonald Islands"
+  },
+  {
+    "numCode": "336",
+    "alpha2Code": "VA",
+    "alpha3Code": "VAT",
+    "enShortName": "Vatican City State",
+    "nationality": "Vatican"
+  },
+  {
+    "numCode": "340",
+    "alpha2Code": "HN",
+    "alpha3Code": "HND",
+    "enShortName": "Honduras",
+    "nationality": "Honduran"
+  },
+  {
+    "numCode": "344",
+    "alpha2Code": "HK",
+    "alpha3Code": "HKG",
+    "enShortName": "Hong Kong",
+    "nationality": "Hong Kong, Hong Kongese"
+  },
+  {
+    "numCode": "348",
+    "alpha2Code": "HU",
+    "alpha3Code": "HUN",
+    "enShortName": "Hungary",
+    "nationality": "Hungarian, Magyar"
+  },
+  {
+    "numCode": "352",
+    "alpha2Code": "IS",
+    "alpha3Code": "ISL",
+    "enShortName": "Iceland",
+    "nationality": "Icelandic"
+  },
+  {
+    "numCode": "356",
+    "alpha2Code": "IN",
+    "alpha3Code": "IND",
+    "enShortName": "India",
+    "nationality": "Indian"
+  },
+  {
+    "numCode": "360",
+    "alpha2Code": "ID",
+    "alpha3Code": "IDN",
+    "enShortName": "Indonesia",
+    "nationality": "Indonesian"
+  },
+  {
+    "numCode": "364",
+    "alpha2Code": "IR",
+    "alpha3Code": "IRN",
+    "enShortName": "Iran",
+    "nationality": "Iranian, Persian"
+  },
+  {
+    "numCode": "368",
+    "alpha2Code": "IQ",
+    "alpha3Code": "IRQ",
+    "enShortName": "Iraq",
+    "nationality": "Iraqi"
+  },
+  {
+    "numCode": "372",
+    "alpha2Code": "IE",
+    "alpha3Code": "IRL",
+    "enShortName": "Ireland",
+    "nationality": "Irish"
+  },
+  {
+    "numCode": "833",
+    "alpha2Code": "IM",
+    "alpha3Code": "IMN",
+    "enShortName": "Isle of Man",
+    "nationality": "Manx"
+  },
+  {
+    "numCode": "376",
+    "alpha2Code": "IL",
+    "alpha3Code": "ISR",
+    "enShortName": "Israel",
+    "nationality": "Israeli"
+  },
+  {
+    "numCode": "380",
+    "alpha2Code": "IT",
+    "alpha3Code": "ITA",
+    "enShortName": "Italy",
+    "nationality": "Italian"
+  },
+  {
+    "numCode": "388",
+    "alpha2Code": "JM",
+    "alpha3Code": "JAM",
+    "enShortName": "Jamaica",
+    "nationality": "Jamaican"
+  },
+  {
+    "numCode": "392",
+    "alpha2Code": "JP",
+    "alpha3Code": "JPN",
+    "enShortName": "Japan",
+    "nationality": "Japanese"
+  },
+  {
+    "numCode": "832",
+    "alpha2Code": "JE",
+    "alpha3Code": "JEY",
+    "enShortName": "Jersey",
+    "nationality": "Channel Island"
+  },
+  {
+    "numCode": "400",
+    "alpha2Code": "JO",
+    "alpha3Code": "JOR",
+    "enShortName": "Jordan",
+    "nationality": "Jordanian"
+  },
+  {
+    "numCode": "398",
+    "alpha2Code": "KZ",
+    "alpha3Code": "KAZ",
+    "enShortName": "Kazakhstan",
+    "nationality": "Kazakhstani, Kazakh"
+  },
+  {
+    "numCode": "404",
+    "alpha2Code": "KE",
+    "alpha3Code": "KEN",
+    "enShortName": "Kenya",
+    "nationality": "Kenyan"
+  },
+  {
+    "numCode": "296",
+    "alpha2Code": "KI",
+    "alpha3Code": "KIR",
+    "enShortName": "Kiribati",
+    "nationality": "I-Kiribati"
+  },
+  {
+    "numCode": "408",
+    "alpha2Code": "KP",
+    "alpha3Code": "PRK",
+    "enShortName": "Korea (Democratic People's Republic of)",
+    "nationality": "North Korean"
+  },
+  {
+    "numCode": "410",
+    "alpha2Code": "KR",
+    "alpha3Code": "KOR",
+    "enShortName": "Korea (Republic of)",
+    "nationality": "South Korean"
+  },
+  {
+    "numCode": "414",
+    "alpha2Code": "KW",
+    "alpha3Code": "KWT",
+    "enShortName": "Kuwait",
+    "nationality": "Kuwaiti"
+  },
+  {
+    "numCode": "417",
+    "alpha2Code": "KG",
+    "alpha3Code": "KGZ",
+    "enShortName": "Kyrgyzstan",
+    "nationality": "Kyrgyzstani, Kyrgyz, Kirgiz, Kirghiz"
+  },
+  {
+    "numCode": "418",
+    "alpha2Code": "LA",
+    "alpha3Code": "LAO",
+    "enShortName": "Lao People's Democratic Republic",
+    "nationality": "Lao, Laotian"
+  },
+  {
+    "numCode": "428",
+    "alpha2Code": "LV",
+    "alpha3Code": "LVA",
+    "enShortName": "Latvia",
+    "nationality": "Latvian"
+  },
+  {
+    "numCode": "422",
+    "alpha2Code": "LB",
+    "alpha3Code": "LBN",
+    "enShortName": "Lebanon",
+    "nationality": "Lebanese"
+  },
+  {
+    "numCode": "426",
+    "alpha2Code": "LS",
+    "alpha3Code": "LSO",
+    "enShortName": "Lesotho",
+    "nationality": "Basotho"
+  },
+  {
+    "numCode": "430",
+    "alpha2Code": "LR",
+    "alpha3Code": "LBR",
+    "enShortName": "Liberia",
+    "nationality": "Liberian"
+  },
+  {
+    "numCode": "434",
+    "alpha2Code": "LY",
+    "alpha3Code": "LBY",
+    "enShortName": "Libya",
+    "nationality": "Libyan"
+  },
+  {
+    "numCode": "438",
+    "alpha2Code": "LI",
+    "alpha3Code": "LIE",
+    "enShortName": "Liechtenstein",
+    "nationality": "Liechtenstein"
+  },
+  {
+    "numCode": "440",
+    "alpha2Code": "LT",
+    "alpha3Code": "LTU",
+    "enShortName": "Lithuania",
+    "nationality": "Lithuanian"
+  },
+  {
+    "numCode": "442",
+    "alpha2Code": "LU",
+    "alpha3Code": "LUX",
+    "enShortName": "Luxembourg",
+    "nationality": "Luxembourg, Luxembourgish"
+  },
+  {
+    "numCode": "446",
+    "alpha2Code": "MO",
+    "alpha3Code": "MAC",
+    "enShortName": "Macao",
+    "nationality": "Macanese, Chinese"
+  },
+  {
+    "numCode": "807",
+    "alpha2Code": "MK",
+    "alpha3Code": "MKD",
+    "enShortName": "Macedonia (the former Yugoslav Republic of)",
+    "nationality": "Macedonian"
+  },
+  {
+    "numCode": "450",
+    "alpha2Code": "MG",
+    "alpha3Code": "MDG",
+    "enShortName": "Madagascar",
+    "nationality": "Malagasy"
+  },
+  {
+    "numCode": "454",
+    "alpha2Code": "MW",
+    "alpha3Code": "MWI",
+    "enShortName": "Malawi",
+    "nationality": "Malawian"
+  },
+  {
+    "numCode": "458",
+    "alpha2Code": "MY",
+    "alpha3Code": "MYS",
+    "enShortName": "Malaysia",
+    "nationality": "Malaysian"
+  },
+  {
+    "numCode": "462",
+    "alpha2Code": "MV",
+    "alpha3Code": "MDV",
+    "enShortName": "Maldives",
+    "nationality": "Maldivian"
+  },
+  {
+    "numCode": "466",
+    "alpha2Code": "ML",
+    "alpha3Code": "MLI",
+    "enShortName": "Mali",
+    "nationality": "Malian, Malinese"
+  },
+  {
+    "numCode": "470",
+    "alpha2Code": "MT",
+    "alpha3Code": "MLT",
+    "enShortName": "Malta",
+    "nationality": "Maltese"
+  },
+  {
+    "numCode": "584",
+    "alpha2Code": "MH",
+    "alpha3Code": "MHL",
+    "enShortName": "Marshall Islands",
+    "nationality": "Marshallese"
+  },
+  {
+    "numCode": "474",
+    "alpha2Code": "MQ",
+    "alpha3Code": "MTQ",
+    "enShortName": "Martinique",
+    "nationality": "Martiniquais, Martinican"
+  },
+  {
+    "numCode": "478",
+    "alpha2Code": "MR",
+    "alpha3Code": "MRT",
+    "enShortName": "Mauritania",
+    "nationality": "Mauritanian"
+  },
+  {
+    "numCode": "480",
+    "alpha2Code": "MU",
+    "alpha3Code": "MUS",
+    "enShortName": "Mauritius",
+    "nationality": "Mauritian"
+  },
+  {
+    "numCode": "175",
+    "alpha2Code": "YT",
+    "alpha3Code": "MYT",
+    "enShortName": "Mayotte",
+    "nationality": "Mahoran"
+  },
+  {
+    "numCode": "484",
+    "alpha2Code": "MX",
+    "alpha3Code": "MEX",
+    "enShortName": "Mexico",
+    "nationality": "Mexican"
+  },
+  {
+    "numCode": "583",
+    "alpha2Code": "FM",
+    "alpha3Code": "FSM",
+    "enShortName": "Micronesia (Federated States of)",
+    "nationality": "Micronesian"
+  },
+  {
+    "numCode": "498",
+    "alpha2Code": "MD",
+    "alpha3Code": "MDA",
+    "enShortName": "Moldova (Republic of)",
+    "nationality": "Moldovan"
+  },
+  {
+    "numCode": "492",
+    "alpha2Code": "MC",
+    "alpha3Code": "MCO",
+    "enShortName": "Monaco",
+    "nationality": "Mon\u00e9gasque, Monacan"
+  },
+  {
+    "numCode": "496",
+    "alpha2Code": "MN",
+    "alpha3Code": "MNG",
+    "enShortName": "Mongolia",
+    "nationality": "Mongolian"
+  },
+  {
+    "numCode": "499",
+    "alpha2Code": "ME",
+    "alpha3Code": "MNE",
+    "enShortName": "Montenegro",
+    "nationality": "Montenegrin"
+  },
+  {
+    "numCode": "500",
+    "alpha2Code": "MS",
+    "alpha3Code": "MSR",
+    "enShortName": "Montserrat",
+    "nationality": "Montserratian"
+  },
+  {
+    "numCode": "504",
+    "alpha2Code": "MA",
+    "alpha3Code": "MAR",
+    "enShortName": "Morocco",
+    "nationality": "Moroccan"
+  },
+  {
+    "numCode": "508",
+    "alpha2Code": "MZ",
+    "alpha3Code": "MOZ",
+    "enShortName": "Mozambique",
+    "nationality": "Mozambican"
+  },
+  {
+    "numCode": "104",
+    "alpha2Code": "MM",
+    "alpha3Code": "MMR",
+    "enShortName": "Myanmar",
+    "nationality": "Burmese"
+  },
+  {
+    "numCode": "516",
+    "alpha2Code": "NA",
+    "alpha3Code": "NAM",
+    "enShortName": "Namibia",
+    "nationality": "Namibian"
+  },
+  {
+    "numCode": "520",
+    "alpha2Code": "NR",
+    "alpha3Code": "NRU",
+    "enShortName": "Nauru",
+    "nationality": "Nauruan"
+  },
+  {
+    "numCode": "524",
+    "alpha2Code": "NP",
+    "alpha3Code": "NPL",
+    "enShortName": "Nepal",
+    "nationality": "Nepali, Nepalese"
+  },
+  {
+    "numCode": "528",
+    "alpha2Code": "NL",
+    "alpha3Code": "NLD",
+    "enShortName": "Netherlands",
+    "nationality": "Dutch, Netherlandic"
+  },
+  {
+    "numCode": "540",
+    "alpha2Code": "NC",
+    "alpha3Code": "NCL",
+    "enShortName": "New Caledonia",
+    "nationality": "New Caledonian"
+  },
+  {
+    "numCode": "554",
+    "alpha2Code": "NZ",
+    "alpha3Code": "NZL",
+    "enShortName": "New Zealand",
+    "nationality": "New Zealand, NZ"
+  },
+  {
+    "numCode": "558",
+    "alpha2Code": "NI",
+    "alpha3Code": "NIC",
+    "enShortName": "Nicaragua",
+    "nationality": "Nicaraguan"
+  },
+  {
+    "numCode": "562",
+    "alpha2Code": "NE",
+    "alpha3Code": "NER",
+    "enShortName": "Niger",
+    "nationality": "Nigerien"
+  },
+  {
+    "numCode": "566",
+    "alpha2Code": "NG",
+    "alpha3Code": "NGA",
+    "enShortName": "Nigeria",
+    "nationality": "Nigerian"
+  },
+  {
+    "numCode": "570",
+    "alpha2Code": "NU",
+    "alpha3Code": "NIU",
+    "enShortName": "Niue",
+    "nationality": "Niuean"
+  },
+  {
+    "numCode": "574",
+    "alpha2Code": "NF",
+    "alpha3Code": "NFK",
+    "enShortName": "Norfolk Island",
+    "nationality": "Norfolk Island"
+  },
+  {
+    "numCode": "580",
+    "alpha2Code": "MP",
+    "alpha3Code": "MNP",
+    "enShortName": "Northern Mariana Islands",
+    "nationality": "Northern Marianan"
+  },
+  {
+    "numCode": "578",
+    "alpha2Code": "NO",
+    "alpha3Code": "NOR",
+    "enShortName": "Norway",
+    "nationality": "Norwegian"
+  },
+  {
+    "numCode": "512",
+    "alpha2Code": "OM",
+    "alpha3Code": "OMN",
+    "enShortName": "Oman",
+    "nationality": "Omani"
+  },
+  {
+    "numCode": "586",
+    "alpha2Code": "PK",
+    "alpha3Code": "PAK",
+    "enShortName": "Pakistan",
+    "nationality": "Pakistani"
+  },
+  {
+    "numCode": "585",
+    "alpha2Code": "PW",
+    "alpha3Code": "PLW",
+    "enShortName": "Palau",
+    "nationality": "Palauan"
+  },
+  {
+    "numCode": "275",
+    "alpha2Code": "PS",
+    "alpha3Code": "PSE",
+    "enShortName": "Palestine, State of",
+    "nationality": "Palestinian"
+  },
+  {
+    "numCode": "591",
+    "alpha2Code": "PA",
+    "alpha3Code": "PAN",
+    "enShortName": "Panama",
+    "nationality": "Panamanian"
+  },
+  {
+    "numCode": "598",
+    "alpha2Code": "PG",
+    "alpha3Code": "PNG",
+    "enShortName": "Papua New Guinea",
+    "nationality": "Papua New Guinean, Papuan"
+  },
+  {
+    "numCode": "600",
+    "alpha2Code": "PY",
+    "alpha3Code": "PRY",
+    "enShortName": "Paraguay",
+    "nationality": "Paraguayan"
+  },
+  {
+    "numCode": "604",
+    "alpha2Code": "PE",
+    "alpha3Code": "PER",
+    "enShortName": "Peru",
+    "nationality": "Peruvian"
+  },
+  {
+    "numCode": "608",
+    "alpha2Code": "PH",
+    "alpha3Code": "PHL",
+    "enShortName": "Philippines",
+    "nationality": "Philippine, Filipino"
+  },
+  {
+    "numCode": "612",
+    "alpha2Code": "PN",
+    "alpha3Code": "PCN",
+    "enShortName": "Pitcairn",
+    "nationality": "Pitcairn Island"
+  },
+  {
+    "numCode": "616",
+    "alpha2Code": "PL",
+    "alpha3Code": "POL",
+    "enShortName": "Poland",
+    "nationality": "Polish"
+  },
+  {
+    "numCode": "620",
+    "alpha2Code": "PT",
+    "alpha3Code": "PRT",
+    "enShortName": "Portugal",
+    "nationality": "Portuguese"
+  },
+  {
+    "numCode": "630",
+    "alpha2Code": "PR",
+    "alpha3Code": "PRI",
+    "enShortName": "Puerto Rico",
+    "nationality": "Puerto Rican"
+  },
+  {
+    "numCode": "634",
+    "alpha2Code": "QA",
+    "alpha3Code": "QAT",
+    "enShortName": "Qatar",
+    "nationality": "Qatari"
+  },
+  {
+    "numCode": "638",
+    "alpha2Code": "RE",
+    "alpha3Code": "REU",
+    "enShortName": "R\u00e9union",
+    "nationality": "R\u00e9unionese, R\u00e9unionnais"
+  },
+  {
+    "numCode": "642",
+    "alpha2Code": "RO",
+    "alpha3Code": "ROU",
+    "enShortName": "Romania",
+    "nationality": "Romanian"
+  },
+  {
+    "numCode": "643",
+    "alpha2Code": "RU",
+    "alpha3Code": "RUS",
+    "enShortName": "Russian Federation",
+    "nationality": "Russian"
+  },
+  {
+    "numCode": "646",
+    "alpha2Code": "RW",
+    "alpha3Code": "RWA",
+    "enShortName": "Rwanda",
+    "nationality": "Rwandan"
+  },
+  {
+    "numCode": "652",
+    "alpha2Code": "BL",
+    "alpha3Code": "BLM",
+    "enShortName": "Saint Barth\u00e9lemy",
+    "nationality": "Barth\u00e9lemois"
+  },
+  {
+    "numCode": "654",
+    "alpha2Code": "SH",
+    "alpha3Code": "SHN",
+    "enShortName": "Saint Helena, Ascension and Tristan da Cunha",
+    "nationality": "Saint Helenian"
+  },
+  {
+    "numCode": "659",
+    "alpha2Code": "KN",
+    "alpha3Code": "KNA",
+    "enShortName": "Saint Kitts and Nevis",
+    "nationality": "Kittitian or Nevisian"
+  },
+  {
+    "numCode": "662",
+    "alpha2Code": "LC",
+    "alpha3Code": "LCA",
+    "enShortName": "Saint Lucia",
+    "nationality": "Saint Lucian"
+  },
+  {
+    "numCode": "663",
+    "alpha2Code": "MF",
+    "alpha3Code": "MAF",
+    "enShortName": "Saint Martin (French part)",
+    "nationality": "Saint-Martinoise"
+  },
+  {
+    "numCode": "666",
+    "alpha2Code": "PM",
+    "alpha3Code": "SPM",
+    "enShortName": "Saint Pierre and Miquelon",
+    "nationality": "Saint-Pierrais or Miquelonnais"
+  },
+  {
+    "numCode": "670",
+    "alpha2Code": "VC",
+    "alpha3Code": "VCT",
+    "enShortName": "Saint Vincent and the Grenadines",
+    "nationality": "Saint Vincentian, Vincentian"
+  },
+  {
+    "numCode": "882",
+    "alpha2Code": "WS",
+    "alpha3Code": "WSM",
+    "enShortName": "Samoa",
+    "nationality": "Samoan"
+  },
+  {
+    "numCode": "674",
+    "alpha2Code": "SM",
+    "alpha3Code": "SMR",
+    "enShortName": "San Marino",
+    "nationality": "Sammarinese"
+  },
+  {
+    "numCode": "678",
+    "alpha2Code": "ST",
+    "alpha3Code": "STP",
+    "enShortName": "Sao Tome and Principe",
+    "nationality": "S\u00e3o Tom\u00e9an"
+  },
+  {
+    "numCode": "682",
+    "alpha2Code": "SA",
+    "alpha3Code": "SAU",
+    "enShortName": "Saudi Arabia",
+    "nationality": "Saudi, Saudi Arabian"
+  },
+  {
+    "numCode": "686",
+    "alpha2Code": "SN",
+    "alpha3Code": "SEN",
+    "enShortName": "Senegal",
+    "nationality": "Senegalese"
+  },
+  {
+    "numCode": "688",
+    "alpha2Code": "RS",
+    "alpha3Code": "SRB",
+    "enShortName": "Serbia",
+    "nationality": "Serbian"
+  },
+  {
+    "numCode": "690",
+    "alpha2Code": "SC",
+    "alpha3Code": "SYC",
+    "enShortName": "Seychelles",
+    "nationality": "Seychellois"
+  },
+  {
+    "numCode": "694",
+    "alpha2Code": "SL",
+    "alpha3Code": "SLE",
+    "enShortName": "Sierra Leone",
+    "nationality": "Sierra Leonean"
+  },
+  {
+    "numCode": "702",
+    "alpha2Code": "SG",
+    "alpha3Code": "SGP",
+    "enShortName": "Singapore",
+    "nationality": "Singaporean"
+  },
+  {
+    "numCode": "534",
+    "alpha2Code": "SX",
+    "alpha3Code": "SXM",
+    "enShortName": "Sint Maarten (Dutch part)",
+    "nationality": "Sint Maarten"
+  },
+  {
+    "numCode": "703",
+    "alpha2Code": "SK",
+    "alpha3Code": "SVK",
+    "enShortName": "Slovakia",
+    "nationality": "Slovak"
+  },
+  {
+    "numCode": "705",
+    "alpha2Code": "SI",
+    "alpha3Code": "SVN",
+    "enShortName": "Slovenia",
+    "nationality": "Slovenian, Slovene"
+  },
+  {
+    "numCode": "90",
+    "alpha2Code": "SB",
+    "alpha3Code": "SLB",
+    "enShortName": "Solomon Islands",
+    "nationality": "Solomon Island"
+  },
+  {
+    "numCode": "706",
+    "alpha2Code": "SO",
+    "alpha3Code": "SOM",
+    "enShortName": "Somalia",
+    "nationality": "Somali, Somalian"
+  },
+  {
+    "numCode": "710",
+    "alpha2Code": "ZA",
+    "alpha3Code": "ZAF",
+    "enShortName": "South Africa",
+    "nationality": "South African"
+  },
+  {
+    "numCode": "239",
+    "alpha2Code": "GS",
+    "alpha3Code": "SGS",
+    "enShortName": "South Georgia and the South Sandwich Islands",
+    "nationality": "South Georgia or South Sandwich Islands"
+  },
+  {
+    "numCode": "728",
+    "alpha2Code": "SS",
+    "alpha3Code": "SSD",
+    "enShortName": "South Sudan",
+    "nationality": "South Sudanese"
+  },
+  {
+    "numCode": "724",
+    "alpha2Code": "ES",
+    "alpha3Code": "ESP",
+    "enShortName": "Spain",
+    "nationality": "Spanish"
+  },
+  {
+    "numCode": "144",
+    "alpha2Code": "LK",
+    "alpha3Code": "LKA",
+    "enShortName": "Sri Lanka",
+    "nationality": "Sri Lankan"
+  },
+  {
+    "numCode": "729",
+    "alpha2Code": "SD",
+    "alpha3Code": "SDN",
+    "enShortName": "Sudan",
+    "nationality": "Sudanese"
+  },
+  {
+    "numCode": "740",
+    "alpha2Code": "SR",
+    "alpha3Code": "SUR",
+    "enShortName": "Suriname",
+    "nationality": "Surinamese"
+  },
+  {
+    "numCode": "744",
+    "alpha2Code": "SJ",
+    "alpha3Code": "SJM",
+    "enShortName": "Svalbard and Jan Mayen",
+    "nationality": "Svalbard"
+  },
+  {
+    "numCode": "748",
+    "alpha2Code": "SZ",
+    "alpha3Code": "SWZ",
+    "enShortName": "Swaziland",
+    "nationality": "Swazi"
+  },
+  {
+    "numCode": "752",
+    "alpha2Code": "SE",
+    "alpha3Code": "SWE",
+    "enShortName": "Sweden",
+    "nationality": "Swedish"
+  },
+  {
+    "numCode": "756",
+    "alpha2Code": "CH",
+    "alpha3Code": "CHE",
+    "enShortName": "Switzerland",
+    "nationality": "Swiss"
+  },
+  {
+    "numCode": "760",
+    "alpha2Code": "SY",
+    "alpha3Code": "SYR",
+    "enShortName": "Syrian Arab Republic",
+    "nationality": "Syrian"
+  },
+  {
+    "numCode": "158",
+    "alpha2Code": "TW",
+    "alpha3Code": "TWN",
+    "enShortName": "Taiwan, Province of China",
+    "nationality": "Chinese, Taiwanese"
+  },
+  {
+    "numCode": "762",
+    "alpha2Code": "TJ",
+    "alpha3Code": "TJK",
+    "enShortName": "Tajikistan",
+    "nationality": "Tajikistani"
+  },
+  {
+    "numCode": "834",
+    "alpha2Code": "TZ",
+    "alpha3Code": "TZA",
+    "enShortName": "Tanzania, United Republic of",
+    "nationality": "Tanzanian"
+  },
+  {
+    "numCode": "764",
+    "alpha2Code": "TH",
+    "alpha3Code": "THA",
+    "enShortName": "Thailand",
+    "nationality": "Thai"
+  },
+  {
+    "numCode": "626",
+    "alpha2Code": "TL",
+    "alpha3Code": "TLS",
+    "enShortName": "Timor-Leste",
+    "nationality": "Timorese"
+  },
+  {
+    "numCode": "768",
+    "alpha2Code": "TG",
+    "alpha3Code": "TGO",
+    "enShortName": "Togo",
+    "nationality": "Togolese"
+  },
+  {
+    "numCode": "772",
+    "alpha2Code": "TK",
+    "alpha3Code": "TKL",
+    "enShortName": "Tokelau",
+    "nationality": "Tokelauan"
+  },
+  {
+    "numCode": "776",
+    "alpha2Code": "TO",
+    "alpha3Code": "TON",
+    "enShortName": "Tonga",
+    "nationality": "Tongan"
+  },
+  {
+    "numCode": "780",
+    "alpha2Code": "TT",
+    "alpha3Code": "TTO",
+    "enShortName": "Trinidad and Tobago",
+    "nationality": "Trinidadian or Tobagonian"
+  },
+  {
+    "numCode": "788",
+    "alpha2Code": "TN",
+    "alpha3Code": "TUN",
+    "enShortName": "Tunisia",
+    "nationality": "Tunisian"
+  },
+  {
+    "numCode": "792",
+    "alpha2Code": "TR",
+    "alpha3Code": "TUR",
+    "enShortName": "Turkey",
+    "nationality": "Turkish"
+  },
+  {
+    "numCode": "795",
+    "alpha2Code": "TM",
+    "alpha3Code": "TKM",
+    "enShortName": "Turkmenistan",
+    "nationality": "Turkmen"
+  },
+  {
+    "numCode": "796",
+    "alpha2Code": "TC",
+    "alpha3Code": "TCA",
+    "enShortName": "Turks and Caicos Islands",
+    "nationality": "Turks and Caicos Island"
+  },
+  {
+    "numCode": "798",
+    "alpha2Code": "TV",
+    "alpha3Code": "TUV",
+    "enShortName": "Tuvalu",
+    "nationality": "Tuvaluan"
+  },
+  {
+    "numCode": "800",
+    "alpha2Code": "UG",
+    "alpha3Code": "UGA",
+    "enShortName": "Uganda",
+    "nationality": "Ugandan"
+  },
+  {
+    "numCode": "804",
+    "alpha2Code": "UA",
+    "alpha3Code": "UKR",
+    "enShortName": "Ukraine",
+    "nationality": "Ukrainian"
+  },
+  {
+    "numCode": "784",
+    "alpha2Code": "AE",
+    "alpha3Code": "ARE",
+    "enShortName": "United Arab Emirates",
+    "nationality": "Emirati, Emirian, Emiri"
+  },
+  {
+    "numCode": "826",
+    "alpha2Code": "GB",
+    "alpha3Code": "GBR",
+    "enShortName": "United Kingdom of Great Britain and Northern Ireland",
+    "nationality": "British, UK"
+  },
+  {
+    "numCode": "581",
+    "alpha2Code": "UM",
+    "alpha3Code": "UMI",
+    "enShortName": "United States Minor Outlying Islands",
+    "nationality": "American"
+  },
+  {
+    "numCode": "840",
+    "alpha2Code": "US",
+    "alpha3Code": "USA",
+    "enShortName": "United States of America",
+    "nationality": "American"
+  },
+  {
+    "numCode": "858",
+    "alpha2Code": "UY",
+    "alpha3Code": "URY",
+    "enShortName": "Uruguay",
+    "nationality": "Uruguayan"
+  },
+  {
+    "numCode": "860",
+    "alpha2Code": "UZ",
+    "alpha3Code": "UZB",
+    "enShortName": "Uzbekistan",
+    "nationality": "Uzbekistani, Uzbek"
+  },
+  {
+    "numCode": "548",
+    "alpha2Code": "VU",
+    "alpha3Code": "VUT",
+    "enShortName": "Vanuatu",
+    "nationality": "Ni-Vanuatu, Vanuatuan"
+  },
+  {
+    "numCode": "862",
+    "alpha2Code": "VE",
+    "alpha3Code": "VEN",
+    "enShortName": "Venezuela (Bolivarian Republic of)",
+    "nationality": "Venezuelan"
+  },
+  {
+    "numCode": "704",
+    "alpha2Code": "VN",
+    "alpha3Code": "VNM",
+    "enShortName": "Vietnam",
+    "nationality": "Vietnamese"
+  },
+  {
+    "numCode": "92",
+    "alpha2Code": "VG",
+    "alpha3Code": "VGB",
+    "enShortName": "Virgin Islands (British)",
+    "nationality": "British Virgin Island"
+  },
+  {
+    "numCode": "850",
+    "alpha2Code": "VI",
+    "alpha3Code": "VIR",
+    "enShortName": "Virgin Islands (U.S.)",
+    "nationality": "U.S. Virgin Island"
+  },
+  {
+    "numCode": "876",
+    "alpha2Code": "WF",
+    "alpha3Code": "WLF",
+    "enShortName": "Wallis and Futuna",
+    "nationality": "Wallis and Futuna, Wallisian or Futunan"
+  },
+  {
+    "numCode": "732",
+    "alpha2Code": "EH",
+    "alpha3Code": "ESH",
+    "enShortName": "Western Sahara",
+    "nationality": "Sahrawi, Sahrawian, Sahraouian"
+  },
+  {
+    "numCode": "887",
+    "alpha2Code": "YE",
+    "alpha3Code": "YEM",
+    "enShortName": "Yemen",
+    "nationality": "Yemeni"
+  },
+  {
+    "numCode": "894",
+    "alpha2Code": "ZM",
+    "alpha3Code": "ZMB",
+    "enShortName": "Zambia",
+    "nationality": "Zambian"
+  },
+  {
+    "numCode": "716",
+    "alpha2Code": "ZW",
+    "alpha3Code": "ZWE",
+    "enShortName": "Zimbabwe",
+    "nationality": "Zimbabwean"
+  }
+]

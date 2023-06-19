@@ -1,0 +1,21 @@
+<div class="booking-summary">
+  <h3 class="booking-summary__title title title--medium title--iconic">
+    <mat-icon>preview</mat-icon>
+    <span>Summary</span>
+  </h3>
+
+  <div class="booking-summary__flights-block">
+    <app-booking-summary-flight
+      *ngFor="let flightItem of flightsList"
+      [flightItem]="flightItem"
+    ></app-booking-summary-flight>
+  </div>
+
+  <div class="booking-summary__price-block">
+    <app-booking-summary-price
+      [basePrice$]="combinedPrices$"
+      [currency]="(savedSearchValues$ |async)?.currency"
+      [passengersQuantity]="passengersQuantities"
+    ></app-booking-summary-price>
+  </div>
+</div>

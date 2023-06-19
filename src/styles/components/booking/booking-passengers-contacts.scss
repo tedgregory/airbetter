@@ -1,0 +1,59 @@
+.booking-contacts-card {
+  &.mat-mdc-card.mdc-card {
+    border: 0;
+    box-shadow: none;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+
+    .mat-mdc-form-field {
+      @include media-breakpoint-down(xl) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__phone-data {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__form,
+  &__phone-data {
+    @include media-breakpoint-down(xl) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  &__country-field,
+  &__phone-field {
+    .mat-mdc-form-field-infix {
+      width: 217px;
+    }
+  }
+
+  &__email-field {
+    .mat-mdc-form-field-infix {
+      width: 385px;
+    }
+  }
+
+  /* stylelint-disable */
+  .mat-mdc-text-field-wrapper.mdc-text-field
+    .mat-mdc-form-field-flex
+    .mat-mdc-form-field-infix {
+    @include media-breakpoint-down(xl) {
+      width: auto;
+    }
+  }
+  /* stylelint-enable */
+}

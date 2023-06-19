@@ -1,0 +1,152 @@
+<mat-card class="booking-passengers-card">
+  <mat-card-content class="booking-passengers-card__content">
+    <div class="booking-passengers-card__title title title--medium title--primary-dark">{{ order + 1 }}. {{ type | titlecase }}</div>
+
+    <form
+      [formGroup]="passengerForm"
+      class="booking-passengers-card__form passenger-form"
+    >
+      <div class="passenger-form__person-data">
+        <mat-form-field>
+          <mat-label>First name</mat-label>
+          <input
+            required
+            [formControlName]="passengerFormKeys.FIRST_NAME"
+            matInput
+          >
+          <mat-icon
+            matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
+            matTooltipPosition="right"
+            matSuffix
+            svgIcon="appInfo"
+          ></mat-icon>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.FIRST_NAME)?.hasError('required')">First Name is required</mat-error>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.FIRST_NAME)?.hasError('pattern')">Invalid character</mat-error>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.FIRST_NAME)?.hasError('maxlength')">Must be up to 30 characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last name</mat-label>
+          <input
+            required
+            [formControlName]="passengerFormKeys.LAST_NAME"
+            matInput
+          >
+          <mat-icon
+            matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
+            matTooltipPosition="right"
+            matSuffix
+            svgIcon="appInfo"
+          ></mat-icon>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.LAST_NAME)?.hasError('required')">Last Name is required</mat-error>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.LAST_NAME)?.hasError('pattern')">Invalid character</mat-error>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.LAST_NAME)?.hasError('maxlength')">Must be up to 30 characters</mat-error>
+        </mat-form-field>
+
+        <div class="passenger-form__gender-field-holder">
+          <mat-button-toggle-group
+            [class.invalid]="isFieldValid(passengerFormKeys.GENDER)"
+            [formControlName]="passengerFormKeys.GENDER"
+            name="gender"
+            aria-label="Choose Gender"
+          >
+            <mat-button-toggle [value]="genderValues.Male">{{genderValues.Male}}</mat-button-toggle>
+            <mat-button-toggle [value]="genderValues.Female">{{genderValues.Female}}</mat-button-toggle>
+          </mat-button-toggle-group>
+          <span class="passenger-form__gender-field-error">Choose an option</span>
+        </div>
+
+        <mat-form-field
+          floatLabel="always"
+          appearance="fill"
+        >
+          <mat-label>Date of birth*</mat-label>
+          <input
+            [formControlName]="passengerFormKeys.DATE_OF_BIRTH"
+            matInput
+            [min]="minBirthDate"
+            [max]="maxBirthDate"
+            [matDatepicker]="picker"
+            placeholder="MM/DD/YYYY"
+          >
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.DATE_OF_BIRTH)?.hasError('requiredDate')">Date of Birth is required</mat-error>
+          <mat-error *ngIf="passengerForm.get(passengerFormKeys.DATE_OF_BIRTH)?.hasError('invalidDate')">Invalid Date of Birth</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!isInfant"
+        formGroupName="baggage"
+        class="passenger-form__baggage-data baggage"
+      >
+        <div class="baggage__field">
+          <mat-form-field class="baggage__amount">
+            <input
+              required
+              type="number"
+              min="0"
+              max="3"
+              [formControlName]="passengerFormKeys.CABIN"
+              matInput
+            >
+            <mat-hint>3 bags max., total max. 12&nbsp;kg</mat-hint>
+            <mat-error *ngIf="passengerForm.get(passengerFormKeys.BAGGAGE + '.' + passengerFormKeys.CABIN)?.invalid">Must be up to 3 bags</mat-error>
+          </mat-form-field>
+          <span class="baggage__type">cabin bag(s)</span>
+        </div>
+
+        <div class="baggage__field">
+          <mat-form-field class="baggage__amount">
+            <input
+              required
+              type="number"
+              min="0"
+              max="3"
+              [formControlName]="passengerFormKeys.PERSONAL"
+              matInput
+            >
+            <mat-hint>3 bags max., total max. 8&nbsp;kg</mat-hint>
+            <mat-error *ngIf="passengerForm.get(passengerFormKeys.BAGGAGE + '.' + passengerFormKeys.PERSONAL)?.invalid">Must be up to 3 bags</mat-error>
+          </mat-form-field>
+          <span class="baggage__type">personal item(s)</span>
+        </div>
+
+        <div class="baggage__field">
+          <mat-form-field class="baggage__amount">
+            <input
+              required
+              type="number"
+              min="0"
+              max="3"
+              [formControlName]="passengerFormKeys.CHECKED"
+              matInput
+            >
+            <mat-hint>3 bags max., total max. 23&nbsp;kg</mat-hint>
+            <mat-error *ngIf="passengerForm.get(passengerFormKeys.BAGGAGE + '.' + passengerFormKeys.CHECKED)?.invalid">Must be up to 3 bags</mat-error>
+          </mat-form-field>
+          <span class="baggage__type">checked bag(s)</span>
+        </div>
+      </div>
+    </form>
+
+    <div
+      *ngIf="!isInfant"
+      class="booking-passengers-card__options"
+    >
+      <mat-slide-toggle class="airways-slide-toggle">
+        <mat-icon>wheelchair_pickup</mat-icon>
+        Need special assistance?
+      </mat-slide-toggle>
+    </div>
+<!--
+    <button
+      type="button"
+      (click)="onSubmit()"
+    >
+      Temp Submit
+    </button> -->
+  </mat-card-content>
+</mat-card>

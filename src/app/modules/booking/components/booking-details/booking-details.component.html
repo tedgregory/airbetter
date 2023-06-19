@@ -1,0 +1,86 @@
+<div
+  class="flight-details"
+  *ngIf="currentFlight && currentFlight as flightInfo; else noFlight">
+  <div class="timing timing--left">
+    <div class="timing__date">
+      {{ flightInfo.time.departure_utc | date : 'EEE, d LLL yyyy' }}
+    </div>
+    <div class="timing__local-time">
+      <p class="time">{{ flightInfo.time.departure_utc | date : 'HH:mm' }}</p>
+      <p class="time__gmt">
+        {{ flightInfo.time.departure_utc | date : 'z' }}
+      </p>
+    </div>
+    <div class="timing__airport">
+      {{ flightInfo.flyFrom.city }}
+    </div>
+  </div>
+  <div class="flight-details__decor">
+    <div class="details">
+      {{ flightInfo.time.durMinutes | bookingVariantFlightDuration }}
+      <div
+        [class]="{
+          details__image: true,
+          'details__image--flip': props.isReturn
+        }"></div>
+      Direct
+    </div>
+  </div>
+  <div class="timing timing--right">
+    <div class="timing__date">
+      {{ flightInfo.time.arrival_utc | date : 'EEE, d LLL yyyy' }}
+    </div>
+    <div class="timing__local-time">
+      <p class="time__gmt">{{ flightInfo.time.arrival_utc | date : 'z' }}</p>
+      <p class="time">{{ flightInfo.time.arrival_utc | date : 'HH:mm' }}</p>
+    </div>
+    <div class="timing__airport">
+      {{ flightInfo.flyTo.city }}
+    </div>
+  </div>
+  <div class="flight-details__jet-info">
+    <div class="tag">Flight no.</div>
+    <div class="number">
+      {{ flightInfo.flight_no }}
+    </div>
+  </div>
+</div>
+<div class="flight-selection">
+  <ng-container
+    *ngIf="!props.isConfirmed && currentFlight && currentFlight.price as price">
+    <div
+      class="flight-selection__seats seats"
+      [appRangeBackground]="[
+      currentFlight.seats.available,
+      currentFlight.seats.total
+      ]">
+      {{ currentFlight.seats.available }} seats available
+    </div>
+    <div class="flight-selection__price-tag">Price</div>
+    <div class="flight-selection__price">
+      {{ price[props.currency || 'EUR'] | currency : (props.currency || 'EUR') :'symbol':'1.0-0' }}
+    </div>
+  </ng-container>
+  <div class="flight-selection__select">
+    <button
+      mat-flat-button
+      color="primary"
+      class="button button--mat-gradient"
+      *ngIf="!props.isConfirmed"
+      (click)="confirmVariant(true)">
+      Select
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="button button--mat-minimal"
+      *ngIf="props.isConfirmed"
+      (click)="confirmVariant(false)">
+      Edit
+    </button>
+  </div>
+</div>
+
+<ng-template #noFlight>
+  <div class="flight-details">No data</div>
+</ng-template>

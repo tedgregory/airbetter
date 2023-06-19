@@ -1,0 +1,25 @@
+<mat-card class="booking-summary-flight">
+  <mat-card-content>
+    <div class="booking-summary-flight__header summary-header">
+      <h4 class="summary-header__title">
+        <span class="summary-header__flight-number">{{ flightItem?.jet }}</span>
+        <span>{{ flightItem?.name }}</span>
+      </h4>
+      <div class="summary-header__time-data">
+        <span>{{ flightItem?.date }}</span> <span>{{ flightItem?.time }}</span>
+      </div>
+    </div>
+    <div
+      *ngFor="let passengerDetails of passengersDisplayData; let last = last"
+      class="booking-summary-flight__row summary-passenger">
+      <div class="summary-passenger__name">{{ passengerDetails.name }}</div>
+      <div class="summary-passenger__included">
+        <p *ngFor="let baggage of passengerDetails.baggage">
+          {{ baggage }}
+        </p>
+        <p *ngIf="passengerDetails.seat">Seat: {{ passengerDetails.seat }}</p>
+      </div>
+      <mat-divider *ngIf="!last"></mat-divider>
+    </div>
+  </mat-card-content>
+</mat-card>

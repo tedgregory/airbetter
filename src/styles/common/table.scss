@@ -1,0 +1,51 @@
+.p-datatable {
+  .p-datatable-table {
+    width: 1128px;
+
+    .p-datatable-thead {
+      background: $color-grey-light;
+
+      // stylelint-disable-next-line selector-max-compound-selectors
+      > tr {
+        background: $color-grey-light;
+
+        // stylelint-disable-next-line selector-max-compound-selectors
+        > th {
+          background: $color-grey-light;
+          color: $color-black;
+          border: 0;
+          @include font-h4;
+          line-height: 20px;
+          padding: 14px;
+
+          // stylelint-disable-next-line selector-max-compound-selectors
+          .p-sortable-column-icon {
+            color: $color-black;
+          }
+        }
+      }
+    }
+
+    .p-datatable-tbody {
+      // stylelint-disable-next-line selector-max-compound-selectors
+      > tr {
+        color: $color-black;
+        @include font-h4;
+        font-weight: 500;
+        line-height: 32px;
+        letter-spacing: 0.5px;
+
+        // stylelint-disable-next-line selector-max-compound-selectors
+        > td {
+          padding: 20px 14px;
+          border: 1px solid $color-secondary-50;
+          border-width: 0 0 1px 0;
+        }
+      }
+    }
+  }
+
+  &.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):hover {
+    background: rgba($color-black, 0.01);
+  }
+}

@@ -1,0 +1,55 @@
+<div class="booking-passengers">
+  <div class="booking-passengers__block booking-content-block">
+    <h3 class="booking-content-block__title title title--medium title--iconic">
+      <mat-icon>person</mat-icon>
+      <span>Passengers</span>
+    </h3>
+
+    <p class="booking-content-block__description booking-description">
+      Enter the passenger's names as they appear on document (passport or ID).
+    </p>
+
+    <app-booking-passengers-card
+      *ngFor="let adult of (passengersStateData$ | async)?.adults; let i=index"
+      [initialData]="adult"
+      [order]="i"
+      [type]="'adult'"
+      (formDataValid)="onPassengerFormAccepted('adults', $event)"
+      [submissionTrigger]="submissionTrigger"
+    ></app-booking-passengers-card>
+    <app-booking-passengers-card
+      *ngFor="let child of (passengersStateData$ | async)?.children; let i=index"
+      [initialData]="child"
+      [order]="i"
+      [type]="'child'"
+      (formDataValid)="onPassengerFormAccepted('children', $event)"
+      [submissionTrigger]="submissionTrigger"
+    ></app-booking-passengers-card>
+    <app-booking-passengers-card
+      *ngFor="let infant of (passengersStateData$ | async)?.infants; let i=index"
+      [initialData]="infant"
+      [order]="i"
+      [type]="'infant'"
+      (formDataValid)="onPassengerFormAccepted('infants', $event)"
+      [submissionTrigger]="submissionTrigger"
+    ></app-booking-passengers-card>
+  </div>
+
+  <div class="booking-passengers__block booking-content-block">
+    <h3 class="booking-content-block__title title title--medium title--iconic">
+      <mat-icon>contacts</mat-icon>
+      <span>Contact details</span>
+    </h3>
+
+    <p class="booking-content-block__description booking-description">
+      We need contact details to be able to deliver the latest information
+      regarding your flight.
+    </p>
+
+    <app-booking-passengers-contacts
+      (formDataValid)="onContactDetailsAccepted($event)"
+      [submissionTrigger]="submissionTrigger"
+      [initialData]="(passengersStateData$ | async)?.contactDetails || null"
+    ></app-booking-passengers-contacts>
+  </div>
+</div>

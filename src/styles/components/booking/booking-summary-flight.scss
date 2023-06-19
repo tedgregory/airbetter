@@ -1,0 +1,61 @@
+.booking-summary-flight {
+  &.mat-mdc-card {
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+    border-top: 3px solid $color-primary;
+
+    .mat-mdc-card-content {
+      padding: 0;
+      border-radius: 8px;
+    }
+  }
+
+  .summary-header {
+    display: flex;
+    flex-direction: column;
+    background: $color-secondary-80;
+    color: $color-black;
+    border-radius: 8px 8px 0 0;
+    padding: 20px 24px;
+    gap: 8px;
+
+    &__title {
+      margin: 0;
+      display: flex;
+      gap: 20px;
+      @include font-h4;
+    }
+
+    &__flight-number {
+      color: $color-primary;
+    }
+
+    &__time-data {
+      display: flex;
+      gap: 36px;
+      @include text-16-400;
+    }
+  }
+
+  .summary-passenger {
+    padding: 20px 0;
+    @include text-16-400;
+
+    &__name {
+      text-transform: uppercase;
+      padding: 0 24px 12px;
+    }
+
+    &__included {
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 24px 52px;
+      gap: 4px;
+
+      p {
+        margin: 0;
+        color: $color-black;
+      }
+    }
+  }
+}

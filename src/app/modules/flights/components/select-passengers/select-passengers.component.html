@@ -1,0 +1,54 @@
+<div
+  class="dropdown"
+  [class.dropdown--opened]="isDropdownOpen"
+  [class.dropdown--has-count]="hasCount()"
+  appClickOutside
+  (clickOutside)="onClickOutsideDropdown()"
+>
+  <button
+    type="button"
+    class="dropdown__toggle"
+    aria-haspopup="listbox"
+    aria-labelledby="dropdown-label"
+    (click)="toggleDropdown()"
+  >
+    <div class="dropdown__toggle-inner">
+      <div class="dropdown__label-holder">
+        <span class="dropdown__label">{{ label }}</span>
+        <span class="dropdown__value">{{ passengersValueText }}</span>
+      </div>
+      <div class="dropdown__icon-holder" aria-label="Open Menu">
+        <svg>
+          <use xlink:href="./assets/sprites/sprite.svg#icon-arrow-down"></use>
+        </svg>
+      </div>
+    </div>
+  </button>
+  <ul
+    class="dropdown__menu"
+    role="listbox"
+    tabindex="0"
+    aria-expanded="false"
+    #dropdownList
+  >
+    <li
+      *ngFor="let passengerOption of passengerOptionsList"
+      class="option"
+      role="option"
+    >
+
+      <div class="option__inner">
+        <div class="option__info">
+          <span class="option__type">{{ passengerOption.type }}</span>
+          <span class="option__note">{{ passengerOption.note }}</span>
+        </div>
+        <div class="option__count">
+          <app-incrementer
+            [initValue]="counts[passengerOption.type]" (valueChange)="onIncrementerValueChange($event, passengerOption.type)"
+          ></app-incrementer>
+        </div>
+      </div>
+
+    </li>
+  </ul>
+</div>

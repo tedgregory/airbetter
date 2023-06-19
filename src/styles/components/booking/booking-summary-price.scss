@@ -1,0 +1,70 @@
+.booking-summary-price {
+  &.mat-mdc-card {
+    border: 1px solid $color-secondary-50;
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+
+    .mat-mdc-card-content {
+      padding: 0;
+    }
+  }
+
+  &__list {
+    padding: 24px 72px 0 40px;
+
+    @include media-breakpoint-down(mm) {
+      padding: 24px 20px 0 20px;
+    }
+  }
+
+  &__total {
+    padding: 20px 72px 20px 40px;
+
+    @include media-breakpoint-down(mm) {
+      padding: 24px 20px;
+    }
+  }
+
+  .price-list {
+    color: $color-black;
+
+    &__item {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    &__row {
+      @include text-16-400;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0;
+      gap: 40px;
+
+      &--bold {
+        font-weight: 700;
+      }
+
+      &--normal {
+        margin-left: 40px;
+      }
+    }
+  }
+
+  .price-total {
+    @include font-h4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__title {
+      color: $color-black;
+    }
+
+    &__sum {
+      color: $color-primary;
+    }
+  }
+}

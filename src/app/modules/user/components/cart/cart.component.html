@@ -1,0 +1,145 @@
+<mat-card class="cart">
+  <mat-card-content>
+    <h3 class="cart__title title title--medium">Cart</h3>
+
+    <p-table
+      class="cart__table"
+      #dt
+      [value]="flightsData"
+      [globalFilterFields]="[
+        'name',
+        'country.name',
+        'representative.name',
+        'status'
+      ]"
+      [(selection)]="selectedFlights"
+      [rowHover]="true">
+      <ng-template class="cart__table-header" pTemplate="header">
+        <tr>
+          <th>
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="number">
+            No. <p-sortIcon field="number"></p-sortIcon>
+          </th>
+          <th pSortableColumn="name">
+            Flight <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th pSortableColumn="typeTrip">
+            Type trip <p-sortIcon field="typeTrip"></p-sortIcon>
+          </th>
+          <th pSortableColumn="date">
+            Date & Time <p-sortIcon field="date"></p-sortIcon>
+          </th>
+          <th>Passengers</th>
+          <th pSortableColumn="price">
+            Price <p-sortIcon field="price"></p-sortIcon>
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template
+        class="cart__table-body table-content"
+        pTemplate="body"
+        let-flight>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="flight"></p-tableCheckbox>
+          </td>
+          <td class="table-content__cell table-content__cell--blue">
+            {{ flight.number }}
+          </td>
+          <td style="white-space: pre-line">
+            {{ flight.name.join('\n') }}
+          </td>
+          <td>{{ flight.typeTrip }}</td>
+          <td style="white-space: pre-line">
+            {{ flight.date.join('\n') }}
+          </td>
+          <td style="white-space: pre-line">
+            {{ flight.passengers.join('\n') }}
+          </td>
+          <td class="table-content__cell table-content__cell--green">
+            {{ flight.price | currency : currencyType }}
+          </td>
+          <td class="table-content__cell card flex justify-content-center">
+            <button
+              style="border-radius: 50%"
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="onContextMenuDeleteClick(flight)">
+                Delete
+              </button>
+              <button mat-menu-item (click)="onContextMenuEditClick(flight)">
+                Edit
+              </button>
+            </mat-menu>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <div class="cart__total cart-total">
+      <button
+        routerLink="/"
+        mat-flat-button
+        class="cart-total__button button button--mat-simple">
+        + Add new trip
+      </button>
+      <div class="cart-total__prices">
+        <p *ngIf="isDiscount" class="cart-total__applied-codes">
+          Applied codes: {{ appliedCodes.join(', ') || '-' }}
+        </p>
+        <div
+          [ngClass]="{ 'line-through': isDiscount }"
+          class="cart-total__price-block">
+          <span>Total</span
+          ><span class="cart-total__price">{{
+            countTotalPrice() | currency : currencyType
+          }}</span>
+        </div>
+        <div *ngIf="isDiscount" class="cart-total__price-block">
+          <span>Total</span
+          ><span class="cart-total__price">{{
+            countDiscountPrice() | currency : currencyType
+          }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart__payment cart-payment">
+      <div class="cart-payment__promo-code promo-code">
+        <mat-form-field class="promo-code__input" floatLabel="always">
+          <input
+            [(ngModel)]="promoCodeValue"
+            matInput
+            placeholder="Promo Code" />
+          <button
+            (click)="setDiscount()"
+            mat-flat-button
+            class="button button--mat-simple">
+            APPLY
+          </button>
+        </mat-form-field>
+        <p class="promo-code__list">
+          Promo codes for test:
+          {{ promoCodes.join(', ') }}
+        </p>
+      </div>
+
+      <div class="cart-payment__pay">
+        <span>{{ selectedFlights?.length ?? 0 }} selected</span
+        ><button
+          mat-flat-button
+          color="primary"
+          class="button button--mat-primary">
+          Payment
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

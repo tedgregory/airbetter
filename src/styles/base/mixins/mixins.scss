@@ -1,0 +1,111 @@
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin btn-reset {
+  position: relative;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin button-basic {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  font-style: normal;
+}
+
+@mixin font-h2 {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin font-h3 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin font-h4 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-16-500 {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+@mixin text-16-400 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-style: normal;
+}
+
+@mixin text-14-500 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  font-style: normal;
+}
+
+@mixin text-14-400 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin text-12-400 {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  font-style: normal;
+}
+
+@mixin text-12-600 {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+@mixin text-11-500 {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+@mixin webkit-scrollbar(
+  $width: 4px,
+  $radius: 10px,
+  $bar-bg-color: $color-grey-neutral-30-50,
+  $thumb-bg-color: $color-grey-neutral-30-50
+) {
+  &::-webkit-scrollbar-track {
+    background-color: $color-transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: $width;
+    background-color: $color-transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-bg-color;
+    border-radius: $radius;
+  }
+}

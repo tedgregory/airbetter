@@ -1,0 +1,168 @@
+<header
+  class="header"
+  [ngClass]="{
+    'header--translucent': isFlightsPage(),
+    'header--authorized': isAuth$ | async
+  }"
+>
+  <div class="header__inner">
+    <app-container height="max-height">
+      <div class="header__container-inner">
+        <a
+          class="header__logo"
+          [routerLink]="[NavigationPath.Flights]"
+        >
+          <img
+            src="/assets/images/logo.svg"
+            alt="Airways Logo"
+          >
+        </a>
+
+        <div
+          class="header__menu"
+          [@collapse]="collapse"
+          appClickOutside
+          (clickOutside)="clickedOutsideMenu($event)"
+        >
+          <div class="header__menu-inner">
+            <a
+              *ngIf="isFlightsPage()"
+              class="header__booking-link"
+              [routerLink]="[NavigationPath.Booking]"
+            >
+              Book flights
+            </a>
+
+            <mat-form-field
+              class="header__select header__select--date"
+              appearance="outline"
+            >
+              <mat-select
+                [value]="selectedDateFormat$ | async"
+                [formControl]="dateFormatsControl"
+              >
+                <mat-option
+                  name="date-format"
+                  *ngFor="let dateFormat of dateFormats"
+                  [value]="dateFormat.value"
+                >
+                  {{ dateFormat.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field
+              class="header__select header__select--currency"
+              appearance="outline"
+            >
+              <mat-select
+                [formControl]="currenciesControl"
+                [value]="selectedCurrency$ | async"
+              >
+                <mat-option
+                  name="currency"
+                  *ngFor="let currency of currencies"
+                  [value]="currency.value"
+                >
+                  {{ currency.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button
+              *ngIf="(isAuth$ | async) === false"
+              mat-flat-button
+              class="header__button header__button--signin button button--mat-iconic"
+              [ngClass]="{
+                'button--mat-translucent-light': isFlightsPage(),
+                'button--mat-translucent-dark': !isFlightsPage()
+              }"
+              type="button"
+              (click)="onSingInBtnClick()"
+              #signInBtn
+            >
+              <svg>
+                <use xlink:href="./assets/sprites/sprite.svg#icon-user"></use>
+              </svg>
+              <span class="button__text">Sign in</span>
+            </button>
+
+            <a
+              *ngIf="authData$ | async as authData"
+              mat-flat-button
+              class="header__button header__button--user button button--mat-iconic"
+              [ngClass]="{
+                'button--mat-translucent-light': isFlightsPage(),
+                'button--mat-translucent-dark': !isFlightsPage()
+              }"
+              type="button"
+              [routerLink]="[NavigationPath.UserAccount]"
+            >
+              <svg>
+                <use xlink:href="./assets/sprites/sprite.svg#icon-user"></use>
+              </svg>
+              <span class="button__text">
+                {{authData.firstName}}&nbsp;{{authData.lastName}}
+              </span>
+            </a>
+
+            <button
+              *ngIf="isAuth$ | async"
+              class="header__button header__button--signout"
+              type="button"
+              aria-label="Sign out"
+              (click)="onSignOutBtnClick()"
+            >
+              <svg>
+                <use xlink:href="./assets/sprites/sprite.svg#icon-sign-out"></use>
+              </svg>
+            </button>
+
+            <a
+              class="header__button header__button--cart"
+              [routerLink]="[NavigationPath.Cart]"
+              aria-label="Cart"
+            >
+              <svg>
+                <use xlink:href="./assets/sprites/sprite.svg#icon-cart"></use>
+              </svg>
+              <span
+                *ngIf="isAuth$ | async"
+                class="cart-amount-indicator"
+              >
+                2
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <button
+          *ngIf="isLtLgScreen"
+          class="header__hamburger hamburger hamburger--spin"
+          [class.is-active]="!collapse"
+          type="button"
+          (click)="toggleCollapse()"
+          #hamburgerToggle
+        >
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </app-container>
+  </div>
+</header>
+
+<app-auth-modal
+  *ngIf="isAuthModalOpen"
+  [isOpen]="isAuthModalOpen"
+  [position]="modalPos"
+  (closeModal)="closeAuthModal()"
+></app-auth-modal>
+
+<app-user-modal
+  *ngIf="!isAuthModalOpen && userModalService.isUserModalOpen"
+  [isOpen]="userModalService.isUserModalOpen"
+  [position]="modalPos"
+  (closeModal)="closeUserModal()"
+></app-user-modal>

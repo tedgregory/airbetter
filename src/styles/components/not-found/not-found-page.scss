@@ -1,0 +1,10 @@
+app-not-found-page {
+  display: block;
+  margin: 1rem 0;
+
+  .not-found-block {
+    &__actions {
+      padding-top: 12px;
+    }
+  }
+}

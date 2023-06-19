@@ -1,0 +1,77 @@
+.airways-slide-toggle {
+  &.mat-mdc-slide-toggle {
+    &.mat-accent {
+      --mdc-switch-selected-focus-state-layer-color: #{$color-primary-dark};
+      --mdc-switch-selected-handle-color: #{$color-white};
+      --mdc-switch-selected-hover-state-layer-color: #{$color-grey-neutral-10};
+      --mdc-switch-selected-pressed-state-layer-color: #{$color-primary-dark};
+      --mdc-switch-selected-focus-handle-color: #{$color-white};
+      --mdc-switch-selected-hover-handle-color: #{$color-white};
+      --mdc-switch-selected-pressed-handle-color: #{$color-white};
+      --mdc-switch-selected-focus-track-color: #{$color-primary};
+      --mdc-switch-selected-hover-track-color: #{$color-primary};
+      --mdc-switch-selected-pressed-track-color: #{$color-primary};
+      --mdc-switch-selected-track-color: #{$color-primary};
+      --mdc-switch-unselected-track-color: #{$color-white};
+      --mdc-switch-unselected-focus-handle-color: #{$color-grey-neutral};
+      --mdc-switch-unselected-hover-handle-color: #{$color-grey-neutral};
+      --mdc-switch-unselected-pressed-handle-color: #{$color-grey-neutral};
+      --mdc-switch-unselected-focus-track-color: #{$color-grey-lighter};
+      --mdc-switch-unselected-hover-track-color: #{$color-grey-lighter};
+      --mdc-switch-unselected-pressed-track-color: #{$color-grey-lighter};
+    }
+
+    .mdc-switch {
+      width: 52px;
+
+      .mdc-switch__handle-track {
+        width: calc(100% - 32px);
+        left: 4px;
+      }
+
+      .mdc-switch__track {
+        height: 32px;
+        border-radius: 16px;
+
+        &::before {
+          border: 2px solid $color-grey-neutral-30;
+        }
+      }
+
+      .mdc-switch__handle {
+        border-radius: 12px;
+        width: 24px;
+        height: 24px;
+      }
+
+      &.mdc-switch--unselected,
+      &.mdc-switch--selected {
+        .mdc-switch__icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      &.mdc-switch--selected:enabled .mdc-switch__icon {
+        fill: $color-grey-neutral-10;
+      }
+    }
+  }
+
+  .mdc-form-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 17px;
+    @include text-12-400;
+    padding: 3px 0;
+
+    & > label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+      padding: 0;
+    }
+  }
+}

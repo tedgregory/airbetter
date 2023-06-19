@@ -1,0 +1,107 @@
+<mat-stepper
+  [linear]="true"
+  [animationDuration]="'0'"
+  #bookingStepper
+>
+  <mat-step
+    label="Flights"
+    [completed]="(bookingSteps$ | async)?.['flights']"
+    [state]="(bookingSteps$ | async)?.['flights'] ? 'create' : 'number'"
+    >
+    <app-booking-list (completed)="onSetStepCompleted($event)"></app-booking-list>
+
+    <div class="booking-stepper__actions booking-step-buttons">
+      <button
+        type="button"
+        mat-flat-button
+        matStepperPrevious
+        class="button button--mat-simple"
+      >
+        Back
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        matStepperNext
+        class="button button--mat-primary"
+        [disabled]="!(bookingSteps$ | async)?.['flights']"
+      >
+        Continue
+      </button>
+    </div>
+
+  </mat-step>
+
+  <mat-step
+    label="Passengers"
+    [state]="(bookingSteps$ | async)?.['passengers'] ? 'create' : 'number'"
+    >
+    <!-- [completed]="(bookingSteps$ | async)?.['passengers']" -->
+    <app-booking-passengers
+      (completed)="onSetStepCompleted($event)"
+      [submissionTrigger]="submissionTrigger$"
+    ></app-booking-passengers>
+
+    <div class="booking-stepper__actions booking-step-buttons">
+      <button
+        type="button"
+        mat-flat-button
+        matStepperPrevious
+        class="button button--mat-simple"
+      >
+        Back
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        class="button button--mat-primary"
+        (click)="onFormsSubmitAttempt()"
+      >
+        Continue
+      </button>
+    </div>
+
+  </mat-step>
+
+  <mat-step
+    label="Review & Payment"
+    [completed]="(bookingSteps$ | async)?.['review']"
+    [state]="(bookingSteps$ | async)?.['review'] ? 'create' : 'number'"
+    [editable]="(bookingSteps$ | async)?.['passengers'] && (bookingSteps$ | async)?.['flights']"
+  >
+    <app-booking-summary
+      (completed)="onSetStepCompleted($event)"
+      [submissionTrigger]="submissionTrigger$"
+    ></app-booking-summary>
+
+    <div class="booking-stepper__actions booking-step-buttons">
+      <button
+        type="button"
+        mat-flat-button
+        matStepperPrevious
+        class="button button--mat-simple"
+      >
+        Back
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        class="button button--mat-outlined"
+      >
+        Add to order cart
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        class="button button--mat-primary"
+        disabled="true"
+      >
+        Buy now
+      </button>
+    </div>
+  </mat-step>
+
+</mat-stepper>

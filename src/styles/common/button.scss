@@ -1,0 +1,108 @@
+.button {
+  &--mat-primary,
+  &--mat-simple,
+  &--mat-outlined {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      @include button-basic;
+      border-radius: 4px;
+      padding: 12px 24px;
+    }
+  }
+
+  &--mat-simple {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      background-color: $color-transparent;
+      color: $color-primary;
+    }
+  }
+
+  &--mat-outlined {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      background-color: $color-transparent;
+      color: $color-primary;
+      border: 1px solid $color-primary;
+    }
+  }
+
+  &--mat-gradient {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      background: linear-gradient(108.75deg, $color-teal 59.91%, $color-cobalt 95.36%);
+      color: $color-white;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 500;
+      border: 1px solid $color-primary;
+      border-radius: 4px;
+      // padding: 8px 16px;
+    }
+  }
+
+  &--mat-minimal {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      background: $color-grey-lighter;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      color: $color-primary;
+      border-radius: 4px;
+      // padding: 4px 8px;
+    }
+  }
+
+  &--mat-translucent-light {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      @include text-16-500;
+      color: $color-white;
+      background: rgba($color-grey-puff, 0.15);
+      border: 1px solid $color-grey-cloud;
+      border-radius: 4px;
+      padding: 10px 16px;
+    }
+  }
+
+  &--mat-translucent-dark {
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      @include text-16-500;
+      color: $color-grey-neutral-10;
+      background: rgba($color-grey-puff, 0.15);
+      border: 1px solid $color-grey-cloud;
+      border-radius: 4px;
+      padding: 10px 16px;
+    }
+  }
+
+  &--mat-iconic {
+    &.mdc-button {
+      .mdc-button__label {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 13px;
+      }
+
+      img,
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  &--mat-social {
+    &.mat-mdc-button.mat-mdc-button-base,
+    &.mat-mdc-raised-button.mat-mdc-button-base,
+    &.mat-mdc-unelevated-button.mat-mdc-button-base,
+    &.mat-mdc-outlined-button.mat-mdc-button-base {
+      height: 56px;
+    }
+
+    &.mat-mdc-unelevated-button.mat-mdc-button-base {
+      @include text-16-500;
+      color: $color-grey-neutral-10;
+      background: $color-grey-lighter;
+      border: 1px solid $color-grey-cloud;
+      border-radius: 4px;
+    }
+  }
+}

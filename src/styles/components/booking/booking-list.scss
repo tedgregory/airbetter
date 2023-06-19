@@ -1,0 +1,102 @@
+app-booking-list {
+  .booking-list {
+    width: 100%;
+
+    .icon {
+      &--back {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 287px;
+      background-color: $color-grey-40;
+    }
+
+    .flight {
+      margin-bottom: 1.5rem;
+      position: relative;
+
+      &__options {
+        margin-bottom: 9px;
+      }
+
+      &__nav {
+        position: absolute;
+        z-index: 1;
+        top: 36px;
+
+        &--prev {
+          left: 0;
+        }
+
+        &--next {
+          right: 0;
+        }
+      }
+    }
+  }
+
+  .small-button {
+    box-shadow: 0 0 1rem $color-white;
+
+    &.mat-mdc-icon-button,
+    &.mat-mdc-button-touch-target {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
+  }
+
+  .swiper-button-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .swiper-slide {
+    margin-top: 8px;
+  }
+
+  .swiper-slide-active {
+    position: relative;
+    margin: 0;
+
+    .booking-card {
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        left: -1px;
+        right: -1px;
+        height: 4px;
+      }
+    }
+
+    .date-title {
+
+      // transition: all 0.5s;
+      &__day {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: $color-indigo;
+      }
+
+      &__weekday {
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+        color: $color-grey-neutral-30;
+      }
+    }
+
+    .price {
+      // transition: all 0.5s;
+      font-size: 1.8rem;
+      line-height: 2.2rem;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.mat-datepicker-content {
+  .mat-datepicker-actions {
+    border-top: 1px solid $color-grey-cloud;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .mat-mdc-button:not(:disabled) {
+    @include text-14-500;
+    color: $color-primary;
+  }
+}

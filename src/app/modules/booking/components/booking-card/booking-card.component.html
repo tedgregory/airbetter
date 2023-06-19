@@ -1,0 +1,28 @@
+<div
+  *ngIf="bookingVariant as flightData; else empty"
+  [class]="{ 'booking-card': true }" [appSlideActiveBg]="[flightData.seats.available, flightData.seats.total]">
+  <!-- (click)="setActive()" -->
+  <div class="date-title">
+    <p class="date-title__day">
+      {{ flightData.flightDate | date : 'dd MMM' }}
+    </p>
+    <p class="date-title__weekday">
+      {{ flightData.flightDate | date : 'EEEE' }}
+    </p>
+  </div>
+  <div class="price">
+    {{ flightData.price?.[currency || 'EUR'] | currency : currency || 'EUR' :'symbol':'1.0-0' }}
+  </div>
+</div>
+
+<ng-template #empty>
+  <div class="booking-card booking-card--empty">
+    <div class="date-title">
+      <p class="date-title__day">27 Feb</p>
+      <p class="date-title__weekday">Monday</p>
+    </div>
+    <div class="placeholder">
+      <img src="/assets/images/no-plane.svg" alt="empty card" />
+    </div>
+  </div>
+</ng-template>

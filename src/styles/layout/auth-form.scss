@@ -1,0 +1,185 @@
+.auth-form {
+  padding-top: 36px;
+  padding-bottom: 2px;
+
+  &,
+  .auth-social {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
+
+  &__divider {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 1px;
+      width: 100%;
+      background: $color-grey-thin;
+    }
+  }
+
+  &__divider-text {
+    flex-grow: 0;
+    flex-shrink: 0;
+    @include text-12-400;
+    color: $color-black;
+  }
+
+  &__note {
+    @include text-14-500;
+
+    a {
+      color: $color-primary;
+    }
+
+    &--password {
+      text-align: right;
+      padding-top: 4px;
+      padding-bottom: 8px;
+    }
+  }
+
+  &__button {
+    &.button--mat-primary {
+      &.mat-mdc-button.mat-mdc-button-base,
+      &.mat-mdc-raised-button.mat-mdc-button-base,
+      &.mat-mdc-unelevated-button.mat-mdc-button-base,
+      &.mat-mdc-outlined-button.mat-mdc-button-base {
+        height: 44px;
+      }
+    }
+  }
+
+  &__gender-field-holder {
+    position: relative;
+
+    mat-button-toggle-group {
+      width: 100%;
+    }
+
+    .invalid {
+      // stylelint-disable-next-line selector-max-compound-selectors
+      & + .auth-form__gender-field-error {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__policy-field-holder {
+    position: relative;
+
+    .invalid {
+      // stylelint-disable-next-line selector-max-compound-selectors
+      & + .auth-form__policy-field-error {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__gender-field-error,
+  &__policy-field-error {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    @include text-12-400;
+    color: $color-danger;
+    padding: 0 16px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.36s ease-out, opacity 0.36s ease-out;
+  }
+
+  &__policy-field-error {
+    bottom: 0;
+    padding: 0 10px;
+  }
+
+  &__checkbox-line {
+    padding: 8px 0 12px 0;
+
+    &.invalid {
+      // stylelint-disable-next-line selector-max-compound-selectors
+      &.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate='true']) ~ .mdc-checkbox__background {
+        border-color: $color-danger;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__cols {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 16px 8px;
+
+    & > * {
+      flex: 1 1 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+
+      & > * {
+        flex-basis: 100%;
+      }
+    }
+
+    .mat-mdc-form-field {
+      max-width: 100%;
+    }
+  }
+
+  &__error {
+    @include text-14-400;
+    color: $color-danger;
+    padding: 0 0 10px 0;
+    margin-top: -10px;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    top: -1px;
+  }
+
+  .mat-mdc-form-field-error,
+  .mat-mdc-form-field-hint-wrapper {
+    @include text-12-400;
+  }
+
+  .mat-datepicker-toggle[data-mat-calendar] {
+    color: $color-grey-neutral-10;
+  }
+
+  .mat-mdc-form-field-icon-suffix {
+    color: $color-grey-neutral-30;
+  }
+
+  .mat-button-toggle-group.mat-button-toggle-group-appearance-standard,
+  .mat-button-toggle-button.mat-focus-indicator {
+    height: 40px;
+  }
+
+  .mat-button-toggle {
+    flex: 1 1 0;
+  }
+}

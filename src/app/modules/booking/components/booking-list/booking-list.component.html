@@ -1,0 +1,136 @@
+<div class="booking-list">
+  <div class="booking-content-block">
+    <ng-container *ngIf="flyToData$ | async as directFlights">
+      <div
+        class="booking-list__status"
+        *ngIf="(loadingStatus$ | async) !== 'Loaded'"
+      >
+        <app-spinner *ngIf="(loadingStatus$ | async) === 'Loading'"></app-spinner>
+        <p *ngIf="(loadingStatus$ | async) === 'Error'">No flights found. Try <a [routerLink]="['']">new search</a></p>
+      </div>
+      <ng-container *ngIf="directFlights.variants?.length && directFlights.chosenVariant">
+        <h3 class="booking-content-block__title booking-content-block__title--m title title--medium title--iconic">
+          <img
+            class="icon"
+            src="/assets/images/plane.svg"
+            alt="Icon"
+          >
+          {{ directFlights.chosenVariant.flyFrom.city }} to
+          {{ directFlights.chosenVariant.flyTo.city }}
+        </h3>
+        <div class="flight">
+          <div class="flight__options">
+            <swiper
+              #swiper1
+              class="swiper--direct"
+              [config]="config1"
+              *ngIf="!directFlights.confirmed && directFlights.variants"
+              (slideChange)="onSliderSlideChange('forward', $event)"
+            >
+              <ng-template
+                swiperSlide
+                *ngFor="let bookingVariant of directFlights.variants"
+              >
+                <app-booking-card [bookingVariant]="bookingVariant" [currency]="selectedCurrency$ | async"></app-booking-card>
+              </ng-template>
+            </swiper>
+
+            <div class="flight__nav flight__nav--prev nav__forward--prev">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get previous flights"
+              >
+                <mat-icon>chevron_left</mat-icon>
+              </button>
+            </div>
+            <div class="flight__nav flight__nav--next nav__forward--next">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get next flights"
+              >
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+          </div>
+          <app-booking-details
+            [currentFlight]="directFlights.chosenVariant"
+            (confirmation)="onConfirmToggle('flyTo')"
+            [props]="{
+              isReturn: false,
+              isConfirmed: directFlights.confirmed,
+              currency: (selectedCurrency$ | async) || null
+            }"
+          ></app-booking-details>
+        </div>
+      </ng-container>
+
+      <p *ngIf="!directFlights && (loadingStatus$ | async) !== 'Loading'">No flights available for booking</p>
+    </ng-container>
+  </div>
+
+  <div class="booking-content-block">
+    <ng-container *ngIf="flyBackData$ | async as returnFlights">
+      <ng-container *ngIf="returnFlights.variants?.length && returnFlights.chosenVariant">
+        <h3 class="booking-content-block__title booking-content-block__title--m title title--medium title--iconic">
+          <img
+            class="icon icon--back"
+            src="/assets/images/plane.svg"
+            alt="Icon"
+          >
+          {{ returnFlights.chosenVariant.flyFrom.city }} to
+          {{ returnFlights.chosenVariant.flyTo.city }}
+        </h3>
+        <div class="flight">
+          <div class="flight__options">
+            <swiper
+              #swiper2
+              class="swiper--return"
+              [config]="config2"
+              *ngIf="!returnFlights.confirmed && returnFlights.variants"
+              (slideChange)="onSliderSlideChange('backward', $event)"
+            >
+              <ng-template
+                swiperSlide
+                *ngFor="let bookingVariant of returnFlights.variants"
+              >
+                <app-booking-card [bookingVariant]="bookingVariant" [currency]="selectedCurrency$ | async"></app-booking-card>
+              </ng-template>
+            </swiper>
+
+            <div class="flight__nav flight__nav--prev nav__return--prev">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get previous flights"
+              >
+                <mat-icon>chevron_left</mat-icon>
+              </button>
+            </div>
+            <div class="flight__nav flight__nav--next nav__return--next">
+              <button
+                mat-icon-button
+                class="small-button"
+                aria-label="Get next flights"
+              >
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+          </div>
+          <app-booking-details
+            [currentFlight]="returnFlights.chosenVariant"
+            (confirmation)="onConfirmToggle('flyBack')"
+            [props]="{
+              isReturn: true,
+              isConfirmed: returnFlights.confirmed,
+              currency: (selectedCurrency$ | async) || null
+            }"
+          ></app-booking-details>
+        </div>
+      </ng-container>
+
+      <p *ngIf="!returnFlights && (loadingStatus$ | async) !== 'Loading'">No return flights available for booking</p>
+    </ng-container>
+  </div>
+</div>

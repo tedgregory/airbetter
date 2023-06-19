@@ -1,0 +1,20 @@
+.mdc-tooltip.mat-mdc-tooltip.mdc-tooltip--multiline {
+  @include text-12-400;
+
+  .mdc-tooltip__surface.mdc-tooltip__surface-animation {
+    position: relative;
+    bottom: 8px;
+    right: 12px;
+    max-width: 211px;
+    min-height: 128px;
+    color: $color-grey-neutral;
+    background-color: $color-white;
+    box-shadow: 0 1px 4px rgba($color-black, 0.2);
+    border-radius: 8px;
+    padding: 16px 24px;
+
+    @include media-breakpoint-down(xl) {
+      right: -8px;
+    }
+  }
+}

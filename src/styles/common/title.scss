@@ -1,0 +1,21 @@
+.title {
+  color: $color-primary;
+  padding: 0;
+  margin: 0;
+
+  &--medium {
+    @include font-h3;
+  }
+
+  &--primary-dark {
+    color: $color-primary-dark;
+  }
+
+  &--iconic {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+  }
+}

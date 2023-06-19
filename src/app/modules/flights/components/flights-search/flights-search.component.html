@@ -1,0 +1,228 @@
+<app-row mode="lg">
+  <app-column [modes]="{ lg: 7 }">
+    <mat-card>
+      <form
+        class="flights-search-form"
+        [formGroup]="flightsSearchForm"
+      >
+        <mat-radio-group
+          class="flights-search-form__trip-type-field"
+          name="flight-type"
+          formControlName="isReturnControl"
+          required
+          (change)="onTripTypeChange($event)"
+        >
+          <mat-radio-button
+            value="round-trip"
+            [checked]="selectedIsReturn"
+          >
+            Round Trip
+          </mat-radio-button>
+          <mat-radio-button
+            value="one-way"
+            [checked]="!selectedIsReturn"
+          >
+            One Way
+          </mat-radio-button>
+        </mat-radio-group>
+        <div class="flights-search-form__locations-fields">
+          <mat-form-field
+            class="flights-search-form__from-field"
+            appearance="fill"
+          >
+            <mat-label>From</mat-label>
+            <div class="flights-search-form__from-holder">
+              <input
+                type="text"
+                placeholder="Choose your location"
+                matInput
+                required
+                formControlName="fromControl"
+                [matAutocomplete]="autoFrom"
+                aria-label="Your location"
+                (input)="onFromInput()"
+              >
+              <span
+                *ngIf="selectedFromOption"
+                class="flights-search-form__from-iata"
+              >
+                {{ selectedFromOption.key }}
+              </span>
+            </div>
+            <mat-autocomplete #autoFrom="matAutocomplete">
+              <mat-option
+                *ngFor="let location of filteredFromOptions$ | async"
+                [value]="location.city"
+                [disabled]="
+                  selectedToOption &&
+                  selectedToOption.city === location.city &&
+                  selectedToOption.country === location.country
+                "
+                (onSelectionChange)="onFromSelection(location)"
+              >
+                <span class="flights-search-location">
+                  <span class="flights-search-location__row flights-search-location__row--city">
+                    <span class="flights-search-location__city">{{ location.city }}&nbsp;</span>
+                    <span class="flights-search-location__city-iata">({{ location.key }})</span>
+                  </span>
+                  <span class="flights-search-location__row flights-search-location__row--airport">
+                    <span class="flights-search-location__airport">{{ location.name }},&nbsp;</span>
+                    <span class="flights-search-location__country">{{ location.country }}</span>
+                  </span>
+                </span>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="flightsSearchForm
+              .get('fromControl')
+              ?.hasError('required')
+            ">Location is required</mat-error>
+          </mat-form-field>
+          <mat-form-field
+            class="flights-search-form__to-field"
+            appearance="fill"
+          >
+            <mat-label>Destination</mat-label>
+            <div class="flights-search-form__to-holder">
+              <input
+                type="text"
+                placeholder="Choose your destination"
+                matInput
+                required
+                formControlName="toControl"
+                [matAutocomplete]="autoTo"
+                aria-label="Your destination"
+                (input)="onToInput()"
+              >
+              <span
+                *ngIf="selectedToOption"
+                class="flights-search-form__to-iata"
+              >
+                {{ selectedToOption.key }}
+              </span>
+            </div>
+            <mat-autocomplete #autoTo="matAutocomplete">
+              <mat-option
+                *ngFor="let location of filteredToOptions$ | async"
+                [value]="location.city"
+                [disabled]="
+                  selectedFromOption &&
+                  selectedFromOption.city === location.city &&
+                  selectedFromOption.country === location.country
+                "
+                (onSelectionChange)="onToSelection(location)"
+              >
+                <span class="flights-search-location">
+                  <span class="flights-search-location__row flights-search-location__row--city">
+                    <span class="flights-search-location__city">{{ location.city }}&nbsp;</span>
+                    <span class="flights-search-location__city-iata">({{ location.key }})</span>
+                  </span>
+                  <span class="flights-search-location__row flights-search-location__row--airport">
+                    <span class="flights-search-location__airport">{{ location.name }},&nbsp;</span>
+                    <span class="flights-search-location__country">{{ location.country }}</span>
+                  </span>
+                </span>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="
+            flightsSearchForm
+              .get('toControl')
+              ?.hasError('required')
+            ">Destination is required</mat-error>
+          </mat-form-field>
+          <button
+            mat-flat-button
+            class="flights-search-form__switch button button--mat-outlined"
+            type="button"
+            (click)="onLocationSwitchClick()"
+          >
+            <mat-icon
+              matSuffix
+              svgIcon="appSwitch"
+            ></mat-icon>
+          </button>
+        </div>
+        <div class="flights-search-form__cols">
+          <mat-form-field
+            class="flights-search-form__dates-field"
+            appearance="fill"
+          >
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input
+              formGroupName="range"
+              [rangePicker]="picker"
+              [min]="minDate"
+              [max]="maxDate"
+            >
+              <input
+                matStartDate
+                formControlName="start"
+                placeholder="Start date"
+                (dateChange)="startDatePicker.next($event)"
+              >
+              <input
+                matEndDate
+                formControlName="end"
+                placeholder="End date"
+                (dateChange)="endDatePicker.next($event)"
+              >
+            </mat-date-range-input>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker>
+              <mat-date-range-picker-actions>
+                <button
+                  mat-button
+                  matDateRangePickerCancel
+                >
+                  Cancel
+                </button>
+                <button
+                  mat-button
+                  matDateRangePickerApply
+                >
+                  OK
+                </button>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+            <mat-error *ngIf="
+                flightsSearchForm
+                  .get('range')
+                  ?.get('start')
+                  ?.hasError('matStartDateInvalid')
+              ">Invalid start date</mat-error>
+            <mat-error *ngIf="
+                flightsSearchForm
+                  .get('range')
+                  ?.get('end')
+                  ?.hasError('matEndDateInvalid')
+              ">Invalid end date</mat-error>
+            <mat-error *ngIf="
+                flightsSearchForm.get('range')?.get('end')?.hasError('required')
+              ">Please provide a date range</mat-error>
+          </mat-form-field>
+          <div class="flights-search-form__passengers-field">
+            <app-select-passengers (countsChange)="
+              onPassengerCountsChange($event)
+              "></app-select-passengers>
+          </div>
+        </div>
+        <div class="flights-search-form__actions">
+          <button
+            mat-flat-button
+            color="primary"
+            class="flights-search-form__submit-button button button--mat-primary"
+            type="button"
+            [disabled]="flightsSearchForm.invalid === true"
+            (click)="onFormSubmit()"
+          >
+            Search
+          </button>
+        </div>
+        <mat-error *ngIf="passengersError$ | async">Adult passenger required</mat-error>
+      </form>
+    </mat-card>
+  </app-column>
+  <app-column [modes]="{ lg: 5 }"></app-column>
+</app-row>

@@ -1,0 +1,139 @@
+@use '@angular/material' as mat;
+
+$grid-breakpoints: (
+  xs: 0,
+  nm: 320px,
+  im: 360px,
+  mkm: 400px,
+  mm: 480px,
+  sm: 550px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  hg: 1400px,
+  xh: 1600px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1160px,
+  hg: 1160px,
+);
+
+$height-breakpoint-bg: 699px;
+
+$dark-primary-text: rgba(#000000, 0.87);
+$light-primary-text: #ffffff;
+
+$airways-indigo-palette: (
+  50: #e2e7f0,
+  100: #b8c4d8,
+  200: #889cbf,
+  300: #5874a5,
+  400: #355791,
+  500: #11397e, // main
+  600: #0f3376,
+  700: #0c2c6b,
+  800: #0a2461,
+  900: #05174e,
+  A100: #11397e,
+  A200: #11397e,
+  A400: #11397e,
+  A700: #11397e,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$airways-red-palette: (
+  50: #f6e5e4,
+  100: #e8bebc,
+  200: #d9938f,
+  300: #ca6762,
+  400: #be4740,
+  500: #b3261e, // main
+  600: #ac221a,
+  700: #a31c16,
+  800: #9a1712,
+  900: #8b0d0a,
+  A100: #ffbab9,
+  A200: #ff8886,
+  A400: #ff5653,
+  A700: #ff3d3a,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$font: 'Roboto', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial',
+  'Lucida Grande', sans-serif;
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-transparent: rgba(255, 255, 255, 0);
+$color-grey-neutral: #1c1b1f;
+$color-grey-neutral-10: #49454f;
+$color-grey-neutral-30: #74767a;
+$color-grey-neutral-30-50: rgba($color-grey-neutral-30, 0.5);
+$color-grey-cloud: #cecece;
+$color-grey-puff: #f1f3f6;
+$color-grey-thin: #e1e5eb;
+$color-grey-feather: #fafafa;
+$color-grey-light: #f5f5f5;
+$color-grey-lighter: #f4f6f9;
+$color-grey-blue: #98a2ab;
+$color-grey-40: #d0d9df;
+$color-grey-60: #e9edf1;
+$color-cobalt: #073590;
+$color-teal: #0090bd;
+$color-yellow: #f1c933;
+$color-green: #2ba82b;
+$color-green-yellow: #7f8906;
+
+$color-indigo: mat.get-color-from-palette($airways-indigo-palette, 500);
+$color-indigo-dark: #10264c;
+$color-indigo-night: #10387f;
+$color-indigo-light: #005abc;
+
+$color-secondary-inactive: $color-teal;
+$color-active-base: $color-yellow;
+
+$color-bg: $color-grey-light;
+$color-default: $color-grey-neutral;
+$color-primary: $color-indigo;
+$color-primary-dark: $color-indigo-dark;
+$color-secondary-50: $color-grey-thin;
+$color-secondary-60: $color-grey-60;
+$color-secondary-80: $color-grey-puff;
+$color-secondary-90: $color-grey-lighter;
+$color-secondary-100: $color-grey-feather;
+$color-danger: mat.get-color-from-palette($airways-red-palette, 500);
+$color-warning: mat.get-color-from-palette($airways-red-palette, 400);
