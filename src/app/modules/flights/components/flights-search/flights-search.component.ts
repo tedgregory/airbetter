@@ -22,10 +22,20 @@ import { NavigationPath } from 'src/app/core/navigation/models/navigation.interf
 import { ISearchData } from 'src/app/redux/search/search.state';
 import { SearchActions } from 'src/app/redux/search/search.actions';
 import { EPassengerType } from 'src/app/redux/common/common.models';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import {
+  APP_DATE_FORMATS,
+  AppDateAdapter,
+} from 'src/app/core/providers/date-adapter';
+import { searchFeature } from 'src/app/redux/search/search.reducer';
 
 @Component({
   selector: 'app-flights-search',
   templateUrl: './flights-search.component.html',
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
+  ],
 })
 export class FlightsSearchComponent implements OnInit, OnDestroy {
   @HostBinding('class') class = 'flights-search';
@@ -127,6 +137,17 @@ export class FlightsSearchComponent implements OnInit, OnDestroy {
     //     // console.log('User has picked both dates', data.start.value, data.end.value);
     //   }
     // });
+
+    this.subscriptions.push(
+      this.store.select(searchFeature.selectDateFormat).subscribe(() => {
+        this.flightsSearchForm.patchValue({
+          range: {
+            start: this.flightsSearchForm.get('range.start')?.value || null,
+            end: this.flightsSearchForm.get('range.end')?.value,
+          },
+        });
+      })
+    );
   }
 
   ngOnDestroy(): void {
