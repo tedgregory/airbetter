@@ -22,7 +22,7 @@ import {
   GridBreakpointType,
   mediaBreakpointDown,
 } from '../../../utils/grid-breakpoints.util';
-import { Subject, combineLatest, takeUntil, tap } from 'rxjs';
+import { Subject, Subscription, combineLatest, takeUntil, tap } from 'rxjs';
 import { CoreService } from 'src/app/core/services/core.service';
 import { ModalPosition } from '../../interfaces/layout.interfaces';
 import { ECurrencies, EDateFormats } from 'src/app/redux/common/common.models';
@@ -114,6 +114,8 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   selectedCurrency$ = this.store.select(searchFeature.selectCurrency);
 
+  subs: Subscription[] = [];
+
   constructor(
     private store: Store,
     private route: ActivatedRoute,
@@ -142,21 +144,30 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe();
 
-    this.dateFormatsControl.valueChanges.subscribe((value) => {
-      value &&
-        this.store.dispatch(SearchActions.setDateFormat({ dateFormat: value }));
-    });
+    this.subs.push(
+      this.dateFormatsControl.valueChanges.subscribe((value) => {
+        value &&
+          this.store.dispatch(
+            SearchActions.setDateFormat({ dateFormat: value })
+          );
+      })
+    );
 
-    this.currenciesControl.valueChanges.subscribe((value) => {
-      value &&
-        this.store.dispatch(SearchActions.setCurrency({ currency: value }));
-    });
+    this.subs.push(
+      this.currenciesControl.valueChanges.subscribe((value) => {
+        value &&
+          this.store.dispatch(SearchActions.setCurrency({ currency: value }));
+      })
+    );
 
-    combineLatest([this.selectedDateFormat$, this.selectedCurrency$]).subscribe(
-      ([format, currency]) => {
+    this.subs.push(
+      combineLatest([
+        this.selectedDateFormat$,
+        this.selectedCurrency$,
+      ]).subscribe(([format, currency]) => {
         this.dateFormatsControl.setValue(format);
         this.currenciesControl.setValue(currency);
-      }
+      })
     );
   }
 
@@ -167,6 +178,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+    this.subs.forEach((sub) => sub.unsubscribe());
   }
 
   isFlightsPage() {
